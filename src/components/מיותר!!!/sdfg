@@ -1,0 +1,73 @@
+        <div className="container fluid">
+          <button onClick={setName1}>click</button>
+          <label>{name}</label>
+          <div className="row">
+            <div className="col-5">
+              <h2>products</h2>
+              <table className="table table-striped">
+                <thead className="thead-light"><tr>
+                  <td>name</td>
+                  <td>color</td>
+                  <td>amount</td>
+                  <td>price</td>
+                  <td>update</td>
+                </tr>
+                </thead>
+                <tbody>
+                  {
+                    // page.items.map(item => (
+                    list.map(item => (
+                      <tr key={item._id}>
+                        {/* <td>{item._id}</td>  */}
+                        <td>{item.name}</td>
+                        <td>{item.color}</td>
+                        <td>{item.amount}</td>
+                        <td>{item.price}</td>
+                        <td><button onClick={() => { update(item) }}>קנה</button></td>
+                        {/* <td><button onClick={()=>{del(item._id)}}>delete</button></td>  */}
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div className="col-1"></div>
+            <div className="col-6">
+              <h2>עגלה</h2>
+              <table className="table table-striped">
+                <thead className="thead-light"><tr>
+                  {/* <td>id</td> */}
+                  <td>name</td>
+                  <td>color</td>
+                  <td>amount</td>
+                  <td></td>
+                  <td>price</td>
+                  {/* <td>delete</td> */}
+                </tr>
+                </thead>
+                <tbody>
+                  {
+                    cartItems.map(item => (
+                      // <div>{item}</div>
+                      <tr key={item._id}>
+                        <td>{item.name}</td>
+                        <td>{item.color}</td>
+                        <td>{item.amount}</td>
+                        {/* <td><button onClick={() => { del(item._id) }}>+</button>
+                        <button onClick={() => { del(item._id) }}>-</button></td> */}
+                        <td>{item.price}</td>
+                        <td><button onClick={() => { del(item) }}>הסר</button></td>
+
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+              <label>{sum}</label>&nbsp;&nbsp;
+              <label>  :לתשלום  </label>
+              <br />
+              <button onClick={save}>לאישור קניה</button>
+            </div>
+          </div>
+          {/* <Route exact path="/products/addProduct"><AddProduct/></Route> */}
+        </div>
