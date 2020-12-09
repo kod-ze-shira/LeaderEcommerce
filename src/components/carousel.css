@@ -1,0 +1,21 @@
+.rec.rec-arrow:disabled {
+        visibility: hidden;
+}
+.rec.rec-arrow {
+        top:0px;
+        /* border-radius: 0; */
+}
+.rec-pagination{
+        
+        position: fixed;
+        top:10vh;
+}
+.rec-arrow{
+        visibility: hidden;
+        /* position: fixed;
+        margin-top:50vh; */
+}
+
+.rec-arrow-right{
+        right: 15vw;
+}
