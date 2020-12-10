@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import $ from 'jquery';
 import { headerBurgerOnClick, searchFunc } from '../services/functions';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { actions } from "../redux/action";
 
 ///images
 import logoSvg from "../assets/logo.svg";
@@ -30,11 +32,13 @@ class Category extends Component {
                         <button
                             onClick={headerBurgerOnClick}
                             className="header__burger js-header-burger" ></button>
-                        <Link className="header__logo" to="/">
-                            <img className="header__pic header__pic_black-desktop" src={logoSvg} alt=""></img>
-                            <img className="header__pic header__pic_white-desktop" src={logoWhite} alt=""></img>
-                            <img className="header__pic header__pic_black-mobile" src={logoMobile} alt=""></img>
-                            <img className="header__pic header__pic_white-mobile" src={logoMobileWhite} alt=""></img>
+                        <Link className="header__logo" to="/editHome">
+                            {this.props.homeStoreDesign.LogoYOrN === true ?
+                                <img className="" src={this.props.homeStoreDesign.logo} alt=""
+                                    style={{ borderRadius: this.props.homeStoreDesign.logoBorderRadiusLogo }}
+                                    width={this.props.homeStoreDesign.logoWidth ? this.props.homeStoreDesign.logoWidth + 'vw' : '100vw'} height="auto" className="logoK"
+                                ></img> : <button onClick={this.props.changeLogoYOrN}><h1>+</h1></button>
+                            }
                         </Link>
                         <div className="header__control">
                             <div className="header__item header__item_hidden">
@@ -505,4 +509,16 @@ class Category extends Component {
         )
     }
 }
-export default Category;
+const mapStateToProps = (state) => {
+    return {
+        //אפשר לקרוא שם אחר לאוביקט
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+
+    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Category);

@@ -318,15 +318,18 @@ class Logo extends Component {
         this.props.changeLogoselectRdiuseView(e)
     }
     onChangeHandlerLogo(event) {
-        let reader = new FileReader();
-        //   var url = URL.createObjectURL(event) 
-        reader.onloadend = () => {
-
-            // this.props.dispatch(setDetailsImagewUrl(url))
-            // this.props.dispatch(editImage(reader.result))
-            this.props.changeLogo(reader.result)
+        if (event) {
+            let reader = new FileReader();
+            //   var url = URL.createObjectURL(event) 
+            reader.onloadend = () => {
+                
+                // this.props.dispatch(setDetailsImagewUrl(url))
+                // this.props.dispatch(editImage(reader.result))
+                this.props.changeLogo(reader.result)
+            }
+            
+            reader.readAsDataURL(event)
         }
-        reader.readAsDataURL(event)
 
     }
     render() {

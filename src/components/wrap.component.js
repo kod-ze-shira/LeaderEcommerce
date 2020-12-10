@@ -386,7 +386,7 @@ class Wrap extends React.Component {
                 </AppBar>
 
 
-                <main className={classes.content}>
+                <main className={classes.content} style={{ height: '85vh' }}>
 
                     <Content />
 
@@ -422,7 +422,7 @@ class Wrap extends React.Component {
               </IconButton>
             </Toolbar>
                 </AppBar> */}
-                    <div className={classes.row} style={{ position: 'static', marginTop: '50px', marginBottom: '50px',overflowY:'hidden'}}>
+                    <div className={classes.row} style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
                         <IconButton edge="end" color="inherit" aria-label="setting" >
                             {/* component={Link} to="/lastFiles" */}
                             <SettingsIcon style={{ color: this.state.color }} />

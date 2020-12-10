@@ -52,8 +52,7 @@ class EditHome extends Component {
                             onClick={headerBurgerOnClick}
                             className="header__burger js-header-burger" ></button>
                         {
-
-                            <div className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
+                            <Link to="/editHome" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                                 {this.props.homeStoreDesign.LogoYOrN === true ?
                                     <img className="" src={this.props.homeStoreDesign.logo} alt=""
                                         style={{ borderRadius: this.props.homeStoreDesign.logoBorderRadiusLogo }}
@@ -64,7 +63,7 @@ class EditHome extends Component {
                                 <img className="header__pic header__pic_black-mobile" src={logoMobile} alt=""></img>
                                 <img className="header__pic header__pic_white-mobile" src={logoMobileWhite} alt=""></img> */}
                                 {/* <input type={"file"}className="logocolor"></input> */}
-                            </div>
+                            </Link>
                         }
 
 
@@ -93,11 +92,11 @@ class EditHome extends Component {
                                 </div> */}
                             </div>
 
-                            <div className="header__item">
+                            {/* <div className="header__item">
                                 <Link className="header__link header__link_cart active" to="/cart">
-                                    <svg className="icon icon-cart">
-                                        {/* <use xlink:href="img/sprite.svg#icon-cart"></use> */}
-                                    </svg>
+                                    <svg className="icon icon-cart"> */}
+                            {/* <use xlink:href="img/sprite.svg#icon-cart"></use> */}
+                            {/* </svg>
                                 </Link>
                                 <div className="header__body">
                                     <div className="basket basket_header">
@@ -105,42 +104,42 @@ class EditHome extends Component {
                                             <div className="basket__item">
                                                 <Link className="basket__preview" to="#">
                                                     <img className="basket__pic" src={productPic4} alt=""></img>
-                                                </Link>
-                                                {/* <a className="basket__preview" href="#">
+                                                </Link> */}
+                            {/* <a className="basket__preview" href="#">
                                                 <img className="basket__pic" src={productPic4} alt=""></img>
                                                 </a> */}
-                                                <div className="basket__details">
-                                                    <Link className="basket__product" to="/">Eye Mask Gel</Link>
-                                                    {/* <a className="basket__product" href="#">Eye Mask Gel</a> */}
-                                                    <div className="basket__price">
+                            {/* <div className="basket__details">
+                                                    <Link className="basket__product" to="/">Eye Mask Gel</Link> */}
+                            {/* <a className="basket__product" href="#">Eye Mask Gel</a> */}
+                            {/* <div className="basket__price">
                                                         <div className="basket__old">$127</div>
                                                         <div className="basket__actual">$180</div>
                                                     </div>
                                                 </div>
-                                                <button className="basket__remove"><svg className="icon icon-close">
-                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
-                                                </svg></button>
-                                            </div>
-                                            <div className="basket__item">
+                                                <button className="basket__remove"><svg className="icon icon-close"> */}
+                            {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
+                            {/* </svg></button>
+                                            </div> */}
+                            {/* <div className="basket__item">
                                                 <Link className="basket__preview" to="#">
                                                     <img className="basket__pic" src={productPic6} alt=""></img>
-                                                </Link>
-                                                {/* <a className="basket__preview" href="#">
+                                                </Link> */}
+                            {/* <a className="basket__preview" href="#">
                                                 <img className="basket__pic" src={productPic6} alt=""></img>
                                             </a> */}
-                                                <div className="basket__details">
-                                                    <Link className="basket__product" to="#">Day Eye Cream</Link>
-                                                    {/* <a className="basket__product" href="#">Day Eye Cream</a> */}
-                                                    <div className="basket__price">
+                            {/* <div className="basket__details">
+                                                    <Link className="basket__product" to="#">Day Eye Cream</Link>*/}
+                            {/* <a className="basket__product" href="#">Day Eye Cream</a> */}
+                            {/* <div className="basket__price">
                                                         <div className="basket__actual">$97</div>
                                                     </div>
-                                                </div>
+                                                </div>  
                                                 <button className="basket__remove"><svg className="icon icon-close">
-                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
-                                                </svg></button>
+                                                   */} {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
+                            {/* </svg></button>
                                             </div>
-                                        </div>
-                                        <div className="basket__total">
+                                        </div> */}
+                            {/* <div className="basket__total">
                                             <div className="basket__text">Total:</div>
                                             <div className="basket__text">$201</div>
                                         </div>
@@ -150,7 +149,7 @@ class EditHome extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="header__item header__item_hidden">
                                 <Link className="header__link" to="/login">
                                     {/* <a className="header__link" href="login.html"> */}
@@ -256,7 +255,35 @@ class EditHome extends Component {
                                     className="main__btn btn btn_green" href="#">Shop Now
                                     </a>
                             </div>
-                            <div className="main__preview"><img className="main__pic" src={mainPic} alt=""></img></div>
+                            <div className="main__preview">
+
+
+
+                                <label onClick={() => this.props.changeCurrentComponent('Image')}>
+                                    {this.props.homeStoreDesign.imageYOrN ?
+
+                                        <div className="d-flex justify-content-end">
+                                            <button className="btn btn-simple pr-1"
+                                            >ooooo
+                                                <i class="fas fa-edit" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
+                                            </button>
+                                            <button className="btn btn-simple pr-1">ttt
+                                                <i class="fas fa-copy" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
+                                            </button>
+                                            <button className="btn btn-simple pr-2" onClick={(e) => this.props.changeImageYOrN(e)}>vvvv
+                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                </i>
+                                            </button>
+                                        </div> :
+
+                                        <span></span>}
+
+                                    <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img>
+                                </label>
+                            </div>
+
+
+
                         </div>
                     </div >
                 </div >
@@ -714,16 +741,16 @@ class EditHome extends Component {
 // }
 // export default Home;
 const mapStateToProps = (state) => {
-    debugger;
     return {
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-
+    changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);

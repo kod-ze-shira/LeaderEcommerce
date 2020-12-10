@@ -1,6 +1,7 @@
 import createReducer from './reducerUtils'
 import produce from 'immer';
 import tempLogo from '../../assets/logo.svg';
+import mainPic from "../../assets/main-pic.png"
 
 
 const initialState = {
@@ -20,9 +21,10 @@ const initialState = {
                 logoBackgroundOnlyPng: "",
                 logoSelectRadiuseView: "",
                 logoSelect: false,
-                currentComponent: ""
+                currentComponent: "",
                 //לתוכו נכניס את שם הקומפוננטה שאותה נטעין בקונפיגורטור לדוג לוגו
-                
+                imageImage: mainPic,
+                imageYOrN: true
         }
 }
 const homeDesign = {
@@ -35,7 +37,7 @@ const homeDesign = {
         },
         setLogoYOrN(state, action) {
                 state.homeStoreDesign.LogoYOrN = !state.homeStoreDesign.LogoYOrN;
-                
+
         },
         setLogoCompanyName(state, action) {
                 state.homeStoreDesign.logoCompanyName = action.payload;
@@ -52,11 +54,15 @@ const homeDesign = {
         setLogoHeight(state, action) {
                 state.homeStoreDesign.logoHeight = action.payload;
         },
-        
+
         setLogoBackgroundOnlyPng(state, action) {
                 state.homeStoreDesign.logoBackgroundOnlyPng = action.payload;
+        },
+        setImageYOrN(state, action) {
+                state.homeStoreDesign.imageYOrN = !state.homeStoreDesign.imageYOrN;
         }
-        
-        
+
+
+
 }
 export default produce((state, action) => createReducer(state, action, homeDesign), initialState);

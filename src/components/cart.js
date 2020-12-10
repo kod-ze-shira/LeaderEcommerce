@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import $ from 'jquery';
 import { headerBurgerOnClick, searchFunc } from '../services/functions';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { actions } from "../redux/action";
 
 ///images
 import logoSvg from "../assets/logo.svg";
@@ -25,11 +27,13 @@ class Cart extends Component {
                         <button
                             onClick={headerBurgerOnClick}
                             className="header__burger js-header-burger" ></button>
-                        <Link className="header__logo" to="/">
-                            <img className="header__pic header__pic_black-desktop" src={logoSvg} alt=""></img>
-                            <img className="header__pic header__pic_white-desktop" src={logoWhite} alt=""></img>
-                            <img className="header__pic header__pic_black-mobile" src={logoMobile} alt=""></img>
-                            <img className="header__pic header__pic_white-mobile" src={logoMobileWhite} alt=""></img>
+                        <Link className="header__logo" to="/editHome">
+                            {this.props.homeStoreDesign.LogoYOrN === true ?
+                                <img className="" src={this.props.homeStoreDesign.logo} alt=""
+                                    style={{ borderRadius: this.props.homeStoreDesign.logoBorderRadiusLogo }}
+                                    width={this.props.homeStoreDesign.logoWidth ? this.props.homeStoreDesign.logoWidth + 'vw' : '100vw'} height="auto" className="logoK"
+                                ></img> : <button onClick={this.props.changeLogoYOrN}><h1>+</h1></button>
+                            }
                         </Link>
                         <div className="header__control">
                             <div className="header__item header__item_hidden">
@@ -56,10 +60,10 @@ class Cart extends Component {
                                 </div>
                             </div>
 
-                            <div className="header__item">
+                            {/* <div className="header__item">
                                 <Link className="header__link header__link_cart active" to="/cart">
                                     <svg className="icon icon-cart">
-                                        {/* <use xlink:href="img/sprite.svg#icon-cart"></use> */}
+                                        {/* <use xlink:href="img/sprite.svg#icon-cart"></use> /}
                                     </svg>
                                 </Link>
                                 <div className="header__body">
@@ -71,17 +75,17 @@ class Cart extends Component {
                                                 </Link>
                                                 {/* <a className="basket__preview" href="#">
                             <img className="basket__pic" src={productPic4} alt=""></img>
-                            </a> */}
+                            </a> /}
                                                 <div className="basket__details">
                                                     <Link className="basket__product" to="/">Eye Mask Gel</Link>
-                                                    {/* <a className="basket__product" href="#">Eye Mask Gel</a> */}
+                                                    {/* <a className="basket__product" href="#">Eye Mask Gel</a> /}
                                                     <div className="basket__price">
                                                         <div className="basket__old">$127</div>
                                                         <div className="basket__actual">$180</div>
                                                     </div>
                                                 </div>
                                                 <button className="basket__remove"><svg className="icon icon-close">
-                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
+                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> /}
                                                 </svg></button>
                                             </div>
                                             <div className="basket__item">
@@ -90,16 +94,16 @@ class Cart extends Component {
                                                 </Link>
                                                 {/* <a className="basket__preview" href="#">
                             <img className="basket__pic" src={productPic6} alt=""></img>
-                        </a> */}
+                        </a> /}
                                                 <div className="basket__details">
                                                     <Link className="basket__product" to="#">Day Eye Cream</Link>
-                                                    {/* <a className="basket__product" href="#">Day Eye Cream</a> */}
+                                                    {/* <a className="basket__product" href="#">Day Eye Cream</a> /}
                                                     <div className="basket__price">
                                                         <div className="basket__actual">$97</div>
                                                     </div>
                                                 </div>
                                                 <button className="basket__remove"><svg className="icon icon-close">
-                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> */}
+                                                    {/* <use xlink:href="img/sprite.svg#icon-close"></use> /}
                                                 </svg></button>
                                             </div>
                                         </div>
@@ -113,16 +117,18 @@ class Cart extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="header__item header__item_hidden">
-                                <Link className="header__link" to="/login">
+                            </div> */}
+                            {/* <div className="header__item header__item_hidden"> */}
+                                {/* <Link className="header__link" to="/login"> */}
                                     {/* <a className="header__link" href="login.html"> */}
-                                    <svg className="icon icon-user">
+                                    {/* <svg className="icon icon-user"> */}
                                         {/* <use xlink:href="img/sprite.svg#icon-user"></use> */}
-                                    </svg>
-                                </Link>
+                                    {/* </svg> */}
+                                {/* </Link> */}
                                 {/* </a> */}
-                            </div>
+                            {/* </div> */}
+
+
                         </div>
                     </div>
                     <div className="header__menu menu js-menu">
@@ -376,4 +382,16 @@ class Cart extends Component {
         )
     }
 }
-export default Cart;
+const mapStateToProps = (state) => {
+    return {
+        //אפשר לקרוא שם אחר לאוביקט
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+
+    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
