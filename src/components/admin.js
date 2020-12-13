@@ -3,6 +3,16 @@ import $ from 'jquery'
 import './admin.css'
 import CrudCategory from './crudCategory'
 import CrudProducts from './crudProducts'
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+// import Carousel from 'react-bootstrap/Carousel'  
+// import ReactBootstrapCarousel from "react-bootstrap-carousel";
+// import "bootstrap/dist/css/bootstrap.css";
+// import EditHomeStore from './editHomeStore'
+// import EditCart from './editCart'
+// import EditCategory from './editCategory'
+// import EditProduct from './editProduct'
+// import EditCheckout from './editCheckout'
 
 function Admin() {
         useEffect(() => {
@@ -11,9 +21,10 @@ function Admin() {
                         $('#myTab .active').removeClass('active')
                         $(this).addClass('active')
                 })
-        })
-
+        },[])
+        
         return (
+                 <Provider store={store}>
                 <div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist" style={{ fontSize: 1.7 + "rem" }}>
                                 <li class="nav-item">
@@ -36,8 +47,9 @@ function Admin() {
                                 <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                         </div>
                 </div>
-        )
-
-}
-
-export default Admin;
+                </Provider>
+                )
+                
+        }
+        
+        export default Admin;
