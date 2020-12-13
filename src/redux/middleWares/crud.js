@@ -129,6 +129,21 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
     return next(action);
 }
 
+export const getAllProducts = ({ dispatch, getState }) => next => action => {
+    debugger;
+    if (action.type === 'GET_ALL_PRODUCTS') {
+        debugger;
+        axios.get('https://community.leader.codes/api/products')
+        .then(res => {
+            debugger
+            console.log("gjhjet ",res.data);
+            dispatch(actions.setProducts({products:res.data})) 
+        })
+    }
+
+    return next(action);
+};
+
 export const newStore = ({ dispatch, getState }) => next => action => {
     
     if (action.type === 'ADD_NEW_STORE') {

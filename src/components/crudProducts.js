@@ -11,26 +11,12 @@ const useStyles = (theme) => ({
 
 function CrudProducts(props) {
         
-        const list=[
-                {
-                        "name":"bread",
-                        "color":"brown",
-                        "amount":5,
-                        "price":4.9
-                },
-                {
-                        "name":"milk",
-                        "color":"white",
-                        "amount":100,
-                        "price":3.9
-                },
-                {
-                        "name":"table",
-                        "color":"green",
-                        "amount":2,
-                        "price":1500
-                }
-        ]
+        // var list;
+
+        useEffect(()=>{
+              props.getAllProducts(); 
+        })
+
         
         return (
                 <>
@@ -249,7 +235,7 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 <div className="data__body">
-                {list.map((item, index) => (
+                                                                                                {props.products.map((item, index) => (
                         
                         <div className="data__item">
                         <div className="data__row" >
@@ -377,13 +363,14 @@ function CrudProducts(props) {
                 export default connect(
                         (state)=>{
                                 return {
-                                        //     store:state.storeReducer.store,
-                                        //     user:state.userReducer.user
+                                        products:state.productReducer.products
                                 }
                         },
                         (dispatch)=>{
                                 return {
-                                        //     newStore:(user)=>dispatch(actions.addNewStore(user)) 
+                                        // getAllProducts:()=>dispatch(actions.getAllProducts()) 
+                                        // getAllProducts:()=>dispatch(actions.setProducts()) 
+                                        getAllProducts:()=>dispatch(actions.getAllProducts())
                                 }
                         }
                         
