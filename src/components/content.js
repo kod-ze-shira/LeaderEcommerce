@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import CreateStore from './createStore';
 // import Login from './login'
 // import { route } from '../../backend/routes/users';
@@ -22,13 +22,16 @@ import Category from "./category";
 import Checkout from "./checkout";
 // import Contacts from "./contacts";
 import Product from "./product";
+import Header from './header';
+import Footer from './footer';
+
 
 class Content extends Component {
 
-    render(){
-        return(
+    render() {
+        return (
             // <div>   
-                           
+
             //     <Switch>
             //         <Route exact path="/all-communities" component={AllCommunities}></Route>
             //         <Route exact path="/addUser" component={CreateUser}></Route>
@@ -36,38 +39,37 @@ class Content extends Component {
             //         <Route exact path="/community/:id" component={CommunityHome}></Route>
             //     </Switch>
             // </div>
-                <Router>
-                    <div className="App">
-                        <Switch>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                            <Route path="/login">
-                                <Login />
-                            </Route>
-                            <Route path="/userhome/:username">
+            <Router>
+                <Header></Header>
+                <div className="App">
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/userhome/:username">
                             <UserHome />
-                            </Route>
-                            <Route exact path="/new-store">
-                                <CreateStore />
-                            </Route>
-                            {/* <Route exact path="/category">
-                                <Category />
-                            </Route> */}
-                            <Route exact path="/carousel">
-                                <ElasticCarousel />
-                            </Route>
-                            <Route exact path="/admin">
-                                <Admin/>
-                            </Route>
-                            <Route exact path="/cart" component={Cart}></Route>
-                            <Route exact path="/category" component={Category}></Route>
-                            <Route exact path="/checkout" component={Checkout}></Route>
-                            <Route path="/product" component={Product}></Route>
-                            <Route exact path="/editHome" component={EditHome} /> 
-                        </Switch>
-                    </div>
-                </Router>
+                        </Route>
+                        <Route exact path="/new-store">
+                            <CreateStore />
+                        </Route>
+                        <Route exact path="/carousel">
+                            <ElasticCarousel />
+                        </Route>
+                        <Route exact path="/admin">
+                            <Admin />
+                        </Route>
+                        <Route exact path="/cart" component={Cart}></Route>
+                        <Route exact path="/category" component={Category}></Route>
+                        <Route exact path="/checkout" component={Checkout}></Route>
+                        <Route path="/product" component={Product}></Route>
+                        <Route exact path="/editHome" component={EditHome} />
+                    </Switch>
+                    <Footer></Footer>
+                </div>
+            </Router>
         )
     }
 }

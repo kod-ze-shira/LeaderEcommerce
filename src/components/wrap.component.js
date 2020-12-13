@@ -321,57 +321,6 @@ class Wrap extends React.Component {
                         </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />
-                        {/* <Toolbar>
-    <IconButton
-      color="inherit"
-      aria-label="open drawer"
-      onClick={this.handleDrawerOpen}
-      edge="start"
-    >
-      <MenuIcon />
-    </IconButton>
-    <Typography variant="h6" noWrap>
-      Mini variant drawer
-    </Typography>
-  </Toolbar> */}
-                        <Tabs value={this.state.valueTab} onChange={this.handleChange} variant="fullWidth" aria-label="simple tabs example" style={{ width: '80%' }} centered={true}>
-                            <Tab label={<div> Post {this.state.openCollapse ? <ExpandLess edge="end" /> : <ExpandMore edge="end" />}</div>} style={{ justifyContent: 'space-between' }} />
-                            {/* {this.state.openCollapse ? <ExpandLess /> : <ExpandMore />} */}
-                            <Tab label={<div> Form {this.state.openCollapse ? <ExpandLess edge="end" /> : <ExpandMore edge="end" />}</div>} style={{ justifyContent: 'space-between' }} />
-                            <div onMouseLeave={this.handlePopoverClose}>
-                                <Tab label={<div>10 Tips in fashion media {this.state.openCollapse ? <ExpandLess edge="end" /> : <ExpandMore edge="end" />}</div>} style={{ justifyContent: 'space-between' }} onMouseOver={this.handlePopoverOpen} />
-                                <Popover
-                                    id="mouse-over-popover"
-                                    className={classes.popover}
-                                    classes={{
-                                        paper: classes.popoverPaper,
-                                    }}
-                                    open={open}
-                                    anchorEl={this.state.anchorEl}
-                                    anchorReference='anchorPosition'
-                                    // anchorOrigin={{
-                                    //   vertical: 'bottom',
-                                    //   horizontal: 'left',
-                                    // }}
-                                    // transformOrigin={{
-                                    //   vertical: 'top',
-                                    //   horizontal: 'left',
-                                    // }}
-                                    anchorPosition={{
-                                        top: 145,
-                                        left: 145
-                                    }}
-                                    onClose={this.handlePopoverClose}
-                                    disableRestoreFocus
-                                // onMouseLeave={this.handlePopoverClose}
-                                >
-                                    {this.showTips()}
-
-                                </Popover>
-                            </div>
-                            <Tab label={<div> Bot {this.state.openCollapse ? <ExpandLess edge="end" /> : <ExpandMore edge="end" />}</div>} style={{ justifyContent: 'space-between' }} />
-                            <Tab label={<div> File {this.state.openCollapse ? <ExpandLess edge="end" /> : <ExpandMore edge="end" />}</div>} style={{ justifyContent: 'space-between' }} />
-                        </Tabs>
                         <img src={profil} alt={"profil"} width="45px" />
                         <IconButton
                             color="inherit"
@@ -389,6 +338,7 @@ class Wrap extends React.Component {
                 <main className={classes.content} style={{ height: '85vh' }}>
 
                     <Content />
+
 
                     {/* <Route path="/lastFiles" component={lastFiles} /> */}
                     <div className={classes.toolbar} />
@@ -495,7 +445,7 @@ class Wrap extends React.Component {
                     </AppBar>
                 </Drawer>
                 {/* </Router> */}
-            </div>
+            </div >
         )
     };
 
