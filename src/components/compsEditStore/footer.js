@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { actions } from "../redux/action";
-import { headerBurgerOnClick } from '../services/functions';
+import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import logoSvg from "../assets/logo.svg";
-import moon from "../assets/moon.svg"
-import sun from "../assets/sun.svg"
-
-import '../App.css';
-
+import logoSvg from "../../assets/logo.svg";
+import '../../App.css'
 class Footer extends Component {
     render() {
         return (
@@ -47,14 +42,14 @@ class Footer extends Component {
                             <div className="footer__col">
                                 <div className="footer__category">Categories</div>
                                 <div className="footer__menu">
-                                    <Link className="footer__link" to="/category">On Sale</Link>
-                                    <Link className="footer__link" to="/category">Featured</Link>
-                                    <Link className="footer__link" to="/category">Masks</Link>
-                                    <Link className="footer__link" to="/category">Eye Care</Link>
-                                    <Link className="footer__link" to="/category">Moisturizers</Link>
-                                    <Link className="footer__link" to="/category">Treatments</Link>
-                                    <Link className="footer__link" to="/category">Night Care</Link>
-                                    <Link className="footer__link" to="/category">Sun Care</Link>
+                                    <Link className="footer__link" to="/edit/category">On Sale</Link>
+                                    <Link className="footer__link" to="/edit/category">Featured</Link>
+                                    <Link className="footer__link" to="/edit/category">Masks</Link>
+                                    <Link className="footer__link" to="/edit/category">Eye Care</Link>
+                                    <Link className="footer__link" to="/edit/category">Moisturizers</Link>
+                                    <Link className="footer__link" to="/edit/category">Treatments</Link>
+                                    <Link className="footer__link" to="/edit/category">Night Care</Link>
+                                    <Link className="footer__link" to="/edit/category">Sun Care</Link>
                                 </div>
                             </div>
                         </div>

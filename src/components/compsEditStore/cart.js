@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import $ from 'jquery';
-import { headerBurgerOnClick, searchFunc } from '../services/functions';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { actions } from "../redux/action";
-
+import { actions } from "../../redux/action"
 ///images
-import productPic2 from "../assets/products/product-pic-2.png"
-import productPic4 from "../assets/products/product-pic-4.png"
+import productPic2 from "../../assets/products/product-pic-2.png"
+import productPic4 from "../../assets/products/product-pic-4.png"
 class Cart extends Component {
 
 

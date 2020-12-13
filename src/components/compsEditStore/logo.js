@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../App.css';
+import '../../App.css';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -15,11 +15,10 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
-import { actions } from '../redux/action';
-// import tempLogo from '../assets/ava-1.jpg';
-import tempLogo from '../assets/logo.svg';
+import { actions } from '../../redux/action';
+import tempLogo from '../../assets/logo.svg';
 
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
+// import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import clsx from 'clsx';
 const AntSwitch = withStyles((theme) => ({
     root: {
@@ -322,12 +321,12 @@ class Logo extends Component {
             let reader = new FileReader();
             //   var url = URL.createObjectURL(event) 
             reader.onloadend = () => {
-                
+
                 // this.props.dispatch(setDetailsImagewUrl(url))
                 // this.props.dispatch(editImage(reader.result))
                 this.props.changeLogo(reader.result)
             }
-            
+
             reader.readAsDataURL(event)
         }
 
