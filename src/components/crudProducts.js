@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
-// import './crudProducts.css'
+import './crudProducts.css'
 
 //1
 const useStyles = (theme) => ({
@@ -103,7 +103,7 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 </div>
-                <div className="container js-container extended" >
+                <div  >
                 <div className="container__head"><button className="container__action container__action_menu action js-container-toggle"><i className="la la-bars "></i></button>
                 <div className="container__title title title_md">Products</div><signOut/>
                 <div className="container__search search js-search">

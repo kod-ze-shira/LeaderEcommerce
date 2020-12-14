@@ -130,12 +130,9 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
 }
 
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-    debugger;
     if (action.type === 'GET_ALL_PRODUCTS') {
-        debugger;
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
-            debugger
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts({products:res.data})) 
         })
