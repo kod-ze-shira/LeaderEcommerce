@@ -388,8 +388,8 @@ class Wrap extends React.Component {
                     {/* כאן אני ממקמת את הקונפיגורטור הנוכחי */}
 
 
-                    {this.props.homeStoreDesign.currentComponent ? (() => {
-                        switch (this.props.homeStoreDesign.currentComponent) {
+                    {this.props.logoDesign.currentComponent ? (() => {
+                        switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
                             case "": return
                                 <h1>e</h1>;
@@ -637,7 +637,7 @@ const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
 
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        logoDesign: state.logoReducer.logoDesign
     }
 }
 

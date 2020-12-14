@@ -285,12 +285,12 @@ class Logo extends Component {
     }
     handleChangeSwitch = () => {
         this.setState({ logoYN: !this.state.logoYN })
-            // this.props.homeStoreDesign.logoYOrN = !this.props.homeStoreDesign.logoYOrN
+            // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
             ;
         this.props.changeLogoYOrN()
     }
     handleChangeSwitchCN = () => {
-        // this.props.homeStoreDesign.logoYOrN = !this.props.homeStoreDesign.logoYOrN
+        // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
         ;
         this.props.changeLogoCNYOrN()
     }
@@ -406,7 +406,7 @@ class Logo extends Component {
                                         <div className={classes.div} >
                                             <div class="image-upload">
                                                 <label for="logouug">
-                                                    <img className="logoC" alt="" src={this.props.homeStoreDesign.logo ? this.props.homeStoreDesign.logo : tempLogo} />
+                                                    <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
                                                 </label>
                                                 <input
                                                     type={"file"}
@@ -416,7 +416,7 @@ class Logo extends Component {
                                                     style={{
                                                         display: 'none',
                                                         cursor: 'pointer',
-                                                        width: this.props.homeStoreDesign.logoWidth,
+                                                        width: this.props.logoDesign.logoWidth,
                                                     }}
                                                     onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
                                                 />
@@ -453,7 +453,7 @@ class Logo extends Component {
 
 
                                             <Slider
-                                                defaultValue={this.props.homeStoreDesign.logoBorderRadiusLogo}
+                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
                                                 step={1}
                                                 marks
                                                 min={0}
@@ -468,8 +468,8 @@ class Logo extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.logoBorderRadiusLogo ? this.props.homeStoreDesign.logoBorderRadiusLogo : '0'}
-                                                defaultValue={this.props.homeStoreDesign.logoBorderRadiusLogo}
+                                                value={this.props.logoDesign.logoBorderRadiusLogo ? this.props.logoDesign.logoBorderRadiusLogo : '0'}
+                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
                                                 onChange={(e) => this.props.changeLogoselectRdiuseView(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -494,7 +494,7 @@ class Logo extends Component {
 
 
                                             <Slider {...defaultProps3}
-                                                defaultValue={this.props.homeStoreDesign.logoWidth ? this.props.homeStoreDesign.logoWidth : '100'}
+                                                defaultValue={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
                                                 step={1}
                                                 marks
                                                 min={100}
@@ -510,7 +510,7 @@ class Logo extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.logoWidth ? this.props.homeStoreDesign.logoWidth : '100'}
+                                                value={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
                                                 onChange={(e) => this.props.changeLogoWidth(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -529,18 +529,15 @@ class Logo extends Component {
                     </FormControl>
 
                 </div></>
-
-
         )
     }
-
 
 }
 
 const mapStateToProps = (state) => {
     return {
         // contactDetails: state.contactDetails.contactDetails,
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        logoDesign: state.logoReducer.logoDesign
     };
 }
 

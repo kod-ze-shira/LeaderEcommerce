@@ -287,14 +287,9 @@ class EditHome extends Component {
                                 <div className="product__view">
                                     <Link className="product__preview" to="/edit/prodct"><img className="product__pic"
                                         src={productPic8} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic8} alt=""></img></a> */}
                                     <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
                                 </div>
                                 <Link className="product__name" to="/edit/product">Morning Shine</Link>
-                                {/* <a className="product__name" href="product.html">Morning Shine</a> */}
                                 <div className="product__details">
                                     <div className="product__category green">NIGHT CARE</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -312,11 +307,6 @@ class EditHome extends Component {
         )
     }
 }
-// handleChangeSwitch = () => {
-// this.setState({ logoYN: !this.state.logoYN })
-// this.props.homeStoreDesign.logoYOrN = !this.props.homeStoreDesign.logoYOrN
-// ;
-// }
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
@@ -327,8 +317,6 @@ const mapDispatchToProps = (dispatch) => ({
     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
-
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
 

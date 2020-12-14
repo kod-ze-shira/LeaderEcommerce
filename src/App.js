@@ -21,7 +21,7 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/edit">
+            <Route path="/0">
               <Wrap></Wrap>
             </Route>
           </Switch>

@@ -9,19 +9,19 @@ import Header from './header';
 import Footer from './footer';
 
 
-class MainEdit extends Component {
+class RoutingMain extends Component {
 
     render() {
         return (
             <Router>
-                <div className="MainEdit">
+                <div className="RoutingMain">
                     <Header></Header>
                     <Switch>
-                        <Route path="/edit/cart" component={Cart}></Route>
-                        <Route path="/edit/category" component={Category}></Route>
-                        <Route path="/edit/checkout" component={Checkout}></Route>
-                        <Route path="/edit/product" component={Product}></Route>
-                        <Route path="/edit/" component={EditHome} />
+                        <Route path="/0/cart" component={Cart}></Route>
+                        <Route path="/0/category" component={Category}></Route>
+                        <Route path="/0/checkout" component={Checkout}></Route>
+                        <Route path="/0/product" component={Product}></Route>
+                        <Route path="/0/" component={EditHome} />
                     </Switch>
                     <Footer></Footer>
                 </div>
@@ -30,4 +30,4 @@ class MainEdit extends Component {
     }
 }
 
-export default MainEdit;
+export default RoutingMain;

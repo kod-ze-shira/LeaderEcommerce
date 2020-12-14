@@ -35,7 +35,6 @@ class Footer extends Component {
                                             <img className="switch__pic switch__pic_moon" src={moon} alt=""></img>
                                             <img className="switch__pic switch__pic_sun" src={sun} alt=""></img>
                                         </span> */}
-
                                     {/* </span> */}
                                 </label>
                             </div>
@@ -61,17 +60,18 @@ class Footer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
-    }
-}
-const mapDispatchToProps = (dispatch) => ({
-    changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
-    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+// const mapStateToProps = (state) => {
+//     return {
+//         //אפשר לקרוא שם אחר לאוביקט
+//         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+//     }
+// }
+// const mapDispatchToProps = (dispatch) => ({
+//     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
+//     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+//     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
 
 
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+// })
+export default Footer;
+//  connect(mapStateToProps, mapDispatchToProps)(Footer);
