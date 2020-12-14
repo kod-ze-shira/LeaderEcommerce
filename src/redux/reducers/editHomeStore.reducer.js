@@ -8,13 +8,23 @@ const initialState = {
         homeStoreDesign: {
                 //לתוכו נכניס את שם הקומפוננטה שאותה נטעין בקונפיגורטור לדוג לוגו
                 imageImage: mainPic,
-                imageYOrN: true
+                imageYOrN: true,
+                // imageBackgroundOnlyPng: "",
+                imageWidth: "",
+                imageHeight: "",
+                // imageBorderRadiusRectangles: "",
+                // imageRectanglesColor: "",
+                // imageSelect: false,
+
         }
 }
 const homeDesign = {
         //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
         setImageYOrN(state, action) {
                 state.homeStoreDesign.imageYOrN = !state.homeStoreDesign.imageYOrN;
+        },
+        setImage(state, action) {
+                state.homeStoreDesign.imageImage = action.payload;
         }
 
 }

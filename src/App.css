@@ -1218,8 +1218,8 @@ body.dark .search__input::placeholder {
 }
 
 .main__pic {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 40vw;
+  max-height: 44vh;
 }
 
 body.dark .main__preview {

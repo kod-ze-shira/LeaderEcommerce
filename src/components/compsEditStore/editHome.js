@@ -27,36 +27,48 @@ import productPic8 from "../../assets/products/product-pic-8.png"
 
 class EditHome extends Component {
     render() {
+
+        const onChangeHandlerImage = (event) => {
+            if (event) {
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                    this.props.changeImage(reader.result)
+                }
+                reader.readAsDataURL(event)
+            }
+
+        }
+
         return (
             <div>
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
                             <div className="main__details">
-                                <div className="main__stage stage">- Skincare Products</div>
                                 <h1 className="main__title title">We Offer the Best Products for your Skin</h1>
                             </div>
                             <div className="main__preview">
-                                <label onClick={() => this.props.changeCurrentComponent('Image')}>
+                                <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
-
-                                        <div className="d-flex justify-content-end">
-                                            <button className="btn btn-simple pr-1"
-                                            >ooooo
-                                                <i class="fas fa-edit" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
-                                            </button>
-                                            <button className="btn btn-simple pr-1">ttt
-                                                <i class="fas fa-copy" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
-                                            </button>
-                                            <button className="btn btn-simple pr-2" onClick={(e) => this.props.changeImageYOrN(e)}>vvvv
-                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
-                                                </i>
-                                            </button>
-                                        </div> :
-
-                                        <span></span>}
-
-                                    <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img>
+                                        <img alt="" className="main__pic" src={this.props.homeStoreDesign.imageImage ?
+                                            this.props.homeStoreDesign.imageImage : productPic7}
+                                            style={{
+                                                // backgroundColor: this.props.homeStoreDesign.imageRectanglesColor,
+                                                width: this.props.homeStoreDesign.imageWidth ? this.props.homeStoreDesign.imageWidth + 'vw' : '40vw',
+                                                height: this.props.homeStoreDesign.imageHeight ? this.props.homeStoreDesign.imageHeight + 'vh' : ''
+                                            }}
+                                        ></img>
+                                        : <span></span>}
+                                    <input type={"file"}
+                                        id="fileInput"
+                                        htmlFor="myInput"
+                                        accept="image/*"
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'none',
+                                        }}
+                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])} ></input>
+                                    {/* <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img> */}
                                 </label>
                             </div>
                         </div>
@@ -316,7 +328,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+    changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
+    changeImage: (e) => dispatch(actions.setImage(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
 

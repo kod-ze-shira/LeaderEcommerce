@@ -319,11 +319,8 @@ class Logo extends Component {
     onChangeHandlerLogo(event) {
         if (event) {
             let reader = new FileReader();
-            //   var url = URL.createObjectURL(event) 
             reader.onloadend = () => {
 
-                // this.props.dispatch(setDetailsImagewUrl(url))
-                // this.props.dispatch(editImage(reader.result))
                 this.props.changeLogo(reader.result)
             }
 

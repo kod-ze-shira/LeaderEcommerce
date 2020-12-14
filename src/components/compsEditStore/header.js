@@ -11,12 +11,13 @@ class Header extends Component {
 
                 <header className="header js-header">
                     <div className="header__center center">
-                        {
+                      {
                             <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                                 {this.props.logoDesign.LogoYOrN === true ?
                                     <img className="" src={this.props.logoDesign.logo} alt=""
                                         style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
-                                        width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'} height="auto" className="logoK"
+                                        width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
+                                        height="auto" className="logoK"
                                     ></img> : <button onClick={this.props.changeLogoYOrN}><h1>+</h1></button>
                                 }
                             </Link>
