@@ -1,34 +1,22 @@
 import React, { Component } from 'react'
-import $ from 'jquery';
-import { headerBurgerOnClick, searchFunc } from '../services/functions';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import $ from 'jquery';
 import { connect } from "react-redux";
-import { actions } from "../redux/action";
+import { actions } from "../../redux/action";
 
 ///images
-import logoSvg from "../assets/logo.svg";
-import logoWhite from "../assets/logo-white.svg"
-import logoMobile from "../assets/logo-mobile.svg"
-import logoMobileWhite from "../assets/logo-mobile-white.svg"
-import productPic1 from "../assets/products/product-pic-1.png"
-import productPic2 from "../assets/products/product-pic-2.png"
-import productPic3 from "../assets/products/product-pic-3.png"
-import productPic4 from "../assets/products/product-pic-4.png"
-import productPic5 from "../assets/products/product-pic-5.png"
-import productPic6 from "../assets/products/product-pic-6.png"
-import productPic7 from "../assets/products/product-pic-7.png"
-import productPic8 from "../assets/products/product-pic-8.png"
-import moon from "../assets/moon.svg"
-import sun from "../assets/sun.svg"
-import cardPic1 from '../assets/card-pic-1.png'
-import cardPic2 from '../assets/card-pic-2.png'
-import cardPic3 from '../assets/card-pic-3.png'
-import ava1 from '../assets/ava-1.jpg'
+import productPic1 from "../../assets/products/product-pic-1.png"
+import productPic2 from "../../assets/products/product-pic-2.png"
+import productPic3 from "../../assets/products/product-pic-3.png"
+import productPic4 from "../../assets/products/product-pic-4.png"
+import productPic5 from "../../assets/products/product-pic-5.png"
+import productPic6 from "../../assets/products/product-pic-6.png"
+import cardPic1 from '../../assets/card-pic-1.png'
+import cardPic2 from '../../assets/card-pic-2.png'
+import cardPic3 from '../../assets/card-pic-3.png'
+import ava1 from '../../assets/ava-1.jpg'
 
 
 class Product extends Component {
-
-
 
     render() {
         return (

@@ -6,11 +6,11 @@ import React, { Component } from 'react'
 import Carousel from 'react-elastic-carousel'
 import img from '../assets/50344.jpg'
 // import './carousel.css'
-import EditHome from './editHome'
-import Cart from './cart'
-import Category from './category'
-import Product from './product'
-import Checkout from './checkout'
+import EditHome from './compsEditStore/editHome'
+import Cart from './compsEditStore/cart'
+import Category from './compsEditStore/category'
+import Product from './compsEditStore/product'
+import Checkout from './compsEditStore/checkout'
 
 export class ElasticCarousel extends Component {
         render() {

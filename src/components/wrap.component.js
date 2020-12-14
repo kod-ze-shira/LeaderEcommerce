@@ -1,6 +1,6 @@
 import React from 'react';
 //קומפוננטה לעיצוב הלוגו
-import Logo from "./logo"
+import Logo from "./compsEditStore/logo"
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 // import './App.css';
@@ -283,7 +283,7 @@ class Wrap extends React.Component {
             openDrawer: false,
             valueTab: 0,
             openCollapse: false,
-            right: false,
+            right: true,
             visibility: 'hidden',
             anchorEl: null,
             color: 'gray',
@@ -555,7 +555,7 @@ class Wrap extends React.Component {
         const { classes } = this.props;
         return (
             <Grid item xs={12}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justify="between" spacing={3}>
                     {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => (
 
                         <Grid key={value} item>

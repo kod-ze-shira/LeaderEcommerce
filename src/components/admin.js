@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react' 
-import $ from 'jquery' 
+import React, { useEffect } from 'react'
+import $ from 'jquery'
 import './admin.css'
 import CrudCategory from './crudCategory'
 import CrudProducts from './crudProducts'
@@ -15,7 +15,7 @@ import store from '../redux/store';
 // import EditCheckout from './editCheckout'
 
 function Admin() {
-        useEffect(()=>{
+        useEffect(() => {
                 $('#myTab a').on('click', function (e) {
                         e.preventDefault()
                         $('#myTab .active').removeClass('active')
@@ -26,7 +26,7 @@ function Admin() {
         return (
                  <Provider store={store}>
                 <div>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist" style={{fontSize:1.7+"rem"}}>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist" style={{ fontSize: 1.7 + "rem" }}>
                                 <li class="nav-item">
                                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Categories</a>
                                 </li>
@@ -37,15 +37,15 @@ function Admin() {
                                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Sales</a>
                                 </li>
                         </ul>
-                <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <CrudCategory/>
+                        <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <CrudCategory />
+                                </div>
+                                <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <CrudProducts />
+                                </div>
+                                <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                         </div>
-                        <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <CrudProducts/>
-                        </div>
-                        <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                </div>
                 </div>
                 </Provider>
                 )
