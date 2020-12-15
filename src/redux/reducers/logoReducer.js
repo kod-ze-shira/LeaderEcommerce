@@ -38,7 +38,8 @@ const logoDesignFunc = {
     },
     setLogoCompanyName(state, action) {
         state.logoDesign.logoCompanyName = action.payload;
-    }, setLogoBorderRadiusLogo1(state, action) {
+    }, 
+    setLogoBorderRadiusLogo1(state, action) {
         ;
         state.logoDesign.logoBorderRadiusLogo = action.payload;
         ;
