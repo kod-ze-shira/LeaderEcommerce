@@ -454,7 +454,7 @@ class Logo extends Component {
                                                 step={1}
                                                 marks
                                                 min={0}
-                                                max={150}
+                                                max={100}
                                                 getAriaValueText={this.props.changeLogoselectRdiuseView}
                                                 valueLabelDisplay="auto"
                                                 className={classes.MuiSlider_root}
@@ -539,12 +539,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    // delInDimus:(a)=> dispatch({ type: 'DEL_DIMUS' }),
-    // deleteContact:(a)=>((a)=> dispatch({ type: 'DELETE_CONTACT' }),dispatch(actions.setActive(a))),
-    // editContact:(a)=> dispatch({ type: 'EDIT_CONTACT' }),
-    // editstepper:()=> dispatch(actions.setStepper()),
-    // deleteContact:(a)=> dispatch({ type: 'DELETE_CONTACT' }),
-
     changeLogo: (image) => dispatch(actions.setLogo(image)),
     changeLogoYOrN: (image) => dispatch(actions.setLogoYOrN(image)),
     changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),

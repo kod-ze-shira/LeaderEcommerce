@@ -1,38 +1,25 @@
 import React, { Component } from 'react'
+import '../../App.css';
 import { connect } from 'react-redux';
-import { actions } from "../../redux/action";
 import { makeStyles } from '@material-ui/core/styles';
-
+import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
+import SettingsIcon from '@material-ui/icons/Settings';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
 import { withStyles } from '@material-ui/core/styles';
-
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Fab from '@material-ui/core/Fab';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-import Drawer from '@material-ui/core/Drawer';
-import MenuIcon from '@material-ui/core/Menu';
-import AddIcon from '@material-ui/icons/Add';
-import CloseIcon from '@material-ui/icons/Close';
 import FormLabel from '@material-ui/core/FormLabel';
-
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
 import Slider from '@material-ui/core/Slider';
-import { HuePicker } from 'react-color';
-import Grid from '@material-ui/core/Grid';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import SettingsIcon from '@material-ui/icons/Settings';
 import Box from '@material-ui/core/Box';
+import { actions } from '../../redux/action';
 import tempImage from "../../assets/main-pic.png"
 
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
-import clsx from 'clsx';
 
+import clsx from 'clsx';
 const AntSwitch = withStyles((theme) => ({
     root: {
         width: 28,
@@ -68,10 +55,12 @@ const AntSwitch = withStyles((theme) => ({
 }))(Switch);
 
 
+
 const useStyles = (theme) => ({
     root: {
-        flexGrow: 1,
         overflowX: 'hidden !important',
+
+        flexGrow: 1,
         '& .PrivateValueLabel-circle': {
 
             display: 'none'
@@ -85,7 +74,6 @@ const useStyles = (theme) => ({
     Logo_root_37: {
         background_color: '#4d5358'
     },
-
     MuiSlider_root: {
         color: '#fafafa',
         width: '92%',
@@ -256,7 +244,7 @@ const useStyles = (theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: 200
+        width: 200,
     },
     row1: {
         display: 'flex',
@@ -271,84 +259,48 @@ const useStyles = (theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        height: 6 + 'vh',
+        top: 0
     },
-    imageDetails: {
+    logoDetails: {
         color: '#b6b6c9',
         fontSize: '13px',
-        paddingLeft: '10%',
+        paddingLeft: '8%',
         marginTop: '10px'
-    },
-    inputNumberSliderColor:
-    {
-        width: '60px',
-        display: 'inline_block',
-        textAlign: 'left',
-        font: 'Light 50px/50px Roboto',
-        letterSpacing: '.1px',
-        color: '#cfd1d9!important',
-        textTransform: 'capitalize',
-        backgroundColor: 'transparent',
-        border: 0,
-        outline: 0,
-        borderBottom: '1px solid #75798e',
-        opacity: 1,
-        marginLeft: '-1.5vw'
-    },
-
+    }
 });
 
 
-// function CustomizedSwitches() {
-//     const [state, setState] = React.useState({
-//         checkedC: true,
-//     });
-
-//     const handleChange = (event) => {
-//         setState({ ...state, [event.target.name]: event.target.checked });
-//     };
-
-//     return (
-//         <>
-//             <FormGroup>
-//                 <Typography component="div">
-//                     <Grid component="label" container alignItems="center" spacing={1}>
-//                         <Grid item>
-//                             <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
-//                         </Grid>
-//                     </Grid>
-//                 </Typography>
-//             </FormGroup>
-//         </>
-//     );
-// }
-class Image extends Component {
+class Logo extends Component {
     constructor(props) {
         super(props)
         this.state = {
             bgcolrPNG: '#fffff',
             // rivki 16.09.20
             checkedSwitch: false,
-            IsCollapse: false
+            IsCollapse: false,
+            logoYN: true,
 
         }
     }
     handleChangeSwitch = () => {
-        // this.props.quote.logoYOrN = !this.props.quote.logoYOrN
-        ;
+        this.setState({ logoYN: !this.state.logoYN })
+            // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
+            ;
         this.props.changeImageYOrN()
     }
-    handleChangeSwitchCN = () => {
-        // this.props.quote.logoYOrN = !this.props.quote.logoYOrN
+        //לטפל בזה{
+        // handleChangeSwitchCN = () => {
+        // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
         ;
-        this.props.changeLogoCNYOrN()
-    }
+    // this.props.changeImageCNYOrN()
+    // }
+    //עד כאן}
     IsOpenCollapse = () => {
         this.setState({
             IsCollapse: !this.state.IsCollapse
         })
     }
-
-
 
 
     useStyle = makeStyles((theme) => ({
@@ -359,36 +311,27 @@ class Image extends Component {
             },
         },
     }));
-    changeImageRectanglesColor = (color) => {
-        ;
-        //   alert("jjjjj");
-        this.props.changeImageRectanglesColor(color.hex)
-    };
     handleChangeComplete = (color) => {
         this.setState({ bgcolrPNG: color.hex });
     };
-    changeLogoselectRdiuseView = (e) => {
-        ;
-        this.props.changeLogoselectRdiuseView(e)
+    changeImageBorderRadiusImage = (e) => {
+        this.props.changeImageBorderRadiusImage(e)
     }
-    onChangeHandlerImage(event) {
+    onChangeHandlerLogo(event) {
+        if (event) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
 
+                this.props.changeImage(reader.result)
+            }
 
-
-        let reader = new FileReader();
-        //        var url = URL.createObjectURL(event)
-
-        reader.onloadend = () => {
-
-            // this.props.dispatch(setDetailsImagewUrl(url))
-            // this.props.dispatch(editImage(reader.result))
-            this.props.changeImageImage(reader.result)
+            reader.readAsDataURL(event)
         }
-        reader.readAsDataURL(event)
 
     }
     render() {
         const { classes } = this.props
+
         const defaultProps3 = {
             // width: 300,
             color: 'white'
@@ -396,322 +339,203 @@ class Image extends Component {
         }
 
 
-
-
         return (
-            <> <br /><br />
-                <div className={classes.root}>
-                    <div className={classes.createNewPage}>
-                        <IconButton edge="end" color="#b6b6c9" aria-label="setting" >
-                            {/* component={Link} to="/lastFiles" */}
-                            <SettingsIcon style={{ color: '#b6b6c9', fontSize: 17 + "px" }} />
-                        </IconButton>
-                        <Typography variant="h6" style={{ flexGrow: 5, color: "white", textAlign: 'center', fontSize: 15 + "px" }}>
-                            Create New Page
-              </Typography>
-                        <IconButton edge="start" color="#b6b6c9" aria-label="menu" onClick={this.changeColor}>
-                            <InvertColorsIcon style={{ color: '#b6b6c9', fontSize: 17 + "px" }} />
-                        </IconButton>
-                    </div>
-
-
-
-
-                    {this.state.IsCollapse ?
-                        <div className={classes.row1}  >
-                            <h3 edge="end" className={classes.imageDetails}>  Image Details   </h3>
-                            <div edge="start" >
-                                <label for="ColapseLogo">
-                                    <KeyboardArrowUpIcon />
-                                </label>
-                                <input
-                                    type={"button"}
-                                    id="ColapseLogo"
-                                    htmlFor="myInput"
-                                    style={{ display: 'none' }}
-                                    onClick={this.IsOpenCollapse}
-                                />
-                            </div>
-                        </div>
-                        :
-                        <div className={classes.row} >
-                            <h3 edge="end" className={classes.imageDetails}>  Image Details   </h3>
-                            <div edge="start">
-                                <label for="ColapseLogo">
-                                    <KeyboardArrowDownIcon />
-                                </label>
-                                <input
-                                    type={"button"}
-                                    id="ColapseLogo"
-                                    htmlFor="myInput"
-                                    style={{ display: 'none' }}
-                                    onClick={this.IsOpenCollapse}
-                                />
-                            </div>
-                        </div>
-                    }
-                    <div hidden={this.state.IsCollapse} style={{ width: 95 + "%", marginRight: 3 + "%", marginLeft: 3 + "%" }}>
-                        <Grid
-                            container
-                            direction="column"
-                            justify="space-between"
-
-                        >
-                            <Box flexDirection="row"
-                                display="flex"
-                                justifyContent="space-between"
-                            >
-                                <Box
-                                    width={'80%'}
-                                >
-                                    <FormLabel className={classes.textcontect}>Image</FormLabel>
-
-                                </Box>
-                                <Box justifyContent="flex-end">
-                                    <AntSwitch checked={this.props.quote.imageYOrN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
-                                </Box>
-
-                            </Box>
-                            <Box
-                                alignSelf="center">
-                                <div className={classes.div} >
-                                    {/* rivki */}
-
-
-                                    <div class="image-upload">
-                                        <label for="fileInput">
-                                            <img className="logoC" alt="" src={this.props.quote.imageImage ? this.props.quote.imageImage : tempImage} />
+            <>
+                <div className={classes.root} >
+                    <FormControl component="fieldset" className={clsx(classes.textField, 'con', 'vertical-center')} style={{ height: 73 + "vh", width: 100 + "%" }} >
+                        <FormGroup className={classes.textField} >
+                            {this.state.IsCollapse ?
+                                <div className={classes.row1}  >
+                                    <h3 edge="end" className={classes.logoDetails}>Image Details</h3>
+                                    <div edge="start" >
+                                        <label for="ColapseLogo">
+                                            <KeyboardArrowUpIcon />
                                         </label>
                                         <input
-                                            type={"file"}
-                                            id="fileInput"
+                                            type={"button"}
+                                            id="ColapseLogo"
                                             htmlFor="myInput"
-                                            accept="image/*"
-                                            style={{
-                                                display: 'none',
-                                                cursor: 'pointer',
-                                                width: this.props.quote.logoWidth,
-                                            }}
-                                            onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
+                                            style={{ display: 'none' }}
+                                            onClick={this.IsOpenCollapse}
                                         />
-
-                                    </div>
-                                    <div id='lbError' class='warning'
-                                        style={{
-                                            position: 'relative',
-                                            color: 'red',
-                                            top: '-43px',
-                                            right: '7x',
-                                            left: '109px'
-                                        }}
-                                    >
-
                                     </div>
                                 </div>
-
-                            </Box>
-
-
-
-                            <br></br>
-                            <FormLabel className={classes.textcontect}>Rectangles Width</FormLabel>
-
-                            <Box flexDirection="row"
-                                display="flex"
-                                justifyContent="space-between"
-                            >
-
-                                <Box
-                                    width={'100%'}
-                                    alignSelf="center"
+                                :
+                                <div className={classes.row} >
+                                    <h3 edge="end" className={classes.logoDetails}>  Image Details   </h3>
+                                    <div edge="start">
+                                        <label for="ColapseLogo">
+                                            <KeyboardArrowDownIcon />
+                                        </label>
+                                        <input
+                                            type={"button"}
+                                            id="ColapseLogo"
+                                            htmlFor="myInput"
+                                            style={{ display: 'none' }}
+                                            onClick={this.IsOpenCollapse}
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            <div hidden={this.state.IsCollapse} style={{ width: 94 + "%", marginRight: 3 + "%", marginLeft: 7 + "%", margintTop: 20 + "vh" }} >
+                                <Grid
+                                    container
+                                    direction="column"
+                                    justify="space-between"
                                 >
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
+                                        <Box
+                                            width={'80%'}
+                                        >
+                                            <FormLabel className={classes.textcontect}>Image</FormLabel>
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <AntSwitch checked={this.state.logoYN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
+                                        </Box>
+                                    </Box>
+                                    <Box
+                                        alignSelf="center">
+                                        <div className={classes.div} >
+                                            <div class="image-upload">
+                                                <label for="logouug">
+                                                    <img className="logoC" alt="" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : tempImage} />
+                                                </label>
+                                                <input
+                                                    type={"file"}
+                                                    id="logouug"
+                                                    htmlFor="myInput"
+                                                    accept="image/*"
+                                                    style={{
+                                                        display: 'none',
+                                                        cursor: 'pointer',
+                                                        width: this.props.homeStoreDesign.ImageWidth,
+                                                    }}
+                                                    onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
+                                                />
 
+                                            </div>
+                                            <div id='lbError' class='warning'
+                                                style={{
+                                                    position: 'relative',
+                                                    color: 'red',
+                                                    top: '-43px',
+                                                    right: '7x',
+                                                    left: '109px'
+                                                }}
+                                            >
+                                            </div>
+                                        </div>
+                                    </Box>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <FormLabel className={classes.textcontect}>Border Radius Image</FormLabel>
+                                    <br></br>
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
 
-                                    <Slider {...defaultProps3}
-                                        defaultValue={this.props.quote.imageRectanglesWidth ? this.props.quote.imageRectanglesWidth : '11'}
-                                        step={1}
-                                        marks
-                                        min={0}
-                                        max={41.8}
-                                        getAriaValueText={this.props.changeImageRectanglesWidth}
-                                        valueLabelDisplay="auto"
-                                        className={classes.MuiSlider_root}
-                                    />
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider
+                                                defaultValue={this.props.homeStoreDesign.ImageBorderRadiusImage}
+                                                step={1}
+                                                marks
+                                                min={0}
+                                                max={200}
+                                                getAriaValueText={this.props.changeImageBorderRadiusImage}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.ImageBorderRadiusImage ? this.props.homeStoreDesign.ImageBorderRadiusImage : '0'}
+                                                defaultValue={this.props.homeStoreDesign.ImageBorderRadiusImage}
+                                                onChange={(e) => this.props.changeImageBorderRadiusImage(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
 
-                                </Box>
-                                <Box justifyContent="flex-end">
-                                    <input
-                                        textAlign="center"
-                                        id="standard-number"
-                                        type="number"
-                                        disabled="disabled"
-                                        value={this.props.quote.imageRectanglesWidth}
-                                        onChange={(e) => this.props.changeImageRectanglesWidth(e.target.value)}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        className={classes.inputNumberSlider}
-                                    />
+                                    <br></br>
+                                    <FormLabel className={classes.textcontect}>Image Width</FormLabel>
 
-                                </Box>
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider {...defaultProps3}
+                                                defaultValue={this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth : '100'}
+                                                step={1}
+                                                marks
+                                                min={20}
+                                                max={60}
+                                                getAriaValueText={this.props.changeImageWidth}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
 
-                            </Box>
-
-
-                            <FormLabel className={classes.textcontect}>Rectangles Height</FormLabel>
-
-                            <Box flexDirection="row"
-                                display="flex"
-                                justifyContent="space-between"
-                            >
-
-                                <Box
-                                    width={'100%'}
-                                    alignSelf="center"
-                                >
-
-
-                                    <Slider {...defaultProps3}
-                                        defaultValue={this.props.quote.imageRectanglesHeight ? this.props.quote.imageRectanglesHeight : '58'}
-                                        step={1}
-                                        marks
-                                        min={0}
-                                        max={105}
-                                        getAriaValueText={this.props.changeImageRectanglesHeight}
-                                        valueLabelDisplay="auto"
-                                        className={classes.MuiSlider_root}
-                                    />
-
-                                </Box>
-                                <Box justifyContent="flex-end">
-                                    <input
-                                        textAlign="center"
-                                        id="standard-number"
-                                        type="number"
-                                        disabled="disabled"
-                                        value={this.props.quote.imageRectanglesHeight}
-                                        onChange={(e) => this.props.changeImageRectanglesHeigth(e.target.value)}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        className={classes.inputNumberSlider}
-                                    />
-                                </Box>
-                            </Box>
-
-
-
-
-                            <FormLabel className={classes.textcontect}>Border Radius Image</FormLabel>
-                            <br></br>
-                            <Box flexDirection="row"
-                                display="flex"
-                                justifyContent="space-between"
-                            >
-
-                                <Box
-                                    width={'100%'}
-                                    alignSelf="center"
-                                >
-
-
-                                    <Slider
-                                        defaultValue={this.props.quote.imageBorderRadiusRectangles}
-                                        step={1}
-                                        marks
-                                        min={0}
-                                        max={50}
-                                        getAriaValueText={this.props.changeImageBorderRadiusRectangles}
-                                        valueLabelDisplay="auto"
-                                        className={classes.MuiSlider_root}
-                                    />
-                                </Box>
-                                <Box justifyContent="flex-end">
-                                    <input
-                                        textAlign="center"
-                                        id="standard-number"
-                                        type="number"
-                                        disabled="disabled"
-                                        //   value={this.props.quote.logoHeight}
-                                        Value={this.props.quote.imageBorderRadiusRectangles}
-                                        onChange={(e) => this.props.changeImageBorderRadiusRectangles(e.target.value)}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        className={classes.inputNumberSlider}
-                                    />
-                                </Box>
-                            </Box>
-
-
-
-                            <br></br>
-                            <FormLabel className={classes.textcontect}>rectangles color</FormLabel>
-
-                            <Box flexDirection="row"
-                                display="flex"
-                                justifyContent="space-between"
-                            >
-
-                                <Box
-                                    width={'200%'}
-                                    alignSelf="center"
-                                >
-                                    <HuePicker
-                                        color={this.props.quote.imageRectanglesColor ? this.props.quote.imageRectanglesColor : "#0AB0FE"}
-                                        onChangeComplete={this.changeImageRectanglesColor}
-                                        width={180}
-                                        height={6}
-                                    />
-
-
-                                </Box>
-                                <Box justifyContent="">
-                                    <input
-                                        textAlign="left"
-                                        id="standard-number"
-                                        type="number"
-                                        placeholder={this.props.quote.imageRectanglesColor ? this.props.quote.imageRectanglesColor : "#0AB0FE"}
-                                        value={this.props.quote.imageRectanglesColor}
-                                        defaultValue={this.props.quote.imageRectanglesColor}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        className={classes.inputNumberSliderColor}
-                                    />
-                                </Box>
-                            </Box>
-
-
-
-
-                        </Grid>
-                    </div>
-
-
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth : '100'}
+                                                onChange={(e) => this.props.changeImageWidth(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </div>
+                        </FormGroup>
+                    </FormControl>
                 </div></>
-
-
         )
     }
 
-
 }
+
 const mapStateToProps = (state) => {
     return {
-        contactDetails: state.contactDetails.contactDetails,
-        quote: state.quote.quote,
+        // contactDetails: state.contactDetails.contactDetails,
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeImageImage: (image) => dispatch(actions.setImageImage(image)),
-    changeImageRectanglesColor: (image) => dispatch(actions.setImageRectanglesColor(image)),
-    changeImageRectanglesWidth: (image) => dispatch(actions.setImageRectanglesWidth(image)),
-    changeImageRectanglesHeight: (image) => dispatch(actions.setImageRectanglesHeight(image)),
-    changeImageBorderRadiusRectangles: (image) => dispatch(actions.setImageBorderRadiusRectangles(image)),
-    changeImageYOrN: (e) => dispatch(actions.setImageYOrN(e)),
+
+    changeImage: (image) => dispatch(actions.setImage(image)),
+    changeImageYOrN: (image) => dispatch(actions.setImageYOrN(image)),
+    changeCompanyName: (image) => dispatch(actions.setImageCompanyName(image)),
+    changeImageWidth: (image) => dispatch(actions.setImageWidth(image)),
+    changeImageHeight: (image) => dispatch(actions.setImageHeight(image)),
+    // changeImageBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
+    changeImageBorderRadiusImage: (image) => dispatch(actions.setImageBorderRadiusImage(image)),
+    // changeImageCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
+
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Image));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Logo));
