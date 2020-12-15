@@ -1,6 +1,8 @@
 import React from 'react';
 //קומפוננטה לעיצוב הלוגו
 import Logo from "./compsEditStore/logo"
+import Image from './compsEditStore/image';
+
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 // import './App.css';
@@ -391,6 +393,7 @@ class Wrap extends React.Component {
                     {this.props.logoDesign.currentComponent ? (() => {
                         switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
+                            case "Image": return <Image />;
                             case "": return
                                 <h1>e</h1>;
 
