@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'; 
 
 ///images  
 import mainPic from "../../assets/main-pic.png"
@@ -82,12 +82,11 @@ class EditHome extends Component {
                             <div className="main__preview">
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
-                                        <img alt="" src={this.props.homeStoreDesign.imageImage ?
+                                        <img alt="" className="main__pic" src={this.props.homeStoreDesign.imageImage ?
                                             this.props.homeStoreDesign.imageImage : productPic7}
                                             style={{
-                                                borderRadius: this.props.homeStoreDesign.ImageBorderRadiusImage,
                                                 // backgroundColor: this.props.homeStoreDesign.imageRectanglesColor,
-                                                width: this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth + 'vw' : '40vw',
+                                                width: this.props.hostartmeStoreDesign.imageWidth ? this.props.homeStoreDesign.imageWidth + 'vw' : '40vw',
                                                 height: this.props.homeStoreDesign.imageHeight ? this.props.homeStoreDesign.imageHeight + 'vh' : ''
                                             }}
                                         ></img>

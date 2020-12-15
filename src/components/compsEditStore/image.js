@@ -28,10 +28,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Slider from '@material-ui/core/Slider';
 import { HuePicker } from 'react-color';
 import Grid from '@material-ui/core/Grid';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import SettingsIcon from '@material-ui/icons/Settings';
+// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+// import SettingsIcon from '@material-ui/icons/Settings';
 import Box from '@material-ui/core/Box';
-import { actions } from '../../redux/action';
+// import { actions } from '../../redux/action';
 import tempImage from "../../assets/main-pic.png"
 
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
