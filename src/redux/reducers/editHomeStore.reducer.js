@@ -16,6 +16,18 @@ const initialState = {
                 // imageRectanglesColor: "",
                 // imageSelect: false,
 
+                titleTextTitle:"",
+                titleFont:"",
+                titleTextWeight:"700",
+                titleTextSize:"40",
+                titleLineHeight:"1.4",
+                titleColorText:"",
+                titleAlignment:"",
+// font-size: 40px;
+// line-height: 1.4;
+// font-weight: 700;
+
+
         }
 }
 const homeDesign = {
@@ -25,7 +37,12 @@ const homeDesign = {
         },
         setImage(state, action) {
                 state.homeStoreDesign.imageImage = action.payload;
-        }
+        }, 
+        setTitleTextTitle(state,action){
+        
+                state.homeStoreDesign.titleTextTitle=action.payload;
+                
+            },
 
 }
 export default produce((state, action) => createReducer(state, action, homeDesign), initialState);
