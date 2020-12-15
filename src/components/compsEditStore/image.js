@@ -33,7 +33,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 // import { actions } from '../../redux/action';
 import tempImage from "../../assets/main-pic.png"
-
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import clsx from 'clsx';
 
