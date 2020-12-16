@@ -5,7 +5,7 @@ import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
-import '../../App.css';
+// import '../../App.css';
 ///images  
 import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"

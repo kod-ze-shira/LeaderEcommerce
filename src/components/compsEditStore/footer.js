@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logoSvg from "../../assets/logo.svg";
-import '../../App.css'
+// import '../../App.css'
 class Footer extends Component {
     render() {
         return (

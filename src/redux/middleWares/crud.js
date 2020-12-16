@@ -128,14 +128,26 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
 
     return next(action);
 }
+export const getAllCategories = ({ dispatch, getState }) => next => action => {
+ 
+    if (action.type === 'GET_ALL_CATEGORIES') {
 
+        axios.get('https://community.leader.codes/api/categories')
+            .then(res => {
+                console.log("crddddddd", res.data);
+                dispatch(actions.setCategories({categories:res.data}))
+            })
+            .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+};
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-    debugger;
+    
     if (action.type === 'GET_ALL_PRODUCTS') {
-        debugger;
+      
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
-            debugger
+           
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts({products:res.data})) 
         })

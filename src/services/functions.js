@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import '../App.css';
+// import '../App.css';
 export const headerBurgerOnClick = () => {
     var header = $('.js-header'),
         burger = header.find('.js-header-burger'),
