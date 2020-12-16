@@ -35,7 +35,21 @@ ul{
 }
 
 
-
+.SPtitle{
+  font: SemiBold 77px/74px Montserrat;
+  width: 100% !important;
+  height: 242px !important;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #384364;
+  opacity: 1;
+  font-size: 60px;
+  margin-left: 15px;
+  outline: none !important;
+  border: none;
+  background-color: transparent;
+}
+ 
 
 
 .slick-slider {

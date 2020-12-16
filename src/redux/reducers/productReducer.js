@@ -8,7 +8,6 @@ const initialState = {
 const product = {
 
     setProducts(state, action) {
-            debugger;
         state.products = action.payload.products;
         console.log('pro',state.products);
     },

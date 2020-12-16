@@ -1,25 +1,43 @@
 import React, { Component } from 'react'
 import '../../App.css';
 import { connect } from 'react-redux';
+import { actions } from "../../redux/action";
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+
 import Switch from '@material-ui/core/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
 import { withStyles } from '@material-ui/core/styles';
+
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/core/Menu';
+import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 import FormLabel from '@material-ui/core/FormLabel';
+
+import Slider from '@material-ui/core/Slider';
+import { HuePicker } from 'react-color';
+import Grid from '@material-ui/core/Grid';
+// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+// import SettingsIcon from '@material-ui/icons/Settings';
+import Box from '@material-ui/core/Box';
+// import { actions } from '../../redux/action';
+import tempImage from "../../assets/main-pic.png"
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
-import { actions } from '../../redux/action';
-import tempImage from "../../assets/main-pic.png"
-
-
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import clsx from 'clsx';
+
 const AntSwitch = withStyles((theme) => ({
     root: {
         width: 28,

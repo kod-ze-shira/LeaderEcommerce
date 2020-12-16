@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 ///images  
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
 import trending from "../../assets/categories/trending.svg"
@@ -43,9 +45,39 @@ class EditHome extends Component {
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details">
-                                <h1 className="main__title title">We Offer the Best Products for your Skin</h1>
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('Title')}>
+                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                                <TextareaAutosize className="SPtitle col-md-12" value=
+                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"} style={{
+                                        fontFamily: this.props.homeStoreDesign.titleFont,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                        marginTop: '2vh'
+                                    }}
+                                    onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+
                             </div>
+                            {/*                 {this.props.quote.titleYOrN ?
+                  <div
+                    onClick={() => this.props.changeCurrentComponent('Title')}>
+                
+                   <div>
+                    <TextareaAutosize value={this.props.quote.titleTextTitle ? this.props.quote.titleTextTitle : "Follow The Leader"} style={{
+                      fontFamily: this.props.quote.titleFont,
+                      fontWeight: this.props.quote.titleTextWeight, fontSize: this.props.quote.titleTextSize,
+                      lineHeight: this.props.quote.titleLineHeight, color: this.props.quote.titleColorText,
+                      textAlign: this.props.quote.titleAlignment ? this.props.quote.titleAlignment : 'left',
+                      marginTop:'2vh'
+                    }}
+                      onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                    </div>
+                  </div> 
+                  : <span></span>
+                }
+ */}
+
                             <div className="main__preview">
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -298,6 +330,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeImage: (e) => dispatch(actions.setImage(e))
+    changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
+    changeImage: (e) => dispatch(actions.setImage(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
