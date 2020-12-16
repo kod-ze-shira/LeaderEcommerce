@@ -1,25 +1,43 @@
 import React, { Component } from 'react'
 import '../../App.css';
 import { connect } from 'react-redux';
+import { actions } from "../../redux/action";
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+
 import Switch from '@material-ui/core/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
 import { withStyles } from '@material-ui/core/styles';
+
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/core/Menu';
+import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 import FormLabel from '@material-ui/core/FormLabel';
+
+import Slider from '@material-ui/core/Slider';
+import { HuePicker } from 'react-color';
+import Grid from '@material-ui/core/Grid';
+// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+// import SettingsIcon from '@material-ui/icons/Settings';
+import Box from '@material-ui/core/Box';
+// import { actions } from '../../redux/action';
+import tempImage from "../../assets/main-pic.png"
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
-import { actions } from '../../redux/action';
-import tempLogo from '../../assets/logo.svg';
-
-// import InvertColorsIcon from '@material-ui/icons/InvertColors';
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import clsx from 'clsx';
+
 const AntSwitch = withStyles((theme) => ({
     root: {
         width: 28,
@@ -287,13 +305,15 @@ class Logo extends Component {
         this.setState({ logoYN: !this.state.logoYN })
             // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
             ;
-        this.props.changeLogoYOrN()
+        this.props.changeImageYOrN()
     }
-    handleChangeSwitchCN = () => {
+        //לטפל בזה{
+        // handleChangeSwitchCN = () => {
         // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
         ;
-        this.props.changeLogoCNYOrN()
-    }
+    // this.props.changeImageCNYOrN()
+    // }
+    //עד כאן}
     IsOpenCollapse = () => {
         this.setState({
             IsCollapse: !this.state.IsCollapse
@@ -312,16 +332,15 @@ class Logo extends Component {
     handleChangeComplete = (color) => {
         this.setState({ bgcolrPNG: color.hex });
     };
-    changeLogoselectRdiuseView = (e) => {
-        ;
-        this.props.changeLogoselectRdiuseView(e)
+    changeImageBorderRadiusImage = (e) => {
+        this.props.changeImageBorderRadiusImage(e)
     }
     onChangeHandlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
 
-                this.props.changeLogo(reader.result)
+                this.props.changeImage(reader.result)
             }
 
             reader.readAsDataURL(event)
@@ -345,7 +364,7 @@ class Logo extends Component {
                         <FormGroup className={classes.textField} >
                             {this.state.IsCollapse ?
                                 <div className={classes.row1}  >
-                                    <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
+                                    <h3 edge="end" className={classes.logoDetails}>Image Details</h3>
                                     <div edge="start" >
                                         <label for="ColapseLogo">
                                             <KeyboardArrowUpIcon />
@@ -361,7 +380,7 @@ class Logo extends Component {
                                 </div>
                                 :
                                 <div className={classes.row} >
-                                    <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
+                                    <h3 edge="end" className={classes.logoDetails}>  Image Details   </h3>
                                     <div edge="start">
                                         <label for="ColapseLogo">
                                             <KeyboardArrowDownIcon />
@@ -381,7 +400,6 @@ class Logo extends Component {
                                     container
                                     direction="column"
                                     justify="space-between"
-
                                 >
                                     <Box flexDirection="row"
                                         display="flex"
@@ -390,20 +408,18 @@ class Logo extends Component {
                                         <Box
                                             width={'80%'}
                                         >
-                                            <FormLabel className={classes.textcontect}>Logo</FormLabel>
-
+                                            <FormLabel className={classes.textcontect}>Image</FormLabel>
                                         </Box>
                                         <Box justifyContent="flex-end">
                                             <AntSwitch checked={this.state.logoYN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
                                         </Box>
-
                                     </Box>
                                     <Box
                                         alignSelf="center">
                                         <div className={classes.div} >
                                             <div class="image-upload">
                                                 <label for="logouug">
-                                                    <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
+                                                    <img className="logoC" alt="" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : tempImage} />
                                                 </label>
                                                 <input
                                                     type={"file"}
@@ -413,7 +429,7 @@ class Logo extends Component {
                                                     style={{
                                                         display: 'none',
                                                         cursor: 'pointer',
-                                                        width: this.props.logoDesign.logoWidth,
+                                                        width: this.props.homeStoreDesign.ImageWidth,
                                                     }}
                                                     onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
                                                 />
@@ -428,15 +444,13 @@ class Logo extends Component {
                                                     left: '109px'
                                                 }}
                                             >
-
                                             </div>
                                         </div>
-
                                     </Box>
                                     <br></br>
                                     <br></br>
                                     <br></br>
-                                    <FormLabel className={classes.textcontect}>Border Radius Logo</FormLabel>
+                                    <FormLabel className={classes.textcontect}>Border Radius Image</FormLabel>
                                     <br></br>
                                     <Box flexDirection="row"
                                         display="flex"
@@ -447,15 +461,13 @@ class Logo extends Component {
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
-
                                             <Slider
-                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
+                                                defaultValue={this.props.homeStoreDesign.ImageBorderRadiusImage}
                                                 step={1}
                                                 marks
                                                 min={0}
-                                                max={100}
-                                                getAriaValueText={this.props.changeLogoselectRdiuseView}
+                                                max={200}
+                                                getAriaValueText={this.props.changeImageBorderRadiusImage}
                                                 valueLabelDisplay="auto"
                                                 className={classes.MuiSlider_root}
                                             />
@@ -465,9 +477,9 @@ class Logo extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.logoDesign.logoBorderRadiusLogo ? this.props.logoDesign.logoBorderRadiusLogo : '0'}
-                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
-                                                onChange={(e) => this.props.changeLogoselectRdiuseView(e.target.value)}
+                                                value={this.props.homeStoreDesign.ImageBorderRadiusImage ? this.props.homeStoreDesign.ImageBorderRadiusImage : '0'}
+                                                defaultValue={this.props.homeStoreDesign.ImageBorderRadiusImage}
+                                                onChange={(e) => this.props.changeImageBorderRadiusImage(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -477,26 +489,23 @@ class Logo extends Component {
                                     </Box>
 
                                     <br></br>
-                                    <FormLabel className={classes.textcontect}>Logo Width</FormLabel>
+                                    <FormLabel className={classes.textcontect}>Image Width</FormLabel>
 
                                     <Box flexDirection="row"
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
-
                                             <Slider {...defaultProps3}
-                                                defaultValue={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
+                                                defaultValue={this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth : '100'}
                                                 step={1}
                                                 marks
-                                                min={100}
-                                                max={200}
-                                                getAriaValueText={this.props.changeLogoWidth}
+                                                min={20}
+                                                max={60}
+                                                getAriaValueText={this.props.changeImageWidth}
                                                 valueLabelDisplay="auto"
                                                 className={classes.MuiSlider_root}
                                             />
@@ -507,24 +516,19 @@ class Logo extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
-                                                onChange={(e) => this.props.changeLogoWidth(e.target.value)}
+                                                value={this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth : '100'}
+                                                onChange={(e) => this.props.changeImageWidth(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 className={classes.inputNumberSlider}
                                             />
-
                                         </Box>
-
                                     </Box>
-
-
                                 </Grid>
                             </div>
                         </FormGroup>
                     </FormControl>
-
                 </div></>
         )
     }
@@ -534,19 +538,20 @@ class Logo extends Component {
 const mapStateToProps = (state) => {
     return {
         // contactDetails: state.contactDetails.contactDetails,
-        logoDesign: state.logoReducer.logoDesign
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeLogo: (image) => dispatch(actions.setLogo(image)),
-    changeLogoYOrN: (image) => dispatch(actions.setLogoYOrN(image)),
-    changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),
-    changeLogoWidth: (image) => dispatch(actions.setLogoWidth(image)),
-    changeLogoHeight: (image) => dispatch(actions.setLogoHeight(image)),
-    changeLogoBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
-    changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
-    changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
+
+    changeImage: (image) => dispatch(actions.setImage(image)),
+    changeImageYOrN: (image) => dispatch(actions.setImageYOrN(image)),
+    changeCompanyName: (image) => dispatch(actions.setImageCompanyName(image)),
+    changeImageWidth: (image) => dispatch(actions.setImageWidth(image)),
+    changeImageHeight: (image) => dispatch(actions.setImageHeight(image)),
+    // changeImageBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
+    changeImageBorderRadiusImage: (image) => dispatch(actions.setImageBorderRadiusImage(image)),
+    // changeImageCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
 
 })
 

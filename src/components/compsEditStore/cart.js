@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { actions } from "../../redux/action"
 ///images
 import productPic2 from "../../assets/products/product-pic-2.png"
 import productPic4 from "../../assets/products/product-pic-4.png"
 class Cart extends Component {
-
 
     render() {
         return (
@@ -113,16 +111,4 @@ class Cart extends Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
-    }
-}
-const mapDispatchToProps = (dispatch) => ({
-
-    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

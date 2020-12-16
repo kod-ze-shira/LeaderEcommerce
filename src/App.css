@@ -33,7 +33,21 @@ ul{
 }
 
 
-
+.SPtitle{
+  font: SemiBold 77px/74px Montserrat;
+  width: 100% !important;
+  height: 242px !important;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #384364;
+  opacity: 1;
+  font-size: 60px;
+  margin-left: 15px;
+  outline: none !important;
+  border: none;
+  background-color: transparent;
+}
+ 
 
 
 /* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap");
@@ -1218,8 +1232,8 @@ body.dark .search__input::placeholder {
 }
 
 .main__pic {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 40vw;
+  max-height: 44vh;
 }
 
 body.dark .main__preview {

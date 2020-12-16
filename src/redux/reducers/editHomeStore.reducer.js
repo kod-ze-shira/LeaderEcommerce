@@ -1,68 +1,67 @@
 import createReducer from './reducerUtils'
 import produce from 'immer';
-import tempLogo from '../../assets/logo.svg';
-import mainPic from "../../assets/main-pic.png"
+import tempImage from "../../assets/main-pic.png"
 
 
 const initialState = {
         //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
         homeStoreDesign: {
-                logo: tempLogo,
-                LogoYOrN: true,
-                logoCNYOrN: false,
-                logoCompanyName: "",
-                logoBorderRadiusLogo: "",
-                logoBorderRadiusLogo1: "",
-                logoBorderRadiusLogo2: "",
-                logoBorderRadiusLogo3: "",
-                logoBorderRadiusLogo4: "",
-                logoWidth: "",
-                logoHeight: "",
-                logoBackgroundOnlyPng: "",
-                logoSelectRadiuseView: "",
-                logoSelect: false,
-                currentComponent: "",
                 //לתוכו נכניס את שם הקומפוננטה שאותה נטעין בקונפיגורטור לדוג לוגו
-                imageImage: mainPic,
-                imageYOrN: true
+                imageImage: tempImage,
+                imageYOrN: true,
+                imageHeight: "",
+                ImageCompanyName: "",
+                ImageBorderRadiusImage: "0",
+                ImageWidth: "50",
+                ImageHeight: "",
+                currentComponent: "",
+
+                titleTextTitle:"",
+                titleFont:"",
+                titleTextWeight:"700",
+                titleTextSize:"40",
+                titleLineHeight:"1.4",
+                titleColorText:"",
+                titleAlignment:"",
+// font-size: 40px;
+// line-height: 1.4;
+// font-weight: 700;
+
+
         }
 }
 const homeDesign = {
         //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+        setImageYOrN(state, action) {
+                state.homeStoreDesign.imageYOrN = !state.homeStoreDesign.imageYOrN;
+        },
+        setImage(state, action) {
+                state.homeStoreDesign.imageImage = action.payload;
+        }, 
+        setTitleTextTitle(state,action){
+        
+                state.homeStoreDesign.titleTextTitle=action.payload;
+                
+            },
         setCurrentComponent(state, action) {
                 state.homeStoreDesign.currentComponent = action.payload
         },
-        setLogo(state, action) {
-                state.homeStoreDesign.logo = action.payload;
+        setImageCompanyName(state, action) {
+                state.homeStoreDesign.ImageCompanyName = action.payload;
         },
-        setLogoYOrN(state, action) {
-                state.homeStoreDesign.LogoYOrN = !state.homeStoreDesign.LogoYOrN;
-
-        },
-        setLogoCompanyName(state, action) {
-                state.homeStoreDesign.logoCompanyName = action.payload;
-        }, setLogoBorderRadiusLogo1(state, action) {
+        setImageBorderRadiusImage(state, action) {
                 ;
-                state.homeStoreDesign.logoBorderRadiusLogo = action.payload;
+                state.homeStoreDesign.ImageBorderRadiusImage = action.payload;
                 ;
         },
-        setLogoWidth(state, action) {
+        setImageWidth(state, action) {
                 ;
-                state.homeStoreDesign.logoWidth = action.payload;
+                state.homeStoreDesign.ImageWidth = action.payload;
                 ;
         },
-        setLogoHeight(state, action) {
-                state.homeStoreDesign.logoHeight = action.payload;
+        setImageHeight(state, action) {
+                state.homeStoreDesign.ImageHeight = action.payload;
         },
-
-        setLogoBackgroundOnlyPng(state, action) {
-                state.homeStoreDesign.logoBackgroundOnlyPng = action.payload;
-        },
-        setImageYOrN(state, action) {
-                state.homeStoreDesign.imageYOrN = !state.homeStoreDesign.imageYOrN;
-        }
-
-
 
 }
 export default produce((state, action) => createReducer(state, action, homeDesign), initialState);

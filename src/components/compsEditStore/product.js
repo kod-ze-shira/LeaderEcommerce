@@ -231,16 +231,17 @@ class Product extends Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
-    }
-}
-const mapDispatchToProps = (dispatch) => ({
+// const mapStateToProps = (state) => {
+//     return {
+//         //אפשר לקרוא שם אחר לאוביקט
+//         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+//     }
+// }
+// const mapDispatchToProps = (dispatch) => ({
 
-    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
+//     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+//     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
 
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+// })
+export default Product;
+//  connect(mapStateToProps, mapDispatchToProps)(Product);

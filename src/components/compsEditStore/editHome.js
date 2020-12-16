@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
 ///images  
 import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
@@ -27,36 +29,78 @@ import productPic8 from "../../assets/products/product-pic-8.png"
 
 class EditHome extends Component {
     render() {
+
+        const onChangeHandlerImage = (event) => {
+            if (event) {
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                    this.props.changeImage(reader.result)
+                }
+                reader.readAsDataURL(event)
+            }
+
+        }
+
         return (
             <div>
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details">
-                                <div className="main__stage stage">- Skincare Products</div>
-                                <h1 className="main__title title">We Offer the Best Products for your Skin</h1>
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('Title')}>
+                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                                <TextareaAutosize className="SPtitle col-md-12" value=
+                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"} style={{
+                                        fontFamily: this.props.homeStoreDesign.titleFont,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                        marginTop: '2vh'
+                                    }}
+                                    onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+
                             </div>
+                            {/*                 {this.props.quote.titleYOrN ?
+                  <div
+                    onClick={() => this.props.changeCurrentComponent('Title')}>
+                
+                   <div>
+                    <TextareaAutosize value={this.props.quote.titleTextTitle ? this.props.quote.titleTextTitle : "Follow The Leader"} style={{
+                      fontFamily: this.props.quote.titleFont,
+                      fontWeight: this.props.quote.titleTextWeight, fontSize: this.props.quote.titleTextSize,
+                      lineHeight: this.props.quote.titleLineHeight, color: this.props.quote.titleColorText,
+                      textAlign: this.props.quote.titleAlignment ? this.props.quote.titleAlignment : 'left',
+                      marginTop:'2vh'
+                    }}
+                      onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                    </div>
+                  </div> 
+                  : <span></span>
+                }
+ */}
+
                             <div className="main__preview">
-                                <label onClick={() => this.props.changeCurrentComponent('Image')}>
+                                <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
-
-                                        <div className="d-flex justify-content-end">
-                                            <button className="btn btn-simple pr-1"
-                                            >ooooo
-                                                <i class="fas fa-edit" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
-                                            </button>
-                                            <button className="btn btn-simple pr-1">ttt
-                                                <i class="fas fa-copy" style={{ color: "#c3c4ca", fontSize: "1rem" }}></i>
-                                            </button>
-                                            <button className="btn btn-simple pr-2" onClick={(e) => this.props.changeImageYOrN(e)}>vvvv
-                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
-                                                </i>
-                                            </button>
-                                        </div> :
-
-                                        <span></span>}
-
-                                    <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img>
+                                        <img alt="" src={this.props.homeStoreDesign.imageImage ?
+                                            this.props.homeStoreDesign.imageImage : productPic7}
+                                            style={{
+                                                borderRadius: this.props.homeStoreDesign.ImageBorderRadiusImage,
+                                                width: this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth + 'vw' : '40vw',
+                                                height: this.props.homeStoreDesign.imageHeight ? this.props.homeStoreDesign.imageHeight + 'vh' : ''
+                                            }}
+                                        ></img>
+                                        : <span></span>}
+                                    <input type={"file"}
+                                        id="fileInput"
+                                        htmlFor="myInput"
+                                        accept="image/*"
+                                        style={{
+                                            cursor: 'pointer',
+                                            display: 'none',
+                                        }}
+                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])} ></input>
+                                    {/* <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img> */}
                                 </label>
                             </div>
                         </div>
@@ -287,14 +331,9 @@ class EditHome extends Component {
                                 <div className="product__view">
                                     <Link className="product__preview" to="/edit/prodct"><img className="product__pic"
                                         src={productPic8} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic8} alt=""></img></a> */}
                                     <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
                                 </div>
                                 <Link className="product__name" to="/edit/product">Morning Shine</Link>
-                                {/* <a className="product__name" href="product.html">Morning Shine</a> */}
                                 <div className="product__details">
                                     <div className="product__category green">NIGHT CARE</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -312,11 +351,6 @@ class EditHome extends Component {
         )
     }
 }
-// handleChangeSwitch = () => {
-// this.setState({ logoYN: !this.state.logoYN })
-// this.props.homeStoreDesign.logoYOrN = !this.props.homeStoreDesign.logoYOrN
-// ;
-// }
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
@@ -326,8 +360,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
+    changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
+    changeImage: (e) => dispatch(actions.setImage(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);

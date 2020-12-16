@@ -216,16 +216,4 @@ class Checkout extends Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
-    }
-}
-const mapDispatchToProps = (dispatch) => ({
-
-    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-    changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+export default Checkout;

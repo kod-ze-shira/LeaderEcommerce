@@ -1,45 +1,58 @@
 import produce from 'immer';
 import createReducer from "./reducerUtils";
-import image from '../../assets/logo.png'
+import tempLogo from '../../assets/logo.svg';
+
 const initialState = {
+    //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
+    logoDesign: {
+        logo: tempLogo,
+        LogoYOrN: true,
+        logoCNYOrN: false,
+        logoCompanyName: "",
+        logoBorderRadiusLogo: "",
+        logoBorderRadiusLogo1: "",
+        logoBorderRadiusLogo2: "",
+        logoBorderRadiusLogo3: "",
+        logoBorderRadiusLogo4: "",
+        logoWidth: "",
+        logoHeight: "",
+        logoBackgroundOnlyPng: "",
+        logoSelectRadiuseView: "",
+        logoSelect: false,
+        currentComponent: "",
+        //לתוכו נכניס את שם הקומפוננטה שאותה נטעין בקונפיגורטור לדוג לוגו
+    }
+}
 
-    urlImage: {
-        image: image,
-        companyName: "",
-        color: ""
+const logoDesignFunc = {
+    //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+    setCurrentComponent(state, action) {
+        state.logoDesign.currentComponent = action.payload
     },
-};
+    setLogo(state, action) {
+        state.logoDesign.logo = action.payload;
+    },
+    setLogoYOrN(state, action) {
+        state.logoDesign.LogoYOrN = !state.logoDesign.LogoYOrN;
 
-const agent = {
-    // setLogo(state, action) {
-    //     state.quote.logo = action.payload;
-    // },
-    // setLogoYOrN(state, action) {
+    },
+    setLogoCompanyName(state, action) {
+        state.logoDesign.logoCompanyName = action.payload;
+    }, 
+    setLogoBorderRadiusLogo1(state, action) {
+        ;
+        state.logoDesign.logoBorderRadiusLogo = action.payload;
+        ;
+    },
+    setLogoWidth(state, action) {
+        ;
+        state.logoDesign.logoWidth = action.payload;
+        ;
+    },
+    setLogoHeight(state, action) {
+        state.logoDesign.logoHeight = action.payload;
+    },
 
-    //     state.quote.LogoYOrN = !state.quote.LogoYOrN;
+}
 
-    // },
-    // setLogoCompanyName(state, action) {
-    //     state.quote.logoCompanyName = action.payload;
-    // }, setLogoBorderRadiusLogo1(state, action) {
-    //     ;
-    //     state.quote.logoBorderRadiusLogo = action.payload;
-    //     ;
-    // },
-    // setLogoWidth(state, action) {
-    //     ;
-    //     state.quote.logoWidth = action.payload;
-    //     ;
-    // },
-    // setLogoHeight(state, action) {
-    //     state.quote.logoHeight = action.payload;
-    // },
-
-    // setLogoBackgroundOnlyPng(state, action) {
-    //     state.quote.logoBackgroundOnlyPng = action.payload;
-    // },
-
-
-};
-
-export default produce((state, action) => createReducer(state, action, agent), initialState);
+export default produce((state, action) => createReducer(state, action, logoDesignFunc), initialState);

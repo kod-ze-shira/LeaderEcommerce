@@ -11,12 +11,13 @@ class Header extends Component {
 
                 <header className="header js-header">
                     <div className="header__center center">
-                        {
-                            <Link to="/edit" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
-                                {this.props.homeStoreDesign.LogoYOrN === true ?
-                                    <img className="" src={this.props.homeStoreDesign.logo} alt=""
-                                        style={{ borderRadius: this.props.homeStoreDesign.logoBorderRadiusLogo }}
-                                        width={this.props.homeStoreDesign.logoWidth ? this.props.homeStoreDesign.logoWidth + 'vw' : '100vw'} height="auto" className="logoK"
+                      {
+                            <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
+                                {this.props.logoDesign.LogoYOrN === true ?
+                                    <img className="" src={this.props.logoDesign.logo} alt=""
+                                        style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
+                                        width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
+                                        height="auto" className="logoK"
                                     ></img> : <button onClick={this.props.changeLogoYOrN}><h1>+</h1></button>
                                 }
                             </Link>
@@ -38,11 +39,10 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        logoDesign: state.logoReducer.logoDesign
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
 
