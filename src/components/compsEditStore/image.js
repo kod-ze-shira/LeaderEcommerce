@@ -417,7 +417,7 @@ class Logo extends Component {
                                     <Box
                                         alignSelf="center">
                                         <div className={classes.div} >
-                                            <div class="image-upload">
+                                            <div className="image-upload">
                                                 <label for="logouug">
                                                     <img className="logoC" alt="" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : tempImage} />
                                                 </label>
@@ -435,7 +435,7 @@ class Logo extends Component {
                                                 />
 
                                             </div>
-                                            <div id='lbError' class='warning'
+                                            <div id='lbError' className='warning'
                                                 style={{
                                                     position: 'relative',
                                                     color: 'red',
