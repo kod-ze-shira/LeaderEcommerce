@@ -142,18 +142,9 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-<<<<<<< HEAD
-    
-    if (action.type === 'GET_ALL_PRODUCTS') {
-      
-        axios.get('https://community.leader.codes/api/products')
-        .then(res => {
-           
-=======
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
->>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts({products:res.data})) 
         })
