@@ -5,7 +5,13 @@ import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
+<<<<<<< HEAD
 // import '../../App.css';
+=======
+import '../../App.css';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
+>>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
 ///images  
 import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
@@ -44,17 +50,47 @@ class EditHome extends Component {
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details">
-                                <h1 className="main__title title">We Offer the Best Products for your Skin</h1>
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('Title')}>
+                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                                <TextareaAutosize className="SPtitle col-md-12" value=
+                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"} style={{
+                                        fontFamily: this.props.homeStoreDesign.titleFont,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                        marginTop: '2vh'
+                                    }}
+                                    onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+
                             </div>
+                            {/*                 {this.props.quote.titleYOrN ?
+                  <div
+                    onClick={() => this.props.changeCurrentComponent('Title')}>
+                
+                   <div>
+                    <TextareaAutosize value={this.props.quote.titleTextTitle ? this.props.quote.titleTextTitle : "Follow The Leader"} style={{
+                      fontFamily: this.props.quote.titleFont,
+                      fontWeight: this.props.quote.titleTextWeight, fontSize: this.props.quote.titleTextSize,
+                      lineHeight: this.props.quote.titleLineHeight, color: this.props.quote.titleColorText,
+                      textAlign: this.props.quote.titleAlignment ? this.props.quote.titleAlignment : 'left',
+                      marginTop:'2vh'
+                    }}
+                      onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                    </div>
+                  </div> 
+                  : <span></span>
+                }
+ */}
+
                             <div className="main__preview">
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
-                                        <img alt="" className="main__pic" src={this.props.homeStoreDesign.imageImage ?
+                                        <img alt="" src={this.props.homeStoreDesign.imageImage ?
                                             this.props.homeStoreDesign.imageImage : productPic7}
                                             style={{
-                                                // backgroundColor: this.props.homeStoreDesign.imageRectanglesColor,
-                                                width: this.props.homeStoreDesign.imageWidth ? this.props.homeStoreDesign.imageWidth + 'vw' : '40vw',
+                                                borderRadius: this.props.homeStoreDesign.ImageBorderRadiusImage,
+                                                width: this.props.homeStoreDesign.ImageWidth ? this.props.homeStoreDesign.ImageWidth + 'vw' : '40vw',
                                                 height: this.props.homeStoreDesign.imageHeight ? this.props.homeStoreDesign.imageHeight + 'vh' : ''
                                             }}
                                         ></img>
@@ -329,7 +365,9 @@ const mapDispatchToProps = (dispatch) => ({
     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
-    changeImage: (e) => dispatch(actions.setImage(e))
+    changeImage: (e) => dispatch(actions.setImage(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
 

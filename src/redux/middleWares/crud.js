@@ -142,12 +142,18 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
+<<<<<<< HEAD
     
     if (action.type === 'GET_ALL_PRODUCTS') {
       
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
            
+=======
+    if (action.type === 'GET_ALL_PRODUCTS') {
+        axios.get('https://community.leader.codes/api/products')
+        .then(res => {
+>>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts({products:res.data})) 
         })
@@ -189,3 +195,34 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
+    if (action.type === "ADD_NEW_IMAGE_FROM_DB") {
+        $.ajax({
+            //ניתוב לשרת שלכן  "url": 'path to your server' + user.uid,
+            url: 'https://community.leader.codes/api/uploadImage/' + 'simdsMrrcJdpQgta8kgXyQBdDFy2',
+            "method": "POST",
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "headers": {
+                //בauthorization יש לשים jwt אחר!!!!!!!      
+                "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJzaW1kc01ycmNKZHBRZ3RhOGtnWHlRQmRERnkyIiwiZW1haWwiOiJjdG9AbGVhZGVyLmNvZGVzIiwiaXAiOiI1LjEwMi4yNDYuMjAyIiwiaWF0IjoxNjA0NDgyOTc0fQ.Nn2IC7j_VCDOFIkbwzT3nao0l7OcqbNqDUKkcL0Aoik"
+
+            },
+            "data": action.payload.f,
+            "async": false,
+            success: function (data1) {
+                console.log("success")
+                dispatch(actions.addUrlFileToRecord(data1))
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        }
+        )
+    }
+    return next(action)
+}
+
+

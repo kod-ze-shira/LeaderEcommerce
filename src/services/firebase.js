@@ -48,7 +48,6 @@ export const signInWithEmailAndPassword = (email,password) => {
 
 // ...
 export const logOut = () => {
-    debugger;
   auth.signOut().then(()=> {
     console.log('logged out')
   }).catch((error) => {

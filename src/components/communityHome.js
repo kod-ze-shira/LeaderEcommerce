@@ -14,13 +14,13 @@ function CommunityHome(props) {
 
     const [community, setCommunity] = useState({community:{}});
 
-    useEffect(() => {
-        console.log(x.match.params.id);
-        props.getCommunityById(x.match.params.id)
-        console.log("comHome...", props.community)
-        // axios.get('http://localhost:3000/communities/'+props.match.params.id)
-        // .then(res=>{console.log("get ",res.data);setCommunity({community:res.data})});
-      });
+    // useEffect(() => {
+    //     console.log(x.match.params.id);
+    //     props.getCommunityById(x.match.params.id)
+    //     console.log("comHome...", props.community)
+    //     // axios.get('http://localhost:3000/communities/'+props.match.params.id)
+    //     // .then(res=>{console.log("get ",res.data);setCommunity({community:res.data})});
+    //   });
 
     return (
         <div>

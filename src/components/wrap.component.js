@@ -1,9 +1,10 @@
 import React from 'react';
 //קומפוננטה לעיצוב הלוגו
 import Logo from "./compsEditStore/logo"
+import Image from './compsEditStore/image';
+
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
-// import './App.css';
 import clsx from 'clsx';
 import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from '@material-ui/core/styles';
@@ -76,26 +77,6 @@ import Content from './content';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
-    // root: {
-    //   display: 'flex',
-    // },
-    // appBar: {
-    //   zIndex: theme.zIndex.drawer + 1,
-    // },
-    // drawer: {
-    //   width: drawerWidth,
-    //   flexShrink: 0,
-    // },
-    // drawerPaper: {
-    //   width: drawerWidth,
-    // },
-    // drawerContainer: {
-    //   overflow: 'auto',
-    // },
-    // content: {
-    //   flexGrow: 1,
-    //   padding: theme.spacing(3),
-    // },
     root: {
         display: 'flex',
         position: 'relative',
@@ -391,6 +372,7 @@ class Wrap extends React.Component {
                     {this.props.logoDesign.currentComponent ? (() => {
                         switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
+                            case "Image": return <Image />;
                             case "": return
                                 <h1>e</h1>;
 
@@ -449,107 +431,6 @@ class Wrap extends React.Component {
         )
     };
 
-    // fastAccses() {
-    //   const { classes } = this.props;
-    //   const actions = [
-    //     { icon: <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="26.657" height="16" viewBox="0 0 26.657 16"><defs></defs><path class="a" d="M18.106,64H14.528a1.332,1.332,0,0,0-.9.35L9.534,68.1s-.008.012-.012.017a1.657,1.657,0,0,0-.087,2.332,1.737,1.737,0,0,0,2.337.112s.012,0,.017-.008L15.115,67.5a.666.666,0,1,1,.9.983l-1.087,1L20.992,74.4a3,3,0,0,1,.329.321v-8.06l-2.274-2.274A1.323,1.323,0,0,0,18.106,64Zm4.553,2.674V76a1.331,1.331,0,0,0,1.333,1.333h2.666V66.674Zm2,9.326a.666.666,0,1,1,.666-.666A.668.668,0,0,1,24.658,76ZM0,77.329H2.666A1.331,1.331,0,0,0,4,76V66.674H0Zm2-2.662a.666.666,0,1,1-.666.666A.668.668,0,0,1,2,74.667Zm18.156.775-6.219-5.048-1.25,1.145A3,3,0,1,1,8.634,67.12L12.041,64H8.551a1.33,1.33,0,0,0-.941.392L5.331,66.666v9.326h.762L9.863,79.4a2.665,2.665,0,0,0,3.749-.387l.008-.008.746.646a1.548,1.548,0,0,0,2.178-.225l1.308-1.608.225.183a1.331,1.331,0,0,0,1.874-.2l.4-.487a1.335,1.335,0,0,0-.192-1.878Z" transform="translate(0 -64)"/></svg>, name: 'New quote' },
-    //     { icon:  <LocalOfferIcon/>, name: 'New Event' },
-    //     { icon: <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="17.5" height="20" viewBox="0 0 17.5 20"><defs></defs><path class="a" d="M0,18.125A1.875,1.875,0,0,0,1.875,20h13.75A1.875,1.875,0,0,0,17.5,18.125V7.5H0Zm12.5-7.656A.47.47,0,0,1,12.969,10h1.563a.47.47,0,0,1,.469.469v1.563a.47.47,0,0,1-.469.469H12.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,12.969,15h1.563a.47.47,0,0,1,.469.469v1.562a.47.47,0,0,1-.469.469H12.969a.47.47,0,0,1-.469-.469Zm-5-5A.47.47,0,0,1,7.969,10H9.531a.47.47,0,0,1,.469.469v1.563a.47.47,0,0,1-.469.469H7.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,7.969,15H9.531a.47.47,0,0,1,.469.469v1.562a.47.47,0,0,1-.469.469H7.969a.47.47,0,0,1-.469-.469Zm-5-5A.47.47,0,0,1,2.969,10H4.531A.47.47,0,0,1,5,10.469v1.563a.47.47,0,0,1-.469.469H2.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,2.969,15H4.531A.47.47,0,0,1,5,15.469v1.562a.47.47,0,0,1-.469.469H2.969a.47.47,0,0,1-.469-.469ZM15.625,2.5H13.75V.625A.627.627,0,0,0,13.125,0h-1.25a.627.627,0,0,0-.625.625V2.5h-5V.625A.627.627,0,0,0,5.625,0H4.375A.627.627,0,0,0,3.75.625V2.5H1.875A1.875,1.875,0,0,0,0,4.375V6.25H17.5V4.375A1.875,1.875,0,0,0,15.625,2.5Z"/></svg>, name: 'New Time' },
-    //     { icon: <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="17.5" height="20" viewBox="0 0 17.5 20"><defs></defs><path class="a" d="M17.5,2.857V4.643C17.5,6.217,13.581,7.5,8.75,7.5S0,6.217,0,4.643V2.857C0,1.283,3.919,0,8.75,0S17.5,1.283,17.5,2.857Zm0,4.018v4.018c0,1.574-3.919,2.857-8.75,2.857S0,12.467,0,10.893V6.875c1.88,1.295,5.321,1.9,8.75,1.9S15.62,8.17,17.5,6.875Zm0,6.25v4.018C17.5,18.717,13.581,20,8.75,20S0,18.717,0,17.143V13.125c1.88,1.295,5.321,1.9,8.75,1.9S15.62,14.42,17.5,13.125Z"/></svg>, name: 'Share' },
-    //     { icon: <AccountCircleIcon />, name: 'New Contact' },
-    //   ];
-    //   return (
-    //     <Grid item xs={12} md={6} style={{bottom: '20px',marginLeft: '65%',position:"absolute" }}>
-    //         <div className={classes.demo}>
-    //           <List style={{visibility: this.state.visibility}}>
-    //           <ListItem>
-    //               <ListItemAvatar>
-    //                   <Avatar style={{backgroundColor:'#f50057'}}>
-    //                    <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="26.657" height="16" viewBox="0 0 26.657 16"><defs></defs><path class="a" d="M18.106,64H14.528a1.332,1.332,0,0,0-.9.35L9.534,68.1s-.008.012-.012.017a1.657,1.657,0,0,0-.087,2.332,1.737,1.737,0,0,0,2.337.112s.012,0,.017-.008L15.115,67.5a.666.666,0,1,1,.9.983l-1.087,1L20.992,74.4a3,3,0,0,1,.329.321v-8.06l-2.274-2.274A1.323,1.323,0,0,0,18.106,64Zm4.553,2.674V76a1.331,1.331,0,0,0,1.333,1.333h2.666V66.674Zm2,9.326a.666.666,0,1,1,.666-.666A.668.668,0,0,1,24.658,76ZM0,77.329H2.666A1.331,1.331,0,0,0,4,76V66.674H0Zm2-2.662a.666.666,0,1,1-.666.666A.668.668,0,0,1,2,74.667Zm18.156.775-6.219-5.048-1.25,1.145A3,3,0,1,1,8.634,67.12L12.041,64H8.551a1.33,1.33,0,0,0-.941.392L5.331,66.666v9.326h.762L9.863,79.4a2.665,2.665,0,0,0,3.749-.387l.008-.008.746.646a1.548,1.548,0,0,0,2.178-.225l1.308-1.608.225.183a1.331,1.331,0,0,0,1.874-.2l.4-.487a1.335,1.335,0,0,0-.192-1.878Z" transform="translate(0 -64)"/></svg>
-    //                   </Avatar>
-    //                 </ListItemAvatar>
-    //                 <ListItemText
-    //                   primary="New Quote"
-    //                   //secondary={secondary ? 'Secondary text' : null}
-    //                 />
-    //               </ListItem>
-    //               <ListItem>
-    //                 <ListItemAvatar>
-    //                   <Avatar style={{backgroundColor:'#f50057'}}>
-    //                     <LocalOfferIcon/>
-    //                   </Avatar>
-    //                 </ListItemAvatar>
-    //                 <ListItemText
-    //                   primary="New Event"
-    //                   //secondary={secondary ? 'Secondary text' : null}
-    //                 />
-    //               </ListItem>
-
-    //               <ListItem>
-    //               <ListItemAvatar>
-    //                   <Avatar style={{backgroundColor:'#f50057'}}>
-    //                   <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="17.5" height="20" viewBox="0 0 17.5 20"><defs></defs><path class="a" d="M0,18.125A1.875,1.875,0,0,0,1.875,20h13.75A1.875,1.875,0,0,0,17.5,18.125V7.5H0Zm12.5-7.656A.47.47,0,0,1,12.969,10h1.563a.47.47,0,0,1,.469.469v1.563a.47.47,0,0,1-.469.469H12.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,12.969,15h1.563a.47.47,0,0,1,.469.469v1.562a.47.47,0,0,1-.469.469H12.969a.47.47,0,0,1-.469-.469Zm-5-5A.47.47,0,0,1,7.969,10H9.531a.47.47,0,0,1,.469.469v1.563a.47.47,0,0,1-.469.469H7.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,7.969,15H9.531a.47.47,0,0,1,.469.469v1.562a.47.47,0,0,1-.469.469H7.969a.47.47,0,0,1-.469-.469Zm-5-5A.47.47,0,0,1,2.969,10H4.531A.47.47,0,0,1,5,10.469v1.563a.47.47,0,0,1-.469.469H2.969a.47.47,0,0,1-.469-.469Zm0,5A.47.47,0,0,1,2.969,15H4.531A.47.47,0,0,1,5,15.469v1.562a.47.47,0,0,1-.469.469H2.969a.47.47,0,0,1-.469-.469ZM15.625,2.5H13.75V.625A.627.627,0,0,0,13.125,0h-1.25a.627.627,0,0,0-.625.625V2.5h-5V.625A.627.627,0,0,0,5.625,0H4.375A.627.627,0,0,0,3.75.625V2.5H1.875A1.875,1.875,0,0,0,0,4.375V6.25H17.5V4.375A1.875,1.875,0,0,0,15.625,2.5Z"/></svg>
-    //                   </Avatar>
-    //                 </ListItemAvatar>
-    //                 <ListItemText
-    //                   primary="New Time"
-    //                   //secondary={secondary ? 'Secondary text' : null}
-    //                 />
-    //               </ListItem>
-    //               <ListItem>
-    //               <ListItemAvatar>
-    //                   <Avatar style={{backgroundColor:'#f50057'}}>
-    //                   <svg className='fast-accses' xmlns="http://www.w3.org/2000/svg" width="17.5" height="20" viewBox="0 0 17.5 20"><defs></defs><path class="a" d="M17.5,2.857V4.643C17.5,6.217,13.581,7.5,8.75,7.5S0,6.217,0,4.643V2.857C0,1.283,3.919,0,8.75,0S17.5,1.283,17.5,2.857Zm0,4.018v4.018c0,1.574-3.919,2.857-8.75,2.857S0,12.467,0,10.893V6.875c1.88,1.295,5.321,1.9,8.75,1.9S15.62,8.17,17.5,6.875Zm0,6.25v4.018C17.5,18.717,13.581,20,8.75,20S0,18.717,0,17.143V13.125c1.88,1.295,5.321,1.9,8.75,1.9S15.62,14.42,17.5,13.125Z"/></svg>
-    //                   </Avatar>
-    //                 </ListItemAvatar>
-    //                 <ListItemText
-    //                   primary="New Stories"
-    //                   //secondary={secondary ? 'Secondary text' : null}
-    //                 />
-    //               </ListItem>
-
-    //               <ListItem>
-    //               <ListItemAvatar>
-    //                   <Avatar style={{backgroundColor:'#f50057'}}>
-    //                     <AccountCircleIcon />
-    //                   </Avatar>
-    //                 </ListItemAvatar>
-    //                 <ListItemText
-    //                   primary="New Contact"
-    //                   //secondary={secondary ? 'Secondary text' : null}
-    //                 />
-    //               </ListItem>
-    //           </List>
-    //           <Fab color="secondary" aria-label="add" onMouseEnter={this.getFastAccses}>
-    //         <AddIcon />
-    //       </Fab>
-    //         </div>
-
-    //       </Grid>
-    //     //  <SpeedDial
-    //     //     ariaLabel="SpeedDial example"
-    //     //     className={classes.speedDial}
-    //     //     //hidden={hidden}
-    //     //     icon={<SpeedDialIcon />}
-    //     //     onClose={this.handleClose}
-    //     //     onOpen={this.handleOpen}
-    //     //     open={this.state.openSpeedDial}
-    //     //     direction="up"
-    //     //   >
-    //     //     {actions.map((action) => (
-
-    //     //       <SpeedDialAction
-    //     //         key={action.name}
-    //     //         icon={action.icon}
-    //     //         tooltipTitle={action.name}
-    //     //         onClick={this.handleClose}
-    //     //         style={{backgroundColor:"red"}}
-    //     //       />
-
-    //     //     ))}
-    //     //   </SpeedDial>
-    //   )
-    // }
 
     showTips() {
         const { classes } = this.props;
@@ -568,14 +449,6 @@ class Wrap extends React.Component {
             </Grid>
         )
     }
-    // toggleDrawer = (anchor, open) => (event) => {
-    //   const show = this.state.right
-    //   this.setState({right: !show});
-    //   this.setState({
-    //     // right:open;
-    //     [anchor]: open
-    //   });
-    //   setState({ ...state, [anchor]: open });
 
     toggleDrawer = () => {
         const show = this.state.right

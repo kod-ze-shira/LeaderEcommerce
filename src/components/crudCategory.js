@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
 
+<<<<<<< HEAD
 
 function CrudCategory(props) {
 
@@ -154,6 +155,44 @@ function CrudCategory(props) {
                         </div>
                         </div>
                         </div>
+=======
+function CrudCategory() {
+        
+        const [categories, setCategories] = useState(0);
+
+        // useEffect(()=>{
+        //         setCategories([
+        //                 {
+        //                         "id":1,
+        //                         "name":"foody",
+        //                         "description":"eat",
+        //                         "count":40
+        //                 },
+        //                 {
+        //                         "id":2,
+        //                         "name":"clothes",
+        //                         "description":"wear",
+        //                         "count":150
+        //                 }
+        //         ])
+        // })
+        
+        return (
+                <div>
+                Hello World!
+                {/* <BootstrapTable
+                        keyField="id"
+                        data={categories}
+                        columns={3}
+                        striped
+                        hover
+                        condensed
+                /> */}
+                </div>
+                )
+                
+        }
+>>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
         
                         <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
                         <div className="data data_grid">
