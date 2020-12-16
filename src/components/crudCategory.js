@@ -6,23 +6,23 @@ import './admin.css'
 function CrudCategory() {
         
         const [categories, setCategories] = useState(0);
-        
-        useEffect(()=>{
-                setCategories([
-                        {
-                                "id":1,
-                                "name":"foody",
-                                "description":"eat",
-                                "count":40
-                        },
-                        {
-                                "id":2,
-                                "name":"clothes",
-                                "description":"wear",
-                                "count":150
-                        }
-                ])
-        })
+
+        // useEffect(()=>{
+        //         setCategories([
+        //                 {
+        //                         "id":1,
+        //                         "name":"foody",
+        //                         "description":"eat",
+        //                         "count":40
+        //                 },
+        //                 {
+        //                         "id":2,
+        //                         "name":"clothes",
+        //                         "description":"wear",
+        //                         "count":150
+        //                 }
+        //         ])
+        // })
         
         return (
                 <div>

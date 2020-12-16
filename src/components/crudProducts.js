@@ -1,22 +1,59 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
-import './crudProducts.css'
+import './crudProducts.css';
+import $ from 'jquery'
 
 //1
 const useStyles = (theme) => ({
-
 })
 
-function CrudProducts(props) {
-        
-        // var list;
 
+
+
+
+function CrudProducts(props) {
+
+        const [file,setFile]=useState()
+        // const [file, setFile] = useState(0);
         useEffect(()=>{
-              props.getAllProducts(); 
+                var panel = $('.js-panel');
+	if (panel.length) {
+		var btn = panel.find('.js-panel-btn, .js-panel-action'),
+				tab = panel.find('.js-panel-tab');
+
+		btn.on('click', function(){
+			var index = $(this).index();
+
+			btn.removeClass('active');
+			btn.eq(index).addClass('active');
+
+			tab.hide();
+			tab.eq(index).show();
+		});
+	}
         })
 
+        const onChangeHandlerImage = (e) => {
+        
+                console.log(e)
+                const reader1 = new FileReader();
+                // const file = e
+                reader1.onloadend = () => {
+                    setFile(reader1.result);
+                        console.log("reader111", reader1.result);
+                };
+                reader1.readAsDataURL(e);
+                // var fileToUpload = e
+                var myFile = new FormData();
+                console.log("upload",e);
+                myFile.append("file", e);
+                console.log("myfile", myFile);
+                // if (!props.rowToEdit) {
+                props.addNewImageFromDbP({ f: myFile, t:"title" });
+                // }
+            }
         
         return (
                 <>
@@ -103,7 +140,7 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 </div>
-                <div  >
+                <div>
                 <div className="container__head"><button className="container__action container__action_menu action js-container-toggle"><i className="la la-bars "></i></button>
                 <div className="container__title title title_md">Products</div><signOut/>
                 <div className="container__search search js-search">
@@ -235,7 +272,7 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 <div className="data__body">
-                                                                                                {props.products.map((item, index) => (
+                        {props.products.map((item, index) => (
                         
                         <div className="data__item">
                         <div className="data__row" >
@@ -243,21 +280,56 @@ function CrudProducts(props) {
                         <div className="data__main">
                         <div className="data__effect mobile-hide"><label className="switch"><input className="switch__input" type="checkbox" /><span className="switch__content"></span></label></div>
                         <div className="data__preview">
-                        {/* <img className="data__pic" src={product1} alt="Product" /> */}</div>
+                                <label className="prdct_img" for="fileInput">
+                                        <img alt="" 
+                                        // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
+                                        /> 
+                                </label>
+
+                                <input
+                                        type={"file"}
+                                        id="fileInput"
+                                        htmlFor="myInput"
+                                        accept="image/*"
+                                        style={{
+                                        display: 'none',
+                                        cursor: 'pointer'
+                                        }}
+                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])}
+                                />
+{/* 
+                                <div className="col-md-12 ml-15">
+        <label for="fileInput">
+            <img className="logoC"  alt="" src={this.props.urlImage ? this.props.urlImage.image :logoC } />
+</label>
+          <input
+            type={"file"}
+            id="fileInput"
+            htmlFor="myInput"
+            accept="image/*"
+            style={{
+              display: 'none',
+              cursor: 'pointer'
+            }}
+            onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
+          />
+          </div> */}
+                                {/* <img className="data__pic" src={product1} alt="Product" /> */}
+                        </div>
                         <div className="data__wrap">
                         <div className="data__content">
                         <strong>{item.name}</strong></div>
-                        <div className="data__label">{item.color}</div>
+                        <div className="data__label">SKU {item.SKU}</div>
                         </div>
                         </div>
                         </div>
                         <div className="data__cell mobile-hide">
-                        <div className="data__content">{item.amount}</div>
-                        <div className="data__label">amount</div>
+                        <div className="data__content">{item.description}</div>
+                        {/* <div className="data__label">amount</div> */}
                         </div>
                         <div className="data__cell mobile-hide">
-                        <div className="data__content">{item.amount}</div>
-                        <div className="data__label">Qty.</div>
+                        <div className="data__content">{item.SKU}</div>
+                        <div className="data__label">SKU</div>
                         </div>
                         <div className="data__cell mobile-hide">
                         <div className="data__content"><strong>{item.color}</strong> / {index}</div>
@@ -299,48 +371,34 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         <div className="data__body">
-                        {/* {items.map((item, index) => (
+                        {props.products.map((item, index) => (
                                 
                                 // if(index<7){}
-                                
-                                
-                                <div className="data__item">
-                                <div className="data__corner">
-                                <div className="data__corner data__corner_left">
-                                <label className="switch">
-                                <input className="switch__input" type="checkbox" />
-                                <span className="switch__content"></span>
-                                </label></div>
-                                <div className="data__row">
-                                <div className="data__cell">
-                                <div className="data__main">
-                                <div className="data__preview">
-                                <img className="data__pic" src="../pages/img/user-1.jpg" alt="Product" /></div>
-                                <div className="data__wrap">
-                                <div className="data__content">
-                                <strong>{item.name}</strong></div>
-                                <div className="data__label">
-                                {item.color}
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                <div className="data__cell">
-                                <div className="data__content">
-                                <strong>{item.amount}</strong> / {index}</div>
-                                <div className="data__stars"><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star active"></i></div>
-                                </div>
-                                <div className="data__foot">
-                                <div className="data__box">
-                                <strong>{item.color}</strong></div>
-                                <div className="data__box">
-                                <strong>{item.price}</strong></div>
-                                </div>
-                                </div>
-                                </div>
-                                
-                                </div>
-                        ))} */}
+                                <div class="data__item">
+                        <div class="data__corner">
+                          <button class="action action_stroke"><i class="la la-ellipsis-h "></i></button></div>
+                        <div class="data__corner data__corner_left"><label class="switch"><input class="switch__input" type="checkbox"/><span class="switch__content"></span></label></div>
+                        <div class="data__row">
+                          <div class="data__cell">
+                            <div class="data__main">
+                              <div class="data__preview"><img class="data__pic" src="img/user-1.jpg" alt="Product"/></div>
+                              <div class="data__wrap">
+                        <div class="data__content"><strong>{item.name}</strong></div>
+                        <div class="data__label">SKU {item.SKU}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="data__cell">
+                            <div class="data__content"><strong>4.2</strong> / 5.0</div>
+                            <div class="data__stars"><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star active"></i></div>
+                          </div>
+                          <div class="data__foot">
+                            <div class="data__box"><strong>1.368</strong></div>
+                        <div class="data__box"><strong>${item.price}</strong></div>
+                          </div>
+                        </div>
+                      </div>
+                        ))}
                         </div>
                         </div>
                         </div>
@@ -370,7 +428,8 @@ function CrudProducts(props) {
                                 return {
                                         // getAllProducts:()=>dispatch(actions.getAllProducts()) 
                                         // getAllProducts:()=>dispatch(actions.setProducts()) 
-                                        getAllProducts:()=>dispatch(actions.getAllProducts())
+                                        getAllProducts:()=>dispatch(actions.getAllProducts()),
+                                        addNewImageFromDbP:(f,t)=>dispatch(actions.addNewImageFromDb(f,t))
                                 }
                         }
                         

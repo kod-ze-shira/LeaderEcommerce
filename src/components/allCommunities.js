@@ -12,9 +12,9 @@ import communityReducer from '../redux/reducers/communityReducer'
 function AllCommunities(props) {
 
 
-    useEffect(() => {
-        props.getAllCommunities();
-    })
+    // useEffect(() => {
+    //     props.getAllCommunities();
+    // })
 
     return (
         <div>

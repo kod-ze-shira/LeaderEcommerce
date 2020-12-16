@@ -21,4 +21,5 @@ const store = createStore(
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
+store.dispatch(actions.getAllProducts());
 export default store;
