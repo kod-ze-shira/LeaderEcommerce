@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import '../../App.css';
+// import '../../App.css';
 
 class Header extends Component {
     render() {
         return (
             <div>
-
                 <header className="header js-header">
                     <div className="header__center center">
                       {
@@ -21,14 +20,8 @@ class Header extends Component {
                                     ></img> : <button onClick={this.props.changeLogoYOrN}><h1>+</h1></button>
                                 }
                             </Link>
-
                         }
                         <h2>כאן יהיה תפריט ניווט</h2>
-                        {/* //מקשר לדף לוגין */}
-                        {/* <Link className="header__link" to="/login">
-                                    <svg className="icon icon-user">
-                                    </svg>
-                                </Link> */}
                     </div>
                 </header >
             </div>
@@ -45,7 +38,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
-
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

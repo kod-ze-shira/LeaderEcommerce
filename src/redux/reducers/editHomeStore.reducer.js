@@ -49,15 +49,11 @@ const homeDesign = {
         setImageCompanyName(state, action) {
                 state.homeStoreDesign.ImageCompanyName = action.payload;
         },
-        setImageBorderRadiusImage(state, action) {
-                ;
+        setImageBorderRadius(state, action) {
                 state.homeStoreDesign.ImageBorderRadiusImage = action.payload;
-                ;
         },
         setImageWidth(state, action) {
-                ;
                 state.homeStoreDesign.ImageWidth = action.payload;
-                ;
         },
         setImageHeight(state, action) {
                 state.homeStoreDesign.ImageHeight = action.payload;

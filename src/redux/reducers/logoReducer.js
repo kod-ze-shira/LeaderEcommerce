@@ -34,11 +34,10 @@ const logoDesignFunc = {
     },
     setLogoYOrN(state, action) {
         state.logoDesign.LogoYOrN = !state.logoDesign.LogoYOrN;
-
     },
     setLogoCompanyName(state, action) {
         state.logoDesign.logoCompanyName = action.payload;
-    }, 
+    },
     setLogoBorderRadiusLogo1(state, action) {
         ;
         state.logoDesign.logoBorderRadiusLogo = action.payload;

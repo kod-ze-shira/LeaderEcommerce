@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
@@ -16,24 +16,90 @@ const useStyles = (theme) => ({
 
 function CrudProducts(props) {
 
-        const [file,setFile]=useState()
+        const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
-        useEffect(()=>{
-                var panel = $('.js-panel');
-	if (panel.length) {
-		var btn = panel.find('.js-panel-btn, .js-panel-action'),
-				tab = panel.find('.js-panel-tab');
+        useEffect(() => {
+                props.getAllProducts();
 
-		btn.on('click', function(){
-			var index = $(this).index();
+                // // search
+                // (function(){
+                // 	var search = $('.js-search');
+                // 	if (search.length) {
+                // 		var open = search.find('.js-search-open'),
+                // 				input = search.find('.js-search-input'),
+                // 				dropdown = search.find('.js-search-dropdown'),
+                // 				results = search.find('.js-search-results'),
+                // 				backdrop = search.find('.js-search-backdrop');
 
-			btn.removeClass('active');
-			btn.eq(index).addClass('active');
+                // 		open.on('click', function(){
+                // 			search.addClass('open');
+                // 			input.focus();
+                // 		});
 
-			tab.hide();
-			tab.eq(index).show();
-		});
-	}
+                // 		input.on('keyup', function(){
+                // 			if ($(this).val().length >= 3) {
+                // 				results.addClass('visible');
+                // 			} else {
+                // 				results.removeClass('visible');
+                // 			}
+                // 		});
+
+                // 		backdrop.on('click', function(){
+                // 			search.removeClass('open');
+                // 		});
+                // 	}
+                // }());
+
+                // // sort
+                // (function(){
+                // 	debugger;
+                // 	var sort = $('.js-sort');
+                // 	if (sort.length) {
+                // 		var head = sort.find('.js-sort-head'),
+                // 				selected = sort.find('.js-sort-selected'),
+                // 				dropdown = sort.find('.js-sort-dropdown'),
+                // 				switch_ = sort.find('.js-sort-switch'),
+                // 				apply = sort.find('.js-sort-apply'),
+                // 				backdrop = sort.find('.js-sort-backdrop');
+
+                // 		head.on('click', function(){
+                // 			sort.addClass('open');
+                // 		});
+
+                // 		switch_.on('change', function(){
+                // 			selected.text($(this).find('span').text());
+                // 		});
+
+                // 		apply.on('click', function(){
+                // 			sort.removeClass('open');
+                // 		});
+
+                // 		backdrop.on('click', function(){
+                // 			sort.removeClass('open');
+                // 		});
+                // 	}
+                // }());
+
+
+                // // new
+                // (function(){
+                // 	var _new = $('.js-new');
+                // 	if (_new.length) {
+                // 		var open = _new.find('.js-new-open'),
+                // 				dropdown = _new.find('.js-new-dropdown'),
+                // 				backdrop = _new.find('.js-new-backdrop');
+
+                // 		open.on('click', function(){
+                // 			_new.toggleClass('open');
+                // 		});
+
+                // 		backdrop.on('click', function(){
+                // 			_new.removeClass('open');
+                // 		});
+                // 	}
+                // }());
+
+
         })
 
         const onChangeHandlerImage = (event,thisi) => {
@@ -55,20 +121,20 @@ function CrudProducts(props) {
                 const reader1 = new FileReader();
                 // const file = e
                 reader1.onloadend = () => {
-                    setFile(reader1.result);
+                        setFile(reader1.result);
                         console.log("reader111", reader1.result);
                 };
                 reader1.readAsDataURL(e);
                 // var fileToUpload = e
                 var myFile = new FormData();
-                console.log("upload",e);
+                console.log("upload", e);
                 myFile.append("file", e);
                 console.log("myfile", myFile);
                 // if (!props.rowToEdit) {
-                props.addNewImageFromDbP({ f: myFile, t:"title" });
+                props.addNewImageFromDbP({ f: myFile, t: "title" });
                 // }
-            }
-        
+        }
+
         return (
                 <>
                 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
@@ -80,7 +146,7 @@ function CrudProducts(props) {
                 <link rel="manifest" href="img/site.webmanifest" />
                 <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5" />
                 
-                <div className="page">
+                        <div className="page">
                 <div className="sidebar js-sidebar">
                 <div className="sidebar__container js-sidebar-container toggled">
                 <div className="sidebar__head">

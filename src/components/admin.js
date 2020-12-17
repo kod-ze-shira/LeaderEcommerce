@@ -5,6 +5,7 @@ import CrudCategory from './crudCategory'
 import CrudProducts from './crudProducts'
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+
 // import Carousel from 'react-bootstrap/Carousel'  
 // import ReactBootstrapCarousel from "react-bootstrap-carousel";
 // import "bootstrap/dist/css/bootstrap.css";
@@ -17,12 +18,15 @@ import store from '../redux/store';
 function Admin() {
         useEffect(() => {
                 $('#myTab a').on('click', function (e) {
+                        debugger;
                         e.preventDefault()
                         $('#myTab .active').removeClass('active')
                         $(this).addClass('active')
+                        $('#myTabContent .show active').removeClass('show active');
+                        $('#profile').addClass('show active')
                 })
-        },[])
-        
+        }, [])
+
         return (
                  <Provider store={store}>
                 <div>
@@ -46,10 +50,10 @@ function Admin() {
                                 </div>
                                 <div className="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                         </div>
-                </div>
+                        </div>
                 </Provider>
-                )
-                
-        }
-        
- export default Admin;
+        )
+
+}
+
+export default Admin;

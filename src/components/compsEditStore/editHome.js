@@ -9,7 +9,6 @@ import '../../App.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 ///images  
-import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
 import trending from "../../assets/categories/trending.svg"
 import skincare from "../../assets/categories/skincare.svg"
@@ -30,6 +29,7 @@ import productPic8 from "../../assets/products/product-pic-8.png"
 class EditHome extends Component {
     render() {
 
+        // הפונקציה לשינוי התמונה הראשית של החנות 
         const onChangeHandlerImage = (event) => {
             if (event) {
                 let reader = new FileReader();
@@ -38,7 +38,6 @@ class EditHome extends Component {
                 }
                 reader.readAsDataURL(event)
             }
-
         }
 
         return (
@@ -91,17 +90,17 @@ class EditHome extends Component {
                                             }}
                                         ></img>
                                         : <span></span>}
-                                    <input type={"file"}
-                                        id="fileInput"
-                                        htmlFor="myInput"
-                                        accept="image/*"
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'none',
-                                        }}
-                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])} ></input>
-                                    {/* <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img> */}
                                 </label>
+                                <input type={"file"}
+                                    id="fileInput"
+                                    htmlFor="myInput"
+                                    accept="image/*"
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'none',
+                                    }}
+                                    onChange={(e) => onChangeHandlerImage(e.target.files[0])} >
+                                </input>
                             </div>
                         </div>
                     </div >
@@ -113,9 +112,9 @@ class EditHome extends Component {
                         <div className="categories__container ">
                             <div className="categories__slider js-slider-categories
                             slick-initialized slick-slider">
-                                <Carousel itemsToShow={8}>
+                                <Carousel className="carousel" itemsToShow={8}>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                             </div>
                                             <div className="categories__text">On Sale</div>
@@ -123,64 +122,64 @@ class EditHome extends Component {
                                         </Link>
                                     </div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
                                             </div>
                                             <div className="categories__text">Featured</div>
                                         </Link>
                                     </div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Masks</div>
                                         </Link>
                                     </div>
-                                    <div className="categories__slide"><Link className="categories__item" to="/edit/category">
+                                    <div className="categories__slide"><Link className="categories__item" to="/0/category">
                                         <div className="categories__icon"><img className="categories__pic" src={eyeCare} alt=""></img>
                                         </div>
                                         <div className="categories__text">Eye Care</div>
                                     </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={natural} alt=""></img>
                                             </div>
                                             <div className="categories__text">Moisturizers</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={protection} alt=""></img>
                                             </div>
                                             <div className="categories__text">Treatments</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
 
                                             <div className="categories__icon"><img className="categories__pic" src={nightCare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Night Care</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={afterSun} alt=""></img>
                                             </div>
                                             <div className="categories__text">Sun Care</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                             </div>
                                             <div className="categories__text">On Sale</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
 
                                             <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
                                             </div>
                                             <div className="categories__text">Featured</div>
                                         </Link></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
+                                        <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Masks</div>
@@ -200,15 +199,12 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
-                                        {/* <a className="product__preview" href="product.html"> */}
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic" src={productPic1} alt=""></img>
-                                        {/* </a> */}
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green" href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Sun Cream</Link>
+                                <Link className="product__name" to="/0/product">Sun Cream</Link>
                                 <div className="product__details">
                                     <div className="product__category yellow">Sun Care</div>
                                     <div className="product__price">
@@ -220,16 +216,15 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic"
                                             src={productPic2} alt=""></img>
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">
+                                    <Link className="product__btn btn btn_green" to="/0/cart">
                                         Add to Cart
                                     </Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Night Eye Cream</Link>
-                                {/* <a className="product__name" href="product.html">Night Eye Cream</a> */}
+                                <Link className="product__name" to="/0/product">Night Eye Cream</Link>
                                 <div className="product__details">
                                     <div className="product__category blue">EYE CARE</div>
                                     <div className="product__price">
@@ -240,14 +235,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic" src={productPic3} alt=""></img>
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic" src={productPic3} alt=""></img>
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Acne Skin Gel</Link>
-                                {/* <a className="product__name" href="product.html">Acne Skin Gel</a> */}
+                                <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
                                 <div className="product__details">
                                     <div className="product__category pink">Treatments</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -255,19 +247,13 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic"
                                             src={productPic4} alt=""></img>
                                     </Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                        src={productPic4} alt=""></img>
-                                    </a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Anti Dry Skin</Link>
-                                {/* <a className="product__name" href="product.html">Anti Dry Skin</a> */}
+                                <Link className="product__name" to="/0/product">Anti Dry Skin</Link>
                                 <div className="product__details">
                                     <div className="product__category green">Moisturizers</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -276,16 +262,11 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__new">NEW IN</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic5} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                        src={productPic5} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Body Protection</Link>
-                                {/* <a className="product__name" href="product.html">Body Protection</a> */}
+                                <Link className="product__name" to="/0/product">Body Protection</Link>
                                 <div className="product__details">
                                     <div className="product__category yellow">Treatments</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -293,16 +274,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic6} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic6} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">All In One Gel</Link>
-                                {/* <a className="product__name" href="product.html">All In One Gel</a> */}
+                                <Link className="product__name" to="/0/product">All In One Gel</Link>
                                 <div className="product__details">
                                     <div className="product__category blue">FEATURED</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -311,16 +287,11 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic7} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic7} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Deep Treatment</Link>
-                                {/* <a className="product__name" href="product.html">Deep Treatment</a> */}
+                                <Link className="product__name" to="/0/product">Deep Treatment</Link>
                                 <div className="product__details">
                                     <div className="product__category pink">ON SALE</div>
                                     <div className="product__price"><span className="product__old">$30</span><span className="product__actual">$20</span>
@@ -329,11 +300,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/prodct"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/prodct"><img className="product__pic"
                                         src={productPic8} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Morning Shine</Link>
+                                <Link className="product__name" to="/0/product">Morning Shine</Link>
                                 <div className="product__details">
                                     <div className="product__category green">NIGHT CARE</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -358,7 +329,6 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
@@ -366,10 +336,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
-
-
-
-{/* <!-- scripts-->
-  <script src="js/app.js"></script>
-  <script src="js/common.js"></script>
- */}

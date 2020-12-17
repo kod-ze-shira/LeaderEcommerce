@@ -137,7 +137,19 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
 
     return next(action);
 }
+export const getAllCategories = ({ dispatch, getState }) => next => action => {
+ 
+    if (action.type === 'GET_ALL_CATEGORIES') {
 
+        axios.get('https://community.leader.codes/api/categories')
+            .then(res => {
+                console.log("crddddddd", res.data);
+                dispatch(actions.setCategories({categories:res.data}))
+            })
+            .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+};
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')

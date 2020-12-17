@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logoSvg from "../../assets/logo.svg";
-import '../../App.css'
+// import '../../App.css'
 class Footer extends Component {
     render() {
         return (
@@ -31,6 +31,14 @@ class Footer extends Component {
                                     </svg></a></div><label className="switch js-switch-bg">
                                     <input className="switch__input" type="checkbox">
                                     </input>
+                                    <div>
+                                        <h1>לפרטים והזמנות</h1>
+                                        <lable>Phone:<input placeholder="000000"></input></lable><br />
+                                        <lable>Address<input></input></lable><br />
+                                        <lable>Email</lable>
+                                        <input placeholder="sjh@gmail.com"></input>
+
+                                    </div>
                                     {/* <span className="switch__in"><span className="switch__tick">
                                             <img className="switch__pic switch__pic_moon" src={moon} alt=""></img>
                                             <img className="switch__pic switch__pic_sun" src={sun} alt=""></img>
@@ -50,6 +58,13 @@ class Footer extends Component {
                                     <Link className="footer__link" to="/edit/category">Night Care</Link>
                                     <Link className="footer__link" to="/edit/category">Sun Care</Link>
                                 </div>
+                            </div>
+                            <div><h1>Contact Us</h1><br />
+
+                                <input placeholder="Address"></input><br /><br />
+                                <input placeholder="Phone"></input><br /><br />
+                                <input placeholder="Name"></input><br /><br />
+                                <button className="btn btn-default">Send</button>
                             </div>
                         </div>
                     </div>
