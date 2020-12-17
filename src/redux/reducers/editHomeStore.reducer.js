@@ -32,18 +32,45 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                 },
+                titleFont: {
+                        onThePicture: "",
+                        titleCategory: "",
+                },
+                // titleTextWeight: "",
+                titleTextWeight: {
+                        onThePicture: "",
+                        titleCategory: "",
+                },
 
-
-                titleTextTitle: "",
-                titleFont: "",
-                titleTextWeight: "",
-                titleTextSize: 50,
-                titleAlignment: "",
-                titleWidthText: "",
-                titleLineHeight: "",
-                titleColorText: "",
-                aboutUsTitleYOrN: true,
-                isCategoty: true
+                titleTextSize: {
+                        onThePicture: "50",
+                        titleCategory: "50",
+                },
+                // titleAlignment: "",
+                titleAlignment: {
+                        onThePicture: "",
+                        titleCategory: "",
+                },
+                // titleWidthText: "",
+                // titleWidthText: {
+                //         onThePicture: "",
+                //         titleCategory: "",
+                // },
+                // titleLineHeight: "",
+                titleLineHeight:{
+                        onThePicture: "",
+                        titleCategory: "",   
+                },
+                // titleColorText: "",
+                titleColorText: {
+                        onThePicture: "",
+                        titleCategory: "",
+                },
+                // aboutUsTitleYOrN: true,
+                // aboutUsTitleYOrN: {
+                //         onThePicture:true,
+                //         titleCategory: true,
+                // },
 
 
 
@@ -62,7 +89,6 @@ const homeDesign = {
         setImage(state, action) {
                 state.homeStoreDesign.imageImage = action.payload;
         },
-
         setImageCompanyName(state, action) {
                 state.homeStoreDesign.ImageCompanyName = action.payload;
         },
@@ -81,29 +107,29 @@ const homeDesign = {
                 state.homeStoreDesign.titleText[action.payload.k] = action.payload.e;
         },
         setTitleFont(state, action) {
-                state.homeStoreDesign.titleFont = action.payload;
+                state.homeStoreDesign.titleFont[action.payload.k] = action.payload.e;
         },
         setTitleTextWeight(state, action) {
-                state.homeStoreDesign.titleTextWeight = action.payload;
+                state.homeStoreDesign.titleTextWeight[action.payload.k] = action.payload.e;
         },
         setTitleTextSize(state, action) {
-                state.homeStoreDesign.titleTextSize = action.payload;
+                state.homeStoreDesign.titleTextSize[action.payload.k] = action.payload.e;
         },
         setTitleAlignment(state, action) {
-                state.homeStoreDesign.titleAlignment = action.payload;
+                state.homeStoreDesign.titleAlignment[action.payload.k] = action.payload.e;
         },
-        setTitleWidthText(state, action) {
-                state.homeStoreDesign.titleWidthText = action.payload;
-        },
+        // setTitleWidthText(state, action) {
+        //         state.homeStoreDesign.titleWidthText[action.payload.k] = action.payload.e;
+        // },
         setTitleLineHeight(state, action) {
-                state.homeStoreDesign.titleLineHeight = action.payload;
+                state.homeStoreDesign.titleLineHeight[action.payload.k] = action.payload.e;
         },
         setTitleColorText(state, action) {
-                state.homeStoreDesign.titleColorText = action.payload;
+                state.homeStoreDesign.titleColorText[action.payload.k] = action.payload.e;
         },
-        setAboutUsTitleYOrN(state, action) {
-                state.homeStoreDesign.aboutUsTitleYOrN = !state.homeStoreDesign.aboutUsTitleYOrN;
-        },
+        // setAboutUsTitleYOrN(state, action) {
+        //         state.homeStoreDesign.aboutUsTitleYOrN = !state.homeStoreDesign.aboutUsTitleYOrN;
+        // },
 
 
 }

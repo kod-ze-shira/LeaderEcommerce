@@ -410,7 +410,7 @@ class TextOnThePicture extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeFont(e.target.value)}
                                         placeholder="To"
-                                        value={this.props.homeStoreDesign.titleFont}
+                                        value={this.props.homeStoreDesign.titleFont.onThePicture}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -437,7 +437,7 @@ class TextOnThePicture extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeTextWeight(e.target.value)}
                                         placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleTextWeight}
+                                        value={this.props.homeStoreDesign.titleTextWeight.onThePicture}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -453,10 +453,8 @@ class TextOnThePicture extends Component {
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
-
                                             <Slider
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.onThePicture}
                                                 step={1}
                                                 marks
                                                 min={0}
@@ -471,8 +469,8 @@ class TextOnThePicture extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleTextSize}
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize}
+                                                value={this.props.homeStoreDesign.titleTextSize.onThePicture}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.onThePicture}
                                                 onChange={this.changeTextSizein}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -488,39 +486,6 @@ class TextOnThePicture extends Component {
                                         <i class="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
                                         <i class="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
                                     </div>
-
-                                    {/*                                 
-                                    <Box flexDirection="row"
-                                        display="flex"
-                                        justifyContent="space-between"
-                                    >
-                                        <Box
-                                            width={'80%'}
-                                        >
-                                            <FormLabel className={classes.textcontect}>alignment</FormLabel>
-
-                                        </Box>
-                                        <Box justifyContent="flex-end">
-                                            <div>
-                                                <label for="bRadiuseS">
-                                                    <Box borderRadius="borderRadius"    {...ALS} >
-                                                    </Box>
-                                                </label>
-                                                <input
-                                                    type={"button"}
-                                                    id="bRadiuseS"
-                                                    htmlFor="myInput"
-                                                    style={{ display: 'none' }}
-                                                    onClick={() => this.selectRdiuseView(1)}
-                                                />
-                                            </div>
-                                        </Box>
-
-                                    </Box> */}
-
-
-
-
                                     <br></br>
                                     <br></br>
 
@@ -539,7 +504,7 @@ class TextOnThePicture extends Component {
 
 
                                             <Slider {...defaultProps3}
-                                                defaultValue={this.props.homeStoreDesign.titleLineHeight ? this.props.homeStoreDesign.titleLineHeight : '1.2'}
+                                                defaultValue={this.props.homeStoreDesign.titleLineHeight.onThePicture ? this.props.homeStoreDesign.titleLineHeight.onThePicture : '1.2'}
                                                 step={0.1}
                                                 marks
                                                 min={0.7}
@@ -559,7 +524,7 @@ class TextOnThePicture extends Component {
                                                 id="standard-number"
                                                 type="number"
                                                 disabled="disabled"
-                                                value={this.props.homeStoreDesign.titleLineHeight ? this.props.homeStoreDesign.titleLineHeight : '10'}
+                                                value={this.props.homeStoreDesign.titleLineHeight.onThePicture ? this.props.homeStoreDesign.titleLineHeight.onThePicture : '10'}
                                                 // defaultValue={this.props.videoDetails.logo.widthLogo}
                                                 onChange={(e) => this.props.changeTitleLineHeight(e.target.value)}
                                                 InputLabelProps={{
@@ -585,7 +550,7 @@ class TextOnThePicture extends Component {
                                             alignSelf="center"
                                         >
                                             <HuePicker
-                                                color={this.props.homeStoreDesign.titleColorText}
+                                                color={this.props.homeStoreDesign.titleColorText.onThePicture}
                                                 onChangeComplete={this.changeTitleColorText}
                                                 width={200}
                                                 height={6}
@@ -598,8 +563,8 @@ class TextOnThePicture extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleColorText}
-                                                defaultValue={this.props.homeStoreDesign.titleColorText}
+                                                value={this.props.homeStoreDesign.titleColorText.onThePicture}
+                                                defaultValue={this.props.homeStoreDesign.titleColorText.onThePicture}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -628,13 +593,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeTextTitle: (e) => dispatch(actions.setTitleText({k : "onThePicture", e})),
-    changeFont: (e) => dispatch(actions.setTitleFont(e)),
-    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight(e)),
-    changeTextSize: (e) => dispatch(actions.setTitleTextSize(e)),
-    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment(e)),
-    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight(e)),
-    changeTitleColorText: (e) => dispatch(actions.setTitleColorText(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
+    changeFont: (e) => dispatch(actions.setTitleFont({ k: "onThePicture", e })),
+    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight({ k: "onThePicture", e })),
+    changeTextSize: (e) => dispatch(actions.setTitleTextSize({ k: "onThePicture", e })),
+    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment({ k: "onThePicture", e })),
+    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "onThePicture", e })),
+    changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "onThePicture", e })),
     changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
 })
 

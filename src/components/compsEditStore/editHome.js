@@ -7,7 +7,6 @@ import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
 ///images  
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
 import trending from "../../assets/categories/trending.svg"
@@ -37,46 +36,26 @@ class EditHome extends Component {
             reader.readAsDataURL(event)
         }
     }
-
     render() {
-
-
         return (
             <div>
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            {/* <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
-                                <TextareaAutosize className="SPtitle col-md-12" value=
-                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"}
-                                    style={{
-                                        fontFamily: this.props.homeStoreDesign.titleFont,
-                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
-                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
-                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
-                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
-                                        marginTop: '2vh'
-                                    }}
-                                    onChange={(e) => this.props.changeTextTitle(e.target.value)} />
-                            </div> */}
-
                             <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
                                 {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
                                 <TextareaAutosize className="SPtitle col-md-12" value=
                                     {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
                                     style={{
-                                        fontFamily: this.props.homeStoreDesign.titleFont,
-                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
-                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
-                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
-                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                        fontFamily: this.props.homeStoreDesign.titleFont.onThePicture,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight.onThePicture,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize.onThePicture + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture, color: this.props.homeStoreDesign.titleColorText.onThePicture,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                         marginTop: '2vh'
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
-
-
-
                             <div className="main__preview">
                                 {/* <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -108,17 +87,15 @@ class EditHome extends Component {
                     <div className="categories__center center ">
                         <div className="categories__stage stage">- The Categories</div>
                         {/* <h2 className="categories__title title title_mb-lg">Browse by Category</h2> */}
-                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfCategory')
-                            // , this.props.booleanSari(true)
-                        }>
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfCategory')}>
                             <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
                                 {this.props.homeStoreDesign.titleText.titleCategory ? this.props.homeStoreDesign.titleText.titleCategory : "Browse by Category"}
                                 style={{
-                                    fontFamily: this.props.homeStoreDesign.titleFont,
-                                    fontWeight: this.props.homeStoreDesign.titleTextWeight,
-                                    fontSize: this.props.homeStoreDesign.titleTextSize + "px",
-                                    lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
-                                    textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                    fontFamily: this.props.homeStoreDesign.titleFont.titleCategory,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight.titleCategory,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize.titleCategory + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight.titleCategory, color: this.props.homeStoreDesign.titleColorText.titleCategory,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                     marginTop: '2vh'
                                 }}
                                 onChange={(e) => this.props.changeTextTitle(e.target.value)} />

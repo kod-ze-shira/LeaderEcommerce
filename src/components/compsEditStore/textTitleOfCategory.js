@@ -410,7 +410,7 @@ class textTitleOfCategory extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeFont(e.target.value)}
                                         placeholder="To"
-                                        value={this.props.homeStoreDesign.titleFont}
+                                        value={this.props.homeStoreDesign.titleFont.titleCategory}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -437,7 +437,7 @@ class textTitleOfCategory extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeTextWeight(e.target.value)}
                                         placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleTextWeight}
+                                        value={this.props.homeStoreDesign.titleTextWeight.titleCategory}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -456,7 +456,7 @@ class textTitleOfCategory extends Component {
 
 
                                             <Slider
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.titleCategory}
                                                 step={1}
                                                 marks
                                                 min={0}
@@ -471,8 +471,8 @@ class textTitleOfCategory extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleTextSize}
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize}
+                                                value={this.props.homeStoreDesign.titleTextSize.titleCategory}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.titleCategory}
                                                 onChange={this.changeTextSizein}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -509,7 +509,7 @@ class textTitleOfCategory extends Component {
 
 
                                             <Slider {...defaultProps3}
-                                                defaultValue={this.props.homeStoreDesign.titleLineHeight ? this.props.homeStoreDesign.titleLineHeight : '1.2'}
+                                                defaultValue={this.props.homeStoreDesign.titleLineHeight.titleCategory ? this.props.homeStoreDesign.titleLineHeight.titleCategory : '1.2'}
                                                 step={0.1}
                                                 marks
                                                 min={0.7}
@@ -529,7 +529,7 @@ class textTitleOfCategory extends Component {
                                                 id="standard-number"
                                                 type="number"
                                                 disabled="disabled"
-                                                value={this.props.homeStoreDesign.titleLineHeight ? this.props.homeStoreDesign.titleLineHeight : '10'}
+                                                value={this.props.homeStoreDesign.titleLineHeight.titleCategory ? this.props.homeStoreDesign.titleLineHeight.titleCategory : '10'}
                                                 // defaultValue={this.props.videoDetails.logo.widthLogo}
                                                 onChange={(e) => this.props.changeTitleLineHeight(e.target.value)}
                                                 InputLabelProps={{
@@ -555,7 +555,7 @@ class textTitleOfCategory extends Component {
                                             alignSelf="center"
                                         >
                                             <HuePicker
-                                                color={this.props.homeStoreDesign.titleColorText}
+                                                color={this.props.homeStoreDesign.titleColorText.titleCategory}
                                                 onChangeComplete={this.changeTitleColorText}
                                                 width={200}
                                                 height={6}
@@ -568,8 +568,8 @@ class textTitleOfCategory extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleColorText}
-                                                defaultValue={this.props.homeStoreDesign.titleColorText}
+                                                value={this.props.homeStoreDesign.titleColorText.titleCategory}
+                                                defaultValue={this.props.homeStoreDesign.titleColorText.titleCategory}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -595,12 +595,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "titleCategory", e })),
-    changeFont: (e) => dispatch(actions.setTitleFont(e)),
-    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight(e)),
-    changeTextSize: (e) => dispatch(actions.setTitleTextSize(e)),
-    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment(e)),
-    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight(e)),
-    changeTitleColorText: (e) => dispatch(actions.setTitleColorText(e)),
+    changeFont: (e) => dispatch(actions.setTitleFont({ k: "titleCategory", e })),
+    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight({ k: "titleCategory", e })),
+    changeTextSize: (e) => dispatch(actions.setTitleTextSize({ k: "titleCategory", e })),
+    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment({ k: "titleCategory", e })),
+    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "titleCategory", e })),
+    changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "titleCategory", e })),
     changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
 })
 
