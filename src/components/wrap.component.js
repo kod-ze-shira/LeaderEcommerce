@@ -2,6 +2,8 @@ import React from 'react';
 //קומפוננטה לעיצוב הלוגו
 import Logo from "./compsEditStore/logo"
 import Image from './compsEditStore/image';
+import TextOnThePicture from './compsEditStore/textOnThePicture';
+import TextTitleOfCategory from './compsEditStore/textTitleOfCategory'
 
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
@@ -340,22 +342,8 @@ class Wrap extends React.Component {
                     [classes.configuratorOpen]: this.state.right,
                     [classes.configuratorClose]: !this.state.right,
                 })} open={this.state['right']} fullWidth="true" variant="persistent" onClose={this.toggleDrawer}>
-                    {/* <AppBar position="static" style={{ background: '#3A405E 0% 0% no-repeat padding-box !important', backgroundColor: '#3A405E' }}>
-            <Toolbar>
-              <IconButton edge="start" color="inherit" aria-label="setting" >
-                <SettingsIcon />
-              </IconButton>
-              <Typography variant="h6" style={{ flexGrow: 5 }}>
-                Create New Event
-  </Typography>
-              <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.toggleDrawer('right', false)}>
-                <CloseIcon />
-              </IconButton>
-            </Toolbar>
-                </AppBar> */}
                     <div className={classes.row} style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
                         <IconButton edge="end" color="inherit" aria-label="setting" >
-                            {/* component={Link} to="/lastFiles" */}
                             <SettingsIcon style={{ color: this.state.color }} />
                         </IconButton>
                         <Typography variant="h6" style={{ flexGrow: 5, color: this.state.fontColor, textAlign: 'center' }}>
@@ -373,6 +361,8 @@ class Wrap extends React.Component {
                         switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
+                            case "textOnThePicture": return <TextOnThePicture />;
+                            case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "": return
                                 <h1>e</h1>;
 

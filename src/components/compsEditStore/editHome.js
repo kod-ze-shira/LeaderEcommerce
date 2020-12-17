@@ -27,28 +27,30 @@ import productPic7 from "../../assets/products/product-pic-7.png"
 import productPic8 from "../../assets/products/product-pic-8.png"
 
 class EditHome extends Component {
+    // הפונקציה לשינוי התמונה הראשית של החנות 
+    onChangeHandlerImage = (event) => {
+        if (event) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.props.changeImage(reader.result)
+            }
+            reader.readAsDataURL(event)
+        }
+    }
+
     render() {
 
-        // הפונקציה לשינוי התמונה הראשית של החנות 
-        const onChangeHandlerImage = (event) => {
-            if (event) {
-                let reader = new FileReader();
-                reader.onloadend = () => {
-                    this.props.changeImage(reader.result)
-                }
-                reader.readAsDataURL(event)
-            }
-        }
 
         return (
             <div>
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('Title')}>
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
                                 {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
                                 <TextareaAutosize className="SPtitle col-md-12" value=
-                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"} style={{
+                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"}
+                                    style={{
                                         fontFamily: this.props.homeStoreDesign.titleFont,
                                         fontWeight: this.props.homeStoreDesign.titleTextWeight,
                                         fontSize: this.props.homeStoreDesign.titleTextSize + "px",
@@ -57,29 +59,9 @@ class EditHome extends Component {
                                         marginTop: '2vh'
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
-
                             </div>
-                            {/*                 {this.props.quote.titleYOrN ?
-                  <div
-                    onClick={() => this.props.changeCurrentComponent('Title')}>
-                
-                   <div>
-                    <TextareaAutosize value={this.props.quote.titleTextTitle ? this.props.quote.titleTextTitle : "Follow The Leader"} style={{
-                      fontFamily: this.props.quote.titleFont,
-                      fontWeight: this.props.quote.titleTextWeight, fontSize: this.props.quote.titleTextSize,
-                      lineHeight: this.props.quote.titleLineHeight, color: this.props.quote.titleColorText,
-                      textAlign: this.props.quote.titleAlignment ? this.props.quote.titleAlignment : 'left',
-                      marginTop:'2vh'
-                    }}
-                      onChange={(e) => this.props.changeTextTitle(e.target.value)} />
-                    </div>
-                  </div> 
-                  : <span></span>
-                }
- */}
-
                             <div className="main__preview">
-                                <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
+                                {/* <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
                                         <img alt="" src={this.props.homeStoreDesign.imageImage ?
                                             this.props.homeStoreDesign.imageImage : productPic7}
@@ -99,8 +81,8 @@ class EditHome extends Component {
                                         cursor: 'pointer',
                                         display: 'none',
                                     }}
-                                    onChange={(e) => onChangeHandlerImage(e.target.files[0])} >
-                                </input>
+                                    onChange={(e) => this.onChangeHandlerImage(e.target.files[0])} >
+                                </input> */}
                             </div>
                         </div>
                     </div >
@@ -108,83 +90,105 @@ class EditHome extends Component {
                 <div className="categories section">
                     <div className="categories__center center ">
                         <div className="categories__stage stage">- The Categories</div>
-                        <h2 className="categories__title title title_mb-lg">Browse by Category</h2>
+                        {/* <h2 className="categories__title title title_mb-lg">Browse by Category</h2> */}
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfCategory')
+                            // , this.props.booleanSari(true)
+                        }>
+                            <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
+                                {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "Browse by Category"}
+                                style={{
+                                    fontFamily: this.props.homeStoreDesign.titleFont,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                    marginTop: '2vh'
+                                }}
+                                onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                        </div>
                         <div className="categories__container ">
                             <div className="categories__slider js-slider-categories
                             slick-initialized slick-slider">
                                 <Carousel className="carousel" itemsToShow={8}>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיו */}
+                                        {/* //השארתי לינק אחד לדוגמא */}
+                                        {/* <Link className="categories__item" to="/0/category">
                                             <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                             </div>
                                             <div className="categories__text">On Sale</div>
-
-                                        </Link>
+                                        </Link> */}
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
+                                            <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
+                                            </div>
+                                            <div className="categories__text">On Sale</div>
+                                        </div>
                                     </div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
                                             </div>
                                             <div className="categories__text">Featured</div>
-                                        </Link>
+                                        </div>
                                     </div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Masks</div>
-                                        </Link>
-                                    </div>
-                                    <div className="categories__slide"><Link className="categories__item" to="/0/category">
-                                        <div className="categories__icon"><img className="categories__pic" src={eyeCare} alt=""></img>
                                         </div>
-                                        <div className="categories__text">Eye Care</div>
-                                    </Link></div>
+                                    </div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
+                                            <div className="categories__icon"><img className="categories__pic" src={eyeCare} alt=""></img>
+                                            </div>
+                                            <div className="categories__text">Eye Care</div>
+                                        </div></div>
+                                    <div className="categories__slide">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={natural} alt=""></img>
                                             </div>
                                             <div className="categories__text">Moisturizers</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={protection} alt=""></img>
                                             </div>
                                             <div className="categories__text">Treatments</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
 
                                             <div className="categories__icon"><img className="categories__pic" src={nightCare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Night Care</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={afterSun} alt=""></img>
                                             </div>
                                             <div className="categories__text">Sun Care</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                             </div>
                                             <div className="categories__text">On Sale</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
 
                                             <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
                                             </div>
                                             <div className="categories__text">Featured</div>
-                                        </Link></div>
+                                        </div></div>
                                     <div className="categories__slide">
-                                        <Link className="categories__item" to="/0/category">
+                                        <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
                                             <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
                                             </div>
                                             <div className="categories__text">Masks</div>
 
-                                        </Link>
+                                        </div>
                                     </div>
                                 </Carousel>
                             </div>
