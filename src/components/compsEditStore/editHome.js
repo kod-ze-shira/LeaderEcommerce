@@ -37,11 +37,11 @@ class EditHome extends Component {
         }
     }
     // לבטל ארחרי השיו נוי של יהודית בסטור
-   componentDidMount(){
-                
+    componentDidMount() {
+
         this.props.getCategories();
 
-  }
+    }
 
     render() {
         return (
@@ -64,7 +64,7 @@ class EditHome extends Component {
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
                             <div className="main__preview">
-                                {/* <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
+                                <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
                                         <img alt="" src={this.props.homeStoreDesign.imageImage ?
                                             this.props.homeStoreDesign.imageImage : productPic7}
@@ -85,7 +85,7 @@ class EditHome extends Component {
                                         display: 'none',
                                     }}
                                     onChange={(e) => this.onChangeHandlerImage(e.target.files[0])} >
-                                </input> */}
+                                </input>
                             </div>
                         </div>
                     </div >
@@ -114,20 +114,20 @@ class EditHome extends Component {
                                     {
                                         this.props.categories.map((item, index) => (
                                             <div className="categories__slide" key={index}>
-                                            {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
-                                            {/* //השארתי לינק אחד לדוגמא */}
-                                            {/* <Link className="categories__item" to="/0/category">
+                                                {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
+                                                {/* //השארתי לינק אחד לדוגמא */}
+                                                {/* <Link className="categories__item" to="/0/category">
                                                 <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                                 </div>
                                                 <div className="categories__text">On Sale</div>
                                             </Link> */}
-                                            <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
-                                                <div className="categories__icon"><img className="categories__pic" src={item.image?item.image:shoppingBag} alt=""></img>
+                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
+                                                    <div className="categories__icon"><img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
+                                                    </div>
+                                                    <div className="categories__text">{item.categoryName}</div>
                                                 </div>
-                                                <div className="categories__text">{item.categoryName}</div>
                                             </div>
-                                        </div>
-    
+
                                         ))
                                     }
                                 </Carousel>
@@ -138,7 +138,23 @@ class EditHome extends Component {
                 <div className="products products_main section">
                     <div className="products__center center">
                         <div className="products__stage stage">- Our Products </div>
-                        <h2 className="products__title title title_mb-lg">Explore out Products</h2>
+                        {/* <h2 className="products__title title title_mb-lg">Explore out Products</h2> */}
+
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfProduct')}>
+                            <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
+                                {this.props.homeStoreDesign.titleText.titleProduct ? this.props.homeStoreDesign.titleText.titleProduct : "Explore out Products"}
+                                style={{
+                                    fontFamily: this.props.homeStoreDesign.titleFont.titleProduct,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight.titleProduct,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize.titleProduct + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight.titleProduct, color: this.props.homeStoreDesign.titleColorText.titleProduct,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment.titleProduct ? this.props.homeStoreDesign.titleAlignment.titleProduct : 'left',
+                                    marginTop: '2vh'
+                                }}
+                                onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                        </div>
+
+
                         <div className="products__list">
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
@@ -269,8 +285,8 @@ class EditHome extends Component {
 const mapStateToProps = (state) => {
     debugger
     return {
-        
-        categories:state.categoriesReducer.categories,
+
+        categories: state.categoriesReducer.categories,
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }
@@ -280,8 +296,8 @@ const mapDispatchToProps = (dispatch) => ({
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
     changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
-// לבטל אחרי השינוי של יהודית
-    getCategories:()=>dispatch(actions.getAllCategories()) 
+    // לבטל אחרי השינוי של יהודית
+    getCategories: () => dispatch(actions.getAllCategories())
 
 
 })

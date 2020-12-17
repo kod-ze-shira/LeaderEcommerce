@@ -31,25 +31,35 @@ const initialState = {
                 {
                         onThePicture: "",
                         titleCategory: "",
+                        titleProduct: "",
                 },
                 titleFont: {
                         onThePicture: "",
                         titleCategory: "",
+                        titleProduct: "",
+
                 },
                 // titleTextWeight: "",
+                //לברר מה בדיוק מבצע
                 titleTextWeight: {
                         onThePicture: "",
                         titleCategory: "",
+                        titleProduct: "",
+
                 },
 
                 titleTextSize: {
                         onThePicture: "50",
-                        titleCategory: "50",
+                        titleCategory: "20",
+                        titleProduct: "20",
+
                 },
                 // titleAlignment: "",
                 titleAlignment: {
                         onThePicture: "",
                         titleCategory: "",
+                        titleProduct: "",
+
                 },
                 // titleWidthText: "",
                 // titleWidthText: {
@@ -57,21 +67,24 @@ const initialState = {
                 //         titleCategory: "",
                 // },
                 // titleLineHeight: "",
-                titleLineHeight:{
+                titleLineHeight: {
                         onThePicture: "",
-                        titleCategory: "",   
+                        titleCategory: "",
+                        titleProduct: "",
+
                 },
                 // titleColorText: "",
                 titleColorText: {
                         onThePicture: "",
                         titleCategory: "",
+                        titleProduct: "",
+
                 },
                 // aboutUsTitleYOrN: true,
                 // aboutUsTitleYOrN: {
                 //         onThePicture:true,
                 //         titleCategory: true,
                 // },
-
 
 
         }
@@ -109,6 +122,9 @@ const homeDesign = {
         setTitleFont(state, action) {
                 state.homeStoreDesign.titleFont[action.payload.k] = action.payload.e;
         },
+        // setTitleFont(state, action) {
+        //         state.homeStoreDesign.titleFont = action.payload;
+        // },
         setTitleTextWeight(state, action) {
                 state.homeStoreDesign.titleTextWeight[action.payload.k] = action.payload.e;
         },
