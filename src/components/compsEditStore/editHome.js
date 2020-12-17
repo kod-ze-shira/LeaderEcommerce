@@ -46,8 +46,7 @@ class EditHome extends Component {
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
-                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                            {/* <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
                                 <TextareaAutosize className="SPtitle col-md-12" value=
                                     {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"}
                                     style={{
@@ -59,7 +58,25 @@ class EditHome extends Component {
                                         marginTop: '2vh'
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                            </div> */}
+
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
+                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                                <TextareaAutosize className="SPtitle col-md-12" value=
+                                    {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    style={{
+                                        fontFamily: this.props.homeStoreDesign.titleFont,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                        marginTop: '2vh'
+                                    }}
+                                    onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
+
+
+
                             <div className="main__preview">
                                 {/* <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -95,7 +112,7 @@ class EditHome extends Component {
                             // , this.props.booleanSari(true)
                         }>
                             <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
-                                {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "Browse by Category"}
+                                {this.props.homeStoreDesign.titleText.titleCategory ? this.props.homeStoreDesign.titleText.titleCategory : "Browse by Category"}
                                 style={{
                                     fontFamily: this.props.homeStoreDesign.titleFont,
                                     fontWeight: this.props.homeStoreDesign.titleTextWeight,
@@ -336,7 +353,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
-    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);

@@ -27,6 +27,13 @@ const initialState = {
                 // line-height: 1.4;
                 // font-weight: 700;
 
+                titleText:
+                {
+                        onThePicture: "",
+                        titleCategory: "",
+                },
+
+
                 titleTextTitle: "",
                 titleFont: "",
                 titleTextWeight: "",
@@ -55,9 +62,7 @@ const homeDesign = {
         setImage(state, action) {
                 state.homeStoreDesign.imageImage = action.payload;
         },
-        setTitleTextTitle(state, action) {
-                state.homeStoreDesign.titleTextTitle = action.payload;
-        },
+
         setImageCompanyName(state, action) {
                 state.homeStoreDesign.ImageCompanyName = action.payload;
         },
@@ -72,8 +77,8 @@ const homeDesign = {
         },
         //מכאן פונקציות לעריכת קרוסלת הקטגוריות
         // title פונקציות לשינוי כיתוב העתקתי אותן מקומפוננטת  
-        setTitleTextTitle(state, action) {
-                state.homeStoreDesign.titleTextTitle = action.payload;
+        setTitleText(state, action) {
+                state.homeStoreDesign.titleText[action.payload.k] = action.payload.e;
         },
         setTitleFont(state, action) {
                 state.homeStoreDesign.titleFont = action.payload;

@@ -389,7 +389,7 @@ class TextOnThePicture extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeTextTitle(e.target.value)}
                                         placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleTextTitle}
+                                        value={this.props.homeStoreDesign.titleText.onThePicture}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -628,7 +628,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({k : "onThePicture", e})),
     changeFont: (e) => dispatch(actions.setTitleFont(e)),
     changeTextWeight: (e) => dispatch(actions.setTitleTextWeight(e)),
     changeTextSize: (e) => dispatch(actions.setTitleTextSize(e)),

@@ -389,7 +389,7 @@ class textTitleOfCategory extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeTextTitle(e.target.value)}
                                         placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleTextTitle}
+                                        value={this.props.homeStoreDesign.titleText.titleCategory}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -583,12 +583,8 @@ class textTitleOfCategory extends Component {
                     </FormControl>
 
                 </div></>
-
-
         )
     }
-
-
 }
 
 const mapStateToProps = (state) => {
@@ -598,7 +594,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "titleCategory", e })),
     changeFont: (e) => dispatch(actions.setTitleFont(e)),
     changeTextWeight: (e) => dispatch(actions.setTitleTextWeight(e)),
     changeTextSize: (e) => dispatch(actions.setTitleTextSize(e)),
