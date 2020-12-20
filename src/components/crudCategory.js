@@ -5,11 +5,8 @@ import { actions } from '../redux/action'
 
 function CrudCategory(props) {
 
-
+   props.getCategories();
         useEffect(()=>{
-                
-              props.getCategories();
-
         })
         
         return (
