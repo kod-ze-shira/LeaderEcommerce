@@ -5,6 +5,7 @@ import Image from './compsEditStore/image';
 import TextOnThePicture from './compsEditStore/textOnThePicture';
 import TextTitleOfCategory from './compsEditStore/textTitleOfCategory'
 import TextTitleOfProduct from './compsEditStore/textTitleOfProduct'
+import TextIntoCategory from './compsEditStore/textIntoCategory'
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import clsx from 'clsx';
@@ -139,7 +140,7 @@ const useStyles = theme => ({
         overflow: 'scroll'
     },
     appBarBottom: {
-        position:'initial',
+        position: 'initial',
         top: 'auto',
         bottom: 0,
         background: '#0A0E1B 0% 0% no-repeat padding-box',
@@ -320,10 +321,11 @@ class Wrap extends React.Component {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
                             case "addProduct": return <AddProduct />;
-                            case "search": return <Search/>;
+                            case "search": return <Search />;
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
+                            case "TextIntoCategory": return <TextIntoCategory />
                             case "": return
                                 <h1>e</h1>;
 

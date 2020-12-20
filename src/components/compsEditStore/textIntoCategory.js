@@ -2,16 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
-
-
 import Switch from '@material-ui/core/Switch';
+// import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsIcon from '@material-ui/icons/Settings';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+
+//הוספתי את זה
+// import  IconButton  from '@material-ui/core';
+//
 import Typography from '@material-ui/core/Typography';
+
 import FormLabel from '@material-ui/core/FormLabel';
 import Box from '@material-ui/core/Box';
 import FormControl from '@material-ui/core/FormControl';
@@ -268,7 +271,8 @@ const useStyles = (theme) => ({
         marginTop: '10px'
     }
 });
-class FeaturedProductEdit extends Component {
+
+class TextIntoCategory extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -345,7 +349,7 @@ class FeaturedProductEdit extends Component {
                                 </div>
                                 :
                                 <div className={classes.row} >
-                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting of feature Product </h3>
+                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting of into category on picture </h3>
                                     <div edge="start">
                                         <label for="ColapseLogo">
                                             <KeyboardArrowDownIcon />
@@ -502,7 +506,6 @@ class FeaturedProductEdit extends Component {
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
@@ -604,4 +607,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(FeaturedProductEdit));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(TextIntoCategory));

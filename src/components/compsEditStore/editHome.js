@@ -123,11 +123,24 @@ class EditHome extends Component {
                                                 <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                                 </div>
                                                 <div className="categories__text">On Sale</div>
-                                            </Link> */}
-                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
-                                                    <div className="categories__icon"><img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
+                                                </Link> */}
+                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}>
+                                                    <div className="categories__icon">
+                                                        <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
                                                     </div>
-                                                    <div className="categories__text">{item.categoryName}</div>
+                                                    <div
+                                                        className="categories__text"
+                                                        style={{
+                                                            fontFamily: this.props.homeStoreDesign.titleFont.titleCategory,
+                                                            fontWeight: this.props.homeStoreDesign.titleTextWeight.titleCategory,
+                                                            fontSize: this.props.homeStoreDesign.titleTextSize.titleCategory + "px",
+                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.titleCategory, color: this.props.homeStoreDesign.titleColorText.titleCategory,
+                                                            textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
+                                                            marginTop: '2vh'
+                                                        }}
+                                                        onChange={(e) => this.props.changeTextTitle(e.target.value)}
+
+                                                    >{item.categoryName}</div>
                                                 </div>
                                             </div>
 
@@ -290,7 +303,7 @@ const mapStateToProps = (state) => {
     debugger
     return {
 
-        categories: state.categoriesReducer.categories[0]?state.categoriesReducer.categories:[{categoryName:"foo",images:"",color:"yellow",products:[]},{categoryName:"foo",images:"",color:"yellow",products:[]}],
+        categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }
