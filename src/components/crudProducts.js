@@ -10,10 +10,6 @@ import productImg from '../assets/products/product-pic-7.png'
 const useStyles = (theme) => ({
 })
 
-
-
-
-
 function CrudProducts(props) {
 
         const [file, setFile] = useState()
@@ -226,7 +222,9 @@ function CrudProducts(props) {
                 {/* <signOut/> */}
                 <div className="container__search search js-search mySearch">
                 <button className="search__action action js-search-open">
-                <i className="la la-search "></i></button>
+        
+        
+               <i className="la la-search" onClick={()=>{props.setcomponnet("search")}}></i></button>
                 <div className="search__dropdown js-search-dropdown">
                 <div className="search__field"><input className="search__input js-search-input" type="search" placeholder="Start typing…" />
                 <div className="search__icon"><i className="la la-search "></i></div>
@@ -270,7 +268,9 @@ function CrudProducts(props) {
                 <div className="search__backdrop backdrop js-search-backdrop"></div>
                 </div>
                 <div className="container__new new js-new">
-                <button className="new__action action js-new-open" onClick={console.log("new open")}><i className="la la-plus-circle "></i></button>
+                <button className="new__action action js-new-open" onClick={()=>{props.setcomponnet("addProduct")}}>
+                        <i className="la la-plus-circle "></i>
+                        </button>
                 <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
                 <div className="new__icon"><i className="la la-toolbox "></i></div>
                 <div className="new__title">New Project</div>
@@ -299,7 +299,9 @@ function CrudProducts(props) {
                 <div className="container__body">
                 <div className="panel js-panel">
                 <div className="panel__head panel__head_line">
-                <div className="panel__group btn-group btn-group_tabs"><button className="btn btn_light btn_icon js-panel-btn active"><i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
+                <div className="panel__group btn-group btn-group_tabs">
+                        <button className="btn btn_light btn_icon js-panel-btn active">
+                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
                 <div className="panel__group">
                 <div className="sort js-sort">
                 <div className="sort__head js-sort-head">
@@ -324,7 +326,6 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 <div className="panel__body">
-                {/* PpAaNnEeLl !1 */}
                 <div className="panel__tab js-panel-tab"
                 style={{ display: 'block' }}>
                 <div className="data data_list">
@@ -429,8 +430,7 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         </div>
-                        {/* gggrrriiiddd */}
-                                                                <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
+                        <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
                         <div className="data data_grid">
                         <div className="data__container">
                         <div className="data__head">
@@ -450,34 +450,6 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         <div className="data__body">
-                        {props.products.map((item, index) => (
-                                
-                                // if(index<7){}
-                                <div className="data__item">
-                        <div className="data__corner">
-                          <button className="action action_stroke"><i className="la la-ellipsis-h "></i></button></div>
-                        <div className="data__corner data__corner_left"><label className="switch"><input className="switch__input" type="checkbox"/><span className="switch__content"></span></label></div>
-                        <div className="data__row">
-                          <div className="data__cell">
-                            <div className="data__main">
-                              <div className="data__preview"><img className="data__pic" src="img/user-1.jpg" alt="Product"/></div>
-                              <div className="data__wrap">
-                        <div className="data__content"><strong>{item.name}</strong></div>
-                        <div className="data__label">SKU {item.SKU}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="data__cell">
-                            <div className="data__content"><strong>4.2</strong> / 5.0</div>
-                            <div className="data__stars"><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star active"></i></div>
-                          </div>
-                          <div className="data__foot">
-                            <div className="data__box"><strong>1.368</strong></div>
-                        <div className="data__box"><strong>${item.price}</strong></div>
-                          </div>
-                        </div>
-                      </div>
-                        ))}
                         </div>
                         </div>
                         </div>
@@ -491,6 +463,7 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         </div>
+                      
                         </div>
                         </>
                         )

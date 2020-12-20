@@ -186,6 +186,30 @@ export const newStore = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+export const newProduct= ({ dispatch, getState }) => next => action => {
+    
+    if (action.type === 'ADD_NEW_PRODUCTS') {debugger;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"SKU":action.payload.SKU,"category":action.payload.category,"price":action.payload.price,"name":action.payload.name,"description":action.payload.description,"amount":action.payload.amount});
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/products/newProduct", requestOptions)
+        .then(response => response.json())
+        // .then(result => {console.log(result); dispatch(actions.setStore(result))})
+        .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
 export const userIdByEmail = ({ dispatch, getState }) => next => action => {
     
     if (action.type === 'USER_ID_BY_EMAIL') {

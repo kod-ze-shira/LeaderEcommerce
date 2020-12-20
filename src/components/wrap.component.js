@@ -4,12 +4,10 @@ import Logo from "./compsEditStore/logo"
 import Image from './compsEditStore/image';
 import TextOnThePicture from './compsEditStore/textOnThePicture';
 import TextTitleOfCategory from './compsEditStore/textTitleOfCategory'
-
+import TextTitleOfProduct from './compsEditStore/textTitleOfProduct'
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import clsx from 'clsx';
-import { ThemeProvider } from "@material-ui/styles";
-import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 //import lastFiles from './lastFiles';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,63 +17,22 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
-import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import Icon from '@material-ui/core/Icon';
-import Switch from '@material-ui/core/Switch';
-import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
-import Divider from '@material-ui/core/Divider';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
-import CloseIcon from '@material-ui/icons/Close';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import InvertDesktopWindows from '@material-ui/icons/DesktopWindows';
 import TabletMacIcon from '@material-ui/icons/TabletMac';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import EventNoteIcon from '@material-ui/icons/EventNote';
-import NavigationIcon from '@material-ui/icons/Navigation';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import Drawer from '@material-ui/core/Drawer';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
-import Popover from '@material-ui/core/Popover';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import { TextField, createMuiTheme } from '@material-ui/core';
 import './wrap-component.css'
-import quote from '../assets/quote.png';
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
+import AddProduct from './compsEditStore/addProduct2';
+import Search from './compsEditStore/search';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -362,8 +319,11 @@ class Wrap extends React.Component {
                         switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
+                            case "addProduct": return <AddProduct />;
+                            case "search": return <Search/>;
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
+                            case "TextTitleOfProduct": return <TextTitleOfProduct />;
                             case "": return
                                 <h1>e</h1>;
 

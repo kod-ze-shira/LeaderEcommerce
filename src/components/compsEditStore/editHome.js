@@ -65,7 +65,7 @@ class EditHome extends Component {
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
                             <div className="main__preview">
-                                {/* <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
+                                <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
                                         <img alt="" src={this.props.homeStoreDesign.imageImage ?
                                             this.props.homeStoreDesign.imageImage : productPic7}
@@ -86,7 +86,7 @@ class EditHome extends Component {
                                         display: 'none',
                                     }}
                                     onChange={(e) => this.onChangeHandlerImage(e.target.files[0])} >
-                                </input> */}
+                                </input>
                             </div>
                         </div>
                     </div >
@@ -142,7 +142,23 @@ class EditHome extends Component {
                 <div className="products products_main section">
                     <div className="products__center center">
                         <div className="products__stage stage">- Our Products </div>
-                        <h2 className="products__title title title_mb-lg">Explore out Products</h2>
+                        {/* <h2 className="products__title title title_mb-lg">Explore out Products</h2> */}
+
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfProduct')}>
+                            <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
+                                {this.props.homeStoreDesign.titleText.titleProduct ? this.props.homeStoreDesign.titleText.titleProduct : "Explore out Products"}
+                                style={{
+                                    fontFamily: this.props.homeStoreDesign.titleFont.titleProduct,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight.titleProduct,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize.titleProduct + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight.titleProduct, color: this.props.homeStoreDesign.titleColorText.titleProduct,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment.titleProduct ? this.props.homeStoreDesign.titleAlignment.titleProduct : 'left',
+                                    marginTop: '2vh'
+                                }}
+                                onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                        </div>
+
+
                         <div className="products__list">
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
