@@ -74,6 +74,8 @@ import quote from '../assets/quote.png';
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
+import AddProduct from './compsEditStore/addProduct2';
+import Search from './compsEditStore/search';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -373,6 +375,8 @@ class Wrap extends React.Component {
                         switch (this.props.logoDesign.currentComponent) {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
+                            case "addProduct": return <AddProduct />;
+                            case "search": return <Search/>;
                             case "": return
                                 <h1>e</h1>;
 

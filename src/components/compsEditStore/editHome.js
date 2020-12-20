@@ -5,13 +5,9 @@ import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
-<<<<<<< HEAD
-// import '../../App.css';
-=======
 import '../../App.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
->>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
 ///images  
 import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"

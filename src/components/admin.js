@@ -43,7 +43,7 @@ function Admin() {
                                 </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="                                                                                   ">
                                          <CrudCategory />
                                 </div>
                                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -55,7 +55,7 @@ function Admin() {
                                         </div>
                      
                         </div>
-                </div>
+                </div> 
                 </Provider>
                 )
                 

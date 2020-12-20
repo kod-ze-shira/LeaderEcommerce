@@ -142,18 +142,12 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-<<<<<<< HEAD
     
     if (action.type === 'GET_ALL_PRODUCTS') {
       
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
            
-=======
-    if (action.type === 'GET_ALL_PRODUCTS') {
-        axios.get('https://community.leader.codes/api/products')
-        .then(res => {
->>>>>>> 9d6a1ebbfa71181418a6a837a125e64afc64f2e4
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts({products:res.data})) 
         })
@@ -180,6 +174,30 @@ export const newStore = ({ dispatch, getState }) => next => action => {
         fetch("http://localhost:3000/register/addStore", requestOptions)
         .then(response => response.json())
         .then(result => {console.log(result); dispatch(actions.setStore(result))})
+        .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
+export const newProduct= ({ dispatch, getState }) => next => action => {
+    
+    if (action.type === 'ADD_NEW_PRODUCTS') {debugger;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"SKU":action.payload.SKU,"category":action.payload.category,"price":action.payload.price,"name":action.payload.name,"description":action.payload.description,"amount":action.payload.amount});
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/products/newProduct", requestOptions)
+        .then(response => response.json())
+        // .then(result => {console.log(result); dispatch(actions.setStore(result))})
         .catch(error => console.log('error', error));
     }
 
