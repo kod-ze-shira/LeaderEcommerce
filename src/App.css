@@ -1,14 +1,43 @@
 .App {
   text-align: center;
 }
+/* קלאס של הקרוסלה */
 .rec-pagination{
   visibility: hidden;
 }
+/* קלאס של דיו העוטף את כיתוב כותרת המוצרים,הקטגוריות */
 .a{
   width: 100%;
   height: 100px;
 
 }
+
+.iconAlignFirst{
+  color:#BCBDC7;
+  margin-left: 6vw !important;
+  display: inline !important;
+  float: right !important;
+}
+
+
+.iconAlign{
+  /* color:#BCBDC7; */
+  width: 30px !important;
+  color:red;
+  height: 30px !important;
+  display: inline !important;
+  float: right !important;
+
+}
+
+.iconAlign:hover{
+  color:#EBEAEA;
+  display: inline !important;
+  float: right !important;
+}
+
+
+
 ul{
   list-style-type: none;
 }

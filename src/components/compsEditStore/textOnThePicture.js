@@ -479,12 +479,11 @@ class TextOnThePicture extends Component {
                                             />
                                         </Box>
                                     </Box>
-
-                                    <div class="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex justify-content-center align-items-center">
                                         <FormLabel className={classes.textcontect}>Alignment</FormLabel>
-                                        <i class="fas fa-align-left iconAlign iconAlignFirst fa-lg" onClick={(e) => this.props.changeTitleAlignment('left')}></i>
-                                        <i class="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
-                                        <i class="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
+                                        <i className="fas fa-align-left iconAlign iconAlignFirst fa-lg" onClick={(e) => this.props.changeTitleAlignment('left')}></i>
+                                        <i className="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
+                                        <i className="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
                                     </div>
                                     <br></br>
                                     <br></br>

@@ -560,8 +560,6 @@ class TextTitleOfProduct extends Component {
                                                 width={200}
                                                 height={6}
                                             />
-
-
                                         </Box>
                                         <Box justifyContent="flex-end">
                                             <input
