@@ -46,6 +46,7 @@ class EditHome extends Component {
     render() {
         return (
             <div>
+                {/*דיב של תמונת פתיחה שעליה כותרת פתיחה*/}
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
@@ -112,6 +113,8 @@ class EditHome extends Component {
                             slick-initialized slick-slider">
                                 <Carousel className="carousel" itemsToShow={8}>
                                     {
+
+                                        // this.props.categories[0]?
                                         this.props.categories.map((item, index) => (
                                             <div className="categories__slide" key={index}>
                                                 {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
@@ -129,6 +132,7 @@ class EditHome extends Component {
                                             </div>
 
                                         ))
+                                        // :<span>כרגע אין קטגוריות</span>
                                     }
                                 </Carousel>
                             </div>
@@ -286,7 +290,7 @@ const mapStateToProps = (state) => {
     debugger
     return {
 
-        categories: state.categoriesReducer.categories,
+        categories: state.categoriesReducer.categories[0]?state.categoriesReducer.categories:[{categoryName:"foo",images:"",color:"yellow",products:[]},{categoryName:"foo",images:"",color:"yellow",products:[]}],
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }

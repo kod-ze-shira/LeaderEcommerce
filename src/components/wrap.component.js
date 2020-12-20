@@ -139,6 +139,7 @@ const useStyles = theme => ({
         overflow: 'scroll'
     },
     appBarBottom: {
+        position:'initial',
         top: 'auto',
         bottom: 0,
         background: '#0A0E1B 0% 0% no-repeat padding-box',
