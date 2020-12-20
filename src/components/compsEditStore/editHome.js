@@ -7,9 +7,7 @@ import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
 ///images  
-import mainPic from "../../assets/main-pic.png"
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
 import trending from "../../assets/categories/trending.svg"
 import skincare from "../../assets/categories/skincare.svg"
@@ -28,57 +26,43 @@ import productPic7 from "../../assets/products/product-pic-7.png"
 import productPic8 from "../../assets/products/product-pic-8.png"
 
 class EditHome extends Component {
-    render() {
-
-        const onChangeHandlerImage = (event) => {
-            if (event) {
-                let reader = new FileReader();
-                reader.onloadend = () => {
-                    this.props.changeImage(reader.result)
-                }
-                reader.readAsDataURL(event)
+    // הפונקציה לשינוי התמונה הראשית של החנות 
+    onChangeHandlerImage = (event) => {
+        if (event) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.props.changeImage(reader.result)
             }
-
+            reader.readAsDataURL(event)
         }
+    }
+    // לבטל ארחרי השיו נוי של יהודית בסטור
+    componentDidMount() {
 
+        this.props.getCategories();
+
+    }
+
+    render() {
         return (
             <div>
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
-                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('Title')}>
+                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
                                 {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
                                 <TextareaAutosize className="SPtitle col-md-12" value=
-                                    {this.props.homeStoreDesign.titleTextTitle ? this.props.homeStoreDesign.titleTextTitle : "We Offer the Best Products for your Skin"} style={{
-                                        fontFamily: this.props.homeStoreDesign.titleFont,
-                                        fontWeight: this.props.homeStoreDesign.titleTextWeight,
-                                        fontSize: this.props.homeStoreDesign.titleTextSize + "px",
-                                        lineHeight: this.props.homeStoreDesign.titleLineHeight, color: this.props.homeStoreDesign.titleColorText,
-                                        textAlign: this.props.homeStoreDesign.titleAlignment ? this.props.homeStoreDesign.titleAlignment : 'left',
+                                    {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    style={{
+                                        fontFamily: this.props.homeStoreDesign.titleFont.onThePicture,
+                                        fontWeight: this.props.homeStoreDesign.titleTextWeight.onThePicture,
+                                        fontSize: this.props.homeStoreDesign.titleTextSize.onThePicture + "px",
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture, color: this.props.homeStoreDesign.titleColorText.onThePicture,
+                                        textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                         marginTop: '2vh'
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
-
                             </div>
-                            {/*                 {this.props.quote.titleYOrN ?
-                  <div
-                    onClick={() => this.props.changeCurrentComponent('Title')}>
-                
-                   <div>
-                    <TextareaAutosize value={this.props.quote.titleTextTitle ? this.props.quote.titleTextTitle : "Follow The Leader"} style={{
-                      fontFamily: this.props.quote.titleFont,
-                      fontWeight: this.props.quote.titleTextWeight, fontSize: this.props.quote.titleTextSize,
-                      lineHeight: this.props.quote.titleLineHeight, color: this.props.quote.titleColorText,
-                      textAlign: this.props.quote.titleAlignment ? this.props.quote.titleAlignment : 'left',
-                      marginTop:'2vh'
-                    }}
-                      onChange={(e) => this.props.changeTextTitle(e.target.value)} />
-                    </div>
-                  </div> 
-                  : <span></span>
-                }
- */}
-
                             <div className="main__preview">
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -91,17 +75,17 @@ class EditHome extends Component {
                                             }}
                                         ></img>
                                         : <span></span>}
-                                    <input type={"file"}
-                                        id="fileInput"
-                                        htmlFor="myInput"
-                                        accept="image/*"
-                                        style={{
-                                            cursor: 'pointer',
-                                            display: 'none',
-                                        }}
-                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])} ></input>
-                                    {/* <img className="main__pic" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : mainPic} alt=""></img> */}
                                 </label>
+                                <input type={"file"}
+                                    id="fileInput"
+                                    htmlFor="myInput"
+                                    accept="image/*"
+                                    style={{
+                                        cursor: 'pointer',
+                                        display: 'none',
+                                    }}
+                                    onChange={(e) => this.onChangeHandlerImage(e.target.files[0])} >
+                                </input>
                             </div>
                         </div>
                     </div >
@@ -109,84 +93,43 @@ class EditHome extends Component {
                 <div className="categories section">
                     <div className="categories__center center ">
                         <div className="categories__stage stage">- The Categories</div>
-                        <h2 className="categories__title title title_mb-lg">Browse by Category</h2>
+                        {/* <h2 className="categories__title title title_mb-lg">Browse by Category</h2> */}
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfCategory')}>
+                            <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
+                                {this.props.homeStoreDesign.titleText.titleCategory ? this.props.homeStoreDesign.titleText.titleCategory : "Browse by Category"}
+                                style={{
+                                    fontFamily: this.props.homeStoreDesign.titleFont.titleCategory,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight.titleCategory,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize.titleCategory + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight.titleCategory, color: this.props.homeStoreDesign.titleColorText.titleCategory,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
+                                    marginTop: '2vh'
+                                }}
+                                onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                        </div>
                         <div className="categories__container ">
                             <div className="categories__slider js-slider-categories
                             slick-initialized slick-slider">
-                                <Carousel itemsToShow={8}>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
+                                <Carousel className="carousel" itemsToShow={8}>
+                                    {
+                                        this.props.categories.map((item, index) => (
+                                            <div className="categories__slide" key={index}>
+                                                {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
+                                                {/* //השארתי לינק אחד לדוגמא */}
+                                                {/* <Link className="categories__item" to="/0/category">
+                                                <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
+                                                </div>
+                                                <div className="categories__text">On Sale</div>
+                                            </Link> */}
+                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
+                                                    <div className="categories__icon"><img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
+                                                    </div>
+                                                    <div className="categories__text">{item.categoryName}</div>
+                                                </div>
                                             </div>
-                                            <div className="categories__text">On Sale</div>
 
-                                        </Link>
-                                    </div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Featured</div>
-                                        </Link>
-                                    </div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Masks</div>
-                                        </Link>
-                                    </div>
-                                    <div className="categories__slide"><Link className="categories__item" to="/edit/category">
-                                        <div className="categories__icon"><img className="categories__pic" src={eyeCare} alt=""></img>
-                                        </div>
-                                        <div className="categories__text">Eye Care</div>
-                                    </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={natural} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Moisturizers</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={protection} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Treatments</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-
-                                            <div className="categories__icon"><img className="categories__pic" src={nightCare} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Night Care</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={afterSun} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Sun Care</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">On Sale</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-
-                                            <div className="categories__icon"><img className="categories__pic" src={trending} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Featured</div>
-                                        </Link></div>
-                                    <div className="categories__slide">
-                                        <Link className="categories__item" to="/edit/category">
-                                            <div className="categories__icon"><img className="categories__pic" src={skincare} alt=""></img>
-                                            </div>
-                                            <div className="categories__text">Masks</div>
-
-                                        </Link>
-                                    </div>
+                                        ))
+                                    }
                                 </Carousel>
                             </div>
                         </div>
@@ -195,20 +138,33 @@ class EditHome extends Component {
                 <div className="products products_main section">
                     <div className="products__center center">
                         <div className="products__stage stage">- Our Products </div>
-                        <h2 className="products__title title title_mb-lg">Explore out Products</h2>
+                        {/* <h2 className="products__title title title_mb-lg">Explore out Products</h2> */}
+
+                        <div className="a" onClick={() => this.props.changeCurrentComponent('TextTitleOfProduct')}>
+                            <TextareaAutosize className="SPtitleOfCategory col-md-12" value=
+                                {this.props.homeStoreDesign.titleText.titleProduct ? this.props.homeStoreDesign.titleText.titleProduct : "Explore out Products"}
+                                style={{
+                                    fontFamily: this.props.homeStoreDesign.titleFont.titleProduct,
+                                    fontWeight: this.props.homeStoreDesign.titleTextWeight.titleProduct,
+                                    fontSize: this.props.homeStoreDesign.titleTextSize.titleProduct + "px",
+                                    lineHeight: this.props.homeStoreDesign.titleLineHeight.titleProduct, color: this.props.homeStoreDesign.titleColorText.titleProduct,
+                                    textAlign: this.props.homeStoreDesign.titleAlignment.titleProduct ? this.props.homeStoreDesign.titleAlignment.titleProduct : 'left',
+                                    marginTop: '2vh'
+                                }}
+                                onChange={(e) => this.props.changeTextTitle(e.target.value)} />
+                        </div>
+
+
                         <div className="products__list">
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
-                                        {/* <a className="product__preview" href="product.html"> */}
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic" src={productPic1} alt=""></img>
-                                        {/* </a> */}
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green" href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Sun Cream</Link>
+                                <Link className="product__name" to="/0/product">Sun Cream</Link>
                                 <div className="product__details">
                                     <div className="product__category yellow">Sun Care</div>
                                     <div className="product__price">
@@ -220,16 +176,15 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic"
                                             src={productPic2} alt=""></img>
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">
+                                    <Link className="product__btn btn btn_green" to="/0/cart">
                                         Add to Cart
                                     </Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Night Eye Cream</Link>
-                                {/* <a className="product__name" href="product.html">Night Eye Cream</a> */}
+                                <Link className="product__name" to="/0/product">Night Eye Cream</Link>
                                 <div className="product__details">
                                     <div className="product__category blue">EYE CARE</div>
                                     <div className="product__price">
@@ -240,14 +195,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic" src={productPic3} alt=""></img>
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic" src={productPic3} alt=""></img>
                                     </Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Acne Skin Gel</Link>
-                                {/* <a className="product__name" href="product.html">Acne Skin Gel</a> */}
+                                <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
                                 <div className="product__details">
                                     <div className="product__category pink">Treatments</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -255,19 +207,13 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product">
+                                    <Link className="product__preview" to="/0/product">
                                         <img className="product__pic"
                                             src={productPic4} alt=""></img>
                                     </Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                        src={productPic4} alt=""></img>
-                                    </a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Anti Dry Skin</Link>
-                                {/* <a className="product__name" href="product.html">Anti Dry Skin</a> */}
+                                <Link className="product__name" to="/0/product">Anti Dry Skin</Link>
                                 <div className="product__details">
                                     <div className="product__category green">Moisturizers</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -276,16 +222,11 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__new">NEW IN</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic5} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                        src={productPic5} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Body Protection</Link>
-                                {/* <a className="product__name" href="product.html">Body Protection</a> */}
+                                <Link className="product__name" to="/0/product">Body Protection</Link>
                                 <div className="product__details">
                                     <div className="product__category yellow">Treatments</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -293,16 +234,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic6} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic6} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">All In One Gel</Link>
-                                {/* <a className="product__name" href="product.html">All In One Gel</a> */}
+                                <Link className="product__name" to="/0/product">All In One Gel</Link>
                                 <div className="product__details">
                                     <div className="product__category blue">FEATURED</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -311,16 +247,11 @@ class EditHome extends Component {
                             <div className="product">
                                 <div className="product__sale">20% OFF</div>
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/product"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
                                         src={productPic7} alt=""></img></Link>
-                                    {/* <a className="product__preview" href="product.html"><img className="product__pic"
-                                    src={productPic7} alt=""></img></a> */}
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
-                                    {/* <a className="product__btn btn btn_green"
-                                        href="cart.html">Add to Cart</a> */}
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Deep Treatment</Link>
-                                {/* <a className="product__name" href="product.html">Deep Treatment</a> */}
+                                <Link className="product__name" to="/0/product">Deep Treatment</Link>
                                 <div className="product__details">
                                     <div className="product__category pink">ON SALE</div>
                                     <div className="product__price"><span className="product__old">$30</span><span className="product__actual">$20</span>
@@ -329,11 +260,11 @@ class EditHome extends Component {
                             </div>
                             <div className="product">
                                 <div className="product__view">
-                                    <Link className="product__preview" to="/edit/prodct"><img className="product__pic"
+                                    <Link className="product__preview" to="/0/prodct"><img className="product__pic"
                                         src={productPic8} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/edit/cart">Add to Cart</Link>
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                                 </div>
-                                <Link className="product__name" to="/edit/product">Morning Shine</Link>
+                                <Link className="product__name" to="/0/product">Morning Shine</Link>
                                 <div className="product__details">
                                     <div className="product__category green">NIGHT CARE</div>
                                     <div className="product__price"><span className="product__actual">$20</span></div>
@@ -352,24 +283,22 @@ class EditHome extends Component {
     }
 }
 const mapStateToProps = (state) => {
+    debugger
     return {
+
+        categories: state.categoriesReducer.categories,
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
-    changeTextTitle: (e) => dispatch(actions.setTitleTextTitle(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
+    // לבטל אחרי השינוי של יהודית
+    getCategories: () => dispatch(actions.getAllCategories())
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
-
-
-
-{/* <!-- scripts-->
-  <script src="js/app.js"></script>
-  <script src="js/common.js"></script>
- */}

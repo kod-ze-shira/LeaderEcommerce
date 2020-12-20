@@ -1,93 +1,136 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
-import './crudProducts.css'
-import $ from 'jquery'; 
+import './crudProducts.css';
+import $ from 'jquery'
+import productImg from '../assets/products/product-pic-7.png'
 
 //1
 const useStyles = (theme) => ({
 })
 
 function CrudProducts(props) {
-        
-        const [file,setFile]=useState()
+
+        const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
-        useEffect(()=>{
-            
-              
+        useEffect(() => {
+                props.getAllProducts();
 
-// // sort
-// (function(){
-// 	debugger;
-// 	var sort = $('.js-sort');
-// 	if (sort.length) {
-// 		var head = sort.find('.js-sort-head'),
-// 				selected = sort.find('.js-sort-selected'),
-// 				dropdown = sort.find('.js-sort-dropdown'),
-// 				switch_ = sort.find('.js-sort-switch'),
-// 				apply = sort.find('.js-sort-apply'),
-// 				backdrop = sort.find('.js-sort-backdrop');
+                // // search
+                // (function(){
+                // 	var search = $('.js-search');
+                // 	if (search.length) {
+                // 		var open = search.find('.js-search-open'),
+                // 				input = search.find('.js-search-input'),
+                // 				dropdown = search.find('.js-search-dropdown'),
+                // 				results = search.find('.js-search-results'),
+                // 				backdrop = search.find('.js-search-backdrop');
 
-// 		head.on('click', function(){
-// 			sort.addClass('open');
-// 		});
+                // 		open.on('click', function(){
+                // 			search.addClass('open');
+                // 			input.focus();
+                // 		});
 
-// 		switch_.on('change', function(){
-// 			selected.text($(this).find('span').text());
-// 		});
+                // 		input.on('keyup', function(){
+                // 			if ($(this).val().length >= 3) {
+                // 				results.addClass('visible');
+                // 			} else {
+                // 				results.removeClass('visible');
+                // 			}
+                // 		});
 
-// 		apply.on('click', function(){
-// 			sort.removeClass('open');
-// 		});
+                // 		backdrop.on('click', function(){
+                // 			search.removeClass('open');
+                // 		});
+                // 	}
+                // }());
 
-// 		backdrop.on('click', function(){
-// 			sort.removeClass('open');
-// 		});
-// 	}
-// }());
-// // new
-// (function(){
-// 	var _new = $('.js-new');
-// 	if (_new.length) {
-// 		var open = _new.find('.js-new-open'),
-// 				dropdown = _new.find('.js-new-dropdown'),
-// 				backdrop = _new.find('.js-new-backdrop');
+                // // sort
+                // (function(){
+                // 	debugger;
+                // 	var sort = $('.js-sort');
+                // 	if (sort.length) {
+                // 		var head = sort.find('.js-sort-head'),
+                // 				selected = sort.find('.js-sort-selected'),
+                // 				dropdown = sort.find('.js-sort-dropdown'),
+                // 				switch_ = sort.find('.js-sort-switch'),
+                // 				apply = sort.find('.js-sort-apply'),
+                // 				backdrop = sort.find('.js-sort-backdrop');
 
-// 		open.on('click', function(){
-// 			_new.toggleClass('open');
-// 		});
+                // 		head.on('click', function(){
+                // 			sort.addClass('open');
+                // 		});
 
-// 		backdrop.on('click', function(){
-// 			_new.removeClass('open');
-// 		});
-// 	}
+                // 		switch_.on('change', function(){
+                // 			selected.text($(this).find('span').text());
+                // 		});
 
-// }());
+                // 		apply.on('click', function(){
+                // 			sort.removeClass('open');
+                // 		});
+
+                // 		backdrop.on('click', function(){
+                // 			sort.removeClass('open');
+                // 		});
+                // 	}
+                // }());
+
+
+                // // new
+                // (function(){
+                // 	var _new = $('.js-new');
+                // 	if (_new.length) {
+                // 		var open = _new.find('.js-new-open'),
+                // 				dropdown = _new.find('.js-new-dropdown'),
+                // 				backdrop = _new.find('.js-new-backdrop');
+
+                // 		open.on('click', function(){
+                // 			_new.toggleClass('open');
+                // 		});
+
+                // 		backdrop.on('click', function(){
+                // 			_new.removeClass('open');
+                // 		});
+                // 	}
+                // }());
 
 
         })
 
-        const onChangeHandlerImage = (e) => {
+        const onChangeHandlerImage = (event,thisi) => {
+                console.log("this",thisi);
+                // if (event) {
+                //     let reader = new FileReader();
+                //     reader.onloadend = () => {
+                //         props.changeProductImage(index,reader.result)
+                //     }
+                //     console.log("img",props.products[index]);
+                //     reader.readAsDataURL(event)
+                // }
+    
+            }
+
+        const onChangeHandlerImage2 = (e) => {
         
                 console.log(e)
                 const reader1 = new FileReader();
                 // const file = e
                 reader1.onloadend = () => {
-                    setFile(reader1.result);
+                        setFile(reader1.result);
                         console.log("reader111", reader1.result);
                 };
                 reader1.readAsDataURL(e);
                 // var fileToUpload = e
                 var myFile = new FormData();
-                console.log("upload",e);
+                console.log("upload", e);
                 myFile.append("file", e);
                 console.log("myfile", myFile);
                 // if (!props.rowToEdit) {
-                props.addNewImageFromDbP({ f: myFile, t:"title" });
+                props.addNewImageFromDbP({ f: myFile, t: "title" });
                 // }
-            }
-        
+        }
+
         return (
                 <>
                 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
@@ -99,14 +142,85 @@ function CrudProducts(props) {
                 <link rel="manifest" href="img/site.webmanifest" />
                 <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5" />
                 
-                <div className="page">
+                        <div className="page">
                 <div className="sidebar js-sidebar">
+                <div className="sidebar__container js-sidebar-container toggled">
+                <div className="sidebar__head">
+                <div className="sidebar__preview"><img className="sidebar__pic" src="../pages/img/white-ui-store.png" alt="WhiteUI.store" /></div>
+                <div className="sidebar__wrap">
+                <div className="sidebar__title">WHITEUI.STORE LLC</div>
+                <div className="sidebar__text">8484 Ross Wells</div>
+                </div><button className="sidebar__action sidebar__action_toggle action js-sidebar-toggle"><i className="la la-angle-left "></i></button>
+                </div>
+                <div className="sidebar__inner">
+                <div className="sidebar__section">
+                <div className="widget">
+                <div className="widget__head">
+                <div className="widget__title title title_sm">Popular categories</div>
+                <div className="widget__text">Explore most popular product categories</div>
+                </div>
+                <div className="widget__body">
+                <div className="overview">
+                <div className="overview__item">
+                <div className="overview__row">
+                <div className="overview__col">
+                <div className="overview__value">1.345</div>
+                <div className="overview__label">Electronis</div>
+                </div>
+                <div className="overview__col">
+                <div className="overview__preview blue"><i className="la la-laptop "></i></div>
+                </div>
+                </div>
+                </div>
+                <div className="overview__item">
+                <div className="overview__row">
+                <div className="overview__col">
+                <div className="overview__value">1.042</div>
+                <div className="overview__label">Accessories</div>
+                </div>
+                <div className="overview__col">
+                <div className="overview__preview red"><i className="la la-gem "></i></div>
+                </div>
+                </div>
+                </div>
+                <div className="overview__item">
+                <div className="overview__row">
+                <div className="overview__col">
+                <div className="overview__value">980</div>
+                <div className="overview__label">Digital goods</div>
+                </div>
+                <div className="overview__col">
+                <div className="overview__preview gray"><i className="la la-keyboard "></i></div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div className="sidebar__section">
+                <div className="history">
+                <div className="history__container">
+                <div className="history__head">
+                <div className="history__wrap">
+                <div className="history__title title title_sm">Conversion history</div>
+                <div className="history__text">Week to week performance</div>
+                </div><a className="history__link" href="#"><i className="la la-chart-bar "></i></a>
+                </div>
+                <div className="history__chart">
+                <div id="chart-history-bar"></div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
                 </div>
                 <div>
-                <div className="container__head">
-                       
-                <div className="container__title title title_md">Products</div><signOut/>
-                <div className="container__search search js-search">
+                <div className="container__head"><button className="container__action container__action_menu action js-container-toggle"><i className="la la-bars "></i></button>
+                <div className="container__title title title_md">Products</div>
+                {/* <signOut/> */}
+                <div className="container__search search js-search mySearch">
                 <button className="search__action action js-search-open">
         
         
@@ -190,7 +304,13 @@ function CrudProducts(props) {
                                 <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
                 <div className="panel__group">
                 <div className="sort js-sort">
-               <div className="sort__dropdown js-sort-dropdown">
+                <div className="sort__head js-sort-head">
+                <div className="sort__icon"><i className="la la-filter "></i></div>
+                <div className="sort__label">sort:</div>
+                <div className="sort__selected js-sort-selected">A-Z</div>
+                <div className="sort__arrow"><i className="la la-angle-down "></i></div>
+                </div>
+                <div className="sort__dropdown js-sort-dropdown">
                 <div className="sort__title">Sort projects by</div>
                 <div className="sort__items">
                 <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" onChange={console.log("checked")} /><span className="switch__content">A-Z</span></label></div>
@@ -234,76 +354,76 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 <div className="data__body">
-   {props.products.map((item, index) => (
-                        
-                        <div className="data__item">
-                        <div className="data__row" >
-                        <div className="data__cell data__cell_xl">
-                        <div className="data__main">
-                     
-                        <div className="data__preview">
-                                <label className="prdct_img" for="fileInput">
-                                        <img alt="" 
-                                        // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
-                                        /> 
-                                </label>
-
-                                <input
-                                        type={"file"}
-                                        id="fileInput"
-                                        htmlFor="myInput"
-                                        accept="image/*"
-                                        style={{
-                                        display: 'none',
-                                        cursor: 'pointer'
-                                        }}
-                                        onChange={(e) => onChangeHandlerImage(e.target.files[0])}
-                                />
-{/* 
-                                <div className="col-md-12 ml-15">
-        <label for="fileInput">
-            <img className="logoC"  alt="" src={this.props.urlImage ? this.props.urlImage.image :logoC } />
-</label>
-          <input
-            type={"file"}
-            id="fileInput"
-            htmlFor="myInput"
-            accept="image/*"
-            style={{
-              display: 'none',
-              cursor: 'pointer'
-            }}
-            onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
-          />
-          </div> */}
-                                {/* <img className="data__pic" src={product1} alt="Product" /> */}
-                        </div>
-                        <div className="data__wrap">
-                        <div className="data__content">
-                        <strong>{item.name}</strong></div>
-                        <div className="data__label">SKU {item.SKU}</div>
-                        </div>
-                        </div>
-                        </div>
-                        <div className="data__cell mobile-hide">
-                        <div className="data__content">{item.description}</div>
-                        {/* <div className="data__label">amount</div> */}
-                        </div>
-                        <div className="data__cell mobile-hide">
-                        <div className="data__content">{item.SKU}</div>
-                        <div className="data__label">SKU</div>
-                        </div>
-                        <div className="data__cell mobile-hide">
-                        <div className="data__content"><strong>{item.color}</strong> / {index}</div>
-                        </div>
-                        <div className="data__cell mobile-hide">
-                        <div className="data__content"><strong>{item.price}</strong></div>
-                        </div>
-                        <div className="data__cell mobile-hide">
-                        <div className="tag gray">cotagerus</div>
-                        </div>
-                        <div className="data__cell data__cell_action"><a href={"/products/"+item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
-                        </div>
+                        {props.products.map((item, index) => (
+                        <div className="data__item" key={index}>
+                                        <div className="data__row" >
+                                        <div className="data__cell data__cell_xl">
+                                        <div className="data__main">
+                                        <div className="data__effect mobile-hide"><label className="switch"><input className="switch__input" type="checkbox" /><span className="switch__content"></span></label></div>
+                                        <div className="data__preview">
+                                                <label className="prdct_img" for="fileInput">
+                                                        <img alt="product image" src={item.images[0]?item.images[0]:productImg}
+                                                        // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
+                                                        /> 
+                                                </label>
+                                                <input
+                                                        type={"file"}
+                                                        id="fileInput"
+                                                        htmlFor="myInput"
+                                                        accept="image/*"
+                                                        style={{
+                                                                display: 'none',
+                                                                cursor: 'pointer'
+                                                        }}
+                                                        onChange={(e) => onChangeHandlerImage(e.target.files[0],this)}
+                                                />
+                {/* 
+                                                <div className="col-md-12 ml-15">
+                        <label for="fileInput">
+                        <img className="logoC"  alt="" src={this.props.urlImage ? this.props.urlImage.image :logoC } />
+                </label>
+                        <input
+                        type={"file"}
+                        id="fileInput"
+                        htmlFor="myInput"
+                        accept="image/*"
+                        style={{
+                        display: 'none',
+                        cursor: 'pointer'
+                        }}
+                        onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
+                        />
+                        </div> */}
+                                                {/* <img className="data__pic" src={product1} alt="Product" /> */}
+                                        </div>
+                                        <div className="data__wrap">
+                                        <div className="data__content">
+                                        <strong>{item.name}</strong></div>
+                                        <div className="data__label">SKU {item.SKU}</div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div className="data__cell mobile-hide">
+                                        <div className="data__content">{item.description}</div>
+                                        {/* <div className="data__label">amount</div> */}
+                                        </div>
+                                <div className="data__cell mobile-hide">
+                                <div className="data__content">{item.SKU}</div>
+                                <div className="data__label">SKU</div>
+                                </div>
+                                <div className="data__cell mobile-hide">
+                                <div className="data__content"><strong>{item.color}</strong> / {index}</div>
+                                <div className="data__label">Rating</div>
+                                </div>
+                                <div className="data__cell mobile-hide">
+                                <div className="data__content"><strong>{item.price}</strong></div>
+                                <div className="data__label">Price</div>
+                                </div>
+                                <div className="data__cell mobile-hide">
+                                <div className="tag gray">cotagerus!s!///\\\</div>
+                                </div>
+                                <div className="data__cell data__cell_action"><a href={"/products/"+item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
+                                </div>
                         </div>
                         ))}
                         </div>
@@ -362,7 +482,7 @@ function CrudProducts(props) {
                                         // getAllProducts:()=>dispatch(actions.setProducts()) 
                                         getAllProducts:()=>dispatch(actions.getAllProducts()),
                                         addNewImageFromDbP:(f,t)=>dispatch(actions.addNewImageFromDb(f,t)),
-                                        setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r))
+                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p}))
                                 }
                         }
                         

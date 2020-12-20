@@ -18,7 +18,6 @@ import Box from '@material-ui/core/Box';
 import { actions } from '../../redux/action';
 import tempLogo from '../../assets/logo.svg';
 
-// import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import clsx from 'clsx';
 const AntSwitch = withStyles((theme) => ({
     root: {
@@ -88,7 +87,6 @@ const useStyles = (theme) => ({
     },
     textField: {
         width: 200,
-        // height: 19,
         textAlign: 'left',
         color: '#787880',
         opacity: 1,
@@ -100,11 +98,8 @@ const useStyles = (theme) => ({
     p_Publiceveryonecansee: {
         top: 0,
         left: -70,
-        // width: 100,
         height: 10,
-        // textAlign: 'left',
         font: 'Bold 14px/19px Roboto',
-        // letterSpacing: 0.17,
         color: '#1C1D21',
         opacity: 1,
     },
@@ -129,7 +124,6 @@ const useStyles = (theme) => ({
     icon_upload: {
         fontSize: 100,
         textAlign: 'left',
-        //    width:13
     },
     icon_clander: {
         textAlign: 'left'
@@ -185,7 +179,6 @@ const useStyles = (theme) => ({
     div: {
         textAlign: 'center',
         backgroundColor: 'lightslategrey',
-        // borderStyle: 'solid',
         width: 124,
         height: 104
     },
@@ -237,8 +230,6 @@ const useStyles = (theme) => ({
         outline: 0,
         borderBottom: '1px solid #75798e',
         opacity: 1,
-        // '-webkit-appearance': 'none',
-        // margin:0
     },
     row: {
         display: 'flex',
@@ -289,17 +280,11 @@ class Logo extends Component {
             ;
         this.props.changeLogoYOrN()
     }
-    handleChangeSwitchCN = () => {
-        // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
-        ;
-        this.props.changeLogoCNYOrN()
-    }
     IsOpenCollapse = () => {
         this.setState({
             IsCollapse: !this.state.IsCollapse
         })
     }
-
 
     useStyle = makeStyles((theme) => ({
         root: {
@@ -401,7 +386,7 @@ class Logo extends Component {
                                     <Box
                                         alignSelf="center">
                                         <div className={classes.div} >
-                                            <div class="image-upload">
+                                            <div className="image-upload">
                                                 <label for="logouug">
                                                     <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
                                                 </label>
@@ -419,7 +404,7 @@ class Logo extends Component {
                                                 />
 
                                             </div>
-                                            <div id='lbError' class='warning'
+                                            <div id='lbError' className='warning'
                                                 style={{
                                                     position: 'relative',
                                                     color: 'red',
@@ -447,8 +432,6 @@ class Logo extends Component {
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
-
                                             <Slider
                                                 defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
                                                 step={1}
@@ -537,17 +520,15 @@ const mapStateToProps = (state) => {
         logoDesign: state.logoReducer.logoDesign
     };
 }
-
 const mapDispatchToProps = (dispatch) => ({
     changeLogo: (image) => dispatch(actions.setLogo(image)),
     changeLogoYOrN: (image) => dispatch(actions.setLogoYOrN(image)),
-    changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),
+    // changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),
     changeLogoWidth: (image) => dispatch(actions.setLogoWidth(image)),
     changeLogoHeight: (image) => dispatch(actions.setLogoHeight(image)),
     changeLogoBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
     changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
-    changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
-
+    // changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
 })
 
 

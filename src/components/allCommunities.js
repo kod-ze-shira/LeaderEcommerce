@@ -23,18 +23,18 @@ function AllCommunities(props) {
                 {props.communities.map(item => {
                     return (
                         <Link to={`/community/${item._id}`}>
-                            <li className="float-left m-3" key={item._id}>
-                                <div class="card" style={{ width: 22 + "rem" }}>
+                            <li classNameName="float-left m-3" key={item._id}>
+                                <div className="card" style={{ width: 22 + "rem" }}>
                                     {/* להביא את לוגו הקהילה */}
-                                    <img src="../assets/logo.png" class="card-img-top" alt="Community" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">{item.communityName}</h5>
-                                        <h5 class="card-title">{item.communityDescription}</h5>
-                                        <h5 class="card-title">{item.communityManager}</h5>
-                                        <h5 class="card-title">{item.communityMembers}</h5>
+                                    <img src="../assets/logo.png" className="card-img-top" alt="Community" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.communityName}</h5>
+                                        <h5 className="card-title">{item.communityDescription}</h5>
+                                        <h5 className="card-title">{item.communityManager}</h5>
+                                        <h5 className="card-title">{item.communityMembers}</h5>
 
-                                        {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a> */}
+                                        {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" className="btn btn-primary">Go somewhere</a> */}
                                     </div>
                                 </div>
                             </li>

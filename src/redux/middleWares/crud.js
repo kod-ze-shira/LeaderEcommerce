@@ -83,6 +83,15 @@ export const checkPermission = ({dispatch,getState}) => next => action => {
                     //window.location.href = (!data.is_username) ? "https://leader.codes/wizard" : "https://lobby.leader.codes/" + username
                     // window.location.href=(!data.is_username) ? "http://localhost:3001/userhome/"+username : "http://localhost:3001/userhome/"+username;
                 // }
+
+                // let tempUserName = username.replace(' ', '%20')
+                // if (window.location.href != 'http://localhost:3000/' + tempUserName) {
+                //     window.location.href = '/' + username
+                // }‏
+                // let tempUserName = username.replace(' ', '%20')
+                // if (window.location.href != 'http://localhost:3000/0') {
+                //     window.location.href = 'http://localhost:3000/0' ;
+                // }
             },
         });
 
@@ -142,14 +151,11 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-    
     if (action.type === 'GET_ALL_PRODUCTS') {
-      
         axios.get('https://community.leader.codes/api/products')
         .then(res => {
-           
             console.log("gjhjet ",res.data);
-            dispatch(actions.setProducts({products:res.data})) 
+            dispatch(actions.setProducts(res.data)) 
         })
     }
 

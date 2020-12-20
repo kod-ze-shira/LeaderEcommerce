@@ -106,7 +106,6 @@ const useStyles = (theme) => ({
     },
     textField: {
         width: 200,
-        // height: 19,
         textAlign: 'left',
         color: '#787880',
         opacity: 1,
@@ -118,11 +117,8 @@ const useStyles = (theme) => ({
     p_Publiceveryonecansee: {
         top: 0,
         left: -70,
-        // width: 100,
         height: 10,
-        // textAlign: 'left',
         font: 'Bold 14px/19px Roboto',
-        // letterSpacing: 0.17,
         color: '#1C1D21',
         opacity: 1,
     },
@@ -147,7 +143,6 @@ const useStyles = (theme) => ({
     icon_upload: {
         fontSize: 100,
         textAlign: 'left',
-        //    width:13
     },
     icon_clander: {
         textAlign: 'left'
@@ -203,7 +198,6 @@ const useStyles = (theme) => ({
     div: {
         textAlign: 'center',
         backgroundColor: 'lightslategrey',
-        // borderStyle: 'solid',
         width: 124,
         height: 104
     },
@@ -255,8 +249,6 @@ const useStyles = (theme) => ({
         outline: 0,
         borderBottom: '1px solid #75798e',
         opacity: 1,
-        // '-webkit-appearance': 'none',
-        // margin:0
     },
     row: {
         display: 'flex',
@@ -289,12 +281,11 @@ const useStyles = (theme) => ({
 });
 
 
-class Logo extends Component {
+class Image extends Component {
     constructor(props) {
         super(props)
         this.state = {
             bgcolrPNG: '#fffff',
-            // rivki 16.09.20
             checkedSwitch: false,
             IsCollapse: false,
             logoYN: true,
@@ -303,7 +294,6 @@ class Logo extends Component {
     }
     handleChangeSwitch = () => {
         this.setState({ logoYN: !this.state.logoYN })
-            // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
             ;
         this.props.changeImageYOrN()
     }
@@ -332,8 +322,8 @@ class Logo extends Component {
     handleChangeComplete = (color) => {
         this.setState({ bgcolrPNG: color.hex });
     };
-    changeImageBorderRadiusImage = (e) => {
-        this.props.changeImageBorderRadiusImage(e)
+    changeBorderRadiusImage = (e) => {
+        this.props.changeBorderRadiusImage(e)
     }
     onChangeHandlerLogo(event) {
         if (event) {
@@ -342,20 +332,14 @@ class Logo extends Component {
 
                 this.props.changeImage(reader.result)
             }
-
             reader.readAsDataURL(event)
         }
-
     }
     render() {
         const { classes } = this.props
-
         const defaultProps3 = {
-            // width: 300,
             color: 'white'
-
         }
-
 
         return (
             <>
@@ -417,7 +401,7 @@ class Logo extends Component {
                                     <Box
                                         alignSelf="center">
                                         <div className={classes.div} >
-                                            <div class="image-upload">
+                                            <div className="image-upload">
                                                 <label for="logouug">
                                                     <img className="logoC" alt="" src={this.props.homeStoreDesign.imageImage ? this.props.homeStoreDesign.imageImage : tempImage} />
                                                 </label>
@@ -433,9 +417,8 @@ class Logo extends Component {
                                                     }}
                                                     onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
                                                 />
-
                                             </div>
-                                            <div id='lbError' class='warning'
+                                            <div id='lbError' className='warning'
                                                 style={{
                                                     position: 'relative',
                                                     color: 'red',
@@ -456,7 +439,6 @@ class Logo extends Component {
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
@@ -467,7 +449,7 @@ class Logo extends Component {
                                                 marks
                                                 min={0}
                                                 max={200}
-                                                getAriaValueText={this.props.changeImageBorderRadiusImage}
+                                                getAriaValueText={this.props.changeBorderRadiusImage}
                                                 valueLabelDisplay="auto"
                                                 className={classes.MuiSlider_root}
                                             />
@@ -479,7 +461,7 @@ class Logo extends Component {
                                                 type="number"
                                                 value={this.props.homeStoreDesign.ImageBorderRadiusImage ? this.props.homeStoreDesign.ImageBorderRadiusImage : '0'}
                                                 defaultValue={this.props.homeStoreDesign.ImageBorderRadiusImage}
-                                                onChange={(e) => this.props.changeImageBorderRadiusImage(e.target.value)}
+                                                onChange={(e) => this.props.changeBorderRadiusImage(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -487,10 +469,8 @@ class Logo extends Component {
                                             />
                                         </Box>
                                     </Box>
-
                                     <br></br>
                                     <FormLabel className={classes.textcontect}>Image Width</FormLabel>
-
                                     <Box flexDirection="row"
                                         display="flex"
                                         justifyContent="space-between"
@@ -532,12 +512,10 @@ class Logo extends Component {
                 </div></>
         )
     }
-
 }
 
 const mapStateToProps = (state) => {
     return {
-        // contactDetails: state.contactDetails.contactDetails,
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     };
 }
@@ -549,11 +527,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeCompanyName: (image) => dispatch(actions.setImageCompanyName(image)),
     changeImageWidth: (image) => dispatch(actions.setImageWidth(image)),
     changeImageHeight: (image) => dispatch(actions.setImageHeight(image)),
-    // changeImageBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
-    changeImageBorderRadiusImage: (image) => dispatch(actions.setImageBorderRadiusImage(image)),
-    // changeImageCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
-
+    changeBorderRadiusImage: (image) => dispatch(actions.setImageBorderRadius(image)),
 })
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Logo));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Image));
