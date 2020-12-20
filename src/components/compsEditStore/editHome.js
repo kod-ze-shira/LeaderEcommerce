@@ -37,15 +37,16 @@ class EditHome extends Component {
         }
     }
     // לבטל ארחרי השיו נוי של יהודית בסטור
-   componentDidMount(){
-                
+    componentDidMount() {
+
         this.props.getCategories();
 
-  }
+    }
 
     render() {
         return (
             <div>
+                {/*דיב של תמונת פתיחה שעליה כותרת פתיחה*/}
                 <div className="main section">
                     <div className="main__center center">
                         <div className="main__container">
@@ -112,23 +113,26 @@ class EditHome extends Component {
                             slick-initialized slick-slider">
                                 <Carousel className="carousel" itemsToShow={8}>
                                     {
+
+                                        // this.props.categories[0]?
                                         this.props.categories.map((item, index) => (
                                             <div className="categories__slide" key={index}>
-                                            {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
-                                            {/* //השארתי לינק אחד לדוגמא */}
-                                            {/* <Link className="categories__item" to="/0/category">
+                                                {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
+                                                {/* //השארתי לינק אחד לדוגמא */}
+                                                {/* <Link className="categories__item" to="/0/category">
                                                 <div className="categories__icon"><img className="categories__pic" src={shoppingBag} alt=""></img>
                                                 </div>
                                                 <div className="categories__text">On Sale</div>
                                             </Link> */}
-                                            <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
-                                                <div className="categories__icon"><img className="categories__pic" src={item.image?item.image:shoppingBag} alt=""></img>
+                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("CategoriesCongfigurator")}>
+                                                    <div className="categories__icon"><img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
+                                                    </div>
+                                                    <div className="categories__text">{item.categoryName}</div>
                                                 </div>
-                                                <div className="categories__text">{item.categoryName}</div>
                                             </div>
-                                        </div>
-    
+
                                         ))
+                                        // :<span>כרגע אין קטגוריות</span>
                                     }
                                 </Carousel>
                             </div>
@@ -269,8 +273,8 @@ class EditHome extends Component {
 const mapStateToProps = (state) => {
     debugger
     return {
-        
-        categories:state.categoriesReducer.categories,
+
+        categories: state.categoriesReducer.categories[0]?state.categoriesReducer.categories:[{categoryName:"foo",images:"",color:"yellow",products:[]},{categoryName:"foo",images:"",color:"yellow",products:[]}],
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
     }
@@ -280,8 +284,8 @@ const mapDispatchToProps = (dispatch) => ({
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
     changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
-// לבטל אחרי השינוי של יהודית
-    getCategories:()=>dispatch(actions.getAllCategories()) 
+    // לבטל אחרי השינוי של יהודית
+    getCategories: () => dispatch(actions.getAllCategories())
 
 
 })
