@@ -33,8 +33,8 @@ function CrudProducts(props) {
                                 btn.eq(index).addClass('active');
 
                                 debugger;
-                                tab.fadeOut();
-                                tab.eq(index).fadeIn();
+                                tab.hide();
+                                tab.eq(index).show();
                         });
                 }
         },[])
