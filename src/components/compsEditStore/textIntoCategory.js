@@ -11,7 +11,6 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 
 //הוספתי את זה
-// import  IconButton  from '@material-ui/core';
 //
 import Typography from '@material-ui/core/Typography';
 
@@ -240,8 +239,6 @@ const useStyles = (theme) => ({
         outline: 0,
         borderBottom: '1px solid #75798e',
         opacity: 1,
-        // '-webkit-appearance': 'none',
-        // margin:0
     },
     row: {
         display: 'flex',
@@ -282,10 +279,10 @@ class TextIntoCategory extends Component {
 
         }
     }
-    handleChangeSwitch = () => {
-        ;
-        this.props.changeTitleYOrN()
-    }
+    // handleChangeSwitch = () => {
+    //     ;
+    //     this.props.changeTitleYOrN()
+    // }
     IsOpenCollapse = () => {
         this.setState({
             IsCollapse: !this.state.IsCollapse
@@ -333,7 +330,7 @@ class TextIntoCategory extends Component {
                         <FormGroup className={classes.textField} >
                             {this.state.IsCollapse ?
                                 <div className={classes.row1}  >
-                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting   </h3>
+                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting Text Category Under Icon</h3>
                                     <div edge="start" >
                                         <label for="ColapseLogo">
                                             <KeyboardArrowUpIcon />
@@ -349,7 +346,7 @@ class TextIntoCategory extends Component {
                                 </div>
                                 :
                                 <div className={classes.row} >
-                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting of into category on picture </h3>
+                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting Text Category Under Icon </h3>
                                     <div edge="start">
                                         <label for="ColapseLogo">
                                             <KeyboardArrowDownIcon />
@@ -371,31 +368,6 @@ class TextIntoCategory extends Component {
                                     justify="space-between"
 
                                 >
-
-
-                                    <br></br>
-                                    <br></br>
-
-                                    <Box flexDirection="row"
-                                        display="flex"
-                                        justifyContent="space-between"
-                                    >
-                                        <Box
-                                            width={'80%'}
-                                        >
-                                            <FormLabel className={classes.textcontect}>Text title</FormLabel>
-                                        </Box>
-                                        <Box justifyContent="flex-end">
-                                            <AntSwitch checked={this.props.homeStoreDesign.titleYOrN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
-                                        </Box>
-                                    </Box>
-                                    <input type="text"
-                                        width={2}
-                                        InputProps={{ className: classes.multilineColor }}
-                                        onChange={(e) => this.props.changeTextTitle(e.target.value)}
-                                        placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleText.titleProduct}
-                                        className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
                                     <Box flexDirection="row"
@@ -415,7 +387,7 @@ class TextIntoCategory extends Component {
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeFont(e.target.value)}
                                         placeholder="To"
-                                        value={this.props.homeStoreDesign.titleFont.titleProduct}
+                                        value={this.props.homeStoreDesign.titleFont.textIntoCategory}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
@@ -427,45 +399,35 @@ class TextIntoCategory extends Component {
                                             width={'80%'}
                                         >
                                             <FormLabel className={classes.textcontect}>Text weight</FormLabel>
-
                                         </Box>
                                         <Box justifyContent="flex-end">
-
                                         </Box>
-
                                     </Box>
-
-
-
                                     <input type="text"
                                         width={2}
                                         InputProps={{ className: classes.multilineColor }}
                                         onChange={(e) => this.props.changeTextWeight(e.target.value)}
                                         placeholder="Add Company Name"
-                                        value={this.props.homeStoreDesign.titleTextWeight.titleProduct}
+                                        value={this.props.homeStoreDesign.titleTextWeight.textIntoCategory}
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
-
                                     <FormLabel className={classes.textcontect}>Text size</FormLabel>
 
                                     <Box flexDirection="row"
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
-
                                             <Slider
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize.titleProduct}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.textIntoCategory}
                                                 step={1}
                                                 marks
                                                 min={0}
-                                                max={200}
+                                                max={80}
                                                 getAriaValueText={this.props.changeTextSize}
                                                 valueLabelDisplay="auto"
                                                 className={classes.MuiSlider_root}
@@ -476,8 +438,8 @@ class TextIntoCategory extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleTextSize.titleProduct}
-                                                defaultValue={this.props.homeStoreDesign.titleTextSize.titleProduct}
+                                                value={this.props.homeStoreDesign.titleTextSize.textIntoCategory}
+                                                defaultValue={this.props.homeStoreDesign.titleTextSize.textIntoCategory}
                                                 onChange={this.changeTextSizein}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -493,7 +455,43 @@ class TextIntoCategory extends Component {
                                         <i class="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
                                         <i class="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
                                     </div>
+                                    <FormLabel className={classes.textcontect}>Border Radius Frame</FormLabel>
+                                    <br></br>
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
 
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.category}
+                                                step={1}
+                                                marks
+                                                min={0}
+                                                max={100}
+                                                getAriaValueText={this.props.cahngeBorderRadius}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.BorderRadius.category ? this.props.homeStoreDesign.BorderRadius.category : '0'}
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.category}
+                                                onChange={(e) => this.props.cahngeBorderRadius(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
 
 
                                     <br></br>
@@ -513,7 +511,7 @@ class TextIntoCategory extends Component {
 
 
                                             <Slider {...defaultProps3}
-                                                defaultValue={this.props.homeStoreDesign.titleLineHeight.titleProduct ? this.props.homeStoreDesign.titleLineHeight.titleProduct : '1.2'}
+                                                defaultValue={this.props.homeStoreDesign.titleLineHeight.textIntoCategory ? this.props.homeStoreDesign.titleLineHeight.textIntoCategory : '1.2'}
                                                 step={0.1}
                                                 marks
                                                 min={0.7}
@@ -533,8 +531,8 @@ class TextIntoCategory extends Component {
                                                 id="standard-number"
                                                 type="number"
                                                 disabled="disabled"
-                                                value={this.props.homeStoreDesign.titleLineHeight.titleProduct ? this.props.homeStoreDesign.titleLineHeight.titleProduct : '10'}
-                                                // defaultValue={this.props.videoDetails.logo.widthLogo}
+                                                value={this.props.homeStoreDesign.titleLineHeight.textIntoCategory ? this.props.homeStoreDesign.titleLineHeight.textIntoCategory : '10'}
+                                                // defaultValue={this.props.videoDetails.category.widthLogo}
                                                 onChange={(e) => this.props.changeTitleLineHeight(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -559,7 +557,7 @@ class TextIntoCategory extends Component {
                                             alignSelf="center"
                                         >
                                             <HuePicker
-                                                color={this.props.homeStoreDesign.titleColorText.titleProduct}
+                                                color={this.props.homeStoreDesign.titleColorText.textIntoCategory}
                                                 onChangeComplete={this.changeTitleColorText}
                                                 width={200}
                                                 height={6}
@@ -570,8 +568,8 @@ class TextIntoCategory extends Component {
                                                 textAlign="center"
                                                 id="standard-number"
                                                 type="number"
-                                                value={this.props.homeStoreDesign.titleColorText.titleProduct}
-                                                defaultValue={this.props.homeStoreDesign.titleColorText.titleProduct}
+                                                value={this.props.homeStoreDesign.titleColorText.textIntoCategory}
+                                                defaultValue={this.props.homeStoreDesign.titleColorText.textIntoCategory}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -591,19 +589,25 @@ class TextIntoCategory extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
+        // logoDesign: state.logoReducer.logoDesign
+
     };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "titleProduct", e })),
-    changeFont: (e) => dispatch(actions.setTitleFont({ k: "titleProduct", e })),
-    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight({ k: "titleProduct", e })),
-    changeTextSize: (e) => dispatch(actions.setTitleTextSize({ k: "titleProduct", e })),
-    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment({ k: "titleProduct", e })),
-    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "titleProduct", e })),
-    changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "titleProduct", e })),
-    changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
+    changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "textIntoCategory", e })),
+    changeFont: (e) => dispatch(actions.setTitleFont({ k: "textIntoCategory", e })),
+    changeTextWeight: (e) => dispatch(actions.setTitleTextWeight({ k: "textIntoCategory", e })),
+    changeTextSize: (e) => dispatch(actions.setTitleTextSize({ k: "textIntoCategory", e })),
+    changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment({ k: "textIntoCategory", e })),
+    changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "textIntoCategory", e })),
+    changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "textIntoCategory", e })),
+    // changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo({ key: "category", image })),
+    cahngeBorderRadius: (image) => dispatch(actions.setBorderRadius({ key: "category", image })),
+
+
+    // changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
 })
 
 

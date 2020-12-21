@@ -38,6 +38,8 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
 
                 },
                 // titleTextWeight: "",
@@ -46,6 +48,9 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
+
 
                 },
 
@@ -53,6 +58,8 @@ const initialState = {
                         onThePicture: "50",
                         titleCategory: "20",
                         titleProduct: "20",
+                        textIntoCategory: "16",
+
 
                 },
                 // titleAlignment: "",
@@ -60,6 +67,8 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
 
                 },
                 // titleWidthText: "",
@@ -69,9 +78,11 @@ const initialState = {
                 // },
                 // titleLineHeight: "",
                 titleLineHeight: {
-                        onThePicture: "",
-                        titleCategory: "",
-                        titleProduct: "",
+                        onThePicture: "1.2",
+                        titleCategory: "1.2",
+                        titleProduct: "1.2",
+                        textIntoCategory: "1.2",
+
 
                 },
                 // titleColorText: "",
@@ -79,6 +90,7 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
 
                 },
                 // aboutUsTitleYOrN: true,
@@ -86,14 +98,17 @@ const initialState = {
                 //         onThePicture:true,
                 //         titleCategory: true,
                 // },
-
+                BorderRadius: {
+                        category: "24",
+                        pictureFrame: "64",
+                }
 
         }
 }
 
 
 
-        //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+//כל הפונקציות שישנו נתונים שהכנסתי לסטייט
 const homeDesign = {
         //פונקציה זו מבצעת החלפה של הקומפוננטות בתוך הקונפיגורטור
         setCurrentComponent(state, action) {
@@ -118,6 +133,12 @@ const homeDesign = {
         setImageHeight(state, action) {
                 state.homeStoreDesign.ImageHeight = action.payload;
         },
+        ///////////////////////////////////////////////////
+        setBorderRadius(state, action) {
+                state.homeStoreDesign.BorderRadius[action.payload.key] = action.payload.image;
+        },
+        //////////////////////////////////////////////////////
+
 
         // title פונקציות לשינוי כיתוב העתקתי אותן מקומפוננטת  
         // מכאן והלאה פונקציות לעריכת טקסט. משמש לכותרות הקטגוריה,המוצרים 

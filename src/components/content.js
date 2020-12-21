@@ -5,6 +5,7 @@ import RoutingMain from './compsEditStore/routingMain';
 import UserHome from './userHome'
 import ElasticCarousel from './carousel'
 import Admin from './admin'
+import {logOut} from '../services/firebase'
 
 
 class Content extends Component {
@@ -12,6 +13,7 @@ class Content extends Component {
     render() {
         return (
             <Router>
+                <button className="btn btn-success" onClick={logOut}>Log Out</button>
                 <div className="Content">
                     <Switch>
                         <Route path="/0/userhome/:username">

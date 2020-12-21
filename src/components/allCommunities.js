@@ -23,7 +23,7 @@ function AllCommunities(props) {
                 {props.communities.map(item => {
                     return (
                         <Link to={`/community/${item._id}`}>
-                            <li classNameName="float-left m-3" key={item._id}>
+                            <li className="float-left m-3" key={item._id}>
                                 <div className="card" style={{ width: 22 + "rem" }}>
                                     {/* להביא את לוגו הקהילה */}
                                     <img src="../assets/logo.png" className="card-img-top" alt="Community" />

@@ -1201,7 +1201,7 @@ body.dark .btn_border:hover {
 .categories__item {
   display: block;
   padding: 28px 10px;
-  border-radius: 24px;
+  /* border-radius: 24px; */
   background: #F6F7FB;
   text-align: center;
   -webkit-transition: opacity .25s;
