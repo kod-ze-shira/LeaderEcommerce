@@ -5,8 +5,7 @@ import { actions } from '../../redux/action'
  function AddProduct (props)  {
 
   useEffect(()=>{
-                
-    props.getCategories();
+
 
 })
 
@@ -16,7 +15,7 @@ import { actions } from '../../redux/action'
         description:'',
         SKU:'',
         amount:'',  
-         category:'',
+        //  category:'',
          price:'', 
          //לא עובד -צריך להביא תמונות מהשרת 
         //  images:'',
@@ -47,12 +46,7 @@ import { actions } from '../../redux/action'
         // event.preventDefault();
         console.log(myValues)
         props.createNewProduct(myValues);
-        //   aService.CreateProduct(myValues).then((result)=>{
-        //     console.log(result)
-        //     props.cb();
-        //     // .history.goBack();
-        //     debugger
-        // })
+        props.getProducts();
     }
 
     return(
@@ -149,6 +143,7 @@ export default connect(
   (dispatch)=>{
           return {
                   getCategories:()=>dispatch(actions.getAllCategories()),
+                  getProducts:()=>dispatch(actions.getAllProducts()),
                   createNewProduct:(n)=>dispatch(actions.addNewProducts(n)) 
           }
   }             

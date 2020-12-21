@@ -43,10 +43,10 @@ function Admin() {
                         </ul>
                         <div className="tab-content" id="myTabContent">
                                 <div className="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <CrudCategory />
+                                       
                                 </div>
                                 <div className="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <CrudProducts />
+                                        <CrudProducts /> <CrudCategory />
                                 </div>
                                 <div className="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                         </div>
