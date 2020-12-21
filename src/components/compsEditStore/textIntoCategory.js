@@ -455,7 +455,43 @@ class TextIntoCategory extends Component {
                                         <i class="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
                                         <i class="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
                                     </div>
+                                    <FormLabel className={classes.textcontect}>Border Radius Frame</FormLabel>
+                                    <br></br>
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
 
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.category}
+                                                step={1}
+                                                marks
+                                                min={0}
+                                                max={100}
+                                                getAriaValueText={this.props.cahngeBorderRadius}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.BorderRadius.category ? this.props.homeStoreDesign.BorderRadius.category : '0'}
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.category}
+                                                onChange={(e) => this.props.cahngeBorderRadius(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
 
 
                                     <br></br>
@@ -496,7 +532,7 @@ class TextIntoCategory extends Component {
                                                 type="number"
                                                 disabled="disabled"
                                                 value={this.props.homeStoreDesign.titleLineHeight.textIntoCategory ? this.props.homeStoreDesign.titleLineHeight.textIntoCategory : '10'}
-                                                // defaultValue={this.props.videoDetails.logo.widthLogo}
+                                                // defaultValue={this.props.videoDetails.category.widthLogo}
                                                 onChange={(e) => this.props.changeTitleLineHeight(e.target.value)}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -550,7 +586,9 @@ class TextIntoCategory extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
+        // logoDesign: state.logoReducer.logoDesign
+
     };
 }
 
@@ -562,6 +600,10 @@ const mapDispatchToProps = (dispatch) => ({
     changeTitleAlignment: (e) => dispatch(actions.setTitleAlignment({ k: "textIntoCategory", e })),
     changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "textIntoCategory", e })),
     changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "textIntoCategory", e })),
+    // changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo({ key: "category", image })),
+    cahngeBorderRadius: (image) => dispatch(actions.setBorderRadius({ key: "category", image })),
+
+
     // changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
 })
 

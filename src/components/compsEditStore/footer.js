@@ -49,14 +49,14 @@ class Footer extends Component {
                             <div className="footer__col">
                                 <div className="footer__category">Categories</div>
                                 <div className="footer__menu">
-                                    <Link className="footer__link" to="/edit/category">On Sale</Link>
-                                    <Link className="footer__link" to="/edit/category">Featured</Link>
-                                    <Link className="footer__link" to="/edit/category">Masks</Link>
-                                    <Link className="footer__link" to="/edit/category">Eye Care</Link>
-                                    <Link className="footer__link" to="/edit/category">Moisturizers</Link>
-                                    <Link className="footer__link" to="/edit/category">Treatments</Link>
-                                    <Link className="footer__link" to="/edit/category">Night Care</Link>
-                                    <Link className="footer__link" to="/edit/category">Sun Care</Link>
+                                    <Link className="footer__link" to="/0/category">On Sale</Link>
+                                    <Link className="footer__link" to="/0/category">Featured</Link>
+                                    <Link className="footer__link" to="/0/category">Masks</Link>
+                                    <Link className="footer__link" to="/0/category">Eye Care</Link>
+                                    <Link className="footer__link" to="/0/category">Moisturizers</Link>
+                                    <Link className="footer__link" to="/0/category">Treatments</Link>
+                                    <Link className="footer__link" to="/0/category">Night Care</Link>
+                                    <Link className="footer__link" to="/0/category">Sun Care</Link>
                                 </div>
                             </div>
                             <div><h1>Contact Us</h1><br />

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// import '../../App.css';
 
 class Header extends Component {
     render() {
@@ -10,7 +9,7 @@ class Header extends Component {
             <div>
                 <header className="header js-header">
                     <div className="header__center center">
-                      {
+                        {
                             <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                                 {this.props.logoDesign.LogoYOrN === true ?
                                     <img className="" src={this.props.logoDesign.logo} alt=""
