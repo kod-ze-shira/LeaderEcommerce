@@ -272,7 +272,7 @@ const useStyles = (theme) => ({
     }
 });
 
-class TextTitleOfProduct extends Component {
+class TextIntoCategory extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -349,7 +349,7 @@ class TextTitleOfProduct extends Component {
                                 </div>
                                 :
                                 <div className={classes.row} >
-                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting of product </h3>
+                                    <h3 edge="end" className={classes.titleSettings}>  Title Setting of into category on picture </h3>
                                     <div edge="start">
                                         <label for="ColapseLogo">
                                             <KeyboardArrowDownIcon />
@@ -607,4 +607,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(TextTitleOfProduct));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(TextIntoCategory));

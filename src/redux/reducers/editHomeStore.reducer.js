@@ -27,6 +27,7 @@ const initialState = {
                 // line-height: 1.4;
                 // font-weight: 700;
 
+                //   לכל משתנה כדי לא להכפיל את כל הרדוסרJSON  יצרתי אוביקט
                 titleText:
                 {
                         onThePicture: "",
@@ -89,9 +90,12 @@ const initialState = {
 
         }
 }
-const homeDesign = {
+
+
+
         //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
-        //נקבל אוביקט שמכיל שם של קומפוננטה ואת הערך הרצוי
+const homeDesign = {
+        //פונקציה זו מבצעת החלפה של הקומפוננטות בתוך הקונפיגורטור
         setCurrentComponent(state, action) {
                 state.homeStoreDesign.currentComponent = action.payload
         },
@@ -114,17 +118,21 @@ const homeDesign = {
         setImageHeight(state, action) {
                 state.homeStoreDesign.ImageHeight = action.payload;
         },
-        //מכאן פונקציות לעריכת קרוסלת הקטגוריות
+
         // title פונקציות לשינוי כיתוב העתקתי אותן מקומפוננטת  
+        // מכאן והלאה פונקציות לעריכת טקסט. משמש לכותרות הקטגוריה,המוצרים 
+        // ולכיתוב שמעל התמונה בדף הבית
+
+        // setTitleFont(state, action) {
+        //         state.homeStoreDesign.titleFont = action.payload;
+        // },
+        //הפונקציות כתובות בצורה של מערך מכיוון שאותה פונקציה משמשת להרבה קומפוננטות אז כל פעם אני שולחת את שם הקומפוננטה הרצויה 
         setTitleText(state, action) {
                 state.homeStoreDesign.titleText[action.payload.k] = action.payload.e;
         },
         setTitleFont(state, action) {
                 state.homeStoreDesign.titleFont[action.payload.k] = action.payload.e;
         },
-        // setTitleFont(state, action) {
-        //         state.homeStoreDesign.titleFont = action.payload;
-        // },
         setTitleTextWeight(state, action) {
                 state.homeStoreDesign.titleTextWeight[action.payload.k] = action.payload.e;
         },
