@@ -18,11 +18,8 @@
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
-<<<<<<< HEAD
     "clone-deep": "^4.0.1",
-=======
     "fa-icons": "^0.2.0",
->>>>>>> 0c7cc62a6ee0064e6eceb66fa506a848988a9cf6
     "firebase": "^8.1.2",
     "init": "^0.1.2",
     "jquery": "^3.5.1",
