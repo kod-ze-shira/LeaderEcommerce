@@ -12,10 +12,6 @@ import cloneDeep from 'lodash/cloneDeep';
 const useStyles = (theme) => ({
 })
 
-
-
-
-
 function CrudProducts(props) {
 
         const [file, setFile] = useState()
@@ -209,7 +205,9 @@ function CrudProducts(props) {
                 {/* <signOut/> */}
                 <div className="container__search search js-search mySearch">
                 <button className="search__action action js-search-open">
-                <i className="la la-search "></i></button>
+        
+        
+               <i className="la la-search" onClick={()=>{props.setcomponnet("search")}}></i></button>
                 <div className="search__dropdown js-search-dropdown">
                 <div className="search__field"><input className="search__input js-search-input" type="search" placeholder="Start typing…" />
                 <div className="search__icon"><i className="la la-search "></i></div>
@@ -253,7 +251,9 @@ function CrudProducts(props) {
                 <div className="search__backdrop backdrop js-search-backdrop"></div>
                 </div>
                 <div className="container__new new js-new">
-                <button className="new__action action js-new-open" onClick={console.log("new open")}><i className="la la-plus-circle "></i></button>
+                <button className="new__action action js-new-open" onClick={()=>{props.setcomponnet("addProduct")}}>
+                        <i className="la la-plus-circle "></i>
+                        </button>
                 <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
                 <div className="new__icon"><i className="la la-toolbox "></i></div>
                 <div className="new__title">New Project</div>
@@ -282,32 +282,11 @@ function CrudProducts(props) {
                 <div className="container__body">
                 <div className="panel js-panel">
                 <div className="panel__head panel__head_line">
-                <div className="panel__group btn-group btn-group_tabs"><button className="btn btn_light btn_icon js-panel-btn active"><i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
-                <div className="panel__group">
-                <div className="sort js-sort">
-                <div className="sort__head js-sort-head">
-                <div className="sort__icon"><i className="la la-filter "></i></div>
-                <div className="sort__label">sort:</div>
-                <div className="sort__selected js-sort-selected">A-Z</div>
-                <div className="sort__arrow"><i className="la la-angle-down "></i></div>
-                </div>
-                <div className="sort__dropdown js-sort-dropdown">
-                <div className="sort__title">Sort projects by</div>
-                <div className="sort__items">
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" onChange={console.log("checked")} /><span className="switch__content">A-Z</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Budget</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Assigned Tasks</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Progress</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Date Created</span></label></div>
-                </div>
-                <div className="sort__foot"><button className="sort__btn btn btn_light js-sort-apply">Apply</button></div>
-                </div>
-                <div className="sort__backdrop backdrop js-sort-backdrop"></div>
-                </div>
-                </div>
-                </div>
+                <div className="panel__group btn-group btn-group_tabs">
+                        <button className="btn btn_light btn_icon js-panel-btn active">
+                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
+          </div>
                 <div className="panel__body">
-                {/* PpAaNnEeLl !1 */}
                 <div className="panel__tab js-panel-tab"
                 style={{ display: 'block' }}>
                 <div className="data data_list">
@@ -344,7 +323,10 @@ function CrudProducts(props) {
                                         <div className="data__row" >
                                         <div className="data__cell data__cell_xl">
                                         <div className="data__main">
-                                        <div className="data__effect mobile-hide"><label className="switch"><input className="switch__input" type="checkbox" /><span className="switch__content"></span></label></div>
+                                        <div className="data__effect mobile-hide"><label className="switch">
+                                                <input className="switch__input" type="button" onClick={()=>{props.delete(item._id);props.getAllProducts();} }/>
+                                                <span className="switch__content">
+                                                        </span></label></div>
                                         <div className="data__preview">
                                                 <label className="prdct_img" for="fileInput">
                                                         <img alt="product image" src={item.images[0]?item.images[0]:productImg}
@@ -479,6 +461,7 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         </div>
+                      
                         </div>
                         </>
                         )
@@ -499,7 +482,10 @@ function CrudProducts(props) {
                                         getAllProducts:()=>dispatch(actions.getAllProducts()),
                                         addNewImageFromDbP:(f,t)=>dispatch(actions.addNewImageFromDb(f,t)),
                                         changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p})),
-                                        setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems))
+                                        setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),
+                                     setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p})),
+                                        delete:(i)=>{dispatch(actions.deleteProduct(i))}
                                 }
                         }
                         

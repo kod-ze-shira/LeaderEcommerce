@@ -7,9 +7,6 @@ function CrudCategory(props) {
 
 
         useEffect(()=>{
-                
-        //       props.getCategories();
-
         })
         
         return (
@@ -75,7 +72,9 @@ function CrudCategory(props) {
                 <div className="search__backdrop backdrop js-search-backdrop"></div>
                 </div>
                 <div className="container__new new js-new">
-                <button className="new__action action js-new-open" onClick={console.log("new open")}><i className="la la-plus-circle "></i></button>
+                <button className="new__action action js-new-open" onClick={()=>{props.setcomponnet("addCategory")}}>
+                        <i className="la la-plus-circle "></i>
+                        </button>
                 <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
                 <div className="new__icon"><i className="la la-toolbox "></i></div>
                 <div className="new__title">New Project</div>
@@ -205,7 +204,8 @@ function CrudCategory(props) {
                 },
                 (dispatch)=>{
                         return {
-                                getCategories:()=>dispatch(actions.getAllCategories()) 
+                                getCategories:()=>dispatch(actions.getAllCategories()),
+                                setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r))
                         }
                 }             
                 )(CrudCategory);

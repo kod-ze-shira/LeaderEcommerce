@@ -140,7 +140,7 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
  
     if (action.type === 'GET_ALL_CATEGORIES') {
-
+debugger;
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
                 console.log("crddddddd", res.data);
@@ -151,17 +151,15 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
-    if (action.type === 'GET_ALL_PRODUCTS') {
+    if (action.type === 'GET_ALL_PRODUCTS') { 
         axios.get('https://community.leader.codes/api/products')
+       
         .then(res => {
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts(res.data)) 
-            dispatch(actions.setFilteredItems(res.data))
         })
     }
-
-    return next(action);
-};
+}
 
 export const newStore = ({ dispatch, getState }) => next => action => {
     
@@ -181,6 +179,54 @@ export const newStore = ({ dispatch, getState }) => next => action => {
         fetch("http://localhost:3000/register/addStore", requestOptions)
         .then(response => response.json())
         .then(result => {console.log(result); dispatch(actions.setStore(result))})
+        .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
+export const newProduct= ({ dispatch, getState }) => next => action => {
+    
+    if (action.type === 'ADD_NEW_PRODUCTS') {
+        debugger;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"SKU":action.payload.SKU,"category":action.payload.category,"price":action.payload.price,"name":action.payload.name,"description":action.payload.description,"amount":action.payload.amount});
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/products/newProduct", requestOptions)
+        .then()
+        .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+export const createNewCategory= ({ dispatch, getState }) => next => action => {
+    
+    if (action.type === 'CREATE_NEW_CATEGORY') {
+        debugger;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"categoryName":action.payload.categoryName,"color":action.payload.color});
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/categories/newCategoty", requestOptions)
+        .then(response => response.json())
+        //.then(result => {console.log(result); dispatch(actions.setStore(result))})
         .catch(error => console.log('error', error));
     }
 
@@ -225,5 +271,15 @@ export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
     }
     return next(action)
 }
+
+export const deleteProduct = ({ dispatch, getState }) => next => action => {
+     if (action.type === 'DELETE_PRODUCT') {
+         axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
+        .then(res=>{console.log("get ",res.data);dispatch(actions.getCommunity({community:res.data})) });
+    }
+
+    return next(action);
+};
+
 
 

@@ -14,37 +14,109 @@ const initialState = {
                 ImageBorderRadiusImage: "0",
                 ImageWidth: "50",
                 ImageHeight: "",
-                currentComponent: "",
+                // currentComponent: "",
 
-                titleTextTitle:"",
-                titleFont:"",
-                titleTextWeight:"700",
-                titleTextSize:"40",
-                titleLineHeight:"1.4",
-                titleColorText:"",
-                titleAlignment:"",
-// font-size: 40px;
-// line-height: 1.4;
-// font-weight: 700;
+                // titleTextTitle: "",
+                // titleFont: "",
+                // titleTextWeight: "700",
+                // titleTextSize: "40",
+                // titleLineHeight: "1.4",
+                // titleColorText: "",
+                // titleAlignment: "",
+                // font-size: 40px;
+                // line-height: 1.4;
+                // font-weight: 700;
+
+                //   לכל משתנה כדי לא להכפיל את כל הרדוסרJSON  יצרתי אוביקט
+                titleText:
+                {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                },
+                titleFont: {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                        textIntoCategory: "",
+
+
+                },
+                // titleTextWeight: "",
+                //לברר מה בדיוק מבצע
+                titleTextWeight: {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                        textIntoCategory: "",
+
+
+
+                },
+
+                titleTextSize: {
+                        onThePicture: "50",
+                        titleCategory: "20",
+                        titleProduct: "20",
+                        textIntoCategory: "16",
+
+
+                },
+                // titleAlignment: "",
+                titleAlignment: {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                        textIntoCategory: "",
+
+
+                },
+                // titleWidthText: "",
+                // titleWidthText: {
+                //         onThePicture: "",
+                //         titleCategory: "",
+                // },
+                // titleLineHeight: "",
+                titleLineHeight: {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                        textIntoCategory: "",
+
+
+                },
+                // titleColorText: "",
+                titleColorText: {
+                        onThePicture: "",
+                        titleCategory: "",
+                        titleProduct: "",
+                        textIntoCategory: "",
+
+                },
+                // aboutUsTitleYOrN: true,
+                // aboutUsTitleYOrN: {
+                //         onThePicture:true,
+                //         titleCategory: true,
+                // },
 
 
         }
 }
+
+
+
+//כל הפונקציות שישנו נתונים שהכנסתי לסטייט
 const homeDesign = {
-        //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+        //פונקציה זו מבצעת החלפה של הקומפוננטות בתוך הקונפיגורטור
+        setCurrentComponent(state, action) {
+                state.homeStoreDesign.currentComponent = action.payload
+        },
+        //מכאן והלאה כל הפונקציות של עריכת תמונת החנות
         setImageYOrN(state, action) {
                 state.homeStoreDesign.imageYOrN = !state.homeStoreDesign.imageYOrN;
         },
         setImage(state, action) {
                 state.homeStoreDesign.imageImage = action.payload;
-        }, 
-        setTitleTextTitle(state,action){
-        
-                state.homeStoreDesign.titleTextTitle=action.payload;
-                
-            },
-        setCurrentComponent(state, action) {
-                state.homeStoreDesign.currentComponent = action.payload
         },
         setImageCompanyName(state, action) {
                 state.homeStoreDesign.ImageCompanyName = action.payload;
@@ -58,6 +130,43 @@ const homeDesign = {
         setImageHeight(state, action) {
                 state.homeStoreDesign.ImageHeight = action.payload;
         },
+
+        // title פונקציות לשינוי כיתוב העתקתי אותן מקומפוננטת  
+        // מכאן והלאה פונקציות לעריכת טקסט. משמש לכותרות הקטגוריה,המוצרים 
+        // ולכיתוב שמעל התמונה בדף הבית
+
+        // setTitleFont(state, action) {
+        //         state.homeStoreDesign.titleFont = action.payload;
+        // },
+        //הפונקציות כתובות בצורה של מערך מכיוון שאותה פונקציה משמשת להרבה קומפוננטות אז כל פעם אני שולחת את שם הקומפוננטה הרצויה 
+        setTitleText(state, action) {
+                state.homeStoreDesign.titleText[action.payload.k] = action.payload.e;
+        },
+        setTitleFont(state, action) {
+                state.homeStoreDesign.titleFont[action.payload.k] = action.payload.e;
+        },
+        setTitleTextWeight(state, action) {
+                state.homeStoreDesign.titleTextWeight[action.payload.k] = action.payload.e;
+        },
+        setTitleTextSize(state, action) {
+                state.homeStoreDesign.titleTextSize[action.payload.k] = action.payload.e;
+        },
+        setTitleAlignment(state, action) {
+                state.homeStoreDesign.titleAlignment[action.payload.k] = action.payload.e;
+        },
+        // setTitleWidthText(state, action) {
+        //         state.homeStoreDesign.titleWidthText[action.payload.k] = action.payload.e;
+        // },
+        setTitleLineHeight(state, action) {
+                state.homeStoreDesign.titleLineHeight[action.payload.k] = action.payload.e;
+        },
+        setTitleColorText(state, action) {
+                state.homeStoreDesign.titleColorText[action.payload.k] = action.payload.e;
+        },
+        // setAboutUsTitleYOrN(state, action) {
+        //         state.homeStoreDesign.aboutUsTitleYOrN = !state.homeStoreDesign.aboutUsTitleYOrN;
+        // },
+
 
 }
 export default produce((state, action) => createReducer(state, action, homeDesign), initialState);
