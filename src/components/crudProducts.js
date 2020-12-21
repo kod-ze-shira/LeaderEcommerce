@@ -5,6 +5,8 @@ import { actions } from '../redux/action'
 import './crudProducts.css';
 import $ from 'jquery'
 import productImg from '../assets/products/product-pic-7.png'
+import cloneDeep from 'lodash/cloneDeep';
+
 
 //1
 const useStyles = (theme) => ({
@@ -19,121 +21,102 @@ function CrudProducts(props) {
         const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
         useEffect(() => {
-                props.getAllProducts();
+                var panel = $('.js-panel');
+                if (panel.length) {
+                        var btn = panel.find('.js-panel-btn, .js-panel-action'),
+                                        tab = panel.find('.js-panel-tab');
+        
+                        btn.on('click', function(){
+                                var index = $(this).index();
+        
+                                btn.removeClass('active');
+                                btn.eq(index).addClass('active');
 
-                // // search
-                // (function(){
-                // 	var search = $('.js-search');
-                // 	if (search.length) {
-                // 		var open = search.find('.js-search-open'),
-                // 				input = search.find('.js-search-input'),
-                // 				dropdown = search.find('.js-search-dropdown'),
-                // 				results = search.find('.js-search-results'),
-                // 				backdrop = search.find('.js-search-backdrop');
+                                debugger;
+                                tab.fadeOut();
+                                tab.eq(index).fadeIn();
+                        });
+                }
+        },[])
 
-                // 		open.on('click', function(){
-                // 			search.addClass('open');
-                // 			input.focus();
-                // 		});
-
-                // 		input.on('keyup', function(){
-                // 			if ($(this).val().length >= 3) {
-                // 				results.addClass('visible');
-                // 			} else {
-                // 				results.removeClass('visible');
-                // 			}
-                // 		});
-
-                // 		backdrop.on('click', function(){
-                // 			search.removeClass('open');
-                // 		});
-                // 	}
-                // }());
-
-                // // sort
-                // (function(){
-                // 	debugger;
-                // 	var sort = $('.js-sort');
-                // 	if (sort.length) {
-                // 		var head = sort.find('.js-sort-head'),
-                // 				selected = sort.find('.js-sort-selected'),
-                // 				dropdown = sort.find('.js-sort-dropdown'),
-                // 				switch_ = sort.find('.js-sort-switch'),
-                // 				apply = sort.find('.js-sort-apply'),
-                // 				backdrop = sort.find('.js-sort-backdrop');
-
-                // 		head.on('click', function(){
-                // 			sort.addClass('open');
-                // 		});
-
-                // 		switch_.on('change', function(){
-                // 			selected.text($(this).find('span').text());
-                // 		});
-
-                // 		apply.on('click', function(){
-                // 			sort.removeClass('open');
-                // 		});
-
-                // 		backdrop.on('click', function(){
-                // 			sort.removeClass('open');
-                // 		});
-                // 	}
-                // }());
+        let filteredProducts2=[];
+        let flag=false;
 
 
-                // // new
-                // (function(){
-                // 	var _new = $('.js-new');
-                // 	if (_new.length) {
-                // 		var open = _new.find('.js-new-open'),
-                // 				dropdown = _new.find('.js-new-dropdown'),
-                // 				backdrop = _new.find('.js-new-backdrop');
+        function changeFromListToGrid(){}
 
-                // 		open.on('click', function(){
-                // 			_new.toggleClass('open');
-                // 		});
+        function searchConversations(searchText) {
 
-                // 		backdrop.on('click', function(){
-                // 			_new.removeClass('open');
-                // 		});
-                // 	}
-                // }());
+                filteredProducts2=[];
+                // let products2=props.products;
+                  props.products.map(item => {
+
+                      //if the groupName contains the searchTxt
+                      if (item.name != undefined && item.name.toLowerCase().indexOf(searchText) > -1) {
+                         console.log(item.name);
+                         let prod=cloneDeep(item)
+                         filteredProducts2.push(prod);
+                         flag=true;
+                        //  props.setSearchReasult(this.filteredHangouts)     
+                  }
+                })
+                if(!flag)
+                        filteredProducts2=props.products;
+                console.log("filteredProducts2",filteredProducts2);
+                props.setSearchReasult(filteredProducts2)     
+        }
 
 
-        })
+        function search (eve) {
 
-        const onChangeHandlerImage = (event,thisi) => {
-                console.log("this",thisi);
-                // if (event) {
-                //     let reader = new FileReader();
-                //     reader.onloadend = () => {
-                //         props.changeProductImage(index,reader.result)
-                //     }
-                //     console.log("img",props.products[index]);
-                //     reader.readAsDataURL(event)
-                // }
+                if (eve != "") {
+                    console.log(eve);
+                    searchConversations(eve)
+                } 
+                else {      
+                  filteredProducts2=props.products 
+                  props.setSearchReasult(filteredProducts2)
+                }
+            }
+            
+            let i=0;
+
+        const onChangeHandlerImage = (event,thiss) => {
+                console.log("this",thiss.index());
+                debugger;
+                if (event) {
+                    let reader = new FileReader();
+                    reader.onloadend = () => {
+                            debugger;
+                            props.changeProductImage(0,reader.result)
+                            console.log("img",props.products[0]);
+
+                    }
+                    reader.readAsDataURL(event)
+                }
+                props.setSearchReasult(props.products);
     
             }
 
-        const onChangeHandlerImage2 = (e) => {
-        
-                console.log(e)
-                const reader1 = new FileReader();
-                // const file = e
-                reader1.onloadend = () => {
-                        setFile(reader1.result);
-                        console.log("reader111", reader1.result);
-                };
-                reader1.readAsDataURL(e);
-                // var fileToUpload = e
-                var myFile = new FormData();
-                console.log("upload", e);
-                myFile.append("file", e);
-                console.log("myfile", myFile);
-                // if (!props.rowToEdit) {
-                props.addNewImageFromDbP({ f: myFile, t: "title" });
-                // }
-        }
+        // const onChangeHandlerImage2 = (e) => {
+
+        //         console.log(e)
+        //         const reader1 = new FileReader();
+        //         // const file = e
+        //         reader1.onloadend = () => {
+        //                 setFile(reader1.result);
+        //                 console.log("reader111", reader1.result);
+        //         };
+        //         reader1.readAsDataURL(e);
+        //         // var fileToUpload = e
+        //         var myFile = new FormData();
+        //         console.log("upload", e);
+        //         myFile.append("file", e);
+        //         console.log("myfile", myFile);
+        //         // if (!props.rowToEdit) {
+        //         props.addNewImageFromDbP({ f: myFile, t: "title" });
+        //         // }
+        // }
 
         return (
                 <>
@@ -353,7 +336,10 @@ function CrudProducts(props) {
                 </div>
                 </div>
                 <div className="data__body">
-                        {props.products.map((item, index) => (
+                        <input type="search" 
+                        onChange={(e) => { search(e.target.value)}}
+                        ></input>
+                        {props.filteredProducts.map((item, index) => (
                         <div className="data__item" key={index}>
                                         <div className="data__row" >
                                         <div className="data__cell data__cell_xl">
@@ -374,7 +360,7 @@ function CrudProducts(props) {
                                                                 display: 'none',
                                                                 cursor: 'pointer'
                                                         }}
-                                                        onChange={(e) => onChangeHandlerImage(e.target.files[0],this)}
+                                                        onChange={(e) => {onChangeHandlerImage(e.target.files[0],this)}}
                                                 />
                 {/* 
                                                 <div className="col-md-12 ml-15">
@@ -430,7 +416,7 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         {/* gggrrriiiddd */}
-                                                                <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
+                        <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
                         <div className="data data_grid">
                         <div className="data__container">
                         <div className="data__head">
@@ -450,33 +436,35 @@ function CrudProducts(props) {
                         </div>
                         </div>
                         <div className="data__body">
-                        {props.products.map((item, index) => (
-                                
+                        {console.log("filteredProducts",props.filteredProducts)}
+                        {props.filteredProducts.map((item, index) => (
+                                // <h1>hello</h1>
                                 // if(index<7){}
-                                <div className="data__item">
-                        <div className="data__corner">
-                          <button className="action action_stroke"><i className="la la-ellipsis-h "></i></button></div>
-                        <div className="data__corner data__corner_left"><label className="switch"><input className="switch__input" type="checkbox"/><span className="switch__content"></span></label></div>
-                        <div className="data__row">
-                          <div className="data__cell">
-                            <div className="data__main">
-                              <div className="data__preview"><img className="data__pic" src="img/user-1.jpg" alt="Product"/></div>
-                              <div className="data__wrap">
-                        <div className="data__content"><strong>{item.name}</strong></div>
-                        <div className="data__label">SKU {item.SKU}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="data__cell">
-                            <div className="data__content"><strong>4.2</strong> / 5.0</div>
-                            <div className="data__stars"><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star "></i><i className="la la-star active"></i></div>
-                          </div>
-                          <div className="data__foot">
-                            <div className="data__box"><strong>1.368</strong></div>
-                        <div className="data__box"><strong>${item.price}</strong></div>
-                          </div>
-                        </div>
+                                <div class="data__item">
+                                <div class="data__corner">
+                                <button class="action action_stroke"><i class="la la-ellipsis-h "></i></button></div>
+                                <div class="data__corner data__corner_left"><label class="switch"><input class="switch__input" type="checkbox"/><span class="switch__content"></span></label></div>
+                                <div class="data__row">
+                                <div class="data__cell">
+                                <div class="data__main">
+                                <div class="data__preview"><img class="data__pic" src="img/user-1.jpg" alt="Product"/></div>
+                                <div class="data__wrap">
+                                <div class="data__content"><strong>{item.name}</strong></div>
+                                <div class="data__label">SKU {item.SKU}</div>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="data__cell">
+                                <div class="data__content"><strong>4.2</strong> / 5.0</div>
+                                <div class="data__stars"><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star active"></i></div>
+                                </div>
+                                <div class="data__foot">
+                                <div class="data__box"><strong>1.368</strong></div>
+                                <div class="data__box"><strong>${item.price}</strong></div>
+                                </div>
+                                </div>
                       </div>
+                //                 
                         ))}
                         </div>
                         </div>
@@ -500,7 +488,8 @@ function CrudProducts(props) {
                 export default connect(
                         (state)=>{
                                 return {
-                                        products:state.productReducer.products
+                                        products:state.productReducer.products,
+                                        filteredProducts:state.searchReducer.filteredItems
                                 }
                         },
                         (dispatch)=>{
@@ -509,7 +498,8 @@ function CrudProducts(props) {
                                         // getAllProducts:()=>dispatch(actions.setProducts()) 
                                         getAllProducts:()=>dispatch(actions.getAllProducts()),
                                         addNewImageFromDbP:(f,t)=>dispatch(actions.addNewImageFromDb(f,t)),
-                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p}))
+                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p})),
+                                        setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems))
                                 }
                         }
                         

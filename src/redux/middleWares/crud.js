@@ -156,6 +156,7 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
         .then(res => {
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts(res.data)) 
+            dispatch(actions.setFilteredItems(res.data))
         })
     }
 

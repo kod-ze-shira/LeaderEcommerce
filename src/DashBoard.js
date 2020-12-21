@@ -6,11 +6,11 @@ export default function Dashboard() {
   const user = useContext(UserContext);
   const [redirect, setredirect] = useState(null);
 
-  useEffect(() => {
-    if (!user) {
-      setredirect("/");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     setredirect("/");
+  //   }
+  // }, [user]);
   if (redirect) {
     <Redirect to={redirect} />;
   }

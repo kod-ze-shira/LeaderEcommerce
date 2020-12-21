@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "clone-deep": "^4.0.1",
     "firebase": "^8.1.2",
     "init": "^0.1.2",
     "jquery": "^3.5.1",

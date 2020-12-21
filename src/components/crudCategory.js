@@ -8,7 +8,7 @@ function CrudCategory(props) {
 
         useEffect(()=>{
                 
-              props.getCategories();
+        //       props.getCategories();
 
         })
         

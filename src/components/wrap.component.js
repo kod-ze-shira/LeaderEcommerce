@@ -74,6 +74,7 @@ import quote from '../assets/quote.png';
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
+import {logOut} from '../services/firebase'
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
