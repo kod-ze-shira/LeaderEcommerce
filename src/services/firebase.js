@@ -47,14 +47,15 @@ export const signInWithEmailAndPassword = (email,password) => {
 }
 
 // ...
-export const logOut = () => {
-  auth.signOut().then(()=> {
-    console.log('logged out')
-    window.location.href='https://community.leader.codes/login'
-  }).catch((error) => {
-    console.log(error.message)
-  })
-}
+// export const logOut = () => {
+ export const logOut= auth.signOut()
+  // .then(()=> {
+  //   console.log('logged out')
+  //   // window.location.href='https://community.leader.codes/login'
+  // }).catch((error) => {
+  //   console.log(error.message)
+  // })
+// }
 
 
 

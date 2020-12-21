@@ -513,19 +513,16 @@ class TextIntoCategory extends Component {
 
                                     <Box flexDirection="row"
                                         display="flex"
-                                        justifyContent="space-between"
-                                    >
+                                        justifyContent="space-between">
 
                                         <Box
                                             width={'100%'}
-                                            alignSelf="center"
-                                        >
+                                            alignSelf="center">
                                             <HuePicker
                                                 color={this.props.homeStoreDesign.titleColorText.textIntoCategory}
                                                 onChangeComplete={this.changeTitleColorText}
                                                 width={200}
-                                                height={6}
-                                            />
+                                                height={6}/>
                                         </Box>
                                         <Box justifyContent="flex-end">
                                             <input
