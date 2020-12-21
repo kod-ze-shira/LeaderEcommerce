@@ -33,6 +33,7 @@ const logoDesignFunc = {
         state.logoDesign.logo = action.payload;
     },
     setLogoYOrN(state, action) {
+        debugger;
         state.logoDesign.LogoYOrN = !state.logoDesign.LogoYOrN;
     },
     setLogoCompanyName(state, action) {

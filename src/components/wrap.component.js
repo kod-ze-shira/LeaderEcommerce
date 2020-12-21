@@ -32,6 +32,7 @@ import './wrap-component.css'
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
+import {logOut} from '../services/firebase'
 import AddProduct from './compsEditStore/addProduct2';
 import Search from './compsEditStore/search';
 import AddCategory from './compsEditStore/addCategory';
