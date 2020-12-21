@@ -258,7 +258,9 @@ function CrudProducts(props) {
                                         <div className="data__main">
                                         <div className="data__effect mobile-hide"><label className="switch">
                                                 <input className="switch__input" type="button" onClick={()=>{props.delete(item._id);props.getAllProducts();} }/>
+                                              
                                                 <span className="switch__content">
+                                                       
                                                         </span></label></div>
                                         <div className="data__preview">
                                                 <label className="prdct_img" for="fileInput">
@@ -320,9 +322,10 @@ function CrudProducts(props) {
                                 <div className="data__label">Price</div>
                                 </div>
                                 <div className="data__cell mobile-hide">
-                                <div className="tag gray">cotagerus!s!///\\\</div>
+                                <div className="tag gray" style={{backgroundColor:item.category.color}}>{item.category.categoryName}</div>
                                 </div>
-                                <div className="data__cell data__cell_action"><a href={"/products/"+item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
+                                <div className="data__cell data__cell_action"><a href={"/products/"+item._id}>
+                                        <button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
                                 </div>
                         </div>
                         ))}

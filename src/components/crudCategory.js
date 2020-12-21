@@ -129,7 +129,13 @@ function CrudCategory(props) {
                         <div className="data__row" >
                         <div className="data__cell data__cell_xl">
                         <div className="data__main">
-                     
+                        <div className="data__effect mobile-hide"><label className="switch">
+                                                <input className="switch__input" type="button" onClick={()=>{props.delete(item._id);props.getCategories();} }/>
+                                              
+                                                <span className="switch__content">
+                                                       
+                                                        </span></label></div>
+                
                         <div className="data__preview" style={{"backgroundColor":item.color}}>
                 </div>
                 <div className="data__cell mobile-hide">
@@ -205,7 +211,8 @@ function CrudCategory(props) {
                 (dispatch)=>{
                         return {
                                 getCategories:()=>dispatch(actions.getAllCategories()),
-                                setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r))
+                                setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+                                delete:(i)=>{dispatch(actions.deleteCategory(i))}
                         }
                 }             
                 )(CrudCategory);

@@ -322,12 +322,8 @@ class Wrap extends React.Component {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
                             case "addProduct": return <AddProduct />;
-<<<<<<< HEAD
                             case "addCategory": return <AddCategory />;
                             case "search": return <Search/>;
-=======
-                            case "search": return <Search />;
->>>>>>> 04d58e597947eee61e1a87315085ef350ffe7f34
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;

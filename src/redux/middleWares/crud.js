@@ -140,7 +140,7 @@ export const onAuthStateChanged = ({dispatch,getState}) => next => action => {
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
  
     if (action.type === 'GET_ALL_CATEGORIES') {
-debugger;
+
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
                 console.log("crddddddd", res.data);
@@ -155,6 +155,7 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
         axios.get('https://community.leader.codes/api/products')
        
         .then(res => {
+            debugger;
             console.log("gjhjet ",res.data);
             dispatch(actions.setProducts(res.data)) 
         }).catch(e=>console.log(e))
@@ -276,12 +277,19 @@ export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
 
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
      if (action.type === 'DELETE_PRODUCT') {
-         axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
+         axios.post('https://community.leader.codes/api/products/deleteProduct/'+action.payload)
         .then(res=>{console.log("get ",res.data);dispatch(actions.getCommunity({community:res.data})) });
     }
 
     return next(action);
 };
+export const deleteCategory = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'DELETE_CATEGORY') {
+        axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
+       .then(res=>{console.log("get ",res.data);dispatch(actions.getCommunity({community:res.data})) });
+   }
 
+   return next(action);
+};
 
 
