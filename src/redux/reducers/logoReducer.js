@@ -10,10 +10,10 @@ const initialState = {
         logoCNYOrN: false,
         logoCompanyName: "",
         logoBorderRadiusLogo: "",
-        logoBorderRadiusLogo1: "",
-        logoBorderRadiusLogo2: "",
-        logoBorderRadiusLogo3: "",
-        logoBorderRadiusLogo4: "",
+        // logoBorderRadiusLogo1: "",
+        // logoBorderRadiusLogo2: "",
+        // logoBorderRadiusLogo3: "",
+        // logoBorderRadiusLogo4: "",
         logoWidth: "",
         logoHeight: "",
         logoBackgroundOnlyPng: "",
@@ -38,10 +38,12 @@ const logoDesignFunc = {
     setLogoCompanyName(state, action) {
         state.logoDesign.logoCompanyName = action.payload;
     },
-    setLogoBorderRadiusLogo1(state, action) {
-        ;
+    setLogoBorderRadiusLogo(state, action) {
         state.logoDesign.logoBorderRadiusLogo = action.payload;
-        ;
+        // ;
+        // state.logoDesign.logoBorderRadiusLogo[action.payload.key] = action.payload.image;
+        // ;
+
     },
     setLogoWidth(state, action) {
         ;

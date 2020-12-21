@@ -37,11 +37,11 @@ class EditHome extends Component {
         }
     }
     // לבטל ארחרי השיו נוי של יהודית בסטור
-    componentDidMount() {
+    // componentDidMount() {
 
-        this.props.getCategories();
+    //     this.props.getCategories();
 
-    }
+    // }
 
     render() {
         return (
@@ -64,7 +64,10 @@ class EditHome extends Component {
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
-                            <div className="main__preview">
+                            <div className="main__preview"
+                                style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
+
+                            >
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
                                         <img alt="" src={this.props.homeStoreDesign.imageImage ?
@@ -111,9 +114,8 @@ class EditHome extends Component {
                         <div className="categories__container ">
                             <div className="categories__slider js-slider-categories
                             slick-initialized slick-slider">
-                                <Carousel className="carousel" itemsToShow={2}>
+                                <Carousel className="carousel" itemsToShow={3}>
                                     {
-
                                         // this.props.categories[0]?
                                         this.props.categories.map((item, index) => (
                                             <div className="categories__slide" key={index}>
@@ -124,7 +126,9 @@ class EditHome extends Component {
                                                 </div>
                                                 <div className="categories__text">On Sale</div>
                                                 </Link> */}
-                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}>
+                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}
+                                                    style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.category + "px" }}
+                                                >
                                                     <div className="categories__icon">
                                                         <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
                                                     </div>
@@ -138,7 +142,7 @@ class EditHome extends Component {
                                                             // textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
                                                             marginTop: '2vh'
                                                         }}
-                                                        onChange={(e) => this.props.changeTextTitle(e.target.value)}
+                                                    // onChange={(e) => this.props.changeTextTitle(e.target.value)}
 
                                                     >{item.categoryName}</div>
                                                 </div>
@@ -303,9 +307,11 @@ const mapStateToProps = (state) => {
     debugger
     return {
 
-        categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
+        categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
         //אפשר לקרוא שם אחר לאוביקט
-        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
+        homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
+        // logoDesign: state.logoReducer.logoDesign
+
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -313,9 +319,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
     changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
-    // לבטל אחרי השינוי של יהודית
-    getCategories: () => dispatch(actions.getAllCategories())
-
+    cahngeBorderRadius: (image) => dispatch(actions.setBorderRadius({ key: "category", image })),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);
