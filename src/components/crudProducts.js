@@ -15,87 +15,6 @@ function CrudProducts(props) {
         const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
         useEffect(() => {
-                props.getAllProducts();
-
-                // // search
-                // (function(){
-                // 	var search = $('.js-search');
-                // 	if (search.length) {
-                // 		var open = search.find('.js-search-open'),
-                // 				input = search.find('.js-search-input'),
-                // 				dropdown = search.find('.js-search-dropdown'),
-                // 				results = search.find('.js-search-results'),
-                // 				backdrop = search.find('.js-search-backdrop');
-
-                // 		open.on('click', function(){
-                // 			search.addClass('open');
-                // 			input.focus();
-                // 		});
-
-                // 		input.on('keyup', function(){
-                // 			if ($(this).val().length >= 3) {
-                // 				results.addClass('visible');
-                // 			} else {
-                // 				results.removeClass('visible');
-                // 			}
-                // 		});
-
-                // 		backdrop.on('click', function(){
-                // 			search.removeClass('open');
-                // 		});
-                // 	}
-                // }());
-
-                // // sort
-                // (function(){
-                // 	debugger;
-                // 	var sort = $('.js-sort');
-                // 	if (sort.length) {
-                // 		var head = sort.find('.js-sort-head'),
-                // 				selected = sort.find('.js-sort-selected'),
-                // 				dropdown = sort.find('.js-sort-dropdown'),
-                // 				switch_ = sort.find('.js-sort-switch'),
-                // 				apply = sort.find('.js-sort-apply'),
-                // 				backdrop = sort.find('.js-sort-backdrop');
-
-                // 		head.on('click', function(){
-                // 			sort.addClass('open');
-                // 		});
-
-                // 		switch_.on('change', function(){
-                // 			selected.text($(this).find('span').text());
-                // 		});
-
-                // 		apply.on('click', function(){
-                // 			sort.removeClass('open');
-                // 		});
-
-                // 		backdrop.on('click', function(){
-                // 			sort.removeClass('open');
-                // 		});
-                // 	}
-                // }());
-
-
-                // // new
-                // (function(){
-                // 	var _new = $('.js-new');
-                // 	if (_new.length) {
-                // 		var open = _new.find('.js-new-open'),
-                // 				dropdown = _new.find('.js-new-dropdown'),
-                // 				backdrop = _new.find('.js-new-backdrop');
-
-                // 		open.on('click', function(){
-                // 			_new.toggleClass('open');
-                // 		});
-
-                // 		backdrop.on('click', function(){
-                // 			_new.removeClass('open');
-                // 		});
-                // 	}
-                // }());
-
-
         })
 
         const onChangeHandlerImage = (event,thisi) => {
@@ -302,29 +221,7 @@ function CrudProducts(props) {
                 <div className="panel__group btn-group btn-group_tabs">
                         <button className="btn btn_light btn_icon js-panel-btn active">
                                 <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
-                <div className="panel__group">
-                <div className="sort js-sort">
-                <div className="sort__head js-sort-head">
-                <div className="sort__icon"><i className="la la-filter "></i></div>
-                <div className="sort__label">sort:</div>
-                <div className="sort__selected js-sort-selected">A-Z</div>
-                <div className="sort__arrow"><i className="la la-angle-down "></i></div>
-                </div>
-                <div className="sort__dropdown js-sort-dropdown">
-                <div className="sort__title">Sort projects by</div>
-                <div className="sort__items">
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" onChange={console.log("checked")} /><span className="switch__content">A-Z</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Budget</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Assigned Tasks</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Progress</span></label></div>
-                <div className="sort__item"><label className="switch sort__switch js-sort-switch"><input className="switch__input" type="radio" name="sort" /><span className="switch__content">Date Created</span></label></div>
-                </div>
-                <div className="sort__foot"><button className="sort__btn btn btn_light js-sort-apply">Apply</button></div>
-                </div>
-                <div className="sort__backdrop backdrop js-sort-backdrop"></div>
-                </div>
-                </div>
-                </div>
+          </div>
                 <div className="panel__body">
                 <div className="panel__tab js-panel-tab"
                 style={{ display: 'block' }}>
@@ -359,7 +256,10 @@ function CrudProducts(props) {
                                         <div className="data__row" >
                                         <div className="data__cell data__cell_xl">
                                         <div className="data__main">
-                                        <div className="data__effect mobile-hide"><label className="switch"><input className="switch__input" type="checkbox" /><span className="switch__content"></span></label></div>
+                                        <div className="data__effect mobile-hide"><label className="switch">
+                                                <input className="switch__input" type="button" onClick={()=>{props.delete(item._id);props.getAllProducts();} }/>
+                                                <span className="switch__content">
+                                                        </span></label></div>
                                         <div className="data__preview">
                                                 <label className="prdct_img" for="fileInput">
                                                         <img alt="product image" src={item.images[0]?item.images[0]:productImg}
@@ -482,7 +382,9 @@ function CrudProducts(props) {
                                         // getAllProducts:()=>dispatch(actions.setProducts()) 
                                         getAllProducts:()=>dispatch(actions.getAllProducts()),
                                         addNewImageFromDbP:(f,t)=>dispatch(actions.addNewImageFromDb(f,t)),
-                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p}))
+                                     setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+                                        changeProductImage:(i,p)=>dispatch(actions.setProductImage({i,p})),
+                                        delete:(i)=>{dispatch(actions.deleteProduct(i))}
                                 }
                         }
                         

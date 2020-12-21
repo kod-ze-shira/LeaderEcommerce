@@ -34,6 +34,7 @@ import logo from '../assets/logo.png';
 import Content from './content';
 import AddProduct from './compsEditStore/addProduct2';
 import Search from './compsEditStore/search';
+import AddCategory from './compsEditStore/addCategory';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -321,7 +322,12 @@ class Wrap extends React.Component {
                             case "LOGO": return <Logo />;
                             case "Image": return <Image />;
                             case "addProduct": return <AddProduct />;
+<<<<<<< HEAD
+                            case "addCategory": return <AddCategory />;
+                            case "search": return <Search/>;
+=======
                             case "search": return <Search />;
+>>>>>>> 04d58e597947eee61e1a87315085ef350ffe7f34
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
