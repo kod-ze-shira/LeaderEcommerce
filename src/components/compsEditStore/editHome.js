@@ -111,7 +111,7 @@ class EditHome extends Component {
                         <div className="categories__container ">
                             <div className="categories__slider js-slider-categories
                             slick-initialized slick-slider">
-                                <Carousel className="carousel" itemsToShow={8}>
+                                <Carousel className="carousel" itemsToShow={2}>
                                     {
 
                                         // this.props.categories[0]?
@@ -131,11 +131,11 @@ class EditHome extends Component {
                                                     <div
                                                         className="categories__text"
                                                         style={{
-                                                            fontFamily: this.props.homeStoreDesign.titleFont.titleCategory,
-                                                            fontWeight: this.props.homeStoreDesign.titleTextWeight.titleCategory,
-                                                            fontSize: this.props.homeStoreDesign.titleTextSize.titleCategory + "px",
-                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.titleCategory, color: this.props.homeStoreDesign.titleColorText.titleCategory,
-                                                            textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
+                                                            fontFamily: this.props.homeStoreDesign.titleFont.textIntoCategory,
+                                                            fontWeight: this.props.homeStoreDesign.titleTextWeight.textIntoCategory,
+                                                            fontSize: this.props.homeStoreDesign.titleTextSize.textIntoCategory + "px",
+                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory, color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
+                                                            // textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
                                                             marginTop: '2vh'
                                                         }}
                                                         onChange={(e) => this.props.changeTextTitle(e.target.value)}

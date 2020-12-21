@@ -38,6 +38,8 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
 
                 },
                 // titleTextWeight: "",
@@ -46,6 +48,9 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
+
 
                 },
 
@@ -53,6 +58,8 @@ const initialState = {
                         onThePicture: "50",
                         titleCategory: "20",
                         titleProduct: "20",
+                        textIntoCategory: "16",
+
 
                 },
                 // titleAlignment: "",
@@ -60,6 +67,8 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
 
                 },
                 // titleWidthText: "",
@@ -72,6 +81,8 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
+
 
                 },
                 // titleColorText: "",
@@ -79,6 +90,7 @@ const initialState = {
                         onThePicture: "",
                         titleCategory: "",
                         titleProduct: "",
+                        textIntoCategory: "",
 
                 },
                 // aboutUsTitleYOrN: true,
@@ -93,7 +105,7 @@ const initialState = {
 
 
 
-        //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+//כל הפונקציות שישנו נתונים שהכנסתי לסטייט
 const homeDesign = {
         //פונקציה זו מבצעת החלפה של הקומפוננטות בתוך הקונפיגורטור
         setCurrentComponent(state, action) {
