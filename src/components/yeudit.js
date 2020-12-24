@@ -18,16 +18,6 @@ function Yeudit(props) {
 
         const [file, setFile] = useState()
 
-        let { Name, Description, Amount, Price, Category } = {
-                Name: "Name",
-                Description: "Description",
-                Amount: "Amount",
-                Price: "Price",
-                Category: "Category"
-        }
-        // const [file, setFile] = useState(0);
-
-
         let i = 0;
 
         const onChangeHandlerImage = (event, thiss) => {
@@ -85,81 +75,8 @@ function Yeudit(props) {
                                                 {/* <signOut/> */}
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
-
-
                                                                 <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
-                                                        {/******************** */}
-                                                        <div className="search__dropdown js-search-dropdown">
-                                                                <div className="search__field"><input className="search__input js-search-input" type="search" placeholder="Start typing…" />
-                                                                        <div className="search__icon"><i className="la la-search "></i></div>
-                                                                </div>
-                                                                <div className="search__results js-search-results"><a className="search__result" href="#">
-                                                                        <div className="search__cell">
-                                                                                <div className="search__preview color-red"><i className="lab la-dribbble "></i></div>
-                                                                        </div>
-                                                                        <div className="search__cell">
-                                                                                <div className="search__title">Dribble Redesign</div>
-                                                                                <div className="search__text">Webdesign</div>
-                                                                        </div>
-                                                                        <div className="search__cell mobile-hide">
-                                                                                <div className="search__tag tag gray">24 Feb 2019</div>
-                                                                        </div>
-                                                                </a><a className="search__result" href="#">
-                                                                                <div className="search__cell">
-                                                                                        <div className="search__preview color-green"><i className="lab la-evernote "></i></div>
-                                                                                </div>
-                                                                                <div className="search__cell">
-                                                                                        <div className="search__title">New HTML Theme</div>
-                                                                                        <div className="search__text">Theme</div>
-                                                                                </div>
-                                                                                <div className="search__cell mobile-hide">
-                                                                                        <div className="search__tag tag gray">20 May 2019</div>
-                                                                                </div>
-                                                                        </a><a className="search__result" href="#">
-                                                                                <div className="search__cell">
-                                                                                        <div className="search__preview"><img className="search__pic" src="../pages/img/user-1.jpg" alt="User" /></div>
-                                                                                </div>
-                                                                                <div className="search__cell">
-                                                                                        <div className="search__title">Bradley Wilkins</div>
-                                                                                        <div className="search__text">b.wilkins@gmail.com</div>
-                                                                                </div>
-                                                                                <div className="search__cell mobile-hide">
-                                                                                        <div className="search__tag tag gray">Designer</div>
-                                                                                </div>
-                                                                        </a>
-                                                                </div>
-                                                        </div>
-                                                        <div className="search__backdrop backdrop js-search-backdrop"></div>
                                                 </div>
-                                                <div className="container__new new js-new">
-                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addProduct") }}>
-                                                                <i className="la la-plus-circle "></i>
-                                                        </button>
-                                                        <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
-                                                                <div className="new__icon"><i className="la la-toolbox "></i></div>
-                                                                <div className="new__title">New Project</div>
-                                                        </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-clipboard-check "></i></div>
-                                                                        <div className="new__title">New Task</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-user-lock "></i></div>
-                                                                        <div className="new__title">New Contact</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-calendar-week "></i></div>
-                                                                        <div className="new__title">New Event</div>
-                                                                        {/* href="addProduct */}
-                                                                        {/* <button style={{width:'100%',height:'100%'}} data-toggle="modal"  data-target="#myModal"> */}
-                                                                        {/* </button> */}
-                                                                </a><a className="new__item" onClick={console.log("NewProduct")} id="NewProduct">
-                                                                        <div className="new__icon"><i className="la la-cube "></i></div>
-                                                                        <div className="new__title">New Product</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-calculator "></i></div>
-                                                                        <div className="new__title">New Invoice</div>
-                                                                </a></div>
-                                                        <div className="new__backdrop backdrop js-new-backdrop"></div>
-                                                </div>
-                                                {/********** */}
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
