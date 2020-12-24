@@ -32,7 +32,7 @@ import './wrap-component.css'
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
-import {logOut} from '../services/firebase'
+import { logOut } from '../services/firebase'
 import AddProduct from './compsEditStore/addProduct2';
 import Search from './compsEditStore/search';
 import AddCategory from './compsEditStore/addCategory';
@@ -324,7 +324,7 @@ class Wrap extends React.Component {
                             case "Image": return <Image />;
                             case "addProduct": return <AddProduct />;
                             case "addCategory": return <AddCategory />;
-                            case "search": return <Search/>;
+                            case "search": return <Search />;
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
