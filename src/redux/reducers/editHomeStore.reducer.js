@@ -78,10 +78,10 @@ const initialState = {
                 // },
                 // titleLineHeight: "",
                 titleLineHeight: {
-                        onThePicture: "",
-                        titleCategory: "",
-                        titleProduct: "",
-                        textIntoCategory: "",
+                        onThePicture: "1.2",
+                        titleCategory: "1.2",
+                        titleProduct: "1.2",
+                        textIntoCategory: "1.2",
 
 
                 },
@@ -98,7 +98,10 @@ const initialState = {
                 //         onThePicture:true,
                 //         titleCategory: true,
                 // },
-
+                BorderRadius: {
+                        category: "24",
+                        pictureFrame: "64",
+                }
 
         }
 }
@@ -130,6 +133,12 @@ const homeDesign = {
         setImageHeight(state, action) {
                 state.homeStoreDesign.ImageHeight = action.payload;
         },
+        ///////////////////////////////////////////////////
+        setBorderRadius(state, action) {
+                state.homeStoreDesign.BorderRadius[action.payload.key] = action.payload.image;
+        },
+        //////////////////////////////////////////////////////
+
 
         // title פונקציות לשינוי כיתוב העתקתי אותן מקומפוננטת  
         // מכאן והלאה פונקציות לעריכת טקסט. משמש לכותרות הקטגוריה,המוצרים 

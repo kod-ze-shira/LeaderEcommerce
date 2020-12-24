@@ -5,11 +5,11 @@ import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import addProductReducer from './reducers/addProductReduser';
-import sortReducer from './reducers/sortReducer'
-import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged, getAllProducts, getAllCategories, newProduct, createNewCategory, deleteProduct } from './middleWares/crud'
+import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged, getAllProducts, getAllCategories, newProduct, createNewCategory, deleteProduct, deleteCategory } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
+import sortReducer from './reducers/sortReducer'
 
 
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -40,7 +40,8 @@ const store = createStore(
         getAllCategories,
         newProduct,
         createNewCategory,
-        deleteProduct
+        deleteProduct,
+        deleteCategory
     )
     // composeWithDevTools()
 

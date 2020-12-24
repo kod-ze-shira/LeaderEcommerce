@@ -36,6 +36,12 @@ import { logOut } from '../services/firebase'
 import AddProduct from './compsEditStore/addProduct2';
 import Search from './compsEditStore/search';
 import AddCategory from './compsEditStore/addCategory';
+// import {browserHistory} from "react-router";
+// import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+// import { logOut } from '../services/firebase'
+
+
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -221,8 +227,8 @@ const useStyles = theme => ({
 
 
 class Wrap extends React.Component {
-    constructor(prop) {
-        super(prop);
+    constructor(props) {
+        super(props);
         this.state = {
             openDrawer: false,
             valueTab: 0,
@@ -239,9 +245,25 @@ class Wrap extends React.Component {
     }
     render() {
         const { classes } = this.props;
-        const { theme } = this.props;
+        // const { theme } = this.props;
         //const history = createBrowserHistory();
         const open = Boolean(this.state.anchorEl)
+        const view = () => {
+            // const history = useHistory();
+            // history.push("/login")
+            debugger;
+            this.props.history.push("/login");
+        }
+        const logOutHandler = () => {
+            logOut.then(()=> {
+                  console.log('logged out')
+                  this.props.history.push("/login");
+                }).catch((error) => {
+                  console.log(error.message)
+                })
+        }
+        
+        const CreateNewPage = "Create New Page"
         return (
             <div className={classes.root}>
                 {/* <Router> */}
@@ -249,22 +271,20 @@ class Wrap extends React.Component {
 
                 <AppBar
                     position="fixed"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: this.state.openDrawer,
-                    })}
-                    style={{ backgroundColor: '#fff', color: 'black' }}
-                >
+                    className={clsx(classes.appBar, { [classes.appBarShift]: this.state.openDrawer, })}
+                    style={{ backgroundColor: '#fff', color: 'black' }}>
+
                     <div className={classes.row}>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
-                            onClick={this.handleDrawerOpen}
-                        //edge="start"
-                        >
+                            //edge="start"
+                            onClick={this.handleDrawerOpen}>
                             <MenuIcon />
                         </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />
+                        <button className="btn btn-success" onClick={logOutHandler}>Log Out</button>
                         <img src={profil} alt={"profil"} width="45px" />
                         <IconButton
                             color="inherit"
@@ -278,38 +298,41 @@ class Wrap extends React.Component {
                     </div>
                 </AppBar>
 
-
                 <main className={classes.content} style={{ height: '85vh' }}>
-
                     <Content />
-
-
                     {/* <Route path="/lastFiles" component={lastFiles} /> */}
-                    <div className={classes.toolbar} />
+                    {/* <div className={classes.toolbar} /> */}
                     {/* {this.showTips()} */}
 
-                    <div style={{ direction: 'rtl' }}
+                    {/* <div style={{ direction: 'rtl' }}
                     // onMouseLeave={this.closeFastAccses}
-                    >
-                        {/* {this.state.hidden===false ?( */}
-                        {/* {this.fastAccses()} */}
-                        {/* : null } */}
+                    > */}
+                    {/* {this.state.hidden===false ?( */}
+                    {/* {this.fastAccses()} */}
+                    {/* : null } */}
 
-                    </div>
-
-
+                    {/* </div> */}
                 </main>
-                <Drawer anchor={'right'} classes={{ paper: clsx(classes.drawerPaper, { [classes.drawerPaperLight]: this.state.color === 'black', }) }} className={clsx(classes.configurator, {
-                    [classes.configuratorOpen]: this.state.right,
-                    [classes.configuratorClose]: !this.state.right,
-                })} open={this.state['right']} fullWidth="true" variant="persistent" onClose={this.toggleDrawer}>
-                    <div className={classes.row} style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
+
+                <Drawer anchor={'right'}
+                    classes={{ paper: clsx(classes.drawerPaper, { [classes.drawerPaperLight]: this.state.color === 'black', }) }}
+                    className={clsx(classes.configurator, {
+                        [classes.configuratorOpen]: this.state.right,
+                        [classes.configuratorClose]: !this.state.right,
+                    })}
+                    open={this.state['right']} fullWidth="true" variant="persistent" onClose={this.toggleDrawer}>
+
+                    <div className={classes.row}
+                        style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
+
                         <IconButton edge="end" color="inherit" aria-label="setting" >
                             <SettingsIcon style={{ color: this.state.color }} />
                         </IconButton>
+
                         <Typography variant="h6" style={{ flexGrow: 5, color: this.state.fontColor, textAlign: 'center' }}>
-                            Create New Page
+                            {CreateNewPage}
                         </Typography>
+
                         <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.changeColor}>
                             <InvertColorsIcon style={{ color: this.state.color }} />
                         </IconButton>
@@ -328,14 +351,12 @@ class Wrap extends React.Component {
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
-                            case "TextIntoCategory": return <TextIntoCategory />
-                            case "": return
-                                <h1>e</h1>;
-
-
+                            case "TextIntoCategory": return <TextIntoCategory />;
+                            case "": return <h1>e</h1>;
+                            default: return <h3>didnt check</h3>;
                         }
                     })() :
-                        <div></div>}
+                        <h3>didnt check</h3>}
 
 
 
@@ -349,13 +370,14 @@ class Wrap extends React.Component {
                         <Toolbar style={{ minHeight: '40px', paddingLeft: "10px", paddingRight: "0px" }}>
 
                             {/* <IconButton edge="start" color="inherit" aria-label="open drawer">
-            <MenuIcon />
-          </IconButton>
-          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-            <AddIcon />
-          </Fab> */}
+                              <MenuIcon />
+                              </IconButton>
+                              <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                              <AddIcon />
+                              </Fab> */}
+
                             <div className={classes.grow} />
-                            <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }}>
+                            <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }} onClick={view}>
                                 <InvertDesktopWindows />
                             </IconButton>
                             <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }}>
@@ -386,6 +408,8 @@ class Wrap extends React.Component {
             </div >
         )
     };
+
+
 
 
     showTips() {
@@ -465,17 +489,14 @@ class Wrap extends React.Component {
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
-
         logoDesign: state.logoReducer.logoDesign
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-
     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent())
 })
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Wrap));
 
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(withRouter(Wrap)));
 //export default Wrap;
+// const HomeWitRouter = withRouter(Home);

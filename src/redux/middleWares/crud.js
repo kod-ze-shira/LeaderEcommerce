@@ -143,6 +143,7 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
         debugger;
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
+                debugger
                 console.log("crddddddd", res.data);
                 dispatch(actions.setCategories({ categories: res.data }))
             })
@@ -278,13 +279,23 @@ export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
 }
 
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
-    if (action.type === 'DELETE_PRODUCT') {
-        axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
-            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
+     if (action.type === 'DELETE_PRODUCT') {
+         axios.post('https://community.leader.codes/api/products/deleteProduct/'+action.payload)
+        .then(res=>{console.log("get ",res.data);dispatch(actions.getCommunity({community:res.data})) });
     }
 
     return next(action);
 };
+export const deleteCategory = ({ dispatch, getState }) => next => action => {
+    debugger
+    if (action.type === 'DELETE_CATEGORY') {
+        axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
+       .then(res=>{console.log("get ",res.data);
+       debugger
+       dispatch(actions.getCommunity({community:res.data})) });
+   }
 
+   return next(action);
+};
 
 

@@ -527,7 +527,8 @@ const mapDispatchToProps = (dispatch) => ({
     changeLogoWidth: (image) => dispatch(actions.setLogoWidth(image)),
     changeLogoHeight: (image) => dispatch(actions.setLogoHeight(image)),
     changeLogoBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
-    changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
+    changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo(image)),
+
     // changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
 })
 
