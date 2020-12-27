@@ -9,13 +9,6 @@ import '../../App.css';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 ///images  
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
-import trending from "../../assets/categories/trending.svg"
-import skincare from "../../assets/categories/skincare.svg"
-import eyeCare from "../../assets/categories/eye-care.svg"
-import natural from "../../assets/categories/natural.svg"
-import protection from "../../assets/categories/protection.svg"
-import nightCare from "../../assets/categories/night-care.svg"
-import afterSun from "../../assets/categories/after-sun.svg"
 import productPic1 from "../../assets/products/product-pic-1.png"
 import productPic2 from "../../assets/products/product-pic-2.png"
 import productPic3 from "../../assets/products/product-pic-3.png"
@@ -48,10 +41,13 @@ class EditHome extends Component {
             <div>
                 {/*דיב של תמונת פתיחה שעליה כותרת פתיחה*/}
                 <div className="main section">
-                    <div className="main__center center">
+                    <div className="main__center center"
+                    >
                         <div className="main__container">
-                            <div className="main__details" onClick={() => this.props.changeCurrentComponent('textOnThePicture')}>
-                                {/* <h1 className="main__title title">We Offer the Best Products for your Skin</h1> */}
+                            <div className="main__details"
+                                style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
+                                onClick={() => this.props.changeCurrentComponent('textOnThePicture')}
+                            >
                                 <TextareaAutosize className="SPtitle col-md-12" value=
                                     {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
                                     style={{
@@ -61,12 +57,13 @@ class EditHome extends Component {
                                         lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture, color: this.props.homeStoreDesign.titleColorText.onThePicture,
                                         textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                         marginTop: '2vh'
+
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
                             <div className="main__preview"
+                                // onClick={() => this.props.changeCurrentComponent("textOnThePicture")}
                                 style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
-
                             >
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -303,15 +300,14 @@ class EditHome extends Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    debugger
-    return {
 
+
+const mapStateToProps = (state) => {
+    return {
+        // products: state.state.productReducer.products[0],
         categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
-        // logoDesign: state.logoReducer.logoDesign
-
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -319,7 +315,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeLogoYOrN: () => dispatch(actions.setLogoYOrN()),
     changeImage: (e) => dispatch(actions.setImage(e)),
     changeTextTitle: (e) => dispatch(actions.setTitleText({ k: "onThePicture", e })),
-    cahngeBorderRadius: (image) => dispatch(actions.setBorderRadius({ key: "category", image })),
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EditHome);

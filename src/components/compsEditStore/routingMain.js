@@ -7,6 +7,7 @@ import Checkout from "./checkout";
 import Product from "./product";
 import Header from './header';
 import Footer from './footer';
+import Zoom from './zoom'
 
 
 class RoutingMain extends Component {
@@ -21,6 +22,8 @@ class RoutingMain extends Component {
                         <Route path="/0/category" component={Category}></Route>
                         <Route path="/0/checkout" component={Checkout}></Route>
                         <Route path="/0/product" component={Product}></Route>
+                        <Route path="/0/zoom" component={Zoom}></Route>
+
                         <Route path="/0/" component={EditHome} />
                     </Switch>
                     <Footer></Footer>

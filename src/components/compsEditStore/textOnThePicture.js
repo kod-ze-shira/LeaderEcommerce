@@ -393,6 +393,46 @@ class TextOnThePicture extends Component {
                                         className={classes.fieldTextStyle} />
                                     <br></br>
                                     <br></br>
+                                    {/* ////////////////////////////////////////////////////////////////////////////////////////// */}
+                                    <FormLabel className={classes.textcontect}>Border Radius Frame</FormLabel>
+                                    <br></br>
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.pictureFrame}
+                                                step={1}
+                                                marks
+                                                min={0}
+                                                max={100}
+                                                getAriaValueText={this.props.changeBorderRadius}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.BorderRadius.pictureFrame ? this.props.homeStoreDesign.BorderRadius.pictureFrame : '64'}
+                                                defaultValue={this.props.homeStoreDesign.BorderRadius.pictureFrame}
+                                                onChange={(e) => this.props.changeBorderRadius(e.target.value)}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
+                                    {/* //////////////////////////////////////////////////////////////////////////////// */}
+                                    <br></br>
+                                    <br></br>
                                     <Box flexDirection="row"
                                         display="flex"
                                         justifyContent="space-between"
@@ -479,9 +519,11 @@ class TextOnThePicture extends Component {
                                             />
                                         </Box>
                                     </Box>
+
                                     <div className="d-flex justify-content-center align-items-center">
                                         <FormLabel className={classes.textcontect}>Alignment</FormLabel>
                                         <i className="fas fa-align-left iconAlign iconAlignFirst fa-lg" onClick={(e) => this.props.changeTitleAlignment('left')}></i>
+                                        <i class="fas fa-align-left"></i>
                                         <i className="fas fa-align-center ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('center')}></i>
                                         <i className="fas fa-align-right ml-2 iconAlign fa-lg" onClick={(e) => this.props.changeTitleAlignment('right')}></i>
                                     </div>
@@ -600,6 +642,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "onThePicture", e })),
     changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "onThePicture", e })),
     changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
+    changeBorderRadius: (frame) => dispatch(actions.setBorderRadius({ key: "pictureFrame", frame }))
 })
 
 

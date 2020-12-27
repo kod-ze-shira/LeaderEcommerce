@@ -6,7 +6,7 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
-import Home from "./components/home"
+import Home from "./components/home";
 
 
 function App() {

@@ -427,7 +427,6 @@ class Logo extends Component {
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
@@ -443,7 +442,8 @@ class Logo extends Component {
                                                 className={classes.MuiSlider_root}
                                             />
                                         </Box>
-                                        <Box justifyContent="flex-end">
+                                        {/* /////לא ברור לי מה מבצע הבוקס הזה */}
+                                        {/* <Box justifyContent="flex-end">
                                             <input
                                                 textAlign="center"
                                                 id="standard-number"
@@ -456,7 +456,7 @@ class Logo extends Component {
                                                 }}
                                                 className={classes.inputNumberSlider}
                                             />
-                                        </Box>
+                                        </Box> */}
                                     </Box>
 
                                     <br></br>
