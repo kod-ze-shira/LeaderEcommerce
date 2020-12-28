@@ -22,6 +22,13 @@ class RoutingMain extends Component {
                         <Route path="/0/checkout" component={Checkout}></Route>
                         <Route path="/0/product" component={Product}></Route>
                         <Route path="/0/" component={EditHome} />
+                    
+                    {/* לסדר ניתובים בצורה הגיונינת שה- 0 יהיה רק על מצב עריכה ולא על כל הרפ */}
+                        <Route path="/cart" component={Cart}></Route>
+                        <Route path="/category" component={Category}></Route>
+                        <Route path="/checkout" component={Checkout}></Route>
+                        <Route path="/product" component={Product}></Route>
+                        <Route path="/" component={EditHome} />
                     </Switch>
                     <Footer></Footer>
                 </div>

@@ -9,17 +9,18 @@ import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthState
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
+import viewModeReducer from './reducers/viewModeReducer'
+
 
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './action';
 
 const reducers =
-    combineReducers({ communityReducer, userReducer, storeReducer, editHomeStoreReducer, logoReducer, productReducer, categoriesReducer, searchReducer, addProductReducer })
+    combineReducers({ communityReducer, userReducer, storeReducer, editHomeStoreReducer, logoReducer, productReducer, categoriesReducer, searchReducer, addProductReducer,viewModeReducer })
 const store = createStore(
-    reducers,
-    applyMiddleware(getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged,getAllProducts,getAllCategories,newProduct,createNewCategory,deleteProduct,deleteCategory)
-    // composeWithDevTools()
+    reducers, 
+    composeWithDevTools(applyMiddleware(getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged,getAllProducts,getAllCategories,newProduct,createNewCategory,deleteProduct,deleteCategory))
 
 )
 window.store = store;
