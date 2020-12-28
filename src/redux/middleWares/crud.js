@@ -60,11 +60,11 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
                 document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
-                // const queryString = window.location.search;
+                const queryString = window.location.search;
 
-                // const urlParams = new URLSearchParams(queryString);
-                // const des = urlParams.get('des')
-                // const routes = urlParams.get('routes')
+                const urlParams = new URLSearchParams(queryString);
+                const des = urlParams.get('des')
+                const routes = urlParams.get('routes')
                 const username = data.username
                 dispatch(actions.setUser({ "_id": data._id, "username": data.username, "email": data.email }))
                 console.log("uuu", username)
@@ -140,7 +140,6 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'GET_ALL_CATEGORIES') {
-        debugger;
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
                 debugger
@@ -153,7 +152,6 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
-        debugger;
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
                 debugger
@@ -194,7 +192,6 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 export const newProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_NEW_PRODUCTS') {
-        debugger;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -249,6 +246,17 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
+
+    if (action.type === 'ADD_IMG_TO_PRODUCT') {
+        debugger;
+        dispatch(actions.setProductImage({ "p": action.payload.p, "i": action.payload.i }));
+        dispatch(actions.setFilteredItems(getState().productReducer.products))
+
+    }
+    return next(action);
+}
+
 export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
     if (action.type === "ADD_NEW_IMAGE_FROM_DB") {
         $.ajax({
@@ -279,23 +287,25 @@ export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
 }
 
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
-     if (action.type === 'DELETE_PRODUCT') {
-         axios.post('https://community.leader.codes/api/products/deleteProduct/'+action.payload)
-        .then(res=>{console.log("get ",res.data);dispatch(actions.getCommunity({community:res.data})) });
+    if (action.type === 'DELETE_PRODUCT') {
+        axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
+            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
     }
 
     return next(action);
 };
 export const deleteCategory = ({ dispatch, getState }) => next => action => {
-    debugger
     if (action.type === 'DELETE_CATEGORY') {
-        axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
-       .then(res=>{console.log("get ",res.data);
-       debugger
-       dispatch(actions.getCommunity({community:res.data})) });
-   }
+        axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
+            .then(res => {
+                console.log("get ", res.data);
+                alert(`The product ${res.data.name} deleted!!`)
+                debugger
+                dispatch(actions.getCommunity({ community: res.data }))
+            });
+    }
 
-   return next(action);
+    return next(action);
 };
 
 

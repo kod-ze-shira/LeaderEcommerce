@@ -10,7 +10,7 @@ import cloneDeep from 'lodash/cloneDeep';
 function ProductsList(props) {
 
         const [file, setFile] = useState()
-
+        const fileI = React.createRef();
         let { Name, Description, Amount, Price, Category } = {
                 Name: "Name",
                 Description: "Description",
@@ -20,38 +20,46 @@ function ProductsList(props) {
         }
         // const [file, setFile] = useState(0);
         useEffect(() => {
-                var panel = $('.js-panel');
-                if (panel.length) {
-                        var btn = panel.find('.js-panel-btn, .js-panel-action'),
-                                tab = panel.find('.js-panel-tab');
 
-                        btn.on('click', function () {
-                                var index = $(this).index();
+                $(".data__preview input").on("change", function () {
+                        debugger
+                        console.log("useeff", $(this));
+                })
 
-                                btn.removeClass('active');
-                                btn.eq(index).addClass('active');
+                // var panel = $('.js-panel');
+                // if (panel.length) {
+                //         var btn = panel.find('.js-panel-btn, .js-panel-action'),
+                //                 tab = panel.find('.js-panel-tab');
 
-                                debugger;
-                                tab.hide();
-                                tab.eq(index).show();
-                        });
-                }
+                // }
         }, [])
 
 
-        let i = 0;
+        const onChangeHandlerImage = (event, t) => {
 
-        const onChangeHandlerImage = (event) => {
-                debugger;
+                // const input = fileI.current
+                debugger
                 if (event) {
+                        debugger;
+                        console.log("key", t);
                         let reader = new FileReader();
-                        reader.onloadend = async () => {
-                                await props.changeProductImage(reader.result)
-                                console.log("img", props.products[0]);
-                                props.setSearchReasult(props.products);
+                        reader.onloadend = () => {
+                                props.changeProductImage(reader.result, fileI.current.name)
+                                // props.setSearchReasult(props.products)
                         }
                         reader.readAsDataURL(event)
                 }
+
+                // debugger;
+                // if (event) {
+                //         let reader = new FileReader();
+                //         reader.onloadend = async () => {
+                //                 await props.changeProductImage(reader.result)
+                //                 console.log("img", props.products[0]);
+                //                 props.setSearchReasult(props.products);
+                //         }
+                //         reader.readAsDataURL(event)
+                // }
         }
 
         // const onChangeHandlerImage = (event, thiss) => {
@@ -159,7 +167,7 @@ function ProductsList(props) {
                                                                                 <div className="data__cell data__cell_xl">
                                                                                         <div className="data__main">
                                                                                                 <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.getAllProducts(); }} />
+                                                                                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
                                                                                                         <span className="switch__content">
                                                                                                         </span></label></div>
                                                                                                 <div className="data__preview">
@@ -169,6 +177,8 @@ function ProductsList(props) {
                                                                                                                 />
                                                                                                         </label>
                                                                                                         <input
+                                                                                                                ref={fileI}
+                                                                                                                name={index}
                                                                                                                 type={"file"}
                                                                                                                 id="fileInput"
                                                                                                                 htmlFor="myInput"
@@ -177,7 +187,7 @@ function ProductsList(props) {
                                                                                                                         display: 'none',
                                                                                                                         cursor: 'pointer'
                                                                                                                 }}
-                                                                                                                onChange={(e) => { onChangeHandlerImage(e.target.files[0], this) }}
+                                                                                                                onChange={(e) => onChangeHandlerImage(e.target.files[0], $(this).attr("name"))}
                                                                                                         />
                                                                                                 </div>
                                                                                                 <div className="data__wrap">
@@ -195,13 +205,17 @@ function ProductsList(props) {
                                                                                         <div className="data__content"><strong>{item.amount}</strong> </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>{item.price}</strong></div>
+                                                                                        <div className="data__content"><strong>${item.price}</strong></div>
                                                                                 </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="tag gray">cotagerus!s!///\\\</div>
-                                                                                </div>
-                                                                                <div className="data__cell data__cell_action"><a href={"/products/" + item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
-                                                                        </div>
+                                                                                {item.category && <div className="data__cell mobile-hide">
+                                                                                        <div style={{ "backgroundColor": item.category.color }}
+                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                </div>}
+
+                                                                                <div className="data__cell data__cell_action">
+                                                                                        <button className="action action_stroke" onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
+                                                                                                <i className="la la-ellipsis-h "></i>
+                                                                                        </button></div>                                                                        </div>
                                                                 </div>
                                                         ))}
                                                 </div>
@@ -225,12 +239,13 @@ export default connect(
         (dispatch) => {
                 return {
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
-                        changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-                        changeProductImage: (p) => dispatch(actions.setProductImage(p)),
+                        changeProductImage: (p, i) => dispatch(actions.addImgToProduct({ p, i })),
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
-                        setSortYOrN: () => dispatch(actions.setAscendingProductsYOrN())
+                        setSortYOrN: () => dispatch(actions.setAscendingProductsYOrN()),
+                        setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
+
                 }
         }
 
