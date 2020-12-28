@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react' 
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
-
+import Pager from 'react-pager';
+import { render } from 'react-dom';
+ import Nis from '../services/nis'
 
 function CrudCategory(props) {
+
 
 
         useEffect(()=>{
@@ -130,8 +133,13 @@ function CrudCategory(props) {
                         <div className="data__cell data__cell_xl">
                         <div className="data__main">
                         <div className="data__effect mobile-hide"><label className="switch">
-                                                <input className="switch__input" type="button" onClick={()=>{props.delete(item._id);props.getCategories();} }/>
-                                              
+                                                <input className="switch__input" type="button" onClick={async()=>{await props.delete(item._id);props.getCategories();} }/>
+                                                        {/* <i className="la la-truck-loading "></i>
+                                                </input> */}
+                                                   <button>
+                                                   
+<i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                    </i></button>
                                                 <span className="switch__content">
                                                        
                                                         </span></label></div>
@@ -151,7 +159,13 @@ function CrudCategory(props) {
                         <div className="data__content">{item.image}</div>
                         </div>
                       
-                        <div className="data__cell data__cell_action"><a href={"/products/"+item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
+                        <div className="data__cell data__cell_action">
+                             
+                                        <button onClick={()=>{props.setcomponnet("editCategory");props.setCurrentCategory(item)}}  className="action action_stroke" >
+                                        <i className="la la-ellipsis-h "></i>
+                                        </button>
+                                    
+                                        </div>
                         </div>
                         </div>
                         ))}
@@ -186,8 +200,20 @@ function CrudCategory(props) {
                         </div>
                         </div>
                         <div className="panel__foot">
-                        <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
-                        <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
+                        <div className="pager">
+                                <a className="pager__arrow action action_icon_before" href="#">
+                                <i className="la la-angle-left "></i>
+                                Prev</a>
+                        <div className="pager__list">
+                                <a className="pager__link action" href="#">1</a>
+                                <a className="pager__link action" href="#">2</a>
+                                <a className="pager__link action active" href="#">3</a>
+                                <a className="pager__link action" href="#">4</a>
+                                <a className="pager__link action" href="#">5</a>
+                                </div>
+                                <a className="pager__arrow action action_icon_after" href="#">
+                                        Next<i className="la la-angle-right "></i>
+                                        </a>
                         </div>
                         </div>
                         </div>
@@ -195,6 +221,15 @@ function CrudCategory(props) {
                         </div>
                         </div>
                         </div>
+                        {/* <Pager
+                total={this.state.total}
+                current={this.state.current}
+                visiblePages={this.state.visiblePage}
+                titles={{ first: '<|', last: '>|' }}
+                className="pagination-sm pull-right"
+                onPageChanged={this.handlePageChanged}
+            />  */}
+             <Nis></Nis>
                         </>   
                 )                
         }       
@@ -212,6 +247,7 @@ function CrudCategory(props) {
                         return {
                                 getCategories:()=>dispatch(actions.getAllCategories()),
                                 setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+                                setCurrentCategory:(n)=>dispatch(actions.setCurrentCategory(n)),
                                 delete:(i)=>{dispatch(actions.deleteCategory(i))}
                         }
                 }             

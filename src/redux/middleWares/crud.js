@@ -198,7 +198,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({ "SKU": action.payload.SKU, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+        var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
 
         var requestOptions = {
             method: 'POST',
@@ -287,12 +287,36 @@ export const deleteProduct = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 export const deleteCategory = ({ dispatch, getState }) => next => action => {
-    debugger
+
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
        .then(res=>{console.log("get ",res.data);
        debugger
        dispatch(actions.getCommunity({community:res.data})) });
+   }
+
+   return next(action);
+};
+// לא גמור
+export const editproduct = ({ dispatch, getState }) => next => action => {
+
+    if (action.type === 'EDITPRODUCT') {
+        debugger; 
+        
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+        axios.post('https://community.leader.codes/api/products/editProduct/'+action.payload.id,requestOptions)
+       .then(res=>{console.log("get ",res.data);debugger;});
+       
+     
    }
 
    return next(action);

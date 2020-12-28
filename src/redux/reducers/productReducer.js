@@ -3,7 +3,8 @@ import createReducer from "./reducerUtils";
 
 const initialState = {
     products: [],
-    pic: ""
+    pic: "",
+    currentProduct:{}
 
 };
 
@@ -20,6 +21,9 @@ const product = {
         state.products[action.payload.i].images[0] = action.payload.p
         state.pic = state.products[action.payload.i].images[0]
 
+    },
+    setCurrentProduct(state,action){
+        state.currentProduct=action.payload
     }
 
 };

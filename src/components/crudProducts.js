@@ -6,6 +6,7 @@ import './crudProducts.css';
 import $ from 'jquery'
 import productImg from '../assets/products/product-pic-7.png'
 import cloneDeep from 'lodash/cloneDeep';
+import { editProduct } from '../redux/middleWares/crud';
 
 
 //1
@@ -13,6 +14,8 @@ const useStyles = (theme) => ({
 })
 
 function CrudProducts(props) {
+        
+
 
         const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
@@ -387,9 +390,18 @@ function CrudProducts(props) {
                                                                                                                                 <div className="data__label">Price</div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">
-                                                                                                                                <div className="tag gray">cotagerus!s!///\\\</div>
+                                                                                                                                <div className="data__content"><strong>{item.amount}</strong></div>
+                                                                                                                                <div className="data__label">amuont</div>
                                                                                                                         </div>
-                                                                                                                        <div className="data__cell data__cell_action"><a href={"/products/" + item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
+                                                                                                                       {item.category&& <div  className="data__cell mobile-hide">
+                                                                                                                                <div style={{"backgroundColor":item.category.color}} 
+                                                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                                                        </div>}
+                                                                                                                        <div className="data__cell data__cell_action">
+                                                                                                                              
+                                                                                                                                        <button className="action action_stroke" onClick={()=>{props.setcomponnet("editProduct");props.setCurrentProduct(item)}} >
+                                                                                                                                        <i className="la la-ellipsis-h "></i>
+                                                                                                                                        </button></div>
                                                                                                                 </div>
                                                                                                         </div>
                                                                                                 ))}
@@ -472,7 +484,8 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                        filteredProducts: state.searchReducer.filteredItems
+                        filteredProducts: state.searchReducer.filteredItems,
+
                 }
         },
         (dispatch) => {
@@ -486,6 +499,7 @@ export default connect(
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
                         changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
+                        setCurrentProduct:(p)=>dispatch(actions.setCurrentProduct(p))
                 }
         }
 

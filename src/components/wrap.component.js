@@ -36,6 +36,8 @@ import {logOut} from '../services/firebase'
 import AddProduct from './compsEditStore/addProduct2';
 import Search from './compsEditStore/search';
 import AddCategory from './compsEditStore/addCategory';
+import EditProduct from './compsEditStore/editProduct';
+import EditCategory from './compsEditStore/editCategory';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -329,6 +331,8 @@ class Wrap extends React.Component {
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
                             case "TextIntoCategory": return <TextIntoCategory />
+                            case "editProduct": return <EditProduct />
+                            case "editCategory": return <EditCategory />
                             case "": return
                                 <h1>e</h1>;
 
