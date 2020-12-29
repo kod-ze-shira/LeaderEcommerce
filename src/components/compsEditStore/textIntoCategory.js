@@ -302,7 +302,7 @@ class TextIntoCategory extends Component {
         this.setState({ bgcolrPNG: color.hex });
     };
     changeTextSizein = (e) => {
-        ;
+        debugger;
         this.props.changeTextSize(e)
     }
 
@@ -461,7 +461,6 @@ class TextIntoCategory extends Component {
                                         display="flex"
                                         justifyContent="space-between"
                                     >
-
                                         <Box
                                             width={'100%'}
                                             alignSelf="center"
@@ -492,13 +491,9 @@ class TextIntoCategory extends Component {
                                             />
                                         </Box>
                                     </Box>
-
-
                                     <br></br>
                                     <br></br>
-
                                     <FormLabel className={classes.textcontect}>Line Height</FormLabel>
-
 
                                     <Box flexDirection="row"
                                         display="flex"
@@ -508,7 +503,6 @@ class TextIntoCategory extends Component {
                                             width={'100%'}
                                             alignSelf="center"
                                         >
-
 
                                             <Slider {...defaultProps3}
                                                 defaultValue={this.props.homeStoreDesign.titleLineHeight.textIntoCategory ? this.props.homeStoreDesign.titleLineHeight.textIntoCategory : '1.2'}
@@ -601,7 +595,7 @@ const mapDispatchToProps = (dispatch) => ({
     changeTitleLineHeight: (e) => dispatch(actions.setTitleLineHeight({ k: "textIntoCategory", e })),
     changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "textIntoCategory", e })),
     // changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo({ key: "category", image })),
-    cahngeBorderRadius: (image) => dispatch(actions.setBorderRadius({ key: "category", image })),
+    cahngeBorderRadius: (frame) => dispatch(actions.setBorderRadius({ key: "category", frame })),
 
 
     // changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),

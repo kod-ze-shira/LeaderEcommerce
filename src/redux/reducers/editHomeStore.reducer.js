@@ -82,8 +82,6 @@ const initialState = {
                         titleCategory: "1.2",
                         titleProduct: "1.2",
                         textIntoCategory: "1.2",
-
-
                 },
                 // titleColorText: "",
                 titleColorText: {
@@ -91,7 +89,6 @@ const initialState = {
                         titleCategory: "",
                         titleProduct: "",
                         textIntoCategory: "",
-
                 },
                 // aboutUsTitleYOrN: true,
                 // aboutUsTitleYOrN: {
@@ -102,7 +99,6 @@ const initialState = {
                         category: "24",
                         pictureFrame: "64",
                 }
-
         }
 }
 
@@ -135,7 +131,7 @@ const homeDesign = {
         },
         ///////////////////////////////////////////////////
         setBorderRadius(state, action) {
-                state.homeStoreDesign.BorderRadius[action.payload.key] = action.payload.image;
+                state.homeStoreDesign.BorderRadius[action.payload.key] = action.payload.frame;
         },
         //////////////////////////////////////////////////////
 

@@ -4,23 +4,50 @@ import userReducer from './reducers/userReducer';
 import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
-import addProductReducer  from './reducers/addProductReduser';
-import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged,getAllProducts,getAllCategories,newProduct,createNewCategory,deleteProduct,deleteCategory} from './middleWares/crud'
+import addProductReducer from './reducers/addProductReduser';
+import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged, getAllProducts, getAllCategories, newProduct, createNewCategory, deleteProduct, deleteCategory } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
 import viewModeReducer from './reducers/viewModeReducer'
 
+import sortReducer from './reducers/sortReducer'
 
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './action';
 
 const reducers =
-    combineReducers({ communityReducer, userReducer, storeReducer, editHomeStoreReducer, logoReducer, productReducer, categoriesReducer, searchReducer, addProductReducer,viewModeReducer })
+    combineReducers({
+        communityReducer,
+        userReducer,
+        storeReducer,
+        editHomeStoreReducer,
+        logoReducer,
+        productReducer,
+        categoriesReducer,
+        searchReducer,
+        addProductReducer,
+        sortReducer,
+        viewModeReducer
+    })
+
 const store = createStore(
-    reducers, 
-    composeWithDevTools(applyMiddleware(getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged,getAllProducts,getAllCategories,newProduct,createNewCategory,deleteProduct,deleteCategory))
+    reducers,
+    
+    composeWithDevTools(
+        applyMiddleware(
+        getAllCommunitiesFromDb,
+        getCommunityById,
+        checkPermission,
+        onAuthStateChanged,
+        getAllProducts,
+        getAllCategories,
+        newProduct,
+        createNewCategory,
+        deleteProduct,
+        deleteCategory
+    ))
 
 )
 window.store = store;
