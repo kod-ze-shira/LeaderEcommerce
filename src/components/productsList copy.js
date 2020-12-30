@@ -206,7 +206,7 @@ function ProductsList(props) {
                                                                                
                                                                                 <div className="data__cell data__cell_action">
                                                                                       
-                                                                                        <button className="action action_stroke" onClick={()=>{debugger; props.setcomponnet("editProduct");props.setCurrentProduct(item)}} >
+                                                                                        <button className="action action_stroke" onClick={()=>{debugger; props.setCurrentProduct(item);props.setcomponnet("editProduct");}} >
                                                                                                
                                                                                                         <i className="la la-ellipsis-h "></i>
                                                                                                 </button></div>

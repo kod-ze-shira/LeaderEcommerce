@@ -29,7 +29,8 @@ const product = {
         state.viewListOrGrid = action.payload
     },
     setCurrentProduct(state,action){
-        state.currentProduct=action.payload
+              debugger
+  state.currentProduct=action.payload
     }
 
 };

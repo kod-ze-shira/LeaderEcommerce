@@ -4,6 +4,7 @@ import { actions } from '../redux/action'
 import Pager from 'react-pager';
 import { render } from 'react-dom';
 
+
 function CrudCategory(props) {
 
 
@@ -228,6 +229,7 @@ function CrudCategory(props) {
                 className="pagination-sm pull-right"
                 onPageChanged={this.handlePageChanged}
             />  */}
+        
                         </>   
                 )                
         }       

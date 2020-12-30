@@ -300,7 +300,7 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 // לא גמור
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
-    if (action.type === 'EDITPRODUCT') {
+    if (action.type === 'EDIT_PRODUCT') {
         debugger; 
         
     var myHeaders = new Headers();
@@ -314,7 +314,7 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
     };
 
         axios.post('https://community.leader.codes/api/products/editProduct/'+action.payload.id,requestOptions)
-       .then(res=>{console.log("get ",res.data);debugger;});
+       .then(res=>{console.log("get ",res.data)});
        
      
    }
@@ -322,4 +322,28 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
    return next(action);
 };
 
+export const editCategory = ({ dispatch, getState }) => next => action => {
+  
+    if (action.type === 'EDIT_CATEGORY') {
+        debugger; 
+        
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({ "categoryName": action.payload.categoryName, "color": action.payload.color });
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+  
+  debugger;
+        axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
+       .then(res=>{console.log("get ",res.data)});
+       
+     
+   }
+
+   return next(action);
+};
 

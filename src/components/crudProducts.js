@@ -118,6 +118,25 @@ function CrudProducts(props) {
         //         // }
         // }
 
+        let [pageNum, setNum] = useState(2)
+         let items= props.products
+       // let [items, setMyItems] = useState(props.filteredProducts)
+        function changePageNum(num)
+         {
+                 debugger;
+                 setNum(num);        
+                 let p1=(pageNum - 1) * 6;
+                 let p2=pageNum * 6 - 1;
+                items=items.slice(p1, p2)
+        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
+                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
+        // setMyItems({
+        //         ...items,
+        //       list
+        //       });
+
+        }
+        
         return (
                 <>
                         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
@@ -293,6 +312,125 @@ function CrudProducts(props) {
                                                         <div className="panel__body">
                                                                 <ProductsListCopy />
 
+                                                                <div className="panel__tab js-panel-tab"
+                                                                        style={{ display: 'block' }}>
+                                                                        <div className="data data_list">
+                                                                                <div className="data__container">
+                                                                                        <div className="data__head">
+                                                                                                <div className="data__row">
+                                                                                                        <div className="data__cell data__cell_xl">
+                                                                                                                <div className="data__filter">שם<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">תאור<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">מק"ט<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">יייי<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">מחיר<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">קטגוריה<i className="la la-sort-alpha-down "></i></div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell data__cell_action"></div>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div className="data__body">
+                                                                                                <input type="search"
+                                                                                                        onChange={(e) => { search(e.target.value) }}
+                                                                                                ></input>
+                                                                                                {items.map((item, index) => (
+                                                                                                        <div className="data__item" key={index}>
+                                                                                                                <div className="data__row" >
+                                                                                                                        <div className="data__cell data__cell_xl">
+                                                                                                                                <div className="data__main">
+                                                                                                                                        <div className="data__effect mobile-hide"><label className="switch">
+                                                                                                                                                <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.getAllProducts(); }} />
+                                                                                                                                                <span className="switch__content">
+                                                                                                                                                </span></label></div>
+                                                                                                                                        <div className="data__preview">
+                                                                                                                                                <label className="prdct_img" for="fileInput">
+                                                                                                                                                        <img alt="product image" src={item.images[0] ? item.images[0] : productImg}
+                                                                                                                                                        // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
+                                                                                                                                                        />
+                                                                                                                                                </label>
+                                                                                                                                                <input
+                                                                                                                                                        type={"file"}
+                                                                                                                                                        id="fileInput"
+                                                                                                                                                        htmlFor="myInput"
+                                                                                                                                                        accept="image/*"
+                                                                                                                                                        style={{
+                                                                                                                                                                display: 'none',
+                                                                                                                                                                cursor: 'pointer'
+                                                                                                                                                        }}
+                                                                                                                                                        onChange={(e) => { onChangeHandlerImage(e.target.files[0], this) }}
+                                                                                                                                                />
+                                                                                                                                                {/* 
+                                                <div className="col-md-12 ml-15">
+                        <label for="fileInput">
+                        <img className="logoC"  alt="" src={this.props.urlImage ? this.props.urlImage.image :logoC } />
+                </label>
+                        <input
+                        type={"file"}
+                        id="fileInput"
+                        htmlFor="myInput"
+                        accept="image/*"
+                        style={{
+                        display: 'none',
+                        cursor: 'pointer'
+                        }}
+                        onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
+                        />
+                        </div> */}
+                                                                                                                                                {/* <img className="data__pic" src={product1} alt="Product" /> */}
+                                                                                                                                        </div>
+                                                                                                                                        <div className="data__wrap">
+                                                                                                                                                <div className="data__content">
+                                                                                                                                                        <strong>{item.name}</strong></div>
+                                                                                                                                                <div className="data__label">SKU {item.SKU}</div>
+                                                                                                                                        </div>
+                                                                                                                                </div>
+                                                                                                                        </div>
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">{item.description}</div>
+                                                                                                                                {/* <div className="data__label">amount</div> */}
+                                                                                                                        </div>
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">{item.SKU}</div>
+                                                                                                                                <div className="data__label">SKU</div>
+                                                                                                                        </div>
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content"><strong>{item.color}</strong> / {index}</div>
+                                                                                                                                <div className="data__label">Rating</div>
+                                                                                                                        </div>
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content"><strong>{item.price}</strong></div>
+                                                                                                                                <div className="data__label">Price</div>
+                                                                                                                        </div>
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content"><strong>{item.amount}</strong></div>
+                                                                                                                                <div className="data__label">amuont</div>
+                                                                                                                        </div>
+                                                                                                                       {item.category&& <div  className="data__cell mobile-hide">
+                                                                                                                                <div style={{"backgroundColor":item.category.color}} 
+                                                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                                                        </div>}
+                                                                                                                        <div className="data__cell data__cell_action">
+                                                                                                                              
+                                                                                                                                        <button className="action action_stroke" onClick={()=>{props.setCurrentProduct(item);props.setcomponnet("editProduct");}} >
+                                                                                                                                        <i className="la la-ellipsis-h "></i>
+                                                                                                                                        </button></div>
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                ))}
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
                                                                 {/* gggrrriiiddd */}
                                                                 <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
                                                                         <div className="data data_grid">
@@ -351,6 +489,16 @@ function CrudProducts(props) {
                                                                 <div className="panel__foot">
                                                                         <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
                                                                                 <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
+
+
+
+
+
+
+                                                        <button onClick={()=>{changePageNum(1)}}>1</button>
+                                                        <button onClick={()=>{changePageNum(2)}}>2</button>
+                                                       <button onClick={()=>{changePageNum(3)}}>3</button>
+
                                                                         </div>
                                                                 </div>
                                                         </div>
@@ -369,7 +517,7 @@ export default connect(
                 return {
                         products: state.productReducer.products,
                         filteredProducts: state.searchReducer.filteredItems,
-
+                        items: state.searchReducer.filteredItems,
                 }
         },
         (dispatch) => {
