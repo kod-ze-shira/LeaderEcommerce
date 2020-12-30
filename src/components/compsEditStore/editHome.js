@@ -18,6 +18,7 @@ import productPic5 from "../../assets/products/product-pic-5.png"
 import productPic6 from "../../assets/products/product-pic-6.png"
 import productPic7 from "../../assets/products/product-pic-7.png"
 import productPic8 from "../../assets/products/product-pic-8.png"
+import { LensOutlined } from '@material-ui/icons';
 
 class EditHome extends Component {
     // הפונקציה לשינוי התמונה הראשית של החנות 
@@ -32,6 +33,7 @@ class EditHome extends Component {
     }
 
     render() {
+        let categories = this.props.categories[0] ? this.props.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }]
         return (
             <div>
                 {/*דיב של תמונת פתיחה שעליה כותרת פתיחה*/}
@@ -108,8 +110,8 @@ class EditHome extends Component {
                             slick-initialized slick-slider">
                                 <Carousel className="carousel" itemsToShow={3}>
                                     {
-                                        // this.props.categories[0]?
-                                        this.props.categories.map((item, index) => (
+                                        // state.categoriesReducer.categories[0] ?
+                                        categories.map((item, index) => (
                                             <div className="categories__slide" key={index}>
                                                 {/* //למשתמש זה צריך להיות לינק שמקשר לקטגוריה הנוכחית ולא דיב */}
                                                 {/* //השארתי לינק אחד לדוגמא */}
@@ -118,38 +120,79 @@ class EditHome extends Component {
                                                 </div>
                                                 <div className="categories__text">On Sale</div>
                                                 </Link> */}
-                                                <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}
-                                                    style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.category + "px" }}
-                                                >
-                                                    <div className="categories__icon"
-                                                    //קומפוננטת שנשלחת לקונפיגורטור לעריכת איקון 
-                                                    // onClick={() => this.props.changeCurrentComponent("IconEdit")}
+                                                {/*  לסדר בצורה הגיונית! למה לכתוב הכל פעמיים ? י */}
+                                                {this.props.viewModel.viewMode ?
+                                                    <Link className="categories__item" to={this.props.viewModel.viewMode ? "" : "/category"}
+                                                        style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.category + "px" }}
                                                     >
-                                                        {/* <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt="" */}
-                                                        <h1
-                                                            style={{
-                                                                color: this.props.homeStoreDesign.iconColor,
-                                                                fontSize: this.props.homeStoreDesign.iconSize + "px"
-                                                            }}>
-                                                            איקון לפי קטגוריה
-                                                        </h1>
-                                                        {/* </img> */}
-                                                    </div>
-                                                    <div
-                                                        className="categories__text"
-                                                        style={{
-                                                            fontFamily: this.props.homeStoreDesign.titleFont.textIntoCategory,
-                                                            fontWeight: this.props.homeStoreDesign.titleTextWeight.textIntoCategory,
-                                                            fontSize: this.props.homeStoreDesign.titleTextSize.textIntoCategory + "px",
-                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory,
-                                                            color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
-                                                            textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
-                                                            marginTop: '2vh'
-                                                        }}
-                                                    // onChange={(e) => this.props.changeTextTitle(e.target.value)}
+                                                        <div className="categories__icon"
+                                                        //קומפוננטת שנשלחת לקונפיגורטור לעריכת איקון 
+                                                        // onClick={() => this.props.changeCurrentComponent("IconEdit")}
+                                                        >
+                                                            {/* <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt="" */}
+                                                            <h1
+                                                                style={{
+                                                                    color: this.props.homeStoreDesign.iconColor,
+                                                                    fontSize: this.props.homeStoreDesign.iconSize + "px"
+                                                                }}>
+                                                                איקון לפי קטגוריה
+                                                            </h1>
+                                                            {/* </img> */}
+                                                        </div>
 
-                                                    >{item.categoryName}</div>
-                                                </div>
+                                                        <div
+                                                            className="categories__text"
+                                                            style={{
+                                                                fontFamily: this.props.homeStoreDesign.titleFont.textIntoCategory,
+                                                                fontWeight: this.props.homeStoreDesign.titleTextWeight.textIntoCategory,
+                                                                fontSize: this.props.homeStoreDesign.titleTextSize.textIntoCategory + "px",
+                                                                lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory, color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
+                                                                // textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
+                                                                marginTop: '2vh'
+                                                            }}
+                                                        // onChange={(e) => this.props.changeTextTitle(e.target.value)}
+
+                                                        >{item.categoryName}</div>
+
+                                                    </Link>
+                                                    :
+
+                                                    // 
+
+                                                    // 
+                                                    <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}
+                                                        style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.category + "px" }}
+                                                    >
+                                                        <div className="categories__icon"
+                                                        //קומפוננטת שנשלחת לקונפיגורטור לעריכת איקון 
+                                                        // onClick={() => this.props.changeCurrentComponent("IconEdit")}
+                                                        >
+                                                            {/* <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt="" */}
+                                                            <h1
+                                                                style={{
+                                                                    color: this.props.homeStoreDesign.iconColor,
+                                                                    fontSize: this.props.homeStoreDesign.iconSize + "px"
+                                                                }}>
+                                                                איקון לפי קטגוריה
+                                                            </h1>
+                                                            {/* </img> */}
+                                                        </div>
+
+                                                        <div
+                                                            className="categories__text"
+                                                            style={{
+                                                                fontFamily: this.props.homeStoreDesign.titleFont.textIntoCategory,
+                                                                fontWeight: this.props.homeStoreDesign.titleTextWeight.textIntoCategory,
+                                                                fontSize: this.props.homeStoreDesign.titleTextSize.textIntoCategory + "px",
+                                                                lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory, color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
+                                                                // textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
+                                                                marginTop: '2vh'
+                                                            }}
+                                                        // onChange={(e) => this.props.changeTextTitle(e.target.value)}
+
+                                                        >{item.categoryName}</div>
+                                                    </div>
+                                                }
                                             </div>
 
                                         ))
@@ -198,10 +241,11 @@ class EditHome extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // products: state.state.productReducer.products[0],
-        categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
+
+        categories: state.categoriesReducer.categories,
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
+        viewModel: state.viewModeReducer.viewModel
     }
 }
 const mapDispatchToProps = (dispatch) => ({

@@ -254,7 +254,8 @@ class Wrap extends React.Component {
             // const history = useHistory();
             // history.push("/login")
             debugger;
-            this.props.history.push("/login");
+            this.props.changeViewMode(true);
+            this.props.history.push("/view/"+this.props.viewModel.currentPage);
         }
         const logOutHandler = () => {
             logOut.then(() => {
@@ -493,12 +494,13 @@ class Wrap extends React.Component {
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
-        logoDesign: state.logoReducer.logoDesign
+        logoDesign: state.logoReducer.logoDesign,
+        viewModel:state.viewModeReducer.viewModel
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent())
+    changeViewMode: (e) => dispatch(actions.setMode(e))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(withRouter(Wrap)));

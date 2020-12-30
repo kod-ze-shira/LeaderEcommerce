@@ -9,6 +9,8 @@ import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthState
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
+import viewModeReducer from './reducers/viewModeReducer'
+
 import sortReducer from './reducers/sortReducer'
 
 
@@ -26,12 +28,15 @@ const reducers =
         categoriesReducer,
         searchReducer,
         addProductReducer,
-        sortReducer
+        sortReducer,
+        viewModeReducer
     })
 
 const store = createStore(
     reducers,
-    applyMiddleware(
+    
+    composeWithDevTools(
+        applyMiddleware(
         getAllCommunitiesFromDb,
         getCommunityById,
         checkPermission,
@@ -42,8 +47,7 @@ const store = createStore(
         createNewCategory,
         deleteProduct,
         deleteCategory
-    )
-    // composeWithDevTools()
+    ))
 
 )
 window.store = store;
