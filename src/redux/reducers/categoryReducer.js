@@ -4,7 +4,8 @@ import axios from 'axios'
 import { actions } from '../action';
 
 const initialState = {
-categories:[]
+categories:[],
+currentCategory:{}
 }
 
 const category = {
@@ -19,6 +20,10 @@ const category = {
     setCategories(state,action){
         state.categories=action.payload.categories;
   
+    },
+    setCurrentCategory(state,action){
+        debugger;
+        state.currentCategory=action.payload;
     }
 
 }

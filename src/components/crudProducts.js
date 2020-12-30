@@ -6,6 +6,8 @@ import './crudProducts.css';
 import $ from 'jquery'
 import productImg from '../assets/products/product-pic-7.png'
 import cloneDeep from 'lodash/cloneDeep';
+import { editProduct } from '../redux/middleWares/crud';
+import ProductsListCopy from './productsList copy';
 
 
 //1
@@ -13,6 +15,8 @@ const useStyles = (theme) => ({
 })
 
 function CrudProducts(props) {
+
+
 
         const [file, setFile] = useState()
         // const [file, setFile] = useState(0);
@@ -287,116 +291,8 @@ function CrudProducts(props) {
                                                                                 <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn"><i className="la la-border-all "></i>Grid</button></div>
                                                         </div>
                                                         <div className="panel__body">
-                                                                <div className="panel__tab js-panel-tab"
-                                                                        style={{ display: 'block' }}>
-                                                                        <div className="data data_list">
-                                                                                <div className="data__container">
-                                                                                        <div className="data__head">
-                                                                                                <div className="data__row">
-                                                                                                        <div className="data__cell data__cell_xl">
-                                                                                                                <div className="data__filter">שם<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell">
-                                                                                                                <div className="data__filter">תאור<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell">
-                                                                                                                <div className="data__filter">מק"ט<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell">
-                                                                                                                <div className="data__filter">יייי<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell">
-                                                                                                                <div className="data__filter">מחיר<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell">
-                                                                                                                <div className="data__filter">קטגוריה<i className="la la-sort-alpha-down "></i></div>
-                                                                                                        </div>
-                                                                                                        <div className="data__cell data__cell_action"></div>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div className="data__body">
-                                                                                                <input type="search"
-                                                                                                        onChange={(e) => { search(e.target.value) }}
-                                                                                                ></input>
-                                                                                                {props.filteredProducts.map((item, index) => (
-                                                                                                        <div className="data__item" key={index}>
-                                                                                                                <div className="data__row" >
-                                                                                                                        <div className="data__cell data__cell_xl">
-                                                                                                                                <div className="data__main">
-                                                                                                                                        <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.getAllProducts(); }} />
-                                                                                                                                                <span className="switch__content">
-                                                                                                                                                </span></label></div>
-                                                                                                                                        <div className="data__preview">
-                                                                                                                                                <label className="prdct_img" for="fileInput">
-                                                                                                                                                        <img alt="product image" src={item.images[0] ? item.images[0] : productImg}
-                                                                                                                                                        // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
-                                                                                                                                                        />
-                                                                                                                                                </label>
-                                                                                                                                                <input
-                                                                                                                                                        type={"file"}
-                                                                                                                                                        id="fileInput"
-                                                                                                                                                        htmlFor="myInput"
-                                                                                                                                                        accept="image/*"
-                                                                                                                                                        style={{
-                                                                                                                                                                display: 'none',
-                                                                                                                                                                cursor: 'pointer'
-                                                                                                                                                        }}
-                                                                                                                                                        onChange={(e) => { onChangeHandlerImage(e.target.files[0], this) }}
-                                                                                                                                                />
-                                                                                                                                                {/* 
-                                                <div className="col-md-12 ml-15">
-                        <label for="fileInput">
-                        <img className="logoC"  alt="" src={this.props.urlImage ? this.props.urlImage.image :logoC } />
-                </label>
-                        <input
-                        type={"file"}
-                        id="fileInput"
-                        htmlFor="myInput"
-                        accept="image/*"
-                        style={{
-                        display: 'none',
-                        cursor: 'pointer'
-                        }}
-                        onChange={(e) => this.onChangeHandlerImage(e.target.files[0])}
-                        />
-                        </div> */}
-                                                                                                                                                {/* <img className="data__pic" src={product1} alt="Product" /> */}
-                                                                                                                                        </div>
-                                                                                                                                        <div className="data__wrap">
-                                                                                                                                                <div className="data__content">
-                                                                                                                                                        <strong>{item.name}</strong></div>
-                                                                                                                                                <div className="data__label">SKU {item.SKU}</div>
-                                                                                                                                        </div>
-                                                                                                                                </div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content">{item.description}</div>
-                                                                                                                                {/* <div className="data__label">amount</div> */}
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content">{item.SKU}</div>
-                                                                                                                                <div className="data__label">SKU</div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content"><strong>{item.color}</strong> / {index}</div>
-                                                                                                                                <div className="data__label">Rating</div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content"><strong>{item.price}</strong></div>
-                                                                                                                                <div className="data__label">Price</div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="tag gray">cotagerus!s!///\\\</div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell data__cell_action"><a href={"/products/" + item._id}><button className="action action_stroke" ><i className="la la-ellipsis-h "></i></button></a></div>
-                                                                                                                </div>
-                                                                                                        </div>
-                                                                                                ))}
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
+                                                                <ProductsListCopy />
+
                                                                 {/* gggrrriiiddd */}
                                                                 <div className="panel__tab js-panel-tab" style={{ display: 'none' }}>
                                                                         <div className="data data_grid">
@@ -472,7 +368,8 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                        filteredProducts: state.searchReducer.filteredItems
+                        filteredProducts: state.searchReducer.filteredItems,
+
                 }
         },
         (dispatch) => {
@@ -486,6 +383,7 @@ export default connect(
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
                         changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
+                        setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p))
                 }
         }
 

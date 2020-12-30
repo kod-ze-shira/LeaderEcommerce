@@ -77,7 +77,13 @@ function Yeudit(props) {
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
                                                 </div>
+                                                <div className="container__new new js-new">
+                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addProduct") }}>
+                                                                <i className="la la-plus-circle "></i>
+                                                        </button>
+                                                </div>
                                         </div>
+
                                         <div className="container__body">
                                                 <div className="panel js-panel">
                                                         <div className="panel__head panel__head_line">

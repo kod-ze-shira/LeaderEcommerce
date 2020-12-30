@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from 'react' 
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
-// import aService from '../services/product.service'
+
  function AddProduct (props)  {
 
   useEffect(()=>{
@@ -9,17 +9,18 @@ import { actions } from '../../redux/action'
 
 })
 
-        console.log(props);
+    console.log(props);
     const [myValues ,setMyValues]= useState({
-        name:'',
-        description:'',
-        sku:'',
-        amount:'', 
-        category:'',
-         price:'', 
+      id:props.currentProduct._id,
+        name:props.currentProduct.name,
+        description:props.currentProduct.description,
+        sku:props.currentProduct.sku,
+        amount:props.currentProduct.amount, 
+        category:props.currentProduct.category,
+         price:props.currentProduct.price, 
          //לא עובד -צריך להביא תמונות מהשרת 
         //  images:'',
-         featuredProducts:'',
+         featuredProducts:props.currentProduct.featuredProducts,
          //צריך להיות סטטי שם החנות
         //  store:''
         });
@@ -48,19 +49,9 @@ import { actions } from '../../redux/action'
     }
     
     const Submit = ()=>{
-        debugger
-        // event.preventDefault();
-       if(myValues.category!="")
-       {
-        props.createNewProduct(myValues); 
-       props.getProducts();
-      } 
-        else
-        {
-          alert("לא בחרת קטגוריה הוסף קטוגריה");
-        // props.setcomponnet("addCategory")
-        }
-     
+debugger;
+        props.editproduct(myValues); 
+       props.getProducts();  
     }
 
     return(
@@ -125,7 +116,7 @@ import { actions } from '../../redux/action'
                     <div className="field form__field">
                       <div className="field__label">קטגוריה</div>
                       <div className="field__wrap">
-                        <select onChange={update} name="category"  className="field__select" required='true' >
+                        <select value={myValues.category} onChange={update} name="category"  className="field__select" required='true' >
                         <option> </option>     
                       {props.categoryList.map((item, index) => (
                         <option>{item._id}</option>           
@@ -139,7 +130,7 @@ import { actions } from '../../redux/action'
                 </div>
                 <div className="form__foot">
                 
-                <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
+                <button className="form__btn btn" onClick={Submit}>edit</button>
                 </div>
              
               </div>
@@ -151,16 +142,18 @@ export default connect(
           
           return { 
                  
-                  categoryList:state.categoriesReducer.categories
+                  categoryList:state.categoriesReducer.categories,
+                  currentProduct:state.productReducer.currentProduct
+
           }
          
   },
   (dispatch)=>{
           return {
-                  getCategories:()=>dispatch(actions.getAllCategories()),
-                  getProducts:()=>dispatch(actions.getAllProducts()),
-                  createNewProduct:(n)=>dispatch(actions.addNewProducts(n)),
-                  setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+                    getCategories:()=>dispatch(actions.getAllCategories()),
+                    getProducts:()=>dispatch(actions.getAllProducts()),
+                     editproduct:(v)=>dispatch(actions.editproduct(v)),
+ 
           }
   }             
   )(AddProduct);

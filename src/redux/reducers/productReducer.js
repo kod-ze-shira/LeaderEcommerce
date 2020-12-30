@@ -5,7 +5,8 @@ import createReducer from "./reducerUtils";
 const initialState = {
     products: [],
     pic: "",
-    viewListOrGrid: "list"
+    viewListOrGrid: "list",
+    currentProduct:{}
 
 };
 
@@ -26,6 +27,9 @@ const product = {
     },
     setLOrG(state, action) {
         state.viewListOrGrid = action.payload
+    },
+    setCurrentProduct(state,action){
+        state.currentProduct=action.payload
     }
 
 };

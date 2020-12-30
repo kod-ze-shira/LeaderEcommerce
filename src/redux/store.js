@@ -5,7 +5,7 @@ import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import addProductReducer from './reducers/addProductReduser';
-import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged, getAllProducts, getAllCategories, newProduct, createNewCategory, deleteProduct, deleteCategory } from './middleWares/crud'
+import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged, getAllProducts, getAllCategories, newProduct, createNewCategory, deleteProduct, deleteCategory, editproduct } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
@@ -46,7 +46,8 @@ const store = createStore(
         newProduct,
         createNewCategory,
         deleteProduct,
-        deleteCategory
+        deleteCategory,
+        editproduct
     ))
 
 )

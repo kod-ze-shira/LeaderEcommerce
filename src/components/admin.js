@@ -47,8 +47,8 @@ function Admin() {
 
                                         </div>
                                         <div className="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                {/* <CrudProducts />  */}
-                                                <Yeudit />
+                                                <CrudProducts /> 
+                                                {/* <Yeudit /> */}
                                                 <CrudCategory />
                                         </div>
                                         <div className="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>

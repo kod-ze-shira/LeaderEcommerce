@@ -42,6 +42,8 @@ import { withRouter } from "react-router-dom";
 // import { logOut } from '../services/firebase'
 
 
+import EditProduct from './compsEditStore/editProduct';
+import EditCategory from './compsEditStore/editCategory';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -352,9 +354,13 @@ class Wrap extends React.Component {
                             case "textOnThePicture": return <TextOnThePicture />;
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
-                            case "TextIntoCategory": return <TextIntoCategory />;
-                            case "": return <h1>e</h1>;
-                            default: return <h3>didnt check</h3>;
+                            case "TextIntoCategory": return <TextIntoCategory />
+                            case "editProduct": return <EditProduct />
+                            case "editCategory": return <EditCategory />
+                            case "": return
+                                <h1>e</h1>;
+
+
                         }
                     })() :
                         <h3>didnt check</h3>}

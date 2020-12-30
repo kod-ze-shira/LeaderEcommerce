@@ -19,8 +19,9 @@ import Slider from '@material-ui/core/Slider';
 
         console.log(props);
     const [myValues ,setMyValues]= useState({
-        categoryName:'',
-        color:'',
+      
+        categoryName:props.currentCategory.categoryName,
+        color:props.currentCategory.color
 
          //לא עובד -צריך להביא תמונות מהשרת 
         //  image:'',
@@ -41,9 +42,8 @@ import Slider from '@material-ui/core/Slider';
     
     const Submit = ()=>{
         debugger
-        // event.preventDefault();
         console.log(myValues)
-        props.createNewCategory(myValues);
+        props.editCategory(myValues);
         props.getAllCategory();
     }
 
@@ -71,38 +71,7 @@ import Slider from '@material-ui/core/Slider';
                     </div>
                   </div>
                 </div>
-                {/* <FormLabel 
-                className={classes.textcontect}
-                >Color text</FormLabel>
 
-<Box flexDirection="row"
-    display="flex"
-    justifyContent="space-between">
-
-    <Box
-        width={'100%'}
-        alignSelf="center">
-        <HuePicker
-            color={this.props.homeStoreDesign.titleColorText.textIntoCategory}
-            onChangeComplete={this.changeTitleColorText}
-            width={200}
-            height={6}
-          /> 
-    </Box>
-    <Box justifyContent="flex-end">
-        <input
-            textAlign="center"
-            id="standard-number"
-            type="number"
-            value={this.props.homeStoreDesign.titleColorText.textIntoCategory}
-            defaultValue={this.props.homeStoreDesign.titleColorText.textIntoCategory}
-            InputLabelProps={{
-                shrink: true,
-            }}
-            className={classes.inputNumberSlider}
-        />
-    </Box>
-</Box>*/}
           <div className="form__foot"> 
                 
                 <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
@@ -117,13 +86,14 @@ export default connect(
           
           return { 
                  
-                  categoryList:state.categoriesReducer.categories
+                  categoryList:state.categoriesReducer.categories,
+                  currentCategory:state.categoriesReducer.currentCategory
           }
          
   },
   (dispatch)=>{
           return {
-                  createNewCategory:(n)=>dispatch(actions.createNewCategory(n)),
+                  editCategory:(n)=>dispatch(actions.editCategory(n)),
                   getAllCategory:()=>dispatch(actions.getAllCategories()),
  
           }
