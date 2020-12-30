@@ -152,7 +152,7 @@ export default connect(
           return {
                     getCategories:()=>dispatch(actions.getAllCategories()),
                     getProducts:()=>dispatch(actions.getAllProducts()),
-                     editproduct:(v)=>dispatch(actions.editproduct(v)),
+                     editproduct:(v)=>dispatch(actions.editProduct(v)),
  
           }
   }             

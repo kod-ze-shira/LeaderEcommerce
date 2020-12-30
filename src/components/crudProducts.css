@@ -2,6 +2,21 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 
+
+.jij{  width: '30px';
+        display: 'inline_block';
+        text-align: 'center';
+        font: 'Light 50px/50px Roboto';
+        letter-spacing: '.1px';
+        color: '#cfd1d9!important';
+        text-transform: 'capitalize';
+        background-color: 'transparent';
+        border: 0;
+        outline: 0;
+        border-bottom: '1px solid #75798e';
+        opacity: 1;
+    }
+
 .la, .lab, .lad, .lal, .lar, .las {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;

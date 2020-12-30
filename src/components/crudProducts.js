@@ -117,6 +117,25 @@ function CrudProducts(props) {
         //         // }
         // }
 
+        let [pageNum, setNum] = useState(2)
+         let items= props.products
+       // let [items, setMyItems] = useState(props.filteredProducts)
+        function changePageNum(num)
+         {
+                 debugger;
+                 setNum(num);        
+                 let p1=(pageNum - 1) * 6;
+                 let p2=pageNum * 6 - 1;
+                items=items.slice(p1, p2)
+        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
+                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
+        // setMyItems({
+        //         ...items,
+        //       list
+        //       });
+
+        }
+        
         return (
                 <>
                         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
@@ -321,7 +340,7 @@ function CrudProducts(props) {
                                                                                                 <input type="search"
                                                                                                         onChange={(e) => { search(e.target.value) }}
                                                                                                 ></input>
-                                                                                                {props.filteredProducts.map((item, index) => (
+                                                                                                {items.map((item, index) => (
                                                                                                         <div className="data__item" key={index}>
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
@@ -467,6 +486,16 @@ function CrudProducts(props) {
                                                                 <div className="panel__foot">
                                                                         <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
                                                                                 <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
+
+
+
+
+
+
+                                                        <button onClick={()=>{changePageNum(1)}}>1</button>
+                                                        <button onClick={()=>{changePageNum(2)}}>2</button>
+                                                       <button onClick={()=>{changePageNum(3)}}>3</button>
+
                                                                         </div>
                                                                 </div>
                                                         </div>
@@ -485,7 +514,7 @@ export default connect(
                 return {
                         products: state.productReducer.products,
                         filteredProducts: state.searchReducer.filteredItems,
-
+                        items: state.searchReducer.filteredItems,
                 }
         },
         (dispatch) => {

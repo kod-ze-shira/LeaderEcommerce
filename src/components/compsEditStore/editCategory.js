@@ -19,7 +19,7 @@ import Slider from '@material-ui/core/Slider';
 
         console.log(props);
     const [myValues ,setMyValues]= useState({
-      
+        id:props.currentCategory._id,
         categoryName:props.currentCategory.categoryName,
         color:props.currentCategory.color
 
@@ -74,7 +74,7 @@ import Slider from '@material-ui/core/Slider';
 
           <div className="form__foot"> 
                 
-                <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
+                <button className="form__btn btn" onClick={Submit}>edit </button>
                 </div>
              
               </div>
@@ -93,7 +93,7 @@ export default connect(
   },
   (dispatch)=>{
           return {
-                  editCategory:(n)=>dispatch(actions.editCategory(n)),
+                  editCategory:(n)=>{debugger;dispatch(actions.editCategory(n))},
                   getAllCategory:()=>dispatch(actions.getAllCategories()),
  
           }
