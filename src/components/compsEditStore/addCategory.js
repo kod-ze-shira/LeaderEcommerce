@@ -8,7 +8,6 @@ import { actions } from '../../redux/action'
                 
 })
 
-
         console.log(props);
     const [myValues ,setMyValues]= useState({
         categoryName:'',

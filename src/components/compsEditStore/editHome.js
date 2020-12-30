@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
 // import $ from 'jquery';
 import '../../App.css';
+import FitureProduct from './fitureProductToHomePage';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 ///images  
 import shoppingBag from "../../assets/categories/shopping-bag.svg"
@@ -29,12 +30,6 @@ class EditHome extends Component {
             reader.readAsDataURL(event)
         }
     }
-    // לבטל ארחרי השיו נוי של יהודית בסטור
-    // componentDidMount() {
-
-    //     this.props.getCategories();
-
-    // }
 
     render() {
         return (
@@ -126,8 +121,19 @@ class EditHome extends Component {
                                                 <div className="categories__item" onClick={() => this.props.changeCurrentComponent("TextIntoCategory")}
                                                     style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.category + "px" }}
                                                 >
-                                                    <div className="categories__icon">
-                                                        <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt=""></img>
+                                                    <div className="categories__icon"
+                                                    //קומפוננטת שנשלחת לקונפיגורטור לעריכת איקון 
+                                                    // onClick={() => this.props.changeCurrentComponent("IconEdit")}
+                                                    >
+                                                        {/* <img className="categories__pic" src={item.image ? item.image : shoppingBag} alt="" */}
+                                                        <h1
+                                                            style={{
+                                                                color: this.props.homeStoreDesign.iconColor,
+                                                                fontSize: this.props.homeStoreDesign.iconSize + "px"
+                                                            }}>
+                                                            איקון לפי קטגוריה
+                                                        </h1>
+                                                        {/* </img> */}
                                                     </div>
                                                     <div
                                                         className="categories__text"
@@ -135,8 +141,9 @@ class EditHome extends Component {
                                                             fontFamily: this.props.homeStoreDesign.titleFont.textIntoCategory,
                                                             fontWeight: this.props.homeStoreDesign.titleTextWeight.textIntoCategory,
                                                             fontSize: this.props.homeStoreDesign.titleTextSize.textIntoCategory + "px",
-                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory, color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
-                                                            // textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
+                                                            lineHeight: this.props.homeStoreDesign.titleLineHeight.textIntoCategory,
+                                                            color: this.props.homeStoreDesign.titleColorText.textIntoCategory,
+                                                            textAlign: this.props.homeStoreDesign.titleAlignment.textIntoCategory ? this.props.homeStoreDesign.titleAlignment.textIntoCategory : 'left',
                                                             marginTop: '2vh'
                                                         }}
                                                     // onChange={(e) => this.props.changeTextTitle(e.target.value)}
@@ -174,126 +181,13 @@ class EditHome extends Component {
 
 
                         <div className="products__list">
-                            <div className="product">
-                                <div className="product__sale">20% OFF</div>
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product">
-                                        <img className="product__pic" src={productPic1} alt=""></img>
-                                    </Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Sun Cream</Link>
-                                <div className="product__details">
-                                    <div className="product__category yellow">Sun Care</div>
-                                    <div className="product__price">
-                                        <span className="product__old">$30</span>
-                                        <span className="product__actual">$20</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__sale">20% OFF</div>
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product">
-                                        <img className="product__pic"
-                                            src={productPic2} alt=""></img>
-                                    </Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">
-                                        Add to Cart
-                                    </Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Night Eye Cream</Link>
-                                <div className="product__details">
-                                    <div className="product__category blue">EYE CARE</div>
-                                    <div className="product__price">
-                                        <span className="product__old">$30</span>
-                                        <span className="product__actual">$20</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product"><img className="product__pic" src={productPic3} alt=""></img>
-                                    </Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
-                                <div className="product__details">
-                                    <div className="product__category pink">Treatments</div>
-                                    <div className="product__price"><span className="product__actual">$20</span></div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product">
-                                        <img className="product__pic"
-                                            src={productPic4} alt=""></img>
-                                    </Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Anti Dry Skin</Link>
-                                <div className="product__details">
-                                    <div className="product__category green">Moisturizers</div>
-                                    <div className="product__price"><span className="product__actual">$20</span></div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__new">NEW IN</div>
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
-                                        src={productPic5} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Body Protection</Link>
-                                <div className="product__details">
-                                    <div className="product__category yellow">Treatments</div>
-                                    <div className="product__price"><span className="product__actual">$20</span></div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
-                                        src={productPic6} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">All In One Gel</Link>
-                                <div className="product__details">
-                                    <div className="product__category blue">FEATURED</div>
-                                    <div className="product__price"><span className="product__actual">$20</span></div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__sale">20% OFF</div>
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/product"><img className="product__pic"
-                                        src={productPic7} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Deep Treatment</Link>
-                                <div className="product__details">
-                                    <div className="product__category pink">ON SALE</div>
-                                    <div className="product__price"><span className="product__old">$30</span><span className="product__actual">$20</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="product">
-                                <div className="product__view">
-                                    <Link className="product__preview" to="/0/prodct"><img className="product__pic"
-                                        src={productPic8} alt=""></img></Link>
-                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                </div>
-                                <Link className="product__name" to="/0/product">Morning Shine</Link>
-                                <div className="product__details">
-                                    <div className="product__category green">NIGHT CARE</div>
-                                    <div className="product__price"><span className="product__actual">$20</span></div>
-                                </div>
-                            </div>
+                            {/* //שליחה לקומפוננטה ששם שולפים את המוצרים המקודמים */}
+                            <FitureProduct />
                         </div>
                     </div>
                 </div>
                 <div className="about section">
                     <div className="about__center center">
-
                     </div>
                 </div>
             </div >

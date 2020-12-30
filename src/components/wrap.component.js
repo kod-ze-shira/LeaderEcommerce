@@ -6,6 +6,8 @@ import TextOnThePicture from './compsEditStore/textOnThePicture';
 import TextTitleOfCategory from './compsEditStore/textTitleOfCategory'
 import TextTitleOfProduct from './compsEditStore/textTitleOfProduct'
 import TextIntoCategory from './compsEditStore/textIntoCategory'
+import ProductOnPageCategory from './compsEditStore/productOnPageCategory';
+// import IconEdit from './compsEditStore/iconEdit'
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import clsx from 'clsx';
@@ -255,14 +257,14 @@ class Wrap extends React.Component {
             this.props.history.push("/login");
         }
         const logOutHandler = () => {
-            logOut.then(()=> {
-                  console.log('logged out')
-                  this.props.history.push("/login");
-                }).catch((error) => {
-                  console.log(error.message)
-                })
+            logOut.then(() => {
+                console.log('logged out')
+                this.props.history.push("/login");
+            }).catch((error) => {
+                console.log(error.message)
+            })
         }
-        
+
         const CreateNewPage = "Create New Page"
         return (
             <div className={classes.root}>
@@ -352,6 +354,8 @@ class Wrap extends React.Component {
                             case "TextTitleOfCategory": return <TextTitleOfCategory />;
                             case "TextTitleOfProduct": return <TextTitleOfProduct />;
                             case "TextIntoCategory": return <TextIntoCategory />;
+                            case "ProductOnPageCategory": return <ProductOnPageCategory />;
+                            // case "IconEdit": return <IconEdit />;
                             case "": return <h1>e</h1>;
                             default: return <h3>didnt check</h3>;
                         }

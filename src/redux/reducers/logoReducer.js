@@ -27,6 +27,7 @@ const initialState = {
 const logoDesignFunc = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setCurrentComponent(state, action) {
+        debugger;
         state.logoDesign.currentComponent = action.payload
     },
     setLogo(state, action) {
