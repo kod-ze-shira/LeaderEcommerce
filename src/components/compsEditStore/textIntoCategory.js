@@ -305,12 +305,23 @@ class TextIntoCategory extends Component {
         debugger;
         this.props.changeTextSize(e)
     }
+    //iconSize
+    changeIconSizein = (e) => {
+        this.props.changeIconSize(e)
+    }
 
 
     changeTitleColorText = (color) => {
         ;
         this.props.changeTitleColorText(color.hex)
     }
+    //iconColor
+    changeColorIcon = (color) => {
+        ;
+        this.props.changeColorIcon(color.hex)
+    }
+
+
     onChangeHandlerImage(event) {
         let reader = new FileReader();
         reader.onloadend = () => {
@@ -449,6 +460,8 @@ class TextIntoCategory extends Component {
                                         </Box>
                                     </Box>
 
+
+
                                     <div class="d-flex justify-content-center align-items-center">
                                         <FormLabel className={classes.textcontect}>Alignment</FormLabel>
                                         <i class="fas fa-align-left iconAlign iconAlignFirst fa-lg" onClick={(e) => this.props.changeTitleAlignment('left')}></i>
@@ -552,7 +565,7 @@ class TextIntoCategory extends Component {
                                                 color={this.props.homeStoreDesign.titleColorText.textIntoCategory}
                                                 onChangeComplete={this.changeTitleColorText}
                                                 width={200}
-                                                height={6}/>
+                                                height={6} />
                                         </Box>
                                         <Box justifyContent="flex-end">
                                             <input
@@ -568,6 +581,76 @@ class TextIntoCategory extends Component {
                                             />
                                         </Box>
                                     </Box>
+
+                                    <FormLabel className={classes.textcontect}>Color Icon</FormLabel>
+
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between">
+
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center">
+                                            <HuePicker
+                                                color={this.props.homeStoreDesign.iconColor}
+                                                onChangeComplete={this.changeColorIcon}
+                                                width={200}
+                                                height={6} />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.iconColor}
+                                                defaultValue={this.props.homeStoreDesign.iconColor}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
+
+                                    <FormLabel className={classes.textcontect}>Icon size</FormLabel>
+
+                                    <Box flexDirection="row"
+                                        display="flex"
+                                        justifyContent="space-between"
+                                    >
+                                        <Box
+                                            width={'100%'}
+                                            alignSelf="center"
+                                        >
+                                            <Slider
+                                                defaultValue={this.props.homeStoreDesign.iconSize}
+                                                step={1}
+                                                marks
+                                                min={0}
+                                                max={80}
+                                                getAriaValueText={this.props.changeIconSize}
+                                                valueLabelDisplay="auto"
+                                                className={classes.MuiSlider_root}
+                                            />
+                                        </Box>
+                                        <Box justifyContent="flex-end">
+                                            <input
+                                                textAlign="center"
+                                                id="standard-number"
+                                                type="number"
+                                                value={this.props.homeStoreDesign.iconSize}
+                                                defaultValue={this.props.homeStoreDesign.iconSize}
+                                                onChange={this.changeIconSizein}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                className={classes.inputNumberSlider}
+                                            />
+                                        </Box>
+                                    </Box>
+
+
+
                                 </Grid>
                             </div>
                         </FormGroup>
@@ -581,7 +664,6 @@ class TextIntoCategory extends Component {
 const mapStateToProps = (state) => {
     return {
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
-        // logoDesign: state.logoReducer.logoDesign
 
     };
 }
@@ -596,7 +678,8 @@ const mapDispatchToProps = (dispatch) => ({
     changeTitleColorText: (e) => dispatch(actions.setTitleColorText({ k: "textIntoCategory", e })),
     // changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo({ key: "category", image })),
     cahngeBorderRadius: (frame) => dispatch(actions.setBorderRadius({ key: "category", frame })),
-
+    changeColorIcon: (e) => dispatch(actions.setColorIcon(e)),
+    changeIconSize: (e) => dispatch(actions.setIconSize(e))
 
     // changeTitleYOrN: (e) => dispatch(actions.setTitleYOrN(e)),
 })

@@ -98,7 +98,10 @@ const initialState = {
                 BorderRadius: {
                         category: "24",
                         pictureFrame: "64",
-                }
+                        producFrametOnPageCategory: "24"
+                },
+                iconColor: "",
+                iconSize: "16"
         }
 }
 
@@ -168,9 +171,18 @@ const homeDesign = {
         setTitleColorText(state, action) {
                 state.homeStoreDesign.titleColorText[action.payload.k] = action.payload.e;
         },
+
         // setAboutUsTitleYOrN(state, action) {
         //         state.homeStoreDesign.aboutUsTitleYOrN = !state.homeStoreDesign.aboutUsTitleYOrN;
         // },
+        /////מכאן עריכה לאיקונים
+        setColorIcon(state, action) {
+                state.homeStoreDesign.iconColor = action.payload;
+        },
+        setIconSize(state, action) {
+                state.homeStoreDesign.iconSize = action.payload;
+        },
+
 
 
 }

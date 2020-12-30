@@ -76,54 +76,49 @@ function Category(props) {
                     <div className="products__list">
                         {/* //צריך להביא את כל המוצרים בתוך MAP */}
                         {/* ניסיון להביא את המוצרים בMAP */}
-                        {
-                            props.products.map((item, index) => (
-                                <div className="product" key={index}>
-                                    {/* הצלחתי לשלוף מהשרת את השם של המוצר איך אשלוף את שאר הנתונים */}
-                                    {item.image},
-                                    {item.name},
-                                    {item.description},
-                                    {item.amount},
-                                    {item.price},
-                                    {/* {item.} */}
+                        {/* הצלחתי לשלוף מהשרת את השם של המוצר איך אשלוף את שאר הנתונים */}
 
-                                </div>
-                                // המוצר הבסיסי שנמצא בצוך לולאה
-                                /* <div className="product">
-
-                                     <div className="product__view" key={index}>
-                                         <Link className="product__preview" to="/0/product">
-                                             <img className="product__pic" src={productPic3} alt=""></img></Link>
-                                         <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
-                                     </div>
-                                     <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
-                                     <div className="product__details">
-                                         <div className="product__category pink">Treatments</div>
-                                         <div className="product__price">
-                                             <span className="product__actual">$20</span></div>
-                                     </div>
-                                 </div> */
-
-
-                            ))
-                        }
-                        {/*המוצר הבסיסי הקיים ששמתי בהערה  */}
-                        {  props.products.map((item, index) => (
-
-                        <div className="product"key={index}>
+                        {/* // המוצר הבסיסי שנמצא בצוך לולאה */}
+                        <div className="product">
                             <div className="product__view">
-                                <Link className="product__preview" to="product.html">
+                                <Link className="product__preview" to="/0/product">
                                     <img className="product__pic" src={productPic3} alt=""></img></Link>
-                                <Link className="product__btn btn btn_green" to="cart.html">Add to Cart</Link>
+                                <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                             </div>
-                            <Link className="product__name" to="product.html">{item.name}</Link>
+                            <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
                             <div className="product__details">
-                                <div className="product__category pink">{item.description}</div>
+                                <div className="product__category pink">Treatments</div>
                                 <div className="product__price">
-                                    <span className="product__actual">{item.price}</span></div>
+                                    <span className="product__actual">$20</span></div>
                             </div>
                         </div>
-                           ))}
+
+
+                        {/*המוצר הבסיסי הקיים ששמתי בהערה  */}
+                        {props.products.map((item, index) => (
+
+                            <div className="product" onClick={() => props.changeCurrentComponent('ProductOnPageCategory')}
+                                key={index}>
+                                {/* // השארתי דוגמא לתצוגת משתמש כי זה אמור להיות עם לינק */}
+                                {/* <div className="product__view">
+                                    <Link className="product__preview" to="/0/product">
+                                        <img className="product__pic" src={productPic3} alt=""></img></Link>
+                                    <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
+                                </div>
+                                <Link className="product__name" to="/0/product">{item.name}</Link> */}
+                                <div className="product__view">
+                                    <div className="product__preview">
+                                        <img className="product__pic" src={productPic3} alt=""></img></div>
+                                    <div className="product__btn btn btn_green">Add to Cart</div>
+                                </div>
+                                <div className="product__name">{item.name}</div>
+                                <div className="product__details">
+                                    <div className="product__category pink">{item.description}</div>
+                                    <div className="product__price">
+                                        <span className="product__actual">{item.price}</span></div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -165,6 +160,7 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
+    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

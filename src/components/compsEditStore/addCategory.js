@@ -16,7 +16,6 @@ import Slider from '@material-ui/core/Slider';
                 
 })
 
-
         console.log(props);
     const [myValues ,setMyValues]= useState({
         categoryName:'',
