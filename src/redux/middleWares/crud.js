@@ -373,4 +373,3 @@ $.ajax({
         }});};
    return next(action);
 };
-ען
