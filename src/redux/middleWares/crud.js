@@ -79,7 +79,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 // else {
                 // alert("hello!!")
                 // window.location.href = "http://localhost:3001/userhome/" + username ;
-                // debugger;
+                //  ;
                 //window.location.href = (!data.is_username) ? "https://leader.codes/wizard" : "https://lobby.leader.codes/" + username
                 // window.location.href=(!data.is_username) ? "http://localhost:3001/userhome/"+username : "http://localhost:3001/userhome/"+username;
                 // }
@@ -140,10 +140,10 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'GET_ALL_CATEGORIES') {
-        debugger;
+         ;
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
-                debugger
+                 
                 console.log("crddddddd", res.data);
                 dispatch(actions.setCategories({ categories: res.data }))
             })
@@ -153,13 +153,13 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
 };
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
-        debugger;
+         ;
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
-                debugger
+                 
                 console.log("gjhjet ", res.data);
                 dispatch({ type: "SET_PRODUCTS", payload: res.data })
-                debugger
+                 
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
             })
@@ -194,7 +194,7 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 export const newProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_NEW_PRODUCTS') {
-        debugger;
+         ;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -217,7 +217,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CREATE_NEW_CATEGORY') {
-        debugger;
+         ;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -291,7 +291,7 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/'+action.payload)
        .then(res=>{console.log("get ",res.data);
-       debugger
+        
        dispatch(actions.getCommunity({community:res.data})) });
    }
 
@@ -301,49 +301,76 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-        debugger; 
-        
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-        axios.post('https://community.leader.codes/api/products/editProduct/'+action.payload.id,requestOptions)
-       .then(res=>{console.log("get ",res.data)});
-       
-     
-   }
-
+         ; debugger
+         var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+    
+         $.ajax({
+            url: `https://community.leader.codes/api/products/editProduct/${action.payload.id}`,
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data:raw,
+            success: function (data) {
+                console.log(data)
+              
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
+               
+            }
+        });}
    return next(action);
 };
+
+//          var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+   
+//     var requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         body: raw,
+//         redirect: 'follow'
+//     };
+
+//         axios.post('https://community.leader.codes/api/products/editProduct/'+action.payload.id,requestOptions)
+//        .then(res=>{console.log("get ",res.data)});
+       
+     
+//    }
+
 
 export const editCategory = ({ dispatch, getState }) => next => action => {
   
     if (action.type === 'EDIT_CATEGORY') {
-        debugger; 
+         ; 
         
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({ "categoryName": action.payload.categoryName, "color": action.payload.color });
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+     var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
+    // var requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     data: raw,
+    //     redirect: 'follow'
+    // };
   
-  debugger;
-        axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
-       .then(res=>{console.log("get ",res.data)});
+    //     axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
+    //    .then(res=>{console.log("get ",res.data)});
        
-     
-   }
-
+$.ajax({
+        url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
+        method: "post",
+        dataType: "json",
+        contentType: "application/json",
+        data:raw,
+        success: function (data) {
+            console.log(data)
+          
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
+           
+        }});};
    return next(action);
 };
 

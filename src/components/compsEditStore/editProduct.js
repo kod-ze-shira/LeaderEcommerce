@@ -30,7 +30,7 @@ import { actions } from '../../redux/action'
 
 
     const update = (event) => {
-        debugger  
+           
          var u;
         //  if(event.target.name=="category")          
         //    u=item._id;
@@ -49,7 +49,7 @@ import { actions } from '../../redux/action'
     }
     
     const Submit = ()=>{
-debugger;
+ ;
         props.editproduct(myValues); 
        props.getProducts();  
     }

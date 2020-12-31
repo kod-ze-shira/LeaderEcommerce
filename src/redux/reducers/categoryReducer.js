@@ -22,7 +22,7 @@ const category = {
   
     },
     setCurrentCategory(state,action){
-        debugger;
+         ;
         state.currentCategory=action.payload;
     }
 

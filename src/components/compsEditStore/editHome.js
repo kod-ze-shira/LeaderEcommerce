@@ -304,7 +304,7 @@ class EditHome extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    debugger
+     
     return {
 
         categories: state.categoriesReducer.categories[0] ? state.categoriesReducer.categories : [{ categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }, { categoryName: "foo", images: "", color: "yellow", products: [] }],
