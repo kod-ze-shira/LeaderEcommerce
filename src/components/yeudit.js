@@ -76,6 +76,34 @@ function Yeudit(props) {
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
                                                 </div>
+                                                <div className="container__new new js-new">
+                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addProduct") }}>
+                                                                <i className="la la-plus-circle "></i>
+                                                        </button>
+                                                        <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
+                                                                <div className="new__icon"><i className="la la-toolbox "></i></div>
+                                                                <div className="new__title">New Project</div>
+                                                        </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-clipboard-check "></i></div>
+                                                                        <div className="new__title">New Task</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-user-lock "></i></div>
+                                                                        <div className="new__title">New Contact</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-calendar-week "></i></div>
+                                                                        <div className="new__title">New Event</div>
+                                                                        {/* href="addProduct */}
+                                                                        {/* <button style={{width:'100%',height:'100%'}} data-toggle="modal"  data-target="#myModal"> */}
+                                                                        {/* </button> */}
+                                                                </a><a className="new__item" onClick={console.log("NewProduct")} id="NewProduct">
+                                                                        <div className="new__icon"><i className="la la-cube "></i></div>
+                                                                        <div className="new__title">New Product</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-calculator "></i></div>
+                                                                        <div className="new__title">New Invoice</div>
+                                                                </a></div>
+                                                        <div className="new__backdrop backdrop js-new-backdrop"></div>
+                                                </div>
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">

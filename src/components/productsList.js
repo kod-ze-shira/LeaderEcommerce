@@ -215,7 +215,14 @@ function ProductsList(props) {
                                                                                 <div className="data__cell data__cell_action">
                                                                                         <button className="action action_stroke" onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
                                                                                                 <i className="la la-ellipsis-h "></i>
-                                                                                        </button></div>                                                                        </div>
+                                                                                        </button>
+                                                                                </div>
+                                                                                <div className="data__cell data__cell_action">
+                                                                                        <button className="action action_stroke" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
+                                                                                                <i className="far fa-trash-alt ml-auto"></i>
+                                                                                        </button>
+                                                                                </div>
+                                                                        </div>
                                                                 </div>
                                                         ))}
                                                 </div>
@@ -245,7 +252,6 @@ export default connect(
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
                         setSortYOrN: () => dispatch(actions.setAscendingProductsYOrN()),
                         setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
-
                 }
         }
 

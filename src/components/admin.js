@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from '../redux/store';
 import Yeudit from './yeudit'
 import { Tabs, Tab } from 'react-bootstrap';
+import { AddAlarm } from '@material-ui/icons'
 
 // import Carousel from 'react-bootstrap/Carousel'  
 // import ReactBootstrapCarousel from "react-bootstrap-carousel";
@@ -22,15 +23,21 @@ function Admin(props) {
         const [key, setKey] = useState("products")
 
         useEffect(() => {
-                $('#myTab a').on('click', function (e) {
-                        debugger;
-                        e.preventDefault()
-                        $('#myTab .active').removeClass('active')
-                        $(this).addClass('active')
-                        $('#myTabContent .show active').removeClass('show active');
-                        $('#profile').addClass('show active')
-                })
+                // $('#myTab a').on('click', function (e) {
+                //         debugger;
+                //         e.preventDefault()
+                //         $('#myTab .active').removeClass('active')
+                //         $(this).addClass('active')
+                //         $('#myTabContent .show active').removeClass('show active');
+                //         $('#profile').addClass('show active')
+                // })
+                $('.show').removeClass('fade');
         }, [])
+
+        const aaa = (key) => {
+                setKey(key);
+                $('.show').removeClass('fade');
+        }
 
         return (
                 <Provider store={store}>
@@ -61,7 +68,7 @@ function Admin(props) {
                         <Tabs
                                 id="controlled-tab-example"
                                 activeKey={key}
-                                onSelect={(key) => { console.log("from tabs", key); setKey(key) }}
+                                onSelect={(key) => { console.log("from tabs", key); aaa(key) }}
                         // defaultActiveKey={props.currentTable ? props.currentTable.name : ""}
                         >
                                 <Tab
