@@ -119,9 +119,9 @@ function ProductsGrid(props) {
                                 <div className="data data_grid">
                                         <div className="data__container">
                                                 <div className="data__head">
-                                                        <div className="data__row">
+                                                        {/* <div className="data__row">
                                                                 <div className="data__cell">
-                                                                        <div className="data__filter">Names<i className="la la-sort-alpha-down "></i></div>
+                                                                        <div className="data__filter">{Name}<i className="la la-sort-alpha-down "></i></div>
                                                                 </div>
                                                                 <div className="data__cell">
                                                                         <div className="data__filter">Sales<i className="la la-sort-alpha-down "></i></div>
@@ -132,7 +132,7 @@ function ProductsGrid(props) {
                                                                 <div className="data__cell">
                                                                         <div className="data__filter">Price<i className="la la-sort-alpha-down "></i></div>
                                                                 </div>
-                                                        </div>
+                                                        </div> */}
                                                 </div>
                                                 <div className="data__body">
                                                         {console.log("filteredProducts", props.filteredProducts)}
@@ -146,17 +146,17 @@ function ProductsGrid(props) {
                                                                         <div class="data__row">
                                                                                 <div class="data__cell">
                                                                                         <div class="data__main">
-                                                                                                <div class="data__preview"><img class="data__pic" src="img/user-1.jpg" alt="Product" /></div>
+                                                                                                <div class="data__preview"><img class="data__pic" src={item.images[0] ? item.images[0] : productImg} alt="Product" /></div>
                                                                                                 <div class="data__wrap">
                                                                                                         <div class="data__content"><strong>{item.name}</strong></div>
                                                                                                         <div class="data__label">SKU {item.SKU}</div>
                                                                                                 </div>
                                                                                         </div>
                                                                                 </div>
-                                                                                <div class="data__cell">
-                                                                                        <div class="data__content"><strong>4.2</strong> / 5.0</div>
-                                                                                        <div class="data__stars"><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star "></i><i class="la la-star active"></i></div>
-                                                                                </div>
+                                                                                {item.category && <div className="data__cell mobile-hide">
+                                                                                        <div style={{ "backgroundColor": item.category.color }}
+                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                </div>}
                                                                                 <div class="data__foot">
                                                                                         <div class="data__box"><strong>1.368</strong></div>
                                                                                         <div class="data__box"><strong>${item.price}</strong></div>

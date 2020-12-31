@@ -4,7 +4,21 @@ import userReducer from './reducers/userReducer';
 import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
-import { getAllCommunitiesFromDb, getCommunityById, checkPermission, onAuthStateChanged,getAllProducts,getAllCategories,newProduct,createNewCategory,deleteProduct,deleteCategory, editproduct,editCategory} from './middleWares/crud'
+import addProductReducer from './reducers/addProductReduser';
+import {
+    getAllCommunitiesFromDb,
+    getCommunityById,
+    checkPermission,
+    onAuthStateChanged,
+    getAllProducts,
+    getAllCategories,
+    newProduct,
+    createNewCategory,
+    deleteProduct,
+    deleteCategory,
+     editproduct,editCategory,
+    addNewImageToProduct
+} from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
@@ -44,9 +58,9 @@ const store = createStore(
         deleteProduct,
         deleteCategory,
         editproduct,
-        editCategory
+        editCategory,
+        addNewImageToProduct
     ))
-
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
