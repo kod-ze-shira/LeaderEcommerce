@@ -302,41 +302,26 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
          ; debugger
-         var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category,price: action.payload.price,name: action.payload.name,description: action.payload.description,amount: action.payload.amount });
     
-         $.ajax({
-            url: `https://community.leader.codes/api/products/editProduct/${action.payload.id}`,
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data:raw,
-            success: function (data) {
-                console.log(data)
-              
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
-               
-            }
-        });}
-   return next(action);
-};
-
-//          var myHeaders = new Headers();
-//     myHeaders.append("Content-Type", "application/json");
    
-//     var requestOptions = {
-//         method: 'POST',
-//         headers: myHeaders,
-//         body: raw,
-//         redirect: 'follow'
-//     };
-
-//         axios.post('https://community.leader.codes/api/products/editProduct/'+action.payload.id,requestOptions)
-//        .then(res=>{console.log("get ",res.data)});
-       
-     
-//    }
+      
+        $.ajax({
+                url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data:raw,
+                success: function (data) {
+                    console.log(data)
+                  
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
+                   
+                }});};
+           return next(action);
+        };
 
 
 export const editCategory = ({ dispatch, getState }) => next => action => {
