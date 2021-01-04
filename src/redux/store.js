@@ -16,7 +16,9 @@ import {
     createNewCategory,
     deleteProduct,
     deleteCategory,
-     editproduct,editCategory,
+     editproduct,
+     editCategory,
+     newOrder,
     addNewImageToProduct
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
@@ -24,6 +26,8 @@ import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
 import viewModeReducer from './reducers/viewModeReducer'
 import sortReducer from './reducers/sortReducer'
+import openStoreReducer from './reducers/openStoreReducer';
+import ordersReducer from './reducers/orders.Reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './action';
 
@@ -39,7 +43,9 @@ const reducers =
         categoriesReducer,
         searchReducer,
         sortReducer,
-        viewModeReducer
+        viewModeReducer,
+        ordersReducer,
+        openStoreReducer
     })
 
 const store = createStore(
