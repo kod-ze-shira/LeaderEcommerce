@@ -142,7 +142,7 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
-                 
+
                 console.log("crddddddd", res.data);
                 dispatch(actions.setCategories({ categories: res.data }))
             })
@@ -154,10 +154,10 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
-                 
+
                 console.log("gjhjet ", res.data);
                 dispatch({ type: "SET_PRODUCTS", payload: res.data })
-                 
+
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
             })
@@ -214,7 +214,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CREATE_NEW_CATEGORY') {
-         ;
+        ;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -310,60 +310,89 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-         ; debugger
-         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category,price: action.payload.price,name: action.payload.name,description: action.payload.description,amount: action.payload.amount });
-    
-   
-      
+        ; debugger
+        var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
+
+
+
         $.ajax({
-                url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
-                method: "post",
-                dataType: "json",
-                contentType: "application/json",
-                data:raw,
-                success: function (data) {
-                    console.log(data)
-                  
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
-                   
-                }});};
-           return next(action);
-        };
+            url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log(data)
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    };
+    return next(action);
+};
 
 
 export const editCategory = ({ dispatch, getState }) => next => action => {
-  
+
     if (action.type === 'EDIT_CATEGORY') {
-         ; 
-        
-    // var myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-     var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
-    // var requestOptions = {
-    //     method: 'POST',
-    //     headers: myHeaders,
-    //     data: raw,
-    //     redirect: 'follow'
-    // };
-  
-    //     axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
-    //    .then(res=>{console.log("get ",res.data)});
-       
-$.ajax({
-        url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
-        method: "post",
-        dataType: "json",
-        contentType: "application/json",
-        data:raw,
-        success: function (data) {
-            console.log(data)
-          
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
-           
-        }});};
-   return next(action);
+        ;
+
+        // var myHeaders = new Headers();
+        // myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
+        // var requestOptions = {
+        //     method: 'POST',
+        //     headers: myHeaders,
+        //     data: raw,
+        //     redirect: 'follow'
+        // };
+
+        //     axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
+        //    .then(res=>{console.log("get ",res.data)});
+
+        $.ajax({
+            url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log(data)
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    };
+    return next(action);
+};
+// sari experience
+export const newOrder = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'NEW_ORDER') {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({ "trackingID": action.payload.trackingID, "userAddress": action.payload.userAddress, "date": action.payload.date, "status": true, "products": action.payload.products });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
+            .then(createOrder => {
+                console.log("ok!", createOrder)
+                //שיהיה אפשרות מהרדוסר
+                //שליחה לרדוסר
+                // dispatch(actions.newOrder(createOrder))
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    return next(action);
 };

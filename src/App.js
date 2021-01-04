@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
 import Home from "./components/home"
+import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 
@@ -24,10 +25,13 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            <Route path="/openStore">
+              <OpenStore />
+            </Route>
             <Route path="/view">
               <h2>תצוגה</h2>
               <div>
-                <Content style={{background: "#fff"}}></Content>
+                <Content style={{ background: "#fff" }}></Content>
               </div>
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import CreateStore from './createStore';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RoutingMain from './compsEditStore/routingMain';
+import ExperienceOrder from './compsEditStore/experienceOrder';
+
 import UserHome from './userHome'
 import ElasticCarousel from './carousel'
 import Admin from './admin'
-import {logOut} from '../services/firebase'
+import { logOut } from '../services/firebase'
 
 
 class Content extends Component {
@@ -26,6 +28,7 @@ class Content extends Component {
                         <Route exact path="/0/carousel">
                             <ElasticCarousel />
                         </Route>
+                        <Route path="/0/experienceOrder" component={ExperienceOrder}></Route>
                         <Route exact path="/0/admin">
                             <Admin />
                         </Route>
