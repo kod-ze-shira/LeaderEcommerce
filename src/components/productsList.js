@@ -20,7 +20,7 @@ function ProductsList(props) {
         }
         // const [file, setFile] = useState(0);
         useEffect(() => {
-
+debugger;
                 $(".data__preview input").on("change", function () {
                         debugger
                         console.log("useeff", $(this));
@@ -161,7 +161,7 @@ function ProductsList(props) {
                                                         </div>
                                                 </div>
                                                 <div className="data__body">
-                                                        {props.filteredProducts.map((item, index) => (
+                                                        {props.data.map((item, index) => (
                                                                 <div className="data__item" key={index}>
                                                                         <div className="data__row" >
                                                                                 <div className="data__cell data__cell_xl">
