@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
+import  './yeudit.css'
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
 import './crudProducts.css';
@@ -8,14 +9,16 @@ import productImg from '../assets/products/product-pic-7.png'
 import cloneDeep from 'lodash/cloneDeep';
 import ProductsList from './productsList';
 import ProductsGrid from './productsGrid'
+import { getElementError } from '@testing-library/react';
 
 
 //1
 const useStyles = (theme) => ({
 })
+let PageNum;
 
 function Yeudit(props) {
-
+        const [degelBtn, setDegelBtn] = useState(0)
         const [file, setFile] = useState()
 
         let i = 0;
@@ -56,6 +59,41 @@ function Yeudit(props) {
         //         props.addNewImageFromDbP({ f: myFile, t: "title" });
         //         // }
         // }
+        // changePageNum(1);
+
+        // useEffect(() => {
+
+
+        //         // changePageNum(1)
+        // }, [])
+        // let [PageNum, SetPageNum] = useState(1);
+
+        let [items, setMyItems] = useState(props.products);
+        function changePageNum(num, e) {
+                debugger;
+               
+                $(".pager__link").removeClass('active')
+
+                if (num == "+")
+                        PageNum++;
+                else {
+                        if (num == "-")
+                                PageNum--;
+                        else
+                                PageNum = num;
+                } 
+                setDegelBtn(PageNum)
+                let p1 = (PageNum - 1) * 6;
+                let p2 = PageNum * 6 - 1;
+                let list = props.filteredProducts;
+                list = list[0] ? list.slice(p1, p2) : "";
+                console.log(items);
+                setMyItems(list);
+
+
+        }
+
+
 
         return (
                 <>
@@ -114,11 +152,40 @@ function Yeudit(props) {
                                                                                 <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
                                                         </div>
                                                         <div className="panel__body">
-                                                                {props.viewLOrGrid === "list" ? <ProductsList /> : <ProductsGrid />}
+                                                                {props.viewLOrGrid === "list" ? <ProductsList data={items} /> : <ProductsGrid />}
 
                                                                 <div className="panel__foot">
-                                                                        <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
-                                                                                <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
+                                                                        <div className="pager">
+                                                                                <button className="pager__arrow action action_icon_before" onClick={() => { changePageNum('-', null) }}>
+                                                                                        <i className="la la-angle-left "></i>Prev
+                                                                                 </button>
+                                                                                <div className="pager__list">
+                                                                                        <button 
+                                                                                        className={degelBtn==1?"active pager__link action":"pager__link action"}
+                                                                                        onClick={() => { changePageNum(1, $(this))}} 
+                                                                                        // className="pager__link action"
+                                                                                        >1</button>
+                                                                                        <button 
+                                                                                         className={degelBtn==2?"active pager__link action":"pager__link action"}
+                                                                                        onClick={() => { changePageNum(2, $(this)) }} 
+                                                                                        >2</button>
+                                                                                        <button 
+                                                                                        className={degelBtn==3?"active pager__link action":"pager__link action"}
+                                                                                         onClick={() => { changePageNum(3, $(this)) }} 
+                                                                                         >3</button>
+                                                                                        <button
+                                                                                         onClick={() => { changePageNum(4, $(this)) }}
+                                                                                         className={degelBtn==4?"active pager__link action":"pager__link action"}
+                                                                                         >4</button>
+                                                                                        <button 
+                                                                                        onClick={() => { changePageNum(5, $(this)) }} 
+                                                                                        className={degelBtn==5?"active pager__link action":"pager__link action"}
+                                                                                        >5</button>
+                                                                
+                                                                                </div>
+                                                                                <button className="pager__arrow action action_icon_after" onClick={() => { changePageNum('+', null) }}>Next
+                                                                                <i className="la la-angle-right "></i>
+                                                                                </button>
                                                                         </div>
                                                                 </div>
                                                         </div>
