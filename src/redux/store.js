@@ -19,7 +19,8 @@ import {
      editproduct,
      editCategory,
      newOrder,
-    addNewImageToProduct
+    addNewImageToProduct,
+    createNewStore
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
@@ -65,7 +66,8 @@ const store = createStore(
         deleteCategory,
         editproduct,
         editCategory,
-        addNewImageToProduct
+        addNewImageToProduct,
+        createNewStore
     ))
 )
 window.store = store;

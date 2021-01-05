@@ -396,3 +396,28 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+////יצירת חנות שרי
+export const createNewStore = ({ dispatch, getState }) => next => action => {
+//שם הפונקציה ברדוסר צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
+    if (action.type === 'CREATE_NEW_STORE') {
+        debugger;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+//ברדוסר צריך לשלוח את האוביקט שעוטף את כל שדות החנות
+        var raw = JSON.stringify({ "storeName": action.payload.nameStore,"storeManager":2 ,"addressStore":action.payload.addressStore});
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
+            .then(response => response.json())
+            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+            .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
+
