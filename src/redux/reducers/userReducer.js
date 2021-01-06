@@ -4,7 +4,8 @@ import { actions } from '../action';
 
 const initialState = {
     user: {
-        _id: "",
+        //צריך להגיע מהפירבייס
+        _id: "6",
         username: "",
         email: ""
     },

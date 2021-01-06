@@ -46,15 +46,16 @@ class EditHome extends Component {
                                 onClick={() => this.props.changeCurrentComponent('textOnThePicture')}
                             >
                                 <TextareaAutosize className="SPtitle col-md-12" value=
-                                    {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    // {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    {this.props.objectFields.nameStore ? this.props.objectFields.nameStore : "We Offer the Best Products for your Skin"}
                                     style={{
                                         fontFamily: this.props.homeStoreDesign.titleFont.onThePicture,
                                         fontWeight: this.props.homeStoreDesign.titleTextWeight.onThePicture,
                                         fontSize: this.props.homeStoreDesign.titleTextSize.onThePicture + "px",
-                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture, color: this.props.homeStoreDesign.titleColorText.onThePicture,
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture,
+                                        color: this.props.homeStoreDesign.titleColorText.onThePicture,
                                         textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                         marginTop: '2vh'
-
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
@@ -241,7 +242,7 @@ class EditHome extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        objectFields: state.openStoreReducer.objectFields,
         categories: state.categoriesReducer.categories,
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,

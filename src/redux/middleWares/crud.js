@@ -398,13 +398,14 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 };
 ////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
-//שם הפונקציה ברדוסר צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
+    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
         debugger;
+        // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-//ברדוסר צריך לשלוח את האוביקט שעוטף את כל שדות החנות
-        var raw = JSON.stringify({ "storeName": action.payload.nameStore,"storeManager":2 ,"addressStore":action.payload.addressStore});
+        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
+        var raw = JSON.stringify({ "storeName": action.payload.nameStore, "logo": action.payload.logoStore, "address": action.payload.addressStore, "tel": action.payload.phoneStore, "email": action.payload.emailStore, "colorDominates": action.payload.colorStore, "storeManager": getState().userReducer.user._id });
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,

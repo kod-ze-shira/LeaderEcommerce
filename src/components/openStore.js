@@ -18,7 +18,11 @@ function OpenStore(props) {
     //שימוש בספריה 
     const history = useHistory();
     const submitToStore = (event) => {
-        history.push("/0")
+                //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
+        //להוסיף לניתוב את URL החנות
+
+        props.createNewStore(props.objectFields)
+        .then(history.push("/0"))
     }
     return (
         <div>
@@ -48,10 +52,9 @@ function OpenStore(props) {
                     // }}
                     onChange={(e) => handlerLogo(e.target.files[0])}
                 />
-
             </div><br></br>
             {console.log(props.objectFields)}
-            <button onClick={() => { submitToStore(); props.createNewStore(props.objectFields) }}>עבור לחנות שלך לדוגמא</button>
+            <button onClick={submitToStore}>עבור לחנות שלך לדוגמא</button>
         </div>
     )
 }
@@ -62,7 +65,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
-    setDescriptionStore:(e)=>dispatch(actions.setDescriptionStore(e.target.value)),
+    setDescriptionStore: (e) => dispatch(actions.setDescriptionStore(e.target.value)),
     setAddressStore: (e) => dispatch(actions.setAddressStore(e.target.value)),
     setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),
     setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
@@ -70,6 +73,6 @@ const mapDispatchToProps = (dispatch) => ({
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
-    createNewStore: (e) => { debugger; dispatch(actions.createNewStore(e)) }
+    createNewStore: (objectFields) => { debugger; dispatch(actions.createNewStore(objectFields)) }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);
