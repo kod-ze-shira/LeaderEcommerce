@@ -170,7 +170,8 @@ const mapDispatchToProps = (dispatch) => ({
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields))
 })
-export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);
+export default connect(mapStateToProps, mapDispatchToProps)(StoreSettingsManagement);
 /////////////////////////////
+
 
 

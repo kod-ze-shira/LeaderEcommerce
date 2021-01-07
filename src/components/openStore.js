@@ -27,6 +27,7 @@ function OpenStore(props) {
     }
     return (
         <div>
+            {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
             <input placeholder="הכנס שם חנות" onChange={props.setNameStore}></input><br></br>
             <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>

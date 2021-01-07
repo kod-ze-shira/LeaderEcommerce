@@ -27,9 +27,11 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/openStore">
+            <PrivateRoute path="/openStore" component={OpenStore} />
+
+            {/* <Route path="/openStore">
               <OpenStore />
-            </Route>
+            </Route> */}
             <Route path="/view">
               <h2>תצוגה</h2>
               <div>
