@@ -34,14 +34,14 @@ import { actions } from '../../redux/action'
         //  if(event.target.name=="category")          
         //    u=item._id;
         //      else
-            u=event.target.value
+            u=
         setMyValues({
             ...myValues,
         
                    // if(event.target.name==="category")          
             // [event.target.name]:event.target.value.id;
             // else
-            [event.target.name]:u
+            [event.target.name]:event.target.value
            
        
         });
@@ -63,8 +63,7 @@ import { actions } from '../../redux/action'
      
     }
 
-    return(
-        
+    return( 
             <div className="form form_create">
                 <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
                 <div className="form__row">

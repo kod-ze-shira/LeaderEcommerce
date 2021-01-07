@@ -31,14 +31,13 @@ class Footer extends Component {
                                     </svg></a></div><label className="switch js-switch-bg">
                                     <input className="switch__input" type="checkbox">
                                     </input>
-                                    <div>
+                                    {/* <div>
                                         <h1>לפרטים והזמנות</h1>
                                         <lable>Phone:<input placeholder="000000"></input></lable><br />
                                         <lable>Address<input></input></lable><br />
                                         <lable>Email</lable>
                                         <input placeholder="sjh@gmail.com"></input>
-
-                                    </div>
+                                    </div> */}
                                     {/* <span className="switch__in"><span className="switch__tick">
                                             <img className="switch__pic switch__pic_moon" src={moon} alt=""></img>
                                             <img className="switch__pic switch__pic_sun" src={sun} alt=""></img>
@@ -60,11 +59,19 @@ class Footer extends Component {
                                 </div>
                             </div>
                             <div><h1>Contact Us</h1><br />
-
-                                <input placeholder="Address"></input><br /><br />
-                                <input placeholder="Phone"></input><br /><br />
-                                <input placeholder="Name"></input><br /><br />
-                                <button className="btn btn-default">Send</button>
+                                <div>
+                                    <lable>Phone Store</lable>
+                                    <p>{this.props.objectFields.phoneStore}</p>
+                                </div><br></br>
+                                <div>
+                                    <lable>Address Store</lable>
+                                    <p>{this.props.objectFields.addressStore}</p>
+                                </div><br></br>
+                                <div>
+                                    <lable>Email Store</lable>
+                                    <p>{this.props.objectFields.emailStore}</p>
+                                </div><br></br>
+                                {/* <button className="btn btn-default">Send</button> */}
                             </div>
                         </div>
                     </div>
@@ -75,18 +82,12 @@ class Footer extends Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         //אפשר לקרוא שם אחר לאוביקט
-//         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign
-//     }
-// }
-// const mapDispatchToProps = (dispatch) => ({
-//     changeImageYOrN: (e) => dispatch(actions.setLogoYOrN()),
-//     changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-//     changeLogoYOrN: () => dispatch(actions.setLogoYOrN())
-
-
-// })
-export default Footer;
-//  connect(mapStateToProps, mapDispatchToProps)(Footer);
+const mapStateToProps = (state) => {
+    return {
+        //אפשר לקרוא שם אחר לאוביקט
+        objectFields: state.openStoreReducer.objectFields,
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

@@ -162,7 +162,7 @@ function ProductsList(props) {
                                                         </div>
                                                 </div>
                                                 <div className="data__body">
-                                                        {props.filteredProducts.map((item, index) => (
+                                                        {props.data.map((item, index) => (
                                                                 <div className="data__item" key={index}>
                                                                         <div className="data__row" >
                                                                                 <div className="data__cell data__cell_xl">

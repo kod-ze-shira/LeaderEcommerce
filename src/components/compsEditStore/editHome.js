@@ -9,15 +9,7 @@ import '../../App.css';
 import FitureProduct from './fitureProductToHomePage';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 ///images  
-import shoppingBag from "../../assets/categories/shopping-bag.svg"
-import productPic1 from "../../assets/products/product-pic-1.png"
-import productPic2 from "../../assets/products/product-pic-2.png"
-import productPic3 from "../../assets/products/product-pic-3.png"
-import productPic4 from "../../assets/products/product-pic-4.png"
-import productPic5 from "../../assets/products/product-pic-5.png"
-import productPic6 from "../../assets/products/product-pic-6.png"
 import productPic7 from "../../assets/products/product-pic-7.png"
-import productPic8 from "../../assets/products/product-pic-8.png"
 import { LensOutlined } from '@material-ui/icons';
 
 class EditHome extends Component {
@@ -46,21 +38,23 @@ class EditHome extends Component {
                                 onClick={() => this.props.changeCurrentComponent('textOnThePicture')}
                             >
                                 <TextareaAutosize className="SPtitle col-md-12" value=
-                                    {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    // {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
+                                    {"NAME STORE:" + this.props.objectFields.nameStore + "        " +
+                                        "  DESCRIPTION:  " + this.props.objectFields.descriptionStore}
                                     style={{
                                         fontFamily: this.props.homeStoreDesign.titleFont.onThePicture,
                                         fontWeight: this.props.homeStoreDesign.titleTextWeight.onThePicture,
                                         fontSize: this.props.homeStoreDesign.titleTextSize.onThePicture + "px",
-                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture, color: this.props.homeStoreDesign.titleColorText.onThePicture,
+                                        lineHeight: this.props.homeStoreDesign.titleLineHeight.onThePicture,
+                                        color: this.props.homeStoreDesign.titleColorText.onThePicture,
                                         textAlign: this.props.homeStoreDesign.titleAlignment.titleCategory ? this.props.homeStoreDesign.titleAlignment.titleCategory : 'left',
                                         marginTop: '2vh'
-
                                     }}
                                     onChange={(e) => this.props.changeTextTitle(e.target.value)} />
                             </div>
                             <div className="main__preview"
                                 // onClick={() => this.props.changeCurrentComponent("textOnThePicture")}
-                                style={{ borderRadius: this.props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
+                                style={{ border: this.props.objectFields.colorStore, borderRadius: this.props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
                             >
                                 <label for='fileInput' onClick={() => this.props.changeCurrentComponent("Image")}>
                                     {this.props.homeStoreDesign.imageYOrN ?
@@ -241,11 +235,12 @@ class EditHome extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        objectFields: state.openStoreReducer.objectFields,
         categories: state.categoriesReducer.categories,
         //אפשר לקרוא שם אחר לאוביקט
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
-        viewModel: state.viewModeReducer.viewModel
+        viewModel: state.viewModeReducer.viewModel,
+
     }
 }
 const mapDispatchToProps = (dispatch) => ({

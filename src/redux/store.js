@@ -16,14 +16,20 @@ import {
     createNewCategory,
     deleteProduct,
     deleteCategory,
-     editproduct,editCategory,
-    addNewImageToProduct
+    editproduct,
+    editCategory,
+    newOrder,
+    addNewImageToProduct,
+    createNewStore,
+    setUserId
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
 import logoReducer from './reducers/logoReducer'
 import viewModeReducer from './reducers/viewModeReducer'
 import sortReducer from './reducers/sortReducer'
+import openStoreReducer from './reducers/openStoreReducer';
+import ordersReducer from './reducers/orders.Reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './action';
 
@@ -39,28 +45,32 @@ const reducers =
         categoriesReducer,
         searchReducer,
         sortReducer,
-        viewModeReducer
+        viewModeReducer,
+        ordersReducer,
+        openStoreReducer
     })
 
 const store = createStore(
     reducers,
-    
+
     composeWithDevTools(
         applyMiddleware(
-        getAllCommunitiesFromDb,
-        getCommunityById,
-        checkPermission,
-        onAuthStateChanged,
-        getAllProducts,
-        getAllCategories,
-        newProduct,
-        createNewCategory,
-        deleteProduct,
-        deleteCategory,
-        editproduct,
-        editCategory,
-        addNewImageToProduct
-    ))
+            getAllCommunitiesFromDb,
+            getCommunityById,
+            checkPermission,
+            onAuthStateChanged,
+            getAllProducts,
+            getAllCategories,
+            newProduct,
+            createNewCategory,
+            deleteProduct,
+            deleteCategory,
+            editproduct,
+            editCategory,
+            addNewImageToProduct,
+            createNewStore,
+            setUserId
+        ))
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());

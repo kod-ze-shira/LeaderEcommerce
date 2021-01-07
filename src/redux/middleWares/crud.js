@@ -2,7 +2,6 @@ import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
 import { auth } from '../../services/firebase';
-import { act } from 'react-dom/test-utils';
 
 let username = "";
 
@@ -31,6 +30,27 @@ export const getCommunityById = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+export const setUserId = ({ dispatch, getState }) => next => action => {
+    debugger
+    if (action.type === 'SET_ID') {
+        debugger;
+        $.ajax({
+            url: `https://community.leader.codes/api/userByUid/${action.payload}`,
+            method: "get",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                console.log("jhhuhjjkh", data)
+                dispatch(actions.setUserId(data._id));
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    }
+    return next(action);
+}
 
 export const checkPermission = ({ dispatch, getState }) => next => action => {
 
@@ -66,7 +86,9 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const des = urlParams.get('des')
                 const routes = urlParams.get('routes')
                 const username = data.username
-                dispatch(actions.setUser({ "_id": data._id, "username": data.username, "email": data.email }))
+                debugger
+                dispatch(actions.setId(data.uid));
+                dispatch(actions.setUser({ "username": data.username, "email": data.email }))
                 console.log("uuu", username)
                 // let redirectUrl = ''
                 // if (des) {
@@ -142,7 +164,7 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
-                 
+
                 console.log("crddddddd", res.data);
                 dispatch(actions.setCategories({ categories: res.data }))
             })
@@ -154,10 +176,10 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
-                 
+
                 console.log("gjhjet ", res.data);
                 dispatch({ type: "SET_PRODUCTS", payload: res.data })
-                 
+
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
             })
@@ -214,7 +236,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CREATE_NEW_CATEGORY') {
-         ;
+        ;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -310,60 +332,127 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-         ; debugger
-         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category,price: action.payload.price,name: action.payload.name,description: action.payload.description,amount: action.payload.amount });
-    
-   
-      
+        ; debugger
+        var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
+
+
+
         $.ajax({
-                url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
-                method: "post",
-                dataType: "json",
-                contentType: "application/json",
-                data:raw,
-                success: function (data) {
-                    console.log(data)
-                  
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
-                   
-                }});};
-           return next(action);
-        };
+            url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log(data)
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    };
+    return next(action);
+};
 
 
 export const editCategory = ({ dispatch, getState }) => next => action => {
-  
+
     if (action.type === 'EDIT_CATEGORY') {
-         ; 
-        
-    // var myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-     var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
-    // var requestOptions = {
-    //     method: 'POST',
-    //     headers: myHeaders,
-    //     data: raw,
-    //     redirect: 'follow'
-    // };
-  
-    //     axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
-    //    .then(res=>{console.log("get ",res.data)});
-       
-$.ajax({
-        url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
-        method: "post",
-        dataType: "json",
-        contentType: "application/json",
-        data:raw,
-        success: function (data) {
-            console.log(data)
-          
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest," ",textStatus," ",errorThrown)
-           
-        }});};
-   return next(action);
+        ;
+
+        // var myHeaders = new Headers();
+        // myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
+        // var requestOptions = {
+        //     method: 'POST',
+        //     headers: myHeaders,
+        //     data: raw,
+        //     redirect: 'follow'
+        // };
+
+        //     axios.post('https://community.leader.codes/api/categories/editCategoty/'+action.payload.id,requestOptions)
+        //    .then(res=>{console.log("get ",res.data)});
+
+        $.ajax({
+            url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log(data)
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    };
+    return next(action);
 };
+// sari experience
+export const newOrder = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'NEW_ORDER') {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({ "trackingID": action.payload.trackingID, "userAddress": action.payload.userAddress, "date": action.payload.date, "status": true, "products": action.payload.products });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
+            .then(createOrder => {
+                console.log("ok!", createOrder)
+                //שיהיה אפשרות מהרדוסר
+                //שליחה לרדוסר
+                // dispatch(actions.newOrder(createOrder))
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+////יצירת חנות שרי
+export const createNewStore = ({ dispatch, getState }) => next => action => {
+    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
+    if (action.type === 'CREATE_NEW_STORE') {
+        debugger;
+        // var storeManager = getState().userReducer.user._id;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        console.log("user from redux", getState().userReducer.user);
+        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
+        var raw = JSON.stringify({
+            "storeName": action.payload.nameStore,
+            "storeDescription": action.payload.descriptionStore,
+            "logo": action.payload.logoStore,
+            "address": action.payload.addressStore,
+            "tel": action.payload.phoneStore,
+            "email": action.payload.emailStore,
+            "colorDominates": action.payload.colorStore,
+            "storeManager": getState().userReducer.user._id,
+            "currency": action.payload.currency,
+            "policy": action.payload.policy
+        });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
+            .then(response => { console.log(response); response.json() })
+            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+            .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
+
