@@ -18,11 +18,11 @@ function OpenStore(props) {
     //שימוש בספריה 
     const history = useHistory();
     const submitToStore = (event) => {
-                //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
+        //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
         //להוסיף לניתוב את URL החנות
-
         props.createNewStore(props.objectFields)
-        .then(history.push("/0"))
+            // .then
+            (history.push("/0"))
     }
     return (
         <div>
@@ -60,7 +60,7 @@ function OpenStore(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.openStoreReducer.objectFields,
+        objectFields: state.openStoreReducer.objectFields
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -73,6 +73,6 @@ const mapDispatchToProps = (dispatch) => ({
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
-    createNewStore: (objectFields) => { debugger; dispatch(actions.createNewStore(objectFields)) }
+    createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)) 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);
