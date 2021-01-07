@@ -6,7 +6,8 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
-import Home from "./components/home"
+import Home from "./components/home";
+import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path="/0">
               <Wrap></Wrap>
+            </Route>
+            <Route path="/a">
+              <A></A>
             </Route>
           </Switch>
         </div>
