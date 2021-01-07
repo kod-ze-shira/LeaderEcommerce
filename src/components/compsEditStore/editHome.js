@@ -15,7 +15,8 @@ import { LensOutlined } from '@material-ui/icons';
 
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function EditHome(props) {
-
+// צריך לעשות פונ של useEffect 
+//יקבל את ה-url של שם החנות וישלוף לפי זה מהשרת את פרטי החנות 
     const onChangeHandlerImage = (event) => {
         if (event) {
             let reader = new FileReader();

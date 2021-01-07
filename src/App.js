@@ -11,6 +11,7 @@ import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
+import PrivateRoute from './PrivateRoute.js';
 
 function App() {
   // const store1=store.getState();
@@ -37,12 +38,13 @@ function App() {
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
+            <PrivateRoute path="/0" component={Wrap} />
+          {/* <Redirect to={"/login"} /> */}
+
+{/* 
             <Route path="/0">
               <Wrap></Wrap>
-            </Route>
-            <Route path="/a">
-              <A></A>
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </Router>
