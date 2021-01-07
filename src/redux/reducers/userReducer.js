@@ -5,7 +5,9 @@ import { actions } from '../action';
 const initialState = {
     user: {
         //צריך להגיע מהפירבייס
-        _id: "6",
+        //לא לכתוב פה סתם ID זה צריך להיות ID מיוחד שפיירבייס נותן- אחרת זה נופל ולא יכול להכניס חנות חדשה!!!
+        //חובה לעבור בדף לוגין משם מתקבל האיידי ואח"כ לנתב לדף שרוצים!!!
+        _id: "",
         username: "",
         email: ""
     },
@@ -13,10 +15,16 @@ const initialState = {
 
 const user = {
 
+    setUserId(state, action) {
+        debugger;
+        state.user._id = action.payload
+        console.log("state", state.user._id);
+    },
 
     setUser(state, action) {
         console.log("setuser ", action.payload);
-        state.user = action.payload;
+        state.user.username = action.payload.username;
+        state.user.email = action.payload.email;
     },
     setUsername(state, action) {
         state.user.username = action.payload;

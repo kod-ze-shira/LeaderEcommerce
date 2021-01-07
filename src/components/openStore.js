@@ -17,18 +17,20 @@ function OpenStore(props) {
     }
     //שימוש בספריה 
     const history = useHistory();
-    const submitToStore = (event) => {
-                //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
+    const submitToStore = async (event) => {
+        //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
         //להוסיף לניתוב את URL החנות
 
-        props.createNewStore(props.objectFields)
-        .then(history.push("/0"))
+        await props.createNewStore(props.objectFields)
+        // .then(
+        history.push("/0")
+        // )
     }
     return (
         <div>
             <h1>welcome to open shop!!!!!</h1><br></br>
             <input placeholder="הכנס שם חנות" onChange={props.setNameStore}></input><br></br>
-            <input placeholder="הכנס תאור לחנות" onChange={props.setNameStore}></input><br></br>
+            <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
             <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
             <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
             <input placeholder="הכנס אימיל" onChange={props.setEmailStore}></input><br></br>
@@ -37,7 +39,7 @@ function OpenStore(props) {
             <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
             {/*  למטבעות drop down  צריך שיהיה  */}
             <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br>
-            <input placeholder="הכנס מדיניות" onChange={props.setCurrencyStore}></input><br></br>
+            <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
             <div>
                 <lable for="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>

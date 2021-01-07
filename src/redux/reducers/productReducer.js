@@ -6,14 +6,14 @@ const initialState = {
     products: [],
     pic: "",
     viewListOrGrid: "list",
-    currentProduct:{}
+    currentProduct: {}
 
 };
 
 const product = {
 
     setProducts(state, action) {
-        debugger;
+        // debugger;
         state.products = action.payload;
         console.log('pro', state.products);
     },
@@ -30,9 +30,9 @@ const product = {
     setLOrG(state, action) {
         state.viewListOrGrid = action.payload
     },
-    setCurrentProduct(state,action){
-              debugger
-  state.currentProduct=action.payload
+    setCurrentProduct(state, action) {
+        debugger
+        state.currentProduct = action.payload
     }
 
 };
