@@ -19,32 +19,33 @@ function ProductsList(props) {
                 Category: "Category"
         }
         // const [file, setFile] = useState(0);
-        useEffect(() => {
+        // useEffect(() => {
 
-                $(".data__preview input").on("change", function () {
-                        debugger
-                        console.log("useeff", $(this));
-                })
+        //         $(".data__preview input").on("change", function () {
+        //                 debugger
+        //                 console.log("useeff", $(this));
+        //         })
 
-                // var panel = $('.js-panel');
-                // if (panel.length) {
-                //         var btn = panel.find('.js-panel-btn, .js-panel-action'),
-                //                 tab = panel.find('.js-panel-tab');
+        //         // var panel = $('.js-panel');
+        //         // if (panel.length) {
+        //         //         var btn = panel.find('.js-panel-btn, .js-panel-action'),
+        //         //                 tab = panel.find('.js-panel-tab');
 
-                // }
-        }, [])
+        //         // }
+        // }, [])
 
 
-        const onChangeHandlerImage = (event, t) => {
-
+        const onChangeHandlerImage = (eve) => {
+                let event = eve.target.files[0]
+                let num= eve.target.name;
                 // const input = fileI.current
                 debugger
                 if (event) {
                         debugger;
-                        console.log("key", t);
+                        console.log("key", num);
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                props.changeProductImage(reader.result, fileI.current.name)
+                                props.changeProductImage(reader.result, num)
                                 // props.setSearchReasult(props.products)
                         }
                         reader.readAsDataURL(event)
@@ -171,23 +172,25 @@ function ProductsList(props) {
                                                                                                         <span className="switch__content">
                                                                                                         </span></label></div>
                                                                                                 <div className="data__preview">
-                                                                                                        <label className="prdct_img" for="fileInput">
+                                                                                                        <label className="prdct_img" for={"fileInput"+index}>
                                                                                                                 <img alt="product image" src={item.images[0] ? item.images[0] : productImg}
                                                                                                                 // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
                                                                                                                 />
                                                                                                         </label>
+
                                                                                                         <input
                                                                                                                 ref={fileI}
                                                                                                                 name={index}
                                                                                                                 type={"file"}
-                                                                                                                id="fileInput"
+                                                                                                                id={"fileInput"+index}
                                                                                                                 htmlFor="myInput"
                                                                                                                 accept="image/*"
                                                                                                                 style={{
                                                                                                                         display: 'none',
                                                                                                                         cursor: 'pointer'
                                                                                                                 }}
-                                                                                                                onChange={(e) => onChangeHandlerImage(e.target.files[0], $(this).attr("name"))}
+                                                                                                                onChange={onChangeHandlerImage}
+                                                                                                        // .attr("name")
                                                                                                         />
                                                                                                 </div>
                                                                                                 <div className="data__wrap">
