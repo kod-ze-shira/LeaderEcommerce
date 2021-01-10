@@ -76,4 +76,5 @@ window.store = store;
 store.dispatch(actions.onAuthStateChanged());
 store.dispatch(actions.getAllProducts());
 store.dispatch(actions.getAllCategories());
+
 export default store;

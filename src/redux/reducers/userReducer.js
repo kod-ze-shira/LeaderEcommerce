@@ -8,6 +8,7 @@ const initialState = {
         //לא לכתוב פה סתם ID זה צריך להיות ID מיוחד שפיירבייס נותן- אחרת זה נופל ולא יכול להכניס חנות חדשה!!!
         //חובה לעבור בדף לוגין משם מתקבל האיידי ואח"כ לנתב לדף שרוצים!!!
         _id: "",
+        uid: "",
         username: "",
         email: ""
     },
@@ -25,6 +26,7 @@ const user = {
         console.log("setuser ", action.payload);
         state.user.username = action.payload.username;
         state.user.email = action.payload.email;
+        state.user.uid = action.payload.uid;
     },
     setUsername(state, action) {
         state.user.username = action.payload;

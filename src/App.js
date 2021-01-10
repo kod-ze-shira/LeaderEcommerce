@@ -12,6 +12,7 @@ import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
+import ExpYeudit from './components/exp-yeudit';
 import PrivateRoute from './PrivateRoute.js';
 
 function App() {
@@ -46,7 +47,12 @@ function App() {
             {/* 
             <Route path="/0">
               <Wrap></Wrap>
-            </Route> */}
+            </Route>
+            {/**Yeudit!!!!! */}
+            <Route path="/exp">
+              <ExpYeudit></ExpYeudit>
+            </Route>
+            {/* </Route>  */}
           </Switch>
         </div>
       </Router>
