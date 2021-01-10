@@ -6,11 +6,13 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
-import Home from "./components/home"
+import Home from "./components/home";
+import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import ExpYeudit from './components/exp-yeudit';
+import PrivateRoute from './PrivateRoute.js';
 
 function App() {
   // const store1=store.getState();
@@ -26,9 +28,11 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/openStore">
+            <PrivateRoute path="/openStore" component={OpenStore} />
+
+            {/* <Route path="/openStore">
               <OpenStore />
-            </Route>
+            </Route> */}
             <Route path="/view">
               <h2>תצוגה</h2>
               <div>
@@ -37,6 +41,10 @@ function App() {
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
+            <PrivateRoute path="/0" component={Wrap} />
+            {/* <Redirect to={"/login"} /> */}
+
+
             <Route path="/0">
               <Wrap></Wrap>
             </Route>
@@ -44,6 +52,7 @@ function App() {
             <Route path="/exp">
               <ExpYeudit></ExpYeudit>
             </Route>
+            {/* </Route>  */}
           </Switch>
         </div>
       </Router>

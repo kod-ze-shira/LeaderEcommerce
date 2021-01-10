@@ -55,7 +55,7 @@ const initialState = {
                 },
 
                 titleTextSize: {
-                        onThePicture: "50",
+                        onThePicture: "24",
                         titleCategory: "20",
                         titleProduct: "20",
                         textIntoCategory: "16",

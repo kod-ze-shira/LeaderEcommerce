@@ -1,15 +1,16 @@
 import produce from 'immer';
 import createReducer from "./reducerUtils";
-
+// var colorStore= "red";
 const initialState = {
+
     objectFields: {
-        nameStore: "",
-        descriptionStore: "",
+        nameStore: "ikea!",
+        descriptionStore: "Everything you need easily and cheaply",
         logoStore: "",
         addressStore: "",
         phoneStore: "",
         emailStore: "",
-        colorStore: "",
+        colorStore: "blue",
         policy: "",//מדיניות
         currency: "",
         //רותי אמרה שצריך להוסיף סוג חנות

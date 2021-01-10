@@ -330,7 +330,8 @@ class Wrap extends React.Component {
                     <div className={classes.row}
                         style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
 
-                        <IconButton edge="end" color="inherit" aria-label="setting" >
+            
+                        <IconButton onClick={()=>{this.props.history.replace("/0/admin");console.log(this.props.history);}} edge="end" color="inherit" aria-label="setting" >
                             <SettingsIcon style={{ color: this.state.color }} />
                         </IconButton>
 

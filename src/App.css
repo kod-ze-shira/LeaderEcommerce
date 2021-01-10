@@ -36,8 +36,6 @@
   float: right !important;
 }
 
-
-
 ul{
   list-style-type: none;
 }
@@ -1109,6 +1107,7 @@ body.dark .search__input::placeholder {
   /* border-radius: 64px; */
   overflow: hidden;
   font-size: 0;
+  border:5px solid ;
 }
 
 .main__pic {
