@@ -79,6 +79,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let noQuotesJwtData = jsonWebToken.split('"').join("");
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
+                debugger;
                 document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
@@ -86,9 +87,9 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const des = urlParams.get('des')
                 const routes = urlParams.get('routes')
                 const username = data.username
-                debugger
+                debugger;
                 dispatch(actions.setId(data.uid));
-                dispatch(actions.setUser({ "username": data.username, "email": data.email }))
+                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
                 console.log("uuu", username)
                 // let redirectUrl = ''
                 // if (des) {

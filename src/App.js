@@ -10,6 +10,7 @@ import Home from "./components/home"
 import OpenStore from "./components/openStore"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
+import ExpYeudit from './components/exp-yeudit';
 
 function App() {
   // const store1=store.getState();
@@ -38,6 +39,10 @@ function App() {
             </Route>
             <Route path="/0">
               <Wrap></Wrap>
+            </Route>
+            {/**Yeudit!!!!! */}
+            <Route path="/exp">
+              <ExpYeudit></ExpYeudit>
             </Route>
           </Switch>
         </div>
