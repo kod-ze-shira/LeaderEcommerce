@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
+import { actions } from '../redux/action'
 
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function StoreSettingsManagement(props) {
@@ -22,17 +22,13 @@ function StoreSettingsManagement(props) {
     // await props.createNewStore(props.objectFields)
     // history.push("/0/" + props.objectFields.nameStore)
     // history.push("/0")
-
-
-
-
     return (
         <div>
             <h1>welcome to setting!!!!!</h1>
             <div>
                 {/* להוסיף את כל השדות לרידקס */}
                 {/* מה להוסיף? */}
-                {/*  כתובת url  */}
+                {/* url כתובת */}
                 {/* קניה חד מוצרית - checkbox */}
                 {/* ניהול מלאי -checkbox */}
                 <h1>welcome to open shop!!!!!</h1><br></br>

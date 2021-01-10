@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
+import $ from 'jquery';
 //ספריה ששומרת את הדברים שמשתנים ומקשרת לדף הבא עם שמירת הנתונים
 import { useHistory } from "react-router-dom";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
@@ -15,6 +16,25 @@ function OpenStore(props) {
             reader.readAsDataURL(event)
         }
     }
+
+    function myFunction(event) {
+        var str = event.target.value
+        //תנאי שרק כאשר יש רווח יכנס להמרה
+        var hasSpace = str.indexOf(' ');
+        if (hasSpace >= 0) {
+            str = str.replace(/\s/g, '_')
+            // console.log(str);
+            // alert(str)
+            //הצבת המחרוזת במשתנה ברידקס
+            props.setUrlRoute(str)
+            console.log(props.objectFields.urlRoute);
+        }
+        else {
+            alert('has not spaces!!!!!')
+        }
+    }
+
+
     //שימוש בספריה 
     const history = useHistory();
     const submitToStore = async (event) => {
@@ -22,14 +42,14 @@ function OpenStore(props) {
         //להוסיף לניתוב את URL החנות
         await props.createNewStore(props.objectFields)
         history.push("/0/" + props.objectFields.nameStore)
-        // history.push("/0")
-
     }
     return (
         <div>
             {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
-            <input placeholder="הכנס שם חנות" onChange={props.setNameStore}></input><br></br>
+            {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
+            <input placeholder="הכנס שם חנות" type="text" id="fname"
+                onBlur={myFunction} onChange={props.setNameStore}></input><br></br>
             <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
             <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
             <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
@@ -143,11 +163,13 @@ function OpenStore(props) {
 }
 const mapStateToProps = (state) => {
     return {
+
         objectFields: state.openStoreReducer.objectFields
     }
 }
 const mapDispatchToProps = (dispatch) => ({
     setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
+    setUrlRoute: (e) => dispatch(actions.setUrlRoute(e)),
     setDescriptionStore: (e) => dispatch(actions.setDescriptionStore(e.target.value)),
     setAddressStore: (e) => dispatch(actions.setAddressStore(e.target.value)),
     setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),

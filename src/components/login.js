@@ -38,7 +38,9 @@ function Login(props) {
 
     return (
         !!props.user.email ? (
+            // <Redirect to={"/nis"} />
             <Redirect to={"/openStore"} />
+
         ) :
             (
                 <>

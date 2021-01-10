@@ -3,7 +3,7 @@ import CreateStore from './createStore';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RoutingMain from './compsEditStore/routingMain';
 import ExperienceOrder from './compsEditStore/experienceOrder';
-
+import StoreSettingsManagement from './storeSettingsManagement'
 import UserHome from './userHome'
 import ElasticCarousel from './carousel'
 import Admin from './admin'
@@ -31,6 +31,9 @@ class Content extends Component {
                         <Route path="/0/experienceOrder" component={ExperienceOrder}></Route>
                         <Route exact path="/0/admin">
                             <Admin />
+                        </Route>
+                        <Route exact path="/0/admin/storeSettingsManagement">
+                            <StoreSettingsManagement></StoreSettingsManagement>
                         </Route>
                         <RoutingMain></RoutingMain>
                     </Switch>
