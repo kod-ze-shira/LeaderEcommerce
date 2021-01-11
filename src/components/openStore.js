@@ -41,7 +41,7 @@ function OpenStore(props) {
         //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
         //להוסיף לניתוב את URL החנות
         await props.createNewStore(props.objectFields)
-        history.push("/0/" + props.objectFields.nameStore)
+        history.push("/0/" + props.objectFields.urlRoute)
     }
     return (
         <div>

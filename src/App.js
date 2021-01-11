@@ -10,6 +10,7 @@ import Home from "./components/home";
 import Nis from "./components/nis"
 import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
+import StoreSettingsManagement from "./components/storeSettingsManagement"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import ExpYeudit from './components/exp-yeudit';
@@ -32,6 +33,7 @@ function App() {
 
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/nis" component={Nis} />
+            <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
 
             <Route path="/view">
               <h2>תצוגה</h2>

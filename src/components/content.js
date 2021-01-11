@@ -32,9 +32,9 @@ class Content extends Component {
                         <Route exact path="/0/admin">
                             <Admin />
                         </Route>
-                        <Route exact path="/0/admin/storeSettingsManagement">
+                        {/* <Route exact path="/0/admin/storeSettingsManagement">
                             <StoreSettingsManagement></StoreSettingsManagement>
-                        </Route>
+                        </Route> */}
                         <RoutingMain></RoutingMain>
                     </Switch>
                 </div>

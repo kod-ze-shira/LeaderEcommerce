@@ -1,6 +1,5 @@
 import produce from 'immer';
 import createReducer from "./reducerUtils";
-// var colorStore= "red";
 const initialState = {
 
     objectFields: {
