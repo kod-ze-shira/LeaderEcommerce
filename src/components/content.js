@@ -14,10 +14,10 @@ class Content extends Component {
 
     render() {
         return (
-            <Router>
+            // <Router>
+            <div className="Content">
                 {/* כפתור מיותר: */}
                 {/* <button className="btn btn-success" onClick={logOut}>Log Out</button> */}
-                <div className="Content">
                     <Switch>
                         <Route path="/0/userhome/:username">
                             <UserHome />
@@ -38,7 +38,7 @@ class Content extends Component {
                         <RoutingMain></RoutingMain>
                     </Switch>
                 </div>
-            </Router>
+            // </Router>
         )
     }
 }

@@ -6,14 +6,17 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
+<<<<<<< HEAD
+import Home from "./components/home"
+=======
 import Home from "./components/home";
 import Nis from "./components/nis"
 import A from "./components/compsEditStore/editHome";
+>>>>>>> fde6480845debe6da488029ee8ae44152425d289
 import OpenStore from "./components/openStore"
 import StoreSettingsManagement from "./components/storeSettingsManagement"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
-import ExpYeudit from './components/exp-yeudit';
 import PrivateRoute from './PrivateRoute.js';
 
 function App() {
@@ -30,11 +33,17 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+<<<<<<< HEAD
+            <Route path="/openStore">
+              <OpenStore />
+            </Route>
+=======
 
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/nis" component={Nis} />
             <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
 
+>>>>>>> fde6480845debe6da488029ee8ae44152425d289
             <Route path="/view">
               <h2>תצוגה</h2>
               <div>
@@ -49,12 +58,7 @@ function App() {
             {/* 
             <Route path="/0">
               <Wrap></Wrap>
-            </Route>
-            {/**Yeudit!!!!! */}
-            <Route path="/exp">
-              <ExpYeudit></ExpYeudit>
-            </Route>
-            {/* </Route>  */}
+            </Route> */}
           </Switch>
         </div>
       </Router>

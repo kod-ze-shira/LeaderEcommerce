@@ -31,7 +31,6 @@ export const getCommunityById = ({ dispatch, getState }) => next => action => {
 };
 
 export const setUserId = ({ dispatch, getState }) => next => action => {
-    debugger
     if (action.type === 'SET_ID') {
         debugger;
         $.ajax({
@@ -41,7 +40,7 @@ export const setUserId = ({ dispatch, getState }) => next => action => {
             contentType: "application/json",
             success: function (data) {
                 console.log("jhhuhjjkh", data)
-                dispatch(actions.setUserId(data._id));
+                dispatch(actions.setUserId(data));
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
@@ -90,7 +89,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 debugger;
                 dispatch(actions.setId(data.uid));
                 dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
-                console.log("uuu", username)
+                console.log("uuu", getState().userReducer.user)
                 // let redirectUrl = ''
                 // if (des) {
                 //     redirectUrl = "https://" + des + '/' + username;
