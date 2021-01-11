@@ -14,7 +14,7 @@ class RoutingMain extends Component {
 
     render() {
         return (
-            <Router>
+            // <Router>
                 <div className="RoutingMain">
                     <Header></Header>
                     <Switch>
@@ -35,7 +35,7 @@ class RoutingMain extends Component {
                     </Switch>
                     <Footer></Footer>
                 </div>
-            </Router>
+            // </Router>
         )
     }
 }
