@@ -6,8 +6,6 @@ import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import addProductReducer from './reducers/addProductReduser';
 import {
-    getAllCommunitiesFromDb,
-    getCommunityById,
     checkPermission,
     onAuthStateChanged,
     getAllProducts,
@@ -21,7 +19,8 @@ import {
     newOrder,
     addNewImageToProduct,
     createNewStore,
-    setUserId
+    setUserId,
+    uploadImage
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
@@ -55,8 +54,6 @@ const store = createStore(
 
     composeWithDevTools(
         applyMiddleware(
-            getAllCommunitiesFromDb,
-            getCommunityById,
             checkPermission,
             onAuthStateChanged,
             getAllProducts,
@@ -69,7 +66,8 @@ const store = createStore(
             editCategory,
             addNewImageToProduct,
             createNewStore,
-            setUserId
+            setUserId,
+            uploadImage
         ))
 )
 window.store = store;

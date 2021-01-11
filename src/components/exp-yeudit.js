@@ -16,46 +16,68 @@ function ExpYeudit(props) {
 
         // })
 
-        const onChangeEmail = (e) => {
-                // setEmail(e.target.value)
+
+        // const onSubmitForm = (e) => {
+        //         e.preventDefault()
+
+        //         let jwtFromCookie = document.cookie.split(";")
+        //                 .filter(s => s.includes('jwt'))[0].split("=").pop();
+
+        //         console.log("cooky", document.cookie);
+        //         var fileToUpload = $("#uploadInput")[0].files[0];
+        //         var myFile = new FormData();
+        //         myFile.append("file", fileToUpload);
+        //         $.ajax({
+        //                 type: "POST",
+        //                 url: "https://files.leader.codes/api/" + props.uId + "/upload",
+        //                 headers: { Authorization: jwtFromCookie },
+        //                 data: myFile,
+        //                 processData: false,
+        //                 contentType: false,
+        //                 success: function (data) {
+        //                         let url = JSON.parse(data).data.url;
+        //                         alert("upload success");
+        //                 },
+        //                 error: function (err) {
+        //                         alert(err);
+        //                 },
+        //         });
+
+        // }
+        const onChangeHandlerLogo = (event) => {
+                //שימוש בFileReader לצורך הצגה מקומית של התמונה, היות ולוקח כמה שניות עד שחוזר url מהשרת.
+                const reader1 = new FileReader();
+                const file = event;
+                var num = 0;
+                reader1.onloadend = () => {
+                        props.changeProductImage(reader1.result, num)
+                };
+                reader1.readAsDataURL(file);
+                console.log("event", event)
+                var fileToUpload = event
+                props.uploadImage("imgLogo", fileToUpload)
         }
 
-
-        const onSubmitForm = (e) => {
-                e.preventDefault()
-
-                let jwtFromCookie = document.cookie.split(";")
-                        .filter(s => s.includes('jwt'))[0].split("=").pop();
-
-                console.log("cooky", document.cookie);
-                var fileToUpload = $("#uploadInput")[0].files[0];
-                var myFile = new FormData();
-                myFile.append("file", fileToUpload);
-                $.ajax({
-                        type: "POST",
-                        url: "https://files.leader.codes/api/" + props.uId + "/upload",
-                        headers: { Authorization: jwtFromCookie },
-                        data: myFile,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                                let url = JSON.parse(data).data.url;
-                                alert("upload success");
-                        },
-                        error: function (err) {
-                                alert(err);
-                        },
-                });
-
-        }
 
         return (
                 <>
-                        <form className="form" onSubmit={(e) => onSubmitForm(e)}>
-                                <label for="uploadInput">upload your file:</label>
-                                <input id="uploadInput" type={"file"} name="file" onChange={(e) => onChangeEmail(e)} /><br />
-                                <input type="submit" value="OK" />
-                        </form>
+
+                        <label for="logouug" className="lbl_img">
+                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.imgLogo == "" ? "logo1" : props.user.imgLogo} />
+                        </label>
+                        <input
+
+                                type={"file"}
+                                id="logouug"
+                                htmlFor="myInput"
+                                accept="image/*"
+
+                                style={{
+                                        display: 'none',
+                                        cursor: 'pointer',
+                                }}
+                                onChange={(e) => onChangeHandlerLogo(e.target.files[0])}
+                        />
                 </>
         );
 }
@@ -68,7 +90,8 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        setUsername: (e) => dispatch(actions.setUsername(e))
+                        setUsername: (e) => dispatch(actions.setUsername(e)),
+                        uploadImage: (x) => dispatch(actions.uploadImage(x))
                 }
         }
 

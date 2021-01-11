@@ -10,7 +10,8 @@ const initialState = {
         _id: "",
         uid: "",
         username: "",
-        email: ""
+        email: "",
+        tokenFromCookies: ""
     },
 }
 
