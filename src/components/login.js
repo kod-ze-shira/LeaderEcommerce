@@ -37,7 +37,7 @@ function Login(props) {
     }
 
     return (
-        !!props.user.email ? (
+        !!props.user._id ? (
             <Redirect to={"/openStore"} />
         ) :
             (

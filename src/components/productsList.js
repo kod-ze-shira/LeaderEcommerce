@@ -37,7 +37,7 @@ function ProductsList(props) {
 
         const onChangeHandlerImage = (eve) => {
                 let event = eve.target.files[0]
-                let num= eve.target.name;
+                let num = eve.target.name;
                 // const input = fileI.current
                 debugger
                 if (event) {
@@ -162,7 +162,7 @@ function ProductsList(props) {
                                                         </div>
                                                 </div>
                                                 <div className="data__body">
-                                                        {props.data.map((item, index) => (
+                                                        {props.filteredProducts.map((item, index) => (
                                                                 <div className="data__item" key={index}>
                                                                         <div className="data__row" >
                                                                                 <div className="data__cell data__cell_xl">
@@ -172,7 +172,7 @@ function ProductsList(props) {
                                                                                                         <span className="switch__content">
                                                                                                         </span></label></div>
                                                                                                 <div className="data__preview">
-                                                                                                        <label className="prdct_img" for={"fileInput"+index}>
+                                                                                                        <label className="prdct_img" for={"fileInput" + index}>
                                                                                                                 <img alt="product image" src={item.images[0] ? item.images[0] : productImg}
                                                                                                                 // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
                                                                                                                 />
@@ -182,7 +182,7 @@ function ProductsList(props) {
                                                                                                                 ref={fileI}
                                                                                                                 name={index}
                                                                                                                 type={"file"}
-                                                                                                                id={"fileInput"+index}
+                                                                                                                id={"fileInput" + index}
                                                                                                                 htmlFor="myInput"
                                                                                                                 accept="image/*"
                                                                                                                 style={{

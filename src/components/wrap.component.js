@@ -257,7 +257,7 @@ class Wrap extends React.Component {
             // history.push("/login")
             debugger;
             this.props.changeViewMode(true);
-            this.props.history.push("/view/"+this.props.viewModel.currentPage);
+            this.props.history.push("/view/" + this.props.viewModel.currentPage);
         }
         const logOutHandler = () => {
             logOut.then(() => {
@@ -330,8 +330,8 @@ class Wrap extends React.Component {
                     <div className={classes.row}
                         style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
 
-            
-                        <IconButton onClick={()=>{this.props.history.replace("/0/admin");console.log(this.props.history);}} edge="end" color="inherit" aria-label="setting" >
+
+                        <IconButton onClick={() => { this.props.history.push("/0/admin"); console.log(this.props.history); }} edge="end" color="inherit" aria-label="setting" >
                             <SettingsIcon style={{ color: this.state.color }} />
                         </IconButton>
 
@@ -500,7 +500,7 @@ const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
-        viewModel:state.viewModeReducer.viewModel
+        viewModel: state.viewModeReducer.viewModel
     }
 }
 
