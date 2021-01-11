@@ -6,7 +6,7 @@ const initialState = {
     products: [],
     pic: "",
     viewListOrGrid: "list",
-    currentProduct:{}
+    currentProduct: {}
 
 };
 

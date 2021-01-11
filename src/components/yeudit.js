@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
-import  './yeudit.css'
+import './yeudit.css'
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
 import './crudProducts.css';
@@ -81,14 +81,15 @@ function Yeudit(props) {
                                 PageNum--;
                         else
                                 PageNum = num;
-                } 
+                }
                 setDegelBtn(PageNum)
                 let p1 = (PageNum - 1) * 6;
                 let p2 = PageNum * 6 - 1;
                 let list = props.filteredProducts;
-                list = list[0] ? list.slice(p1, p2) : "";
-                console.log(items);
-                setMyItems(list);
+                list = list[0] ? list.slice(p1, p2) : [];
+                console.log("list", list);
+                // setMyItems(list);
+                props.setSearchReasult(list)
 
 
         }
@@ -152,7 +153,9 @@ function Yeudit(props) {
                                                                                 <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
                                                         </div>
                                                         <div className="panel__body">
-                                                                {props.viewLOrGrid === "list" ? <ProductsList data={items} /> : <ProductsGrid />}
+                                                                {props.viewLOrGrid === "list" ? <ProductsList
+                                                                // data={items} 
+                                                                /> : <ProductsGrid />}
 
                                                                 <div className="panel__foot">
                                                                         <div className="pager">
@@ -160,28 +163,28 @@ function Yeudit(props) {
                                                                                         <i className="la la-angle-left "></i>Prev
                                                                                  </button>
                                                                                 <div className="pager__list">
-                                                                                        <button 
-                                                                                        className={degelBtn==1?"active pager__link action":"pager__link action"}
-                                                                                        onClick={() => { changePageNum(1, $(this))}} 
+                                                                                        <button
+                                                                                                className={degelBtn == 1 ? "active pager__link action" : "pager__link action"}
+                                                                                                onClick={() => { changePageNum(1, $(this)) }}
                                                                                         // className="pager__link action"
                                                                                         >1</button>
-                                                                                        <button 
-                                                                                         className={degelBtn==2?"active pager__link action":"pager__link action"}
-                                                                                        onClick={() => { changePageNum(2, $(this)) }} 
-                                                                                        >2</button>
-                                                                                        <button 
-                                                                                        className={degelBtn==3?"active pager__link action":"pager__link action"}
-                                                                                         onClick={() => { changePageNum(3, $(this)) }} 
-                                                                                         >3</button>
                                                                                         <button
-                                                                                         onClick={() => { changePageNum(4, $(this)) }}
-                                                                                         className={degelBtn==4?"active pager__link action":"pager__link action"}
-                                                                                         >4</button>
-                                                                                        <button 
-                                                                                        onClick={() => { changePageNum(5, $(this)) }} 
-                                                                                        className={degelBtn==5?"active pager__link action":"pager__link action"}
+                                                                                                className={degelBtn == 2 ? "active pager__link action" : "pager__link action"}
+                                                                                                onClick={() => { changePageNum(2, $(this)) }}
+                                                                                        >2</button>
+                                                                                        <button
+                                                                                                className={degelBtn == 3 ? "active pager__link action" : "pager__link action"}
+                                                                                                onClick={() => { changePageNum(3, $(this)) }}
+                                                                                        >3</button>
+                                                                                        <button
+                                                                                                onClick={() => { changePageNum(4, $(this)) }}
+                                                                                                className={degelBtn == 4 ? "active pager__link action" : "pager__link action"}
+                                                                                        >4</button>
+                                                                                        <button
+                                                                                                onClick={() => { changePageNum(5, $(this)) }}
+                                                                                                className={degelBtn == 5 ? "active pager__link action" : "pager__link action"}
                                                                                         >5</button>
-                                                                
+
                                                                                 </div>
                                                                                 <button className="pager__arrow action action_icon_after" onClick={() => { changePageNum('+', null) }}>Next
                                                                                 <i className="la la-angle-right "></i>

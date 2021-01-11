@@ -85,7 +85,7 @@ class Footer extends Component {
 const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
-        objectFields: state.openStoreReducer,
+        objectFields: state.openStoreReducer.objectFields,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

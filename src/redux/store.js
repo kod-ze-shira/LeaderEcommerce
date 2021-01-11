@@ -17,10 +17,12 @@ import {
     createNewCategory,
     deleteProduct,
     deleteCategory,
-     editproduct,
-     editCategory,
-     newOrder,
-    addNewImageToProduct
+    editproduct,
+    editCategory,
+    newOrder,
+    addNewImageToProduct,
+    createNewStore,
+    setUserId
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
@@ -50,26 +52,30 @@ const reducers =
 
 const store = createStore(
     reducers,
+
     composeWithDevTools(
         applyMiddleware(
-        getAllCommunitiesFromDb,
-        getCommunityById,
-        checkPermission,
-        onAuthStateChanged,
-        getAllProducts,
-        getAllCategories,
-        newProduct,
-        createNewCategory,
-        deleteProduct,
-        deleteCategory,
-        editproduct,
-        editCategory,
-        newOrder,
-        addNewImageToProduct
-    ))
+            getAllCommunitiesFromDb,
+            getCommunityById,
+            checkPermission,
+            onAuthStateChanged,
+            getAllProducts,
+            getAllCategories,
+            newProduct,
+            createNewCategory,
+            deleteProduct,
+            deleteCategory,
+            editproduct,
+            editCategory,
+            addNewImageToProduct,
+            createNewStore,
+            setUserId,
+            newOrder
+        ))
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
 store.dispatch(actions.getAllProducts());
 store.dispatch(actions.getAllCategories());
+
 export default store;

@@ -3,22 +3,33 @@ import createReducer from './reducerUtils';
 import { actions } from '../action';
 
 const initialState = {
-    user:{
-        _id:"",
-        username:"",
-        email:""
+    user: {
+        //צריך להגיע מהפירבייס
+        //לא לכתוב פה סתם ID זה צריך להיות ID מיוחד שפיירבייס נותן- אחרת זה נופל ולא יכול להכניס חנות חדשה!!!
+        //חובה לעבור בדף לוגין משם מתקבל האיידי ואח"כ לנתב לדף שרוצים!!!
+        _id: "",
+        uid: "",
+        username: "",
+        email: ""
     },
 }
 
 const user = {
 
+    setUserId(state, action) {
+        debugger;
+        state.user._id = action.payload
+        console.log("state", state.user._id);
+    },
 
     setUser(state, action) {
-        console.log("setuser ",action.payload);
-        state.user=action.payload;
+        console.log("setuser ", action.payload);
+        state.user.username = action.payload.username;
+        state.user.email = action.payload.email;
+        state.user.uid = action.payload.uid;
     },
-    setUsername(state, action){
-        state.user.username=action.payload;
+    setUsername(state, action) {
+        state.user.username = action.payload;
     }
 
 }

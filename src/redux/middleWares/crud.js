@@ -2,7 +2,6 @@ import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
 import { auth } from '../../services/firebase';
-import { act } from 'react-dom/test-utils';
 
 let username = "";
 
@@ -31,6 +30,26 @@ export const getCommunityById = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+export const setUserId = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'SET_ID') {
+        debugger;
+        $.ajax({
+            url: `https://community.leader.codes/api/userByUid/${action.payload}`,
+            method: "get",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                console.log("jhhuhjjkh", data)
+                dispatch(actions.setUserId(data));
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+
+            }
+        });
+    }
+    return next(action);
+}
 
 export const checkPermission = ({ dispatch, getState }) => next => action => {
 
@@ -59,6 +78,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let noQuotesJwtData = jsonWebToken.split('"').join("");
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
+                debugger;
                 document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
@@ -66,8 +86,10 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const des = urlParams.get('des')
                 const routes = urlParams.get('routes')
                 const username = data.username
-                dispatch(actions.setUser({ "_id": data._id, "username": data.username, "email": data.email }))
-                console.log("uuu", username)
+                debugger;
+                dispatch(actions.setId(data.uid));
+                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
+                console.log("uuu", getState().userReducer.user)
                 // let redirectUrl = ''
                 // if (des) {
                 //     redirectUrl = "https://" + des + '/' + username;
@@ -398,3 +420,41 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+////יצירת חנות שרי
+export const createNewStore = ({ dispatch, getState }) => next => action => {
+    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
+    if (action.type === 'CREATE_NEW_STORE') {
+        debugger;
+        // var storeManager = getState().userReducer.user._id;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        console.log("user from redux", getState().userReducer.user);
+        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
+        var raw = JSON.stringify({
+            "storeName": action.payload.nameStore,
+            "storeDescription": action.payload.descriptionStore,
+            "logo": action.payload.logoStore,
+            "address": action.payload.addressStore,
+            "tel": action.payload.phoneStore,
+            "email": action.payload.emailStore,
+            "colorDominates": action.payload.colorStore,
+            "storeManager": getState().userReducer.user._id,
+            "currency": action.payload.currency,
+            "policy": action.payload.policy
+        });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
+            .then(response => { console.log(response); response.json() })
+            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+            .catch(error => console.log('error', error));
+    }
+
+    return next(action);
+};
+
+

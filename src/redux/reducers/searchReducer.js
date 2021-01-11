@@ -10,7 +10,7 @@ const initialState = {
 const search = {
 
         setFilteredItems(state, action) {
-                 ;
+                
                 console.log("action", action.payload);
                 state.filteredItems = action.payload;
 

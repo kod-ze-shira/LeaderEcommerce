@@ -6,10 +6,14 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
-import Home from "./components/home"
+import Home from "./components/home";
+import Nis from "./components/nis"
+import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
+import StoreSettingsManagement from "./components/storeSettingsManagement"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
+import PrivateRoute from './PrivateRoute.js';
 
 function App() {
   // const store1=store.getState();
@@ -25,9 +29,11 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/openStore">
-              <OpenStore />
-            </Route>
+
+            <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/nis" component={Nis} />
+            <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
+
             <Route path="/view">
               <h2>תצוגה</h2>
               <div>
@@ -36,9 +42,13 @@ function App() {
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
+            <PrivateRoute path="/0" component={Wrap} />
+            {/* <Redirect to={"/login"} /> */}
+
+            {/* 
             <Route path="/0">
               <Wrap></Wrap>
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </Router>
