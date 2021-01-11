@@ -13,6 +13,8 @@ const initialState = {
         colorStore: "blue",
         policy: "",//מדיניות
         currency: "",
+        inventoryManagement: "",//ניהול מלאי
+        OneProductPurchase: ""//קניה חד מוצרית
         //רותי אמרה שצריך להוסיף סוג חנות
         //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     }

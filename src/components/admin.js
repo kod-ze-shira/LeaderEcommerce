@@ -77,13 +77,17 @@ function Admin(props) {
                                         <Yeudit />
                                         {/* <CrudProducts />  */}
 
-
                                 </Tab>
                                 <Tab
                                         eventKey="categories"
                                         title="Categories">
                                         <CrudCategory />
                                 </Tab>
+                                {/* <Tab
+                                        eventKey="categories"
+                                        title="Categories">
+                                        <CrudCategory />
+                                </Tab> */}
                         </Tabs>
                 </Provider>
         )

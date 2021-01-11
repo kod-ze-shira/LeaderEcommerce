@@ -331,8 +331,8 @@ class Wrap extends React.Component {
                         style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
 
                         <Link to='/0/admin'>
-                        {/* this.props.history.push("/0/admin"); */}
-                            <IconButton onClick={() => {  console.log(this.props.history);this.props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
+                            {/* this.props.history.push("/0/admin"); */}
+                            <IconButton onClick={() => { console.log(this.props.history); this.props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
                                 <SettingsIcon style={{ color: this.state.color }} />
                             </IconButton>
                         </Link>

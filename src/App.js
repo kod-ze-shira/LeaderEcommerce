@@ -6,8 +6,7 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
-import Home from "./components/home"
-// import Home from "./components/home";
+import Home from "./components/home";
 import Nis from "./components/nis"
 import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
@@ -29,9 +28,6 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
-            </Route>
-            <Route path="/openStore">
-              <OpenStore />
             </Route>
 
             <PrivateRoute path="/openStore" component={OpenStore} />

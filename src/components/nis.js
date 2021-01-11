@@ -22,21 +22,22 @@
 //     }
 //     return (
 //         <div>
-//             <h1>welcome!!!!!</h1>
-//             <label for="myCheck">Checkbox:</label>
-//             <input type="checkbox" id="myCheck" onClick={myFunction} />
+//             <form onsubmit="CheckRequired(document.getElementById('f1'), 'Please Enter a Value to the Required Field')">
+//                 Required Field: <input type="text" id="f1">
+//                     <input type='submit' value='Submit' />
+// </form>
 //         </div>
 //     )
 // }
 
 // const mapStateToProps = (state) => {
 //     return {
-//         //אפשר לקרוא שם אחר לאוביקט
-//     }
+//                 //אפשר לקרוא שם אחר לאוביקט
+//             }
 // }
 // const mapDispatchToProps = (dispatch) => ({
 
-// })
+//             })
 // export default connect(mapStateToProps, mapDispatchToProps)(Nis);
 
 
