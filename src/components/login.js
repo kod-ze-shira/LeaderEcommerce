@@ -37,17 +37,8 @@ function Login(props) {
     }
 
     return (
-<<<<<<< HEAD
         !!props.user._id ? (
             <Redirect to={"/openStore"} />
-=======
-        !!props.user.email ? (
-            // <Redirect to={"/nis"} />
-            // <Redirect to={"/storeSettingManagment"} />
-
-            <Redirect to={"/openStore"} />
-
->>>>>>> fde6480845debe6da488029ee8ae44152425d289
         ) :
             (
                 <>
