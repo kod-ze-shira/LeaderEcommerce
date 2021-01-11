@@ -1,10 +1,10 @@
 import produce from 'immer';
 import createReducer from "./reducerUtils";
-// var colorStore= "red";
 const initialState = {
 
     objectFields: {
         nameStore: "ikea!",
+        urlRoute: "k",
         descriptionStore: "Everything you need easily and cheaply",
         logoStore: "",
         addressStore: "",
@@ -22,6 +22,9 @@ const FuncOpenStore = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setNameStore(state, action) {
         state.objectFields.nameStore = action.payload
+    },
+    setUrlRoute(state, action) {
+        state.objectFields.urlRoute = action.payload
     },
     setDescriptionStore(state, action) {
         state.objectFields.descriptionStore = action.payload

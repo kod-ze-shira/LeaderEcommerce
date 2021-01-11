@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
+import { actions } from '../redux/action'
 
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function StoreSettingsManagement(props) {
@@ -14,6 +14,24 @@ function StoreSettingsManagement(props) {
             reader.readAsDataURL(event)
         }
     }
+    // checkbox -  פונקציה ל
+    function checkBoxFunc() {
+        debugger
+        var checkBox = document.getElementById("myCheck");
+        var text = document.getElementById("text");
+        if (checkBox.checked == true) {
+            // text.style.display = "block";
+            alert('choose!!!!!')
+            console.log("choose!!!!!")
+        }
+        else
+            // text.style.display = "none";
+            alert('not choose!!!!!')
+        console.log("not choose!!!!!")
+
+    }
+
+
     //שימוש בספריה 
     // const history = useHistory();
     // const submitToStore = async (event) => {
@@ -22,17 +40,14 @@ function StoreSettingsManagement(props) {
     // await props.createNewStore(props.objectFields)
     // history.push("/0/" + props.objectFields.nameStore)
     // history.push("/0")
-
-
-
-
     return (
         <div>
             <h1>welcome to setting!!!!!</h1>
             <div>
                 {/* להוסיף את כל השדות לרידקס */}
                 {/* מה להוסיף? */}
-                {/*  כתובת url  */}
+                {/* url כתובת */}
+                {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
                 {/* קניה חד מוצרית - checkbox */}
                 {/* ניהול מלאי -checkbox */}
                 <h1>welcome to open shop!!!!!</h1><br></br>
@@ -46,6 +61,13 @@ function StoreSettingsManagement(props) {
                 <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
                 {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
+                <label for="myCheck">ניהול מלאי</label>
+                <input type="checkbox" id="myCheck" onClick={checkBoxFunc} /><br></br>
+                <label for="myCheckBuy">קניה חד מוצרית</label>
+                <input type="checkbox" id="myCheckBuy"
+                // onClick={checkBoxFunc} 
+                /><br></br>
+
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
                 <lable>בחר מטבע</lable>
                 <select>
