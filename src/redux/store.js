@@ -4,6 +4,7 @@ import userReducer from './reducers/userReducer';
 import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
+import cartReduser from './reducers/cartReduser';
 import addProductReducer from './reducers/addProductReduser';
 import {
     getAllCommunitiesFromDb,
@@ -27,7 +28,6 @@ import logoReducer from './reducers/logoReducer'
 import viewModeReducer from './reducers/viewModeReducer'
 import sortReducer from './reducers/sortReducer'
 import openStoreReducer from './reducers/openStoreReducer';
-import ordersReducer from './reducers/orders.Reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { actions } from './action';
 
@@ -44,13 +44,12 @@ const reducers =
         searchReducer,
         sortReducer,
         viewModeReducer,
-        ordersReducer,
-        openStoreReducer
+        openStoreReducer,
+        cartReduser
     })
 
 const store = createStore(
     reducers,
-    
     composeWithDevTools(
         applyMiddleware(
         getAllCommunitiesFromDb,
@@ -65,6 +64,7 @@ const store = createStore(
         deleteCategory,
         editproduct,
         editCategory,
+        newOrder,
         addNewImageToProduct
     ))
 )

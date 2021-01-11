@@ -255,7 +255,7 @@ class Wrap extends React.Component {
         const view = () => {
             // const history = useHistory();
             // history.push("/login")
-            debugger;
+             ;
             this.props.changeViewMode(true);
             this.props.history.push("/view/"+this.props.viewModel.currentPage);
         }

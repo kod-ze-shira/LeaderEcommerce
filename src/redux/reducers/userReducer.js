@@ -4,9 +4,9 @@ import { actions } from '../action';
 
 const initialState = {
     user:{
-        "_id":"",
-        "username":"",
-        "email":""
+        _id:"",
+        username:"",
+        email:""
     },
 }
 

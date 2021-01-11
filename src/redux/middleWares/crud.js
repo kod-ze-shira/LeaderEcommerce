@@ -249,7 +249,7 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_IMG_TO_PRODUCT') {
-        debugger;
+         ;
         dispatch(actions.setProductImage({ "p": action.payload.p, "i": action.payload.i }));
         dispatch(actions.setFilteredItems(getState().productReducer.products))
 
@@ -310,7 +310,7 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-        ; debugger
+        ;  
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
 
 
@@ -374,9 +374,11 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
 // sari experience
 export const newOrder = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_ORDER') {
+   
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({ "trackingID": action.payload.trackingID, "userAddress": action.payload.userAddress, "date": action.payload.date, "status": true, "products": action.payload.products });
+        var raw = JSON.stringify({ "trackingID":1,"user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": "שולם", "products": action.payload.product,"totalPrice":action.payload.totalPrice});
+
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,

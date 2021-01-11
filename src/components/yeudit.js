@@ -25,11 +25,11 @@ function Yeudit(props) {
 
         const onChangeHandlerImage = (event, thiss) => {
                 console.log("this", thiss.index());
-                debugger;
+                 ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                debugger;
+                                 ;
                                 props.changeProductImage(0, reader.result)
                                 console.log("img", props.products[0]);
 
@@ -70,7 +70,7 @@ function Yeudit(props) {
 
         let [items, setMyItems] = useState(props.products);
         function changePageNum(num, e) {
-                debugger;
+                 ;
                
                 $(".pager__link").removeClass('active')
 

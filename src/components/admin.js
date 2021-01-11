@@ -24,7 +24,7 @@ function Admin(props) {
 
         useEffect(() => {
                 // $('#myTab a').on('click', function (e) {
-                //         debugger;
+                //          ;
                 //         e.preventDefault()
                 //         $('#myTab .active').removeClass('active')
                 //         $(this).addClass('active')

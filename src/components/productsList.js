@@ -20,9 +20,9 @@ function ProductsList(props) {
         }
         // const [file, setFile] = useState(0);
         useEffect(() => {
-debugger;
+ ;
                 $(".data__preview input").on("change", function () {
-                        debugger
+                         
                         console.log("useeff", $(this));
                 })
 
@@ -38,9 +38,9 @@ debugger;
         const onChangeHandlerImage = (event, t) => {
 
                 // const input = fileI.current
-                debugger
+                 
                 if (event) {
-                        debugger;
+                         ;
                         console.log("key", t);
                         let reader = new FileReader();
                         reader.onloadend = () => {
@@ -50,7 +50,7 @@ debugger;
                         reader.readAsDataURL(event)
                 }
 
-                // debugger;
+                //  ;
                 // if (event) {
                 //         let reader = new FileReader();
                 //         reader.onloadend = async () => {
@@ -63,11 +63,11 @@ debugger;
         }
 
         // const onChangeHandlerImage = (event, thiss) => {
-        //         debugger;
+        //          ;
         //         if (event) {
         //                 let reader = new FileReader();
         //                 reader.onloadend = () => {
-        //                         debugger;
+        //                          ;
         //                         props.changeProductImage(0, reader.result)
         //                         console.log("img", props.products[0]);
 
@@ -79,13 +79,13 @@ debugger;
         // }
 
         const sortColumn = (columnName) => {
-                debugger;
+                 ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                        debugger
+                         
                         let x = String(a[columnName]).toLowerCase();
                         let y = String(b[columnName]).toLowerCase()
 
@@ -98,7 +98,7 @@ debugger;
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                debugger;
+                 ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
 

@@ -13,13 +13,13 @@ const initialState = {
 const product = {
 
     setProducts(state, action) {
-        debugger;
+         ;
         state.products = action.payload;
         console.log('pro', state.products);
     },
     setProductImage(state, action) {
         console.log("product index", state.products);
-        debugger
+         
         state.pic = action.payload.p
         console.log("pic", state.pic);
         state.products[action.payload.i].images[0] = action.payload.p
@@ -31,7 +31,7 @@ const product = {
         state.viewListOrGrid = action.payload
     },
     setCurrentProduct(state,action){
-              debugger
+               
   state.currentProduct=action.payload
     }
 

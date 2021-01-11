@@ -31,7 +31,7 @@ function ProductsGrid(props) {
                                 btn.removeClass('active');
                                 btn.eq(index).addClass('active');
 
-                                debugger;
+                                 ;
                                 tab.hide();
                                 tab.eq(index).show();
                         });
@@ -43,11 +43,11 @@ function ProductsGrid(props) {
 
         const onChangeHandlerImage = (event, thiss) => {
                 console.log("this", thiss.index());
-                debugger;
+                 ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                debugger;
+                                 ;
                                 props.changeProductImage(0, reader.result)
                                 console.log("img", props.products[0]);
 
@@ -59,13 +59,13 @@ function ProductsGrid(props) {
         }
 
         const sortColumn = (columnName) => {
-                debugger;
+                 ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                        debugger
+                         
                         let x = a[columnName].toString().toLowerCase();
                         let y = b[columnName].toString().toLowerCase()
 
@@ -78,7 +78,7 @@ function ProductsGrid(props) {
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                debugger;
+                 ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
 
