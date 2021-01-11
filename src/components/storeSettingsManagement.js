@@ -48,8 +48,7 @@ function StoreSettingsManagement(props) {
                 {/* מה להוסיף? */}
                 {/* url כתובת */}
                 {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
-                {/* קניה חד מוצרית - checkbox */}
-                {/* ניהול מלאי -checkbox */}
+                {/*ניהול מלאי וקניה חד מוצרית - checkbox */}
                 <h1>welcome to open shop!!!!!</h1><br></br>
                 <input placeholder="עדכן שם חנות" value={props.objectFields.nameStore} onChange={props.setNameStore}></input><br></br>
                 <input placeholder="עדכן תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
@@ -60,7 +59,7 @@ function StoreSettingsManagement(props) {
 
                 {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                 {/*לבינתיים עשיתי עם אינפוט*/}
-                <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
+                <input placeholder="  עדכן צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
                 {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
                 <label for="myCheck">ניהול מלאי</label>
