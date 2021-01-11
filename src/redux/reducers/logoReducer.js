@@ -23,14 +23,14 @@ const initialState = {
 const logoDesignFunc = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setCurrentComponent(state, action) {
-        debugger;
+         ;
         state.logoDesign.currentComponent = action.payload
     },
     setLogo(state, action) {
         state.logoDesign.logo = action.payload;
     },
     setLogoYOrN(state, action) {
-        debugger;
+         ;
         state.logoDesign.LogoYOrN = !state.logoDesign.LogoYOrN;
     },
     setLogoCompanyName(state, action) {

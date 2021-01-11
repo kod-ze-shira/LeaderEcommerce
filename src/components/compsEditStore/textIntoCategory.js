@@ -302,7 +302,7 @@ class TextIntoCategory extends Component {
         this.setState({ bgcolrPNG: color.hex });
     };
     changeTextSizein = (e) => {
-        debugger;
+         ;
         this.props.changeTextSize(e)
     }
     //iconSize

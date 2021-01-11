@@ -24,7 +24,7 @@ function Admin(props) {
 
         useEffect(() => {
                 // $('#myTab a').on('click', function (e) {
-                //         debugger;
+                //          ;
                 //         e.preventDefault()
                 //         $('#myTab .active').removeClass('active')
                 //         $(this).addClass('active')
@@ -77,13 +77,17 @@ function Admin(props) {
                                         <Yeudit />
                                         {/* <CrudProducts />  */}
 
-
                                 </Tab>
                                 <Tab
                                         eventKey="categories"
                                         title="Categories">
                                         <CrudCategory />
                                 </Tab>
+                                {/* <Tab
+                                        eventKey="categories"
+                                        title="Categories">
+                                        <CrudCategory />
+                                </Tab> */}
                         </Tabs>
                 </Provider>
         )

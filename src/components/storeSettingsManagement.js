@@ -48,17 +48,18 @@ function StoreSettingsManagement(props) {
                 {/* מה להוסיף? */}
                 {/* url כתובת */}
                 {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
-                {/* קניה חד מוצרית - checkbox */}
-                {/* ניהול מלאי -checkbox */}
+                {/*ניהול מלאי וקניה חד מוצרית - checkbox */}
                 <h1>welcome to open shop!!!!!</h1><br></br>
-                <input placeholder="הכנס שם חנות" value={props.objectFields.nameStore} onChange={props.setNameStore}></input><br></br>
-                <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
-                <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
-                <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
-                <input placeholder="הכנס אימיל" onChange={props.setEmailStore}></input><br></br>
+                <input placeholder="עדכן שם חנות" value={props.objectFields.nameStore} onChange={props.setNameStore}></input><br></br>
+                <input placeholder="עדכן תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
+                <input placeholder="עדכן כתובת החנות" onChange={props.setAddressStore}></input><br></br>
+                <input placeholder="עדכן טלפון" onChange={props.setPhoneStore}></input><br></br>
+                <input placeholder="עדכן אימיל" onChange={props.setEmailStore}></input><br></br>
+                <input placeholder="עדכן כתובת ניתוב של החנות" onChange={props.setUrlRoute}></input><br></br>
+
                 {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                 {/*לבינתיים עשיתי עם אינפוט*/}
-                <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
+                <input placeholder="  עדכן צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
                 {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
                 <label for="myCheck">ניהול מלאי</label>
@@ -67,6 +68,8 @@ function StoreSettingsManagement(props) {
                 <input type="checkbox" id="myCheckBuy"
                 // onClick={checkBoxFunc} 
                 /><br></br>
+
+
 
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
                 <lable>בחר מטבע</lable>
@@ -187,6 +190,8 @@ const mapDispatchToProps = (dispatch) => ({
     setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),
     setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
     setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
+    setUrlRoute: (e) => dispatch(actions.setUrlRoute(e.target.value)),
+
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
