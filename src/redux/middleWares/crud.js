@@ -89,7 +89,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 debugger;
                 dispatch(actions.setId(data.uid));
                 dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
-                console.log("uuu", getState().userReducer.user)
+                console.log("uuu", getState().userReducer.uid)
                 // let redirectUrl = ''
                 // if (des) {
                 //     redirectUrl = "https://" + des + '/' + username;
