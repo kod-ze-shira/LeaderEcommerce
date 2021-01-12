@@ -56,7 +56,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
                 debugger;
-                document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+                // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
                 const urlParams = new URLSearchParams(queryString);
@@ -65,7 +65,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const username = data.username
                 debugger;
                 dispatch(actions.setId(data.uid));
-                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
+                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email, "tokenFromCookies": noQuotesJwtData }))
                 console.log("uuu", getState().userReducer.uid)
                 // let redirectUrl = ''
                 // if (des) {
@@ -258,7 +258,7 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_IMG_TO_PRODUCT') {
-         ;
+        ;
         dispatch(actions.setProductImage({ "p": action.payload.p, "i": action.payload.i }));
         dispatch(actions.setFilteredItems(getState().productReducer.products))
 
@@ -326,7 +326,7 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-        ;  
+        ;
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
 
 
@@ -392,10 +392,10 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
 // sari experience
 export const newOrder = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_ORDER') {
-   
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({ "trackingID":1,"user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": "שולם", "products": action.payload.product,"totalPrice":action.payload.totalPrice});
+        var raw = JSON.stringify({ "trackingID": 1, "user": action.payload.user, "store": action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": "שולם", "products": action.payload.product, "totalPrice": action.payload.totalPrice });
 
         var requestOptions = {
             method: 'POST',
@@ -459,28 +459,29 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
+        debugger
         const myFile = new FormData();
-        myFile.append("file", action.value);
+        myFile.append("file"/*, action.value*/, action.payload);
         $.ajax({
-            "url": "",
+            "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
             // קריאה לשרת שלכן,
             "method": "POST",
             "processData": false,
             "mimeType": "multipart/form-data",
             "contentType": false,
             "headers": {
-                "Authorization": getState().user.tokenFromCookies
+                "Authorization": getState().userReducer.user.tokenFromCookies
             },
             "data": myFile,
             "async": false,
             success: function (data1) {
                 console.log("success")
-                console.log(data1);
-                dispatch(actions.setUserByFiled(action.payload, data1))
+                console.log("data1", data1);
+                dispatch(actions.setProfilePicture(/*action.payload,*/ data1))
                 //שמירה בuser שנמצא בreducer))
             },
             error: function (err) {
-                console.log(err)
+                console.log("err upload", err)
             }
         });
 

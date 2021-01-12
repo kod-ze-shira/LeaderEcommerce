@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-// import './Login.css'
-// import { signInWithGoogle,signInWithEmailAndPassword,logOut, auth } from '../services/firebase';
-// import { Redirect } from 'react-router-dom';
+import React from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
+import { useCookies } from "react-cookie";
+import profilePicture from '../assets/profil.png'
+
 
 
 function ExpYeudit(props) {
+
+        const [cookies, setCookie] = useCookies(["jwt"]);
 
         //     const [email, setEmail] = useState(0);
 
@@ -45,17 +47,17 @@ function ExpYeudit(props) {
 
         // }
         const onChangeHandlerLogo = (event) => {
+                debugger
                 //שימוש בFileReader לצורך הצגה מקומית של התמונה, היות ולוקח כמה שניות עד שחוזר url מהשרת.
                 const reader1 = new FileReader();
                 const file = event;
-                var num = 0;
                 reader1.onloadend = () => {
-                        props.changeProductImage(reader1.result, num)
+                        props.changeProfile(reader1.result)
                 };
                 reader1.readAsDataURL(file);
                 console.log("event", event)
                 var fileToUpload = event
-                props.uploadImage("imgLogo", fileToUpload)
+                props.uploadImage(/*"imgLogo",*/ fileToUpload)
         }
 
 
@@ -63,7 +65,7 @@ function ExpYeudit(props) {
                 <>
 
                         <label for="logouug" className="lbl_img">
-                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.imgLogo == "" ? "logo1" : props.user.imgLogo} />
+                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture} />
                         </label>
                         <input
 
@@ -85,13 +87,15 @@ function ExpYeudit(props) {
 export default connect(
         (state) => {
                 return {
-                        uId: state.userReducer.user.uid
+                        user: state.userReducer.user
+                        // uId: state.userReducer.user.uid
                 }
         },
         (dispatch) => {
                 return {
                         setUsername: (e) => dispatch(actions.setUsername(e)),
-                        uploadImage: (x) => dispatch(actions.uploadImage(x))
+                        uploadImage: (x) => dispatch(actions.uploadImage(x)),
+                        changeProfile: (x) => dispatch(actions.setProfilePicture(x))
                 }
         }
 
