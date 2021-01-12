@@ -7,7 +7,9 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
 import Home from "./components/home";
-import Nis from "./components/nis"
+// import Nis from "./components/nis"
+import Test from "./components/nis"
+import Mymy from "./components/mymy"
 import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import StoreSettingsManagement from "./components/storeSettingsManagement"
@@ -29,10 +31,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            {/* <Route path="/openStore" ><OpenStore /></Route> */}
 
             <PrivateRoute path="/openStore" component={OpenStore} />
-            <PrivateRoute path="/nis" component={Nis} />
-            <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
+            <Route path="/0/admin/storeSettingManagment"><StoreSettingsManagement /></Route>
+
+            {/* //קומפוננטות לניסוי שדה חובה */}
+            {/* <Route path="/nis"><Nis /></Route> */}
+            {/* <Route path="/test"><Test /></Route>
+            <Route path="/mymy"><Mymy /></Route> */}
 
             <Route path="/view">
               <h2>תצוגה</h2>
@@ -43,12 +50,6 @@ function App() {
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
             <PrivateRoute path="/0" component={Wrap} />
-            {/* <Redirect to={"/login"} /> */}
-
-            {/* 
-            <Route path="/0">
-              <Wrap></Wrap>
-            </Route> */}
           </Switch>
         </div>
       </Router>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { actions } from '../redux/action'
-
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function StoreSettingsManagement(props) {
 
@@ -20,59 +19,79 @@ function StoreSettingsManagement(props) {
         var checkBox = document.getElementById("myCheck");
         var text = document.getElementById("text");
         if (checkBox.checked == true) {
-            // text.style.display = "block";
-            alert('choose!!!!!')
+            // alert('choose!!!!!')
             console.log("choose!!!!!")
         }
         else
-            // text.style.display = "none";
-            alert('not choose!!!!!')
-        console.log("not choose!!!!!")
-
+            // alert('not choose!!!!!')
+            console.log("not choose!!!!!")
+    }
+    //פונקציה תקינות קלט לכתובת הניתוב 
+    function myFunction(event) {
+        debugger
+        var str = event.target.value
+        //תנאי שרק כאשר יש רווח יכנס להמרה
+        var hasSpace = str.indexOf(' ');
+        if (hasSpace >= 0) {
+            str = str.replace(/\s/g, '_')
+            // console.log(str);
+            // alert(str)
+            //הצבת המחרוזת במשתנה ברידקס
+            props.setUrlRoute(str)
+            console.log(props.objectFields.urlRoute);
+        }
+        else {
+            alert('has not spaces!!!!!')
+        }
     }
 
 
-    //שימוש בספריה 
-    // const history = useHistory();
-    // const submitToStore = async (event) => {
-    //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
-    //להוסיף לניתוב את URL החנות
-    // await props.createNewStore(props.objectFields)
-    // history.push("/0/" + props.objectFields.nameStore)
-    // history.push("/0")
+
     return (
         <div>
             <h1>welcome to setting!!!!!</h1>
             <div>
-                {/* להוסיף את כל השדות לרידקס */}
-                {/* מה להוסיף? */}
-                {/* url כתובת */}
                 {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
                 {/*ניהול מלאי וקניה חד מוצרית - checkbox */}
-                <h1>welcome to open shop!!!!!</h1><br></br>
-                <input placeholder="עדכן שם חנות" value={props.objectFields.nameStore} onChange={props.setNameStore}></input><br></br>
-                <input placeholder="עדכן תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
-                <input placeholder="עדכן כתובת החנות" onChange={props.setAddressStore}></input><br></br>
-                <input placeholder="עדכן טלפון" onChange={props.setPhoneStore}></input><br></br>
-                <input placeholder="עדכן אימיל" onChange={props.setEmailStore}></input><br></br>
-                <input placeholder="עדכן כתובת ניתוב של החנות" onChange={props.setUrlRoute}></input><br></br>
+                <lable for="a">עדכן שם חנות</lable><br></br>
+                <input id="a" value={props.objectFields.nameStore ? props.objectFields.nameStore : ""} onChange={props.setNameStore}></input><br></br>
+
+                <lable for="b">עדכן תאור לחנות</lable><br></br>
+                <input id="b" value={props.objectFields.descriptionStore ? props.objectFields.descriptionStore : ""} onChange={props.setDescriptionStore}></input><br></br>
+
+                <lable for="c">עדכן כתובת החנות</lable><br></br>
+                <input id="c" value={props.objectFields.addressStore ? props.objectFields.addressStore : ""} onChange={props.setAddressStore}></input><br></br>
+
+                <lable for="d">עדכן טלפון החנות</lable><br></br>
+                <input id="d" value={props.objectFields.phoneStore ? props.objectFields.phoneStore : ""} onChange={props.setPhoneStore}></input><br></br>
+
+                <lable for="e">עדכן אימיל החנות</lable><br></br>
+                <input id="e" value={props.objectFields.emailStore ? props.objectFields.emailStore : ""} onChange={props.setEmailStore}></input><br></br>
+
+                <lable for="fname">עדכן כתובת ניתוב החנות</lable><br></br>
+                <input type="text" id="fname" onBlur={myFunction} value={props.objectFields.urlRoute ? props.objectFields.urlRoute : ""} onChange={props.setUrlRoute}></input><br></br>
+
 
                 {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                 {/*לבינתיים עשיתי עם אינפוט*/}
-                <input placeholder="  עדכן צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
-                {/*  למטבעות drop down  צריך שיהיה  */}
-                <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
-                <label for="myCheck">ניהול מלאי</label>
+                <lable for="g">עדכן צבע ראשי לחנות</lable><br></br>
+                <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={props.setColorStore}></input><br></br>
+
+                <lable for="h">עדכן מדיניות לחנות</lable><br></br>
+                <input id="h" value={props.objectFields.policy ? props.objectFields.policy : ""} onChange={props.setPolicyStore}></input><br></br>
+
+                <label for="myCheck">ניהול מלאי</label><br></br>
                 <input type="checkbox" id="myCheck" onClick={checkBoxFunc} /><br></br>
-                <label for="myCheckBuy">קניה חד מוצרית</label>
+
+                <label for="myCheckBuy">קניה חד מוצרית</label><br></br>
                 <input type="checkbox" id="myCheckBuy"
                 // onClick={checkBoxFunc} 
                 /><br></br>
 
 
-
+                {/*  למטבעות drop down  צריך שיהיה  */}
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-                <lable>בחר מטבע</lable>
+                <lable>בחר מטבע</lable><br></br>
                 <select>
                     <option>"AED": "United Arab Emirates Dirham"</option>
                     <option>"AFN": "Afghan Afghani",</option>
@@ -152,8 +171,8 @@ function StoreSettingsManagement(props) {
                 </select>
 
                 <div>
-                    <lable for="logoS">הכנס לוגו של החנות
-                <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
+                    <lable for="logoS">עדכן לוגו של החנות
+                <img className="logoC" alt="" src={props.objectFields.logoStore ? props.objectFields.logoStore : ""}></img>
                     </lable>
                     <input
                         type={"file"}
@@ -163,6 +182,7 @@ function StoreSettingsManagement(props) {
                         // style={{
                         // display: "none"
                         // }}
+
                         onChange={(e) => handlerLogo(e.target.files[0])}
                     />
                 </div><br></br>
@@ -172,10 +192,7 @@ function StoreSettingsManagement(props) {
                 {/* </Link> */}
             </div>
 
-
         </div>
-
-
     )
 }
 const mapStateToProps = (state) => {
@@ -191,11 +208,12 @@ const mapDispatchToProps = (dispatch) => ({
     setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
     setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
     setUrlRoute: (e) => dispatch(actions.setUrlRoute(e.target.value)),
-
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
-    createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields))
+    setInventoryManagement: (e) => dispatch(actions.setInventoryManagement(e)),//ניהול מלאי
+    setOneProductPurchase: (e) => dispatch(actions.setOneProductPurchase(e)),//קניה חד מוצרית
+    // createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(StoreSettingsManagement);
 /////////////////////////////
