@@ -45,7 +45,7 @@ function Search(props) {
 
 
 	// (function(){
-	// 	debugger;
+	// 	 ;
 	// 	var search = $('.js-search');
 	// 	if (search.length) {
 	// 		var open = search.find('.js-search-open'),

@@ -1,61 +1,76 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
+import cartReduser from "../../redux/reducers/cartReduser"
+import userReducer from "../../redux/reducers/userReducer"
+import { CookiesProvider } from "react-cookie";
+import { useCookies } from "react-cookie";
+var y=1
+
 function ExperienceOrder(props) {
-    //order= המערך שלתוכו נכניס את הנתונים
-    //setOrder=הצבת הערכים 
     const [order, setOrder] = useState({
-        TrackingID: "",
-        Address: "",
-        Date: "",
-        Product: "",
+        user:"5f98562e732f51119cb2d5b8",
+        address: "",
+        date: Date.now(),
+        product:props.productCart,
+        status:"שולם",
+        store:"5fbe4378f0418636d013452a",
+        totalPrice:props.price
     });
-    //כל שינוי שיש באינפוט נשלח לכאן
     const updateSetOrder = (event) => {
-        setOrder({
-            //הנקודות- בשביל שהמערך לא יעלם כל פעם מחדש. אז כביכול הוא מעתיק את המערך ואז 
-            //מוסיף ומציב את הערכים החדשים לפי כל שדה
+        setOrder({        
             ...order,
             [event.target.name]: event.target.value
-
         })
-    }
-    //לאחר שמילאו את כל פרטי ההזמנה נשלח את ההזמנה לרדוסר
+    } 
+useEffect(()=>{
+     var t=cookies.order;
+     setOrder(  {...t} );
+       if(y==1){
+     props.setCart(t)
+    y=2
+}  
+},[])
+
+    const [cookies, setCookie] = useCookies(["order"]);
+    window.addEventListener("beforeunload", (ev) => 
+    {
+        order.totalPrice=props.price
+        order.product=props.productCart
+           ev.preventDefault();
+        setCookie("order", order, {
+            path: "/"
+          });
+    });
+
     const funcSubmit = () => {
-        props.changeOrderArr(order)
-        //שליחה לקרד
+        order.totalPrice=props.price
+        order.product=props.productCart
         props.newOrder(order)
     }
+
+
     return (
         <>
 
             <h1>welcome to form to create order!!!!!</h1><br></br>
-            {/* //name= useState שם זהה לשדות המערך שמוגדר ב  */}
-            <label> enter trackingID</label><input name="TrackingID" onChange={updateSetOrder}></input><br></br><br></br>
-            <label> enter your Address</label><input name="Address" onChange={updateSetOrder}></input><br></br><br></br>
-            <label> enter date</label><input name="Date" onChange={updateSetOrder}></input><br></br><br></br>
-            <label> enter products</label><input name="Product" onChange={updateSetOrder}></input><br></br><br></br>
-            {/* האם צריך להכניס נתונים כי זה אמור להתקבל לבד */}
-            {/* store */}
+            <label> enter your Address</label><input name="address" value={order.address} onChange={updateSetOrder}></input><br></br><br></br>            
             <button onClick={funcSubmit}>שלח</button>
-
         </>
     )
 }
 const mapStateToProps = (state) => {
     return {
-        order1: state.ordersReducer.order
+        productCart:state.cartReduser.listCart,
+        price:state.cartReduser.totalPrice,
+        user:state.userReducer.user
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-
-    changeOrderArr: (e) => dispatch(actions.setOrder(e)),
-    ///DBהפעלת הפונקציה שכתובה בקרד שהיא מציבה את הנתונים ב
-    newOrder: (e) => dispatch(actions.newOrder(e)),
-
+    newOrder: (e) =>{ dispatch(actions.newOrder(e))},
+setCart:(e) =>{ dispatch(actions.setOrder(e))},
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ExperienceOrder);
 
-/////////////////////////////
 
 

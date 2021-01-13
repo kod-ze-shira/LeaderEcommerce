@@ -5,13 +5,15 @@ import { signInWithGoogle, signInWithEmailAndPassword, logOut, auth } from '../s
 import { Route, Redirect } from 'react-router-dom';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { actions } from '../redux/action'
+import { actions } from '../redux/action';
+import { useCookies } from "react-cookie";
 
 
 function Login(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
+    const [cookies, setCookie] = useCookies(["jwt"]);
 
 
     // useEffect(()=>{
@@ -36,19 +38,26 @@ function Login(props) {
         signInWithEmailAndPassword(email, password);
     }
 
+    function Ahh() {
+        debugger
+
+        setCookie("jwt", props.user.tokenFromCookies, {
+            path: "/"
+        })
+        return <Redirect to={"/openStore"} />
+    }
+
     return (
-        !!props.user._id ? (
-            <Redirect to={"/openStore"} />
-        ) :
+        !!props.user._id ? (<Ahh></Ahh>) :
             (
                 <>
 
                     <form className="signUp form" onSubmit={(e) => onSubmitForm(e)}>
-                        <label for="email">email:</label>
+                        <label htmlFor="email">email:</label>
                         <input type="email" name="email" onChange={(e) => onChangeEmail(e)} /><br />
-                        <label for="password">password:</label>
+                        <label htmlFor="password">password:</label>
                         <input type="password" name="password" onChange={(e) => onChangePassword(e)} /><br />
-                        <label for="username">username:</label>
+                        <label htmlFor="username">username:</label>
                         <input type="text" name="username" onChange={(e) => onChangeUsername(e)} /><br />
                         <input type="submit" value="OK" />
                         {/* <h4>{props.user+""}  uuussseeerrr</h4> */}
@@ -85,6 +94,11 @@ export default connect(
     }
 
 )(Login);
+
+
+
+
+
 
 
 
