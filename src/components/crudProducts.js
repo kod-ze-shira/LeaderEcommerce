@@ -88,7 +88,7 @@ function CrudProducts(props) {
 
                         <div className="page">
                                 <div>
-                                        <div className="container__head"><button className="container__action container__action_menu action js-container-toggle"><i className="la la-bars "></i></button>
+                                        <div className="container__head">
                                                 <div className="container__title title title_md">Products</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
