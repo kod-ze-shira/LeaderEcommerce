@@ -64,7 +64,7 @@ class Product extends Component {
         /*insert lens:*/
         img.parentElement.insertBefore(lens, img);
         /*calculate the ratio between result DIV and lens:*/
-        debugger
+         
         cx = result.offsetWidth / lens.offsetWidth;
         cy = result.offsetHeight / lens.offsetHeight;
         /*set background properties for the result DIV:*/

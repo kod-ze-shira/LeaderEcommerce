@@ -6,6 +6,10 @@ import $ from 'jquery';
 import { useHistory } from "react-router-dom";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function OpenStore(props) {
+
+    //שימוש בספריה 
+    const history = useHistory();
+
     //פונקציה שטוענת את הלוגו
     const handlerLogo = (event) => {
         if (event) {
@@ -17,36 +21,27 @@ function OpenStore(props) {
         }
     }
 
-    function myFunction(event) {
+    //פונקציה תקינות קלט לכתובת הניתוב 
+    function funcConvert(event) {
         var str = event.target.value
         //תנאי שרק כאשר יש רווח יכנס להמרה
         var hasSpace = str.indexOf(' ');
         if (hasSpace >= 0) {
             str = str.replace(/\s/g, '_')
-            // console.log(str);
-            // alert(str)
             //הצבת המחרוזת במשתנה ברידקס
             props.setUrlRoute(str)
             console.log(props.objectFields.urlRoute);
         }
         else
             props.setUrlRoute(str)
-
-        // alert('has not spaces!!!!!')
     }
 
-    //שימוש בספריה 
-    const history = useHistory();
 
     //פונ שיוצרת את החנות ומכניסה לרידקס את הנתונים
     //  ועוברת לחנות דמו עם הפרטים שהזין
     const submitToStore = async (event) => {
-        debugger
-        // f(event)
         //פונקציה שתמנע את השרשור לכתובת האתר
-        // await function f(event) {
         event.preventDefault()
-        // }
         await props.createNewStore(props.objectFields)
         history.push("/0/" + props.objectFields.urlRoute)
     }
@@ -55,10 +50,9 @@ function OpenStore(props) {
         <div>
             {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
-            {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
             <form onSubmit={submitToStore}>
                 <input placeholder="הכנס שם חנות" type="text" id="fname"
-                    onBlur={myFunction} onChange={props.setNameStore} required ></input><br></br>
+                    onBlur={funcConvert} onChange={props.setNameStore} required ></input><br></br>
                 <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore} required></input><br></br>
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore} required></input><br></br>
                 <input placeholder="הכנס טלפון" onChange={props.setPhoneStore} required></input><br></br>
@@ -167,7 +161,6 @@ function OpenStore(props) {
                 {console.log(props.objectFields)}
                 {/* <Link to="/nameStore" > */}
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
-                {/* <button onClick={submitToStore}>עבור לחנות שלך לדוגמא</button> */}
                 {/* </Link> */}
             </form>
         </div>

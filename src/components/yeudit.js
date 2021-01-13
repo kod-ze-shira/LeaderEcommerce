@@ -25,11 +25,11 @@ function Yeudit(props) {
 
         const onChangeHandlerImage = (event, thiss) => {
                 console.log("this", thiss.index());
-                debugger;
+                ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                debugger;
+                                ;
                                 props.changeProductImage(0, reader.result)
                                 console.log("img", props.products[0]);
 
@@ -40,25 +40,6 @@ function Yeudit(props) {
 
         }
 
-        // const onChangeHandlerImage2 = (e) => {
-
-        //         console.log(e)
-        //         const reader1 = new FileReader();
-        //         // const file = e
-        //         reader1.onloadend = () => {
-        //                 setFile(reader1.result);
-        //                 console.log("reader111", reader1.result);
-        //         };
-        //         reader1.readAsDataURL(e);
-        //         // var fileToUpload = e
-        //         var myFile = new FormData();
-        //         console.log("upload", e);
-        //         myFile.append("file", e);
-        //         console.log("myfile", myFile);
-        //         // if (!props.rowToEdit) {
-        //         props.addNewImageFromDbP({ f: myFile, t: "title" });
-        //         // }
-        // }
         // changePageNum(1);
 
         // useEffect(() => {
@@ -70,7 +51,7 @@ function Yeudit(props) {
 
         let [items, setMyItems] = useState(props.products);
         function changePageNum(num, e) {
-                debugger;
+                ;
 
                 $(".pager__link").removeClass('active')
 

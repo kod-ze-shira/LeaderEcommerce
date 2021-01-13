@@ -5,9 +5,9 @@ function convertActionTypeToName(actionType) {
 export default function createReducer(state, action, handlers) {
     const key = convertActionTypeToName(action.type);
     const handler = handlers[key];
-    console.log("come createReducer! key=", key)
+    // console.log("come createReducer! key=", key)
     if (handler) {
-        console.log("come handler=!", handler)
+        // console.log("come handler=!", handler)
         handler(state, action);
     }
 }

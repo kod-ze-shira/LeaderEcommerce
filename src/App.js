@@ -16,6 +16,7 @@ import StoreSettingsManagement from "./components/storeSettingsManagement"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import PrivateRoute from './PrivateRoute.js';
+import ExpYeudit from './components/exp-yeudit';
 
 function App() {
   // const store1=store.getState();
@@ -50,6 +51,15 @@ function App() {
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
             <PrivateRoute path="/0" component={Wrap} />
+            {/* <Redirect to={"/login"} /> */}
+
+            {/* 
+            <Route path="/0">
+              <Wrap></Wrap>
+            </Route> */}
+            <Route path="/exp-yeudit">
+              <ExpYeudit></ExpYeudit>
+            </Route>
           </Switch>
         </div>
       </Router>

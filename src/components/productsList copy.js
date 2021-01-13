@@ -31,7 +31,7 @@ function ProductsList(props) {
                                 btn.removeClass('active');
                                 btn.eq(index).addClass('active');
 
-                                debugger;
+                                 ;
                                 tab.hide();
                                 tab.eq(index).show();
                         });
@@ -42,7 +42,7 @@ function ProductsList(props) {
         let i = 0;
 
         const onChangeHandlerImage = (event) => {
-                debugger;
+                 ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = async () => {
@@ -55,11 +55,11 @@ function ProductsList(props) {
         }
 
         // const onChangeHandlerImage = (event, thiss) => {
-        //         debugger;
+        //          ;
         //         if (event) {
         //                 let reader = new FileReader();
         //                 reader.onloadend = () => {
-        //                         debugger;
+        //                          ;
         //                         props.changeProductImage(0, reader.result)
         //                         console.log("img", props.products[0]);
 
@@ -71,13 +71,13 @@ function ProductsList(props) {
         // }
 
         const sortColumn = (columnName) => {
-                debugger;
+                 ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                        debugger
+                         
                         let x = String(a[columnName]).toLowerCase();
                         let y = String(b[columnName]).toLowerCase()
 
@@ -90,7 +90,7 @@ function ProductsList(props) {
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                debugger;
+                 ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
 
@@ -206,7 +206,7 @@ function ProductsList(props) {
                                                                                
                                                                                 <div className="data__cell data__cell_action">
                                                                                       
-                                                                                        <button className="action action_stroke" onClick={()=>{debugger; props.setCurrentProduct(item);props.setcomponnet("editProduct");}} >
+                                                                                        <button className="action action_stroke" onClick={()=>{ ; props.setCurrentProduct(item);props.setcomponnet("editProduct");}} >
                                                                                                
                                                                                                         <i className="la la-ellipsis-h "></i>
                                                                                                 </button></div>

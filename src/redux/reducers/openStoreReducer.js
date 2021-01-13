@@ -6,18 +6,19 @@ import temp from "../../assets/logoProject.jpg"
 const initialState = {
 
     objectFields: {
-        nameStore: "ikea!",
-        urlRoute: "k",
-        descriptionStore: "Everything you need easily and cheaply",
-        logoStore: temp,
+        nameStore: "",
+        urlRoute: "",
+        descriptionStore: "",
         addressStore: "",
         phoneStore: "",
         emailStore: "",
-        colorStore: "blue",
+        colorStore: "",
         policy: "",//מדיניות
         currency: "",
         inventoryManagement: "",//ניהול מלאי
-        oneProductPurchase: ""//קניה חד מוצרית
+        oneProductPurchase: "",//קניה חד מוצרית
+        logoStore: "",
+
         //רותי אמרה שצריך להוסיף סוג חנות
         //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     }

@@ -39,9 +39,9 @@ function ProductsList(props) {
                 let event = eve.target.files[0]
                 let num = eve.target.name;
                 // const input = fileI.current
-                debugger
+                 
                 if (event) {
-                        debugger;
+                       
                         console.log("key", num);
                         let reader = new FileReader();
                         reader.onloadend = () => {
@@ -51,7 +51,7 @@ function ProductsList(props) {
                         reader.readAsDataURL(event)
                 }
 
-                // debugger;
+                //  ;
                 // if (event) {
                 //         let reader = new FileReader();
                 //         reader.onloadend = async () => {
@@ -64,11 +64,11 @@ function ProductsList(props) {
         }
 
         // const onChangeHandlerImage = (event, thiss) => {
-        //         debugger;
+        //          ;
         //         if (event) {
         //                 let reader = new FileReader();
         //                 reader.onloadend = () => {
-        //                         debugger;
+        //                          ;
         //                         props.changeProductImage(0, reader.result)
         //                         console.log("img", props.products[0]);
 
@@ -80,13 +80,13 @@ function ProductsList(props) {
         // }
 
         const sortColumn = (columnName) => {
-                debugger;
+                 ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                        debugger
+                         
                         let x = String(a[columnName]).toLowerCase();
                         let y = String(b[columnName]).toLowerCase()
 
@@ -99,7 +99,7 @@ function ProductsList(props) {
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                debugger;
+                 ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
 

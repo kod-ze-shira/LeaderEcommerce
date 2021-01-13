@@ -25,7 +25,7 @@ function Admin(props) {
 
         useEffect(() => {
                 // $('#myTab a').on('click', function (e) {
-                //         debugger;
+                //          ;
                 //         e.preventDefault()
                 //         $('#myTab .active').removeClass('active')
                 //         $(this).addClass('active')
@@ -85,7 +85,7 @@ function Admin(props) {
                                         <CrudCategory />
                                 </Tab>
                                 <Tab
-                                        eventKey=""
+                                        eventKey="StoreManagement"
                                         title="Store management">
                                         <StoreSettingsManagement />
                                 </Tab>
