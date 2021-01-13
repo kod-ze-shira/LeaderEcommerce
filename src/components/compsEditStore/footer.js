@@ -33,9 +33,9 @@ class Footer extends Component {
                                     </input>
                                     {/* <div>
                                         <h1>לפרטים והזמנות</h1>
-                                        <lable>Phone:<input placeholder="000000"></input></lable><br />
-                                        <lable>Address<input></input></lable><br />
-                                        <lable>Email</lable>
+                                        <label>Phone:<input placeholder="000000"></input></label><br />
+                                        <label>Address<input></input></label><br />
+                                        <label>Email</label>
                                         <input placeholder="sjh@gmail.com"></input>
                                     </div> */}
                                     {/* <span className="switch__in"><span className="switch__tick">
@@ -60,15 +60,15 @@ class Footer extends Component {
                             </div>
                             <div><h1>Contact Us</h1><br />
                                 <div>
-                                    <lable>Phone Store</lable>
+                                    <label>Phone Store</label>
                                     <p>{this.props.objectFields.phoneStore}</p>
                                 </div><br></br>
                                 <div>
-                                    <lable>Address Store</lable>
+                                    <label>Address Store</label>
                                     <p>{this.props.objectFields.addressStore}</p>
                                 </div><br></br>
                                 <div>
-                                    <lable>Email Store</lable>
+                                    <label>Email Store</label>
                                     <p>{this.props.objectFields.emailStore}</p>
                                 </div><br></br>
                                 {/* <button className="btn btn-default">Send</button> */}
