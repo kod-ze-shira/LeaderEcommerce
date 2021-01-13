@@ -23,7 +23,7 @@ function FitureProduct(props) {
                                 {/* //כאן צריך לשלוף את התמונה של כל מוצר ספציפי */}
                                 <img className="product__pic" src={productPic1} alt=""></img>
                             </Link>
-                            <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
+                            <Link className="product__btn btn btn_green" onClick={()=>{props.addProductToCrat(item)}} to="/0/cart">Add to Cart</Link>
                         </div>
                         <Link className="product__name" to="/0/product">{item.name}</Link>
                         <div className="product__details">
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
 
-
+    addProductToCrat:(n)=>dispatch(actions.addToCart({product:n,amount:1}))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(FitureProduct);
 

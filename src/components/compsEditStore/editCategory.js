@@ -33,7 +33,7 @@ import Slider from '@material-ui/core/Slider';
   
         
     const update = (event) => {
-        debugger
+         
         setMyValues({
             ...myValues,       
             [event.target.name]:event.target.value
@@ -41,7 +41,7 @@ import Slider from '@material-ui/core/Slider';
     }
     
     const Submit = ()=>{
-        debugger
+         
         console.log(myValues)
         props.editCategory(myValues);
         props.getAllCategory();
@@ -93,7 +93,7 @@ export default connect(
   },
   (dispatch)=>{
           return {
-                  editCategory:(n)=>{debugger;dispatch(actions.editCategory(n))},
+                  editCategory:(n)=>{ ;dispatch(actions.editCategory(n))},
                   getAllCategory:()=>dispatch(actions.getAllCategories()),
  
           }

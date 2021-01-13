@@ -5,13 +5,15 @@ import { signInWithGoogle, signInWithEmailAndPassword, logOut, auth } from '../s
 import { Route, Redirect } from 'react-router-dom';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { actions } from '../redux/action'
+import { actions } from '../redux/action';
+import { useCookies } from "react-cookie";
 
 
 function Login(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
+    const [cookies, setCookie] = useCookies(["jwt"]);
 
 
     // useEffect(()=>{
@@ -36,10 +38,17 @@ function Login(props) {
         signInWithEmailAndPassword(email, password);
     }
 
+    function Ahh() {
+        debugger
+
+        setCookie("jwt", props.user.tokenFromCookies, {
+            path: "/"
+        })
+        return <Redirect to={"/openStore"} />
+    }
+
     return (
-        !!props.user._id ? (
-            <Redirect to={"/openStore"} />
-        ) :
+        !!props.user._id ? (<Ahh></Ahh>) :
             (
                 <>
 
@@ -85,6 +94,11 @@ export default connect(
     }
 
 )(Login);
+
+
+
+
+
 
 
 

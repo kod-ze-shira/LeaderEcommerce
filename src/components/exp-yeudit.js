@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-// import './Login.css'
-// import { signInWithGoogle,signInWithEmailAndPassword,logOut, auth } from '../services/firebase';
-// import { Redirect } from 'react-router-dom';
+import React from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
+import { useCookies } from "react-cookie";
+import profilePicture from '../assets/profil.png'
+
 
 
 function ExpYeudit(props) {
+
+        const [cookies, setCookie] = useCookies(["jwt"]);
 
         //     const [email, setEmail] = useState(0);
 
@@ -16,46 +18,68 @@ function ExpYeudit(props) {
 
         // })
 
-        const onChangeEmail = (e) => {
-                // setEmail(e.target.value)
+
+        // const onSubmitForm = (e) => {
+        //         e.preventDefault()
+
+        //         let jwtFromCookie = document.cookie.split(";")
+        //                 .filter(s => s.includes('jwt'))[0].split("=").pop();
+
+        //         console.log("cooky", document.cookie);
+        //         var fileToUpload = $("#uploadInput")[0].files[0];
+        //         var myFile = new FormData();
+        //         myFile.append("file", fileToUpload);
+        //         $.ajax({
+        //                 type: "POST",
+        //                 url: "https://files.leader.codes/api/" + props.uId + "/upload",
+        //                 headers: { Authorization: jwtFromCookie },
+        //                 data: myFile,
+        //                 processData: false,
+        //                 contentType: false,
+        //                 success: function (data) {
+        //                         let url = JSON.parse(data).data.url;
+        //                         alert("upload success");
+        //                 },
+        //                 error: function (err) {
+        //                         alert(err);
+        //                 },
+        //         });
+
+        // }
+        const onChangeHandlerLogo = (event) => {
+                debugger
+                //שימוש בFileReader לצורך הצגה מקומית של התמונה, היות ולוקח כמה שניות עד שחוזר url מהשרת.
+                const reader1 = new FileReader();
+                const file = event;
+                reader1.onloadend = () => {
+                        props.changeProfile(reader1.result)
+                };
+                reader1.readAsDataURL(file);
+                console.log("event", event)
+                var fileToUpload = event
+                props.uploadImage(/*"imgLogo",*/ fileToUpload)
         }
 
-
-        const onSubmitForm = (e) => {
-                e.preventDefault()
-
-                let jwtFromCookie = document.cookie.split(";")
-                        .filter(s => s.includes('jwt'))[0].split("=").pop();
-
-                console.log("cooky", document.cookie);
-                var fileToUpload = $("#uploadInput")[0].files[0];
-                var myFile = new FormData();
-                myFile.append("file", fileToUpload);
-                $.ajax({
-                        type: "POST",
-                        url: "https://files.leader.codes/api/" + props.uId + "/upload",
-                        headers: { Authorization: jwtFromCookie },
-                        data: myFile,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                                let url = JSON.parse(data).data.url;
-                                alert("upload success");
-                        },
-                        error: function (err) {
-                                alert(err);
-                        },
-                });
-
-        }
 
         return (
                 <>
-                        <form className="form" onSubmit={(e) => onSubmitForm(e)}>
-                                <label for="uploadInput">upload your file:</label>
-                                <input id="uploadInput" type={"file"} name="file" onChange={(e) => onChangeEmail(e)} /><br />
-                                <input type="submit" value="OK" />
-                        </form>
+
+                        <label for="logouug" className="lbl_img">
+                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture} />
+                        </label>
+                        <input
+
+                                type={"file"}
+                                id="logouug"
+                                htmlFor="myInput"
+                                accept="image/*"
+
+                                style={{
+                                        display: 'none',
+                                        cursor: 'pointer',
+                                }}
+                                onChange={(e) => onChangeHandlerLogo(e.target.files[0])}
+                        />
                 </>
         );
 }
@@ -63,12 +87,15 @@ function ExpYeudit(props) {
 export default connect(
         (state) => {
                 return {
-                        uId: state.userReducer.user.uid
+                        user: state.userReducer.user
+                        // uId: state.userReducer.user.uid
                 }
         },
         (dispatch) => {
                 return {
-                        setUsername: (e) => dispatch(actions.setUsername(e))
+                        setUsername: (e) => dispatch(actions.setUsername(e)),
+                        uploadImage: (x) => dispatch(actions.uploadImage(x)),
+                        changeProfile: (x) => dispatch(actions.setProfilePicture(x))
                 }
         }
 

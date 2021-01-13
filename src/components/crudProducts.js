@@ -21,11 +21,11 @@ function CrudProducts(props) {
 
         const onChangeHandlerImage = (event, thiss) => {
                 console.log("this", thiss.index());
-                debugger;
+                 ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                debugger;
+                                 ;
                                 props.changeProductImage(0, reader.result)
                                 console.log("img", props.products[0]);
 
@@ -61,7 +61,7 @@ function CrudProducts(props) {
        // let [items, setMyItems] = useState(props.filteredProducts)
         function changePageNum(num)
          {
-                 debugger;
+                  ;
                  setNum(num);        
                  let p1=(pageNum - 1) * 6;
                  let p2=pageNum * 6 - 1;

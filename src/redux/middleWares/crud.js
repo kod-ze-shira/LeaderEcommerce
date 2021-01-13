@@ -5,31 +5,7 @@ import { auth } from '../../services/firebase';
 
 let username = "";
 
-export const getAllCommunitiesFromDb = ({ dispatch, getState }) => next => action => {
-
-    if (action.type === 'GET_ALL_COMMUNITIES_FROM_DB') {
-
-        axios.get('http://localhost:3000/communities/')
-            .then(res => {
-                console.log("crddddddd", res.data);
-                dispatch(actions.getAllCommunities(res.data))
-            })
-            .catch(err => console.log("errrrrrrr", err));
-    }
-    // remeber!!!!!!!!!!!
-    return next(action);
-};
-
-export const getCommunityById = ({ dispatch, getState }) => next => action => {
-
-    if (action.type === 'GET_COMMUNITY_BY_ID') {
-        axios.get('http://localhost:3000/communities/' + action.payload)
-            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
-    }
-
-    return next(action);
-};
-
+//1
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
         debugger;
@@ -51,6 +27,7 @@ export const setUserId = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
+//2
 export const checkPermission = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CHECK_PERMISSION') {
@@ -79,7 +56,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
                 debugger;
-                document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+                // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
                 const urlParams = new URLSearchParams(queryString);
@@ -88,8 +65,8 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const username = data.username
                 debugger;
                 dispatch(actions.setId(data.uid));
-                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
-                console.log("uuu", getState().userReducer.user)
+                dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email, "tokenFromCookies": noQuotesJwtData }))
+                console.log("uuu", getState().userReducer.uid)
                 // let redirectUrl = ''
                 // if (des) {
                 //     redirectUrl = "https://" + des + '/' + username;
@@ -121,6 +98,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
+//3
 export const onAuthStateChanged = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ON_AUTH_STATE_CHANGED') {
@@ -159,6 +137,7 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
 
     return next(action);
 }
+//4
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'GET_ALL_CATEGORIES') {
@@ -172,6 +151,8 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 };
+
+//5
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
@@ -187,6 +168,7 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
+//6
 export const newStore = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_NEW_STORE') {
@@ -211,6 +193,7 @@ export const newStore = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+//7
 export const newProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_NEW_PRODUCTS') {
@@ -233,6 +216,8 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+//8
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CREATE_NEW_CATEGORY') {
@@ -258,6 +243,7 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+//9
 export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'USER_ID_BY_EMAIL') {
@@ -268,10 +254,11 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+//10
 export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_IMG_TO_PRODUCT') {
-        debugger;
+        ;
         dispatch(actions.setProductImage({ "p": action.payload.p, "i": action.payload.i }));
         dispatch(actions.setFilteredItems(getState().productReducer.products))
 
@@ -279,35 +266,38 @@ export const addNewImageToProduct = ({ dispatch, getState }) => next => action =
     return next(action);
 }
 
-export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
-    if (action.type === "ADD_NEW_IMAGE_FROM_DB") {
-        $.ajax({
-            //ניתוב לשרת שלכן  "url": 'path to your server' + user.uid,
-            url: 'https://community.leader.codes/api/uploadImage/' + 'simdsMrrcJdpQgta8kgXyQBdDFy2',
-            "method": "POST",
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "headers": {
-                //בauthorization יש לשים jwt אחר!!!!!!!      
-                "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJzaW1kc01ycmNKZHBRZ3RhOGtnWHlRQmRERnkyIiwiZW1haWwiOiJjdG9AbGVhZGVyLmNvZGVzIiwiaXAiOiI1LjEwMi4yNDYuMjAyIiwiaWF0IjoxNjA0NDgyOTc0fQ.Nn2IC7j_VCDOFIkbwzT3nao0l7OcqbNqDUKkcL0Aoik"
 
-            },
-            "data": action.payload.f,
-            "async": false,
-            success: function (data1) {
-                console.log("success")
-                dispatch(actions.addUrlFileToRecord(data1))
-            },
-            error: function (err) {
-                console.log(err)
-            }
-        }
-        )
-    }
-    return next(action)
-}
+// export const addNewImageFromDb = ({ dispatch, getState }) => next => action => {
+//     if (action.type === "ADD_NEW_IMAGE_FROM_DB") {
+//         $.ajax({
+//             //ניתוב לשרת שלכן  "url": 'path to your server' + user.uid,
+//             url: 'https://community.leader.codes/api/uploadImage/' + 'simdsMrrcJdpQgta8kgXyQBdDFy2',
+//             "method": "POST",
+//             "processData": false,
+//             "mimeType": "multipart/form-data",
+//             "contentType": false,
+//             "headers": {
+//                 //בauthorization יש לשים jwt אחר!!!!!!!      
+//                 "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJzaW1kc01ycmNKZHBRZ3RhOGtnWHlRQmRERnkyIiwiZW1haWwiOiJjdG9AbGVhZGVyLmNvZGVzIiwiaXAiOiI1LjEwMi4yNDYuMjAyIiwiaWF0IjoxNjA0NDgyOTc0fQ.Nn2IC7j_VCDOFIkbwzT3nao0l7OcqbNqDUKkcL0Aoik"
 
+//             },
+//             "data": action.payload.f,
+//             "async": false,
+//             success: function (data1) {
+//                 console.log("success")
+//                 dispatch(actions.addUrlFileToRecord(data1))
+//             },
+//             error: function (err) {
+//                 console.log(err)
+//             }
+//         }
+//         )
+//     }
+//     return next(action)
+// }
+
+
+//11
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_PRODUCT') {
         axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
@@ -316,6 +306,8 @@ export const deleteProduct = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+//12
 export const deleteCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
@@ -328,11 +320,13 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+//13
 // לא גמור
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-        ; debugger
+        ;
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
 
 
@@ -356,7 +350,7 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-
+//14
 export const editCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_CATEGORY') {
@@ -393,12 +387,16 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
     };
     return next(action);
 };
+
+//15
 // sari experience
 export const newOrder = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_ORDER') {
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({ "trackingID": action.payload.trackingID, "userAddress": action.payload.userAddress, "date": action.payload.date, "status": true, "products": action.payload.products });
+        var raw = JSON.stringify({ "trackingID": 1, "user": action.payload.user, "store": action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": "שולם", "products": action.payload.product, "totalPrice": action.payload.totalPrice });
+
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -418,6 +416,8 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+//16
 ////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
@@ -454,5 +454,40 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+
+//17
+
+export const uploadImage = ({ dispatch, getState }) => next => action => {
+    if (action.type === "UPLOAD_IMAGE") {
+        debugger
+        const myFile = new FormData();
+        myFile.append("file"/*, action.value*/, action.payload);
+        $.ajax({
+            "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
+            // קריאה לשרת שלכן,
+            "method": "POST",
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "headers": {
+                "Authorization": getState().userReducer.user.tokenFromCookies
+            },
+            "data": myFile,
+            "async": false,
+            success: function (data1) {
+                console.log("success")
+                console.log("data1", data1);
+                dispatch(actions.setProfilePicture(/*action.payload,*/ data1))
+                //שמירה בuser שנמצא בreducer))
+            },
+            error: function (err) {
+                console.log("err upload", err)
+            }
+        });
+
+    }
+    return next(action);
+}
+
 
 

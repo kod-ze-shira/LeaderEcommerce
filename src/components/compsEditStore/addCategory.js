@@ -31,7 +31,7 @@ function AddProduct(props) {
 
 
   const updateColor = (event) => {
-    debugger
+     
     setMyValues({
       ...myValues,
     color:event.hex
@@ -41,7 +41,7 @@ function AddProduct(props) {
 
 
   const update = (event) => {
-    debugger
+     
     setMyValues({
       ...myValues,
       [event.target.name]: event.target.value
@@ -49,7 +49,7 @@ function AddProduct(props) {
   }
 
   const Submit = () => {
-    debugger
+     
     // event.preventDefault();
     console.log(myValues)
     props.createNewCategory(myValues);
