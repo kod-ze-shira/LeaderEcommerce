@@ -47,7 +47,7 @@ function OpenStore(props) {
         <div>
             {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
-            {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
+            {/* <label>fff</label><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
             <input placeholder="הכנס שם חנות" type="text" id="fname"
                 onBlur={myFunction} onChange={props.setNameStore}></input><br></br>
             <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
@@ -60,7 +60,7 @@ function OpenStore(props) {
             {/*  למטבעות drop down  צריך שיהיה  */}
             <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
             {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-            <lable>בחר מטבע</lable>
+            <label>בחר מטבע</label>
             <select>
                 <option>"AED": "United Arab Emirates Dirham"</option>
                 <option>"AFN": "Afghan Afghani",</option>
@@ -140,9 +140,9 @@ function OpenStore(props) {
             </select>
 
             <div>
-                <lable for="logoS">הכנס לוגו של החנות
+                <label htmlFor="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
-                </lable>
+                </label>
                 <input
                     type={"file"}
                     id="logoS"
