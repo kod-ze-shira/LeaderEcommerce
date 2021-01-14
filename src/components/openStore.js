@@ -63,7 +63,7 @@ function OpenStore(props) {
                 {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-                <lable>בחר מטבע</lable>
+                <label>בחר מטבע</label>
                 <select>
                     <option>"AED": "United Arab Emirates Dirham"</option>
                     <option>"AFN": "Afghan Afghani",</option>
@@ -143,9 +143,9 @@ function OpenStore(props) {
                 </select>
 
                 <div>
-                    <lable for="logoS">הכנס לוגו של החנות
+                    <label for="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
-                    </lable>
+                    </label>
                     <input
                         required
                         type={"file"}

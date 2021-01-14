@@ -83,22 +83,22 @@ function StoreSettingsManagement(props) {
                 {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
                 {/*ניהול מלאי וקניה חד מוצרית - checkbox */}
                 <form onSubmit={saveForm}>
-                    <lable for="a">עדכן שם חנות</lable><br></br>
+                    <label for="a">עדכן שם חנות</label><br></br>
                     <input required id="a" value={props.objectFields.nameStore ? props.objectFields.nameStore : ""} onChange={props.setNameStore}></input><br></br>
 
-                    <lable for="b">עדכן תאור לחנות</lable><br></br>
+                    <label for="b">עדכן תאור לחנות</label><br></br>
                     <input id="b" value={props.objectFields.descriptionStore ? props.objectFields.descriptionStore : ""} onChange={props.setDescriptionStore}></input><br></br>
 
-                    <lable for="c">עדכן כתובת החנות</lable><br></br>
+                    <label for="c">עדכן כתובת החנות</label><br></br>
                     <input required id="c" value={props.objectFields.addressStore ? props.objectFields.addressStore : ""} onChange={props.setAddressStore}></input><br></br>
 
-                    <lable for="d">עדכן טלפון החנות</lable><br></br>
+                    <label for="d">עדכן טלפון החנות</label><br></br>
                     <input required id="d" value={props.objectFields.phoneStore ? props.objectFields.phoneStore : ""} onChange={props.setPhoneStore}></input><br></br>
 
-                    <lable for="e">עדכן אימיל החנות</lable><br></br>
+                    <label for="e">עדכן אימיל החנות</label><br></br>
                     <input required id="e" value={props.objectFields.emailStore ? props.objectFields.emailStore : ""} onChange={props.setEmailStore} type="email"></input><br></br>
 
-                    <lable for="f">עדכן כתובת ניתוב החנות</lable><br></br>
+                    <label for="f">עדכן כתובת ניתוב החנות</label><br></br>
                     <input required type="text" id="f"
                         onBlur={funcConvert2}
                         value={props.objectFields.urlRoute ? props.objectFields.urlRoute : ""}
@@ -106,10 +106,10 @@ function StoreSettingsManagement(props) {
 
                     {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                     {/*לבינתיים עשיתי עם אינפוט*/}
-                    <lable for="g">עדכן צבע ראשי לחנות</lable><br></br>
+                    <label for="g">עדכן צבע ראשי לחנות</label><br></br>
                     <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={props.setColorStore}></input><br></br>
 
-                    <lable for="h">עדכן מדיניות לחנות</lable><br></br>
+                    <label for="h">עדכן מדיניות לחנות</label><br></br>
                     <input id="h" value={props.objectFields.policy ? props.objectFields.policy : ""} onChange={props.setPolicyStore}></input><br></br>
 
                     <label for="myCheck">ניהול מלאי</label><br></br>
@@ -127,7 +127,7 @@ function StoreSettingsManagement(props) {
 
                     {/*  למטבעות drop down  צריך שיהיה  */}
                     {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-                    <lable>בחר מטבע</lable><br></br>
+                    <label>בחר מטבע</label><br></br>
                     <select>
                         <option>"AED": "United Arab Emirates Dirham"</option>
                         <option>"AFN": "Afghan Afghani",</option>
@@ -207,9 +207,9 @@ function StoreSettingsManagement(props) {
                     </select>
 
                     <div>
-                        <lable for="j">עדכן לוגו של החנות
+                        <label for="j">עדכן לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore ? props.objectFields.logoStore : ""}></img>
-                        </lable>
+                        </label>
                         <input
                             type={"file"}
                             id="j"
