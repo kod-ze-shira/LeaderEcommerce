@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class Header extends Component {
     render() {
+        // var categories = this.props.categories[0]
         return (
             <div>
                 <header className="header js-header">
@@ -21,10 +22,18 @@ class Header extends Component {
                                 }
                             </Link>
                         }
-                        <h2>כאן יהיה תפריט ניווט</h2>
+                        {/* //שליפת בלולאה הקטגוריות  */}
+                        {this.props.categories.map((item, index) =>
+                        (
+                            <ul className="mapCategory">
+                                <li key={index}> {item.categoryName}</li>
+                            </ul>
+                        ))
+                        }
+                        < h2 > כאן יהיה תפריט ניווט</h2>
                     </div>
                 </header >
-            </div>
+            </div >
         )
     }
 }
@@ -34,6 +43,7 @@ const mapStateToProps = (state) => {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
         objectFields: state.openStoreReducer.objectFields,
+        categories: state.categoriesReducer.categories,
 
     }
 }
