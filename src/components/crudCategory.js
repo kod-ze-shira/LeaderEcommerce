@@ -27,7 +27,7 @@ function CrudCategory(props) {
                                 </div>
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Category</div><signOut />
+                                                <div className="container__title title title_md">Category</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search "></i></button>

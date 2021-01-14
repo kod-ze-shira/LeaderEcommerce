@@ -108,8 +108,7 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
                 username = user.displayName ? user.displayName : getState().userReducer.user.username;
                 console.log("user: ", username);
                 console.log("auth.currentUser", auth.currentUser);
-                auth
-                    .currentUser.getIdToken(true)
+                auth.currentUser.getIdToken(true)
                     .then((firebaseToken) => {
                         console.log("ft", firebaseToken);
                         $.ajax({
@@ -422,10 +421,6 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        debugger;
-        // var myHeaders = new Headers();
-        // myHeaders.append("Content-Type", "application/json");
-        console.log("user from redux", getState().userReducer.user);
         //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
         var raw = JSON.stringify({
             "storeName": action.payload.nameStore,
@@ -439,40 +434,22 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             "currency": action.payload.currency,
             "policy": action.payload.policy
         });
-        // var requestOptions = {
-        //     method: 'POST',
-        //     headers: myHeaders,
-        //     body: raw,
-        //     redirect: 'follow'
-        // };
-        console.log("raww",raw)
-    //     fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
-    //         .then(store => { let o=store.json() ; console.log(o);})
-    //         //.then(result => {console.log(result); dispatch(actions.setStore(result))})
-    //         .catch(error => console.log('error', error));
-    // }
+        console.log("raww", raw)
+        $.ajax({
+            url: "https://community.leader.codes/api/stores/newStore",
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log(data)
 
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
 
-
-
-    $.ajax({
-        url: "https://community.leader.codes/api/stores/newStore",
-        method: "post",
-        dataType: "json",
-        contentType: "application/json",
-        data: raw,
-        success: function (data) {
-            console.log(data)
-
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
-
-        }
-    });
-
-
-
+            }
+        });
     }
     return next(action);
 };
