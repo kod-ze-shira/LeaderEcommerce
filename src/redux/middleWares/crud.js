@@ -8,7 +8,7 @@ let username = "";
 //1
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
-        debugger;
+       
         $.ajax({
             url: `https://community.leader.codes/api/userByUid/${action.payload}`,
             method: "get",
@@ -55,7 +55,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let noQuotesJwtData = jsonWebToken.split('"').join("");
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
-                debugger;
+          
                 document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
@@ -63,7 +63,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const des = urlParams.get('des')
                 const routes = urlParams.get('routes')
                 const username = data.username
-                debugger;
+            
                 dispatch(actions.setId(data.uid));
                 dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email }))
                 console.log("uuu", getState().userReducer.uid)
@@ -395,7 +395,7 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
    
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({ "trackingID":1,"user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": "שולם", "products": action.payload.product,"totalPrice":action.payload.totalPrice});
+        var raw = JSON.stringify({ "trackingID":1,"user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": action.payload.status, "products": action.payload.product,"totalPrice":action.payload.totalPrice});
 
         var requestOptions = {
             method: 'POST',
@@ -422,7 +422,7 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        debugger;
+  
         // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -487,6 +487,16 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
-
-
-
+//18
+export const getAllOrders = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_ALL_ORDERS') {
+ 
+        axios.get('https://community.leader.codes/api/orders')
+            .then(res => {
+                console.log("gjhjet ", res.data);
+                dispatch(actions.setAllOrders(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}

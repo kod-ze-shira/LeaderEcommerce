@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import './admin.css'
 import CrudCategory from './crudCategory'
+import CrudOrder from './crudOrder'
 import CrudProducts from './crudProducts'
 import { Provider } from 'react-redux';
 import store from '../redux/store';
@@ -82,6 +83,13 @@ function Admin(props) {
                                         eventKey="categories"
                                         title="Categories">
                                         <CrudCategory />
+                                        
+                                </Tab>
+                                <Tab
+                                        eventKey="order"
+                                        title="Order">
+                                       
+                                        <CrudOrder/>
                                 </Tab>
                                 {/* <Tab
                                         eventKey="categories"

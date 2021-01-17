@@ -16,7 +16,7 @@ function StoreSettingsManagement(props) {
     }
     // checkbox -  פונקציה ל
     function checkBoxFunc() {
-        debugger
+        
         var checkBox = document.getElementById("myCheck");
         var text = document.getElementById("text");
         if (checkBox.checked == true) {
