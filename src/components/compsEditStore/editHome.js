@@ -123,7 +123,7 @@ function EditHome(props) {
                                         </Link> */}
                                             {/*  לסדר בצורה הגיונית! למה לכתוב הכל פעמיים ? י */}
                                             {props.viewModel.viewMode ?
-                                                <Link className="categories__item" to={props.viewModel.viewMode ? "" : "/category"}
+                                                <Link className="categories__item" to={"/0/category/"+item.categoryName}
                                                     style={{ borderRadius: props.homeStoreDesign.BorderRadius.category + "px" }}
                                                 >
                                                     <div className="categories__icon"

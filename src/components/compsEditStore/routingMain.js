@@ -20,7 +20,8 @@ class RoutingMain extends Component {
                     <Header></Header>
                     <Switch>
                         <Route path="/0/cart" component={Cart}></Route>
-                        <Route path="/0/category" component={Category}></Route>
+                        <Route exact path="/0/category" component={Category}></Route>
+                        <Route path="/0/category/:name" component={Category}></Route>
                         <Route path="/0/checkout" component={Checkout}></Route>
                         <Route path="/0/product" component={Product}></Route>
                         <Route path="/0/zoom" component={Zoom}></Route>
