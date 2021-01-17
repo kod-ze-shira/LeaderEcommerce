@@ -5,6 +5,7 @@ import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import uploadFileReducer from './reducers/uploadFileReducer'
 import addProductReducer from './reducers/addProductReduser';
 import {
     checkPermission,
@@ -46,7 +47,8 @@ const reducers =
         sortReducer,
         viewModeReducer,
         openStoreReducer,
-        cartReduser
+        cartReduser,
+        uploadFileReducer
     })
 
 const store = createStore(

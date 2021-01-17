@@ -57,7 +57,7 @@ function ExpYeudit(props) {
                 reader1.readAsDataURL(file);
                 console.log("event", event)
                 var fileToUpload = event
-                props.uploadImage(/*"imgLogo",*/ fileToUpload)
+                props.uploadImage({ "fileName": "profilPicture", "file": fileToUpload })
         }
 
 
@@ -65,7 +65,10 @@ function ExpYeudit(props) {
                 <>
 
                         <label for="logouug" className="lbl_img">
-                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture} />
+                                <img className="img_logo" referrerpolicy="no-referrer" src={
+                                        props.url == "" ? profilePicture : props.url
+                                        // props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture
+                                } />
                         </label>
                         <input
 
@@ -87,7 +90,8 @@ function ExpYeudit(props) {
 export default connect(
         (state) => {
                 return {
-                        user: state.userReducer.user
+                        user: state.userReducer.user,
+                        url: state.uploadFileReducer.url
                         // uId: state.userReducer.user.uid
                 }
         },

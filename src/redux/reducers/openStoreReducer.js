@@ -3,6 +3,7 @@ import createReducer from "./reducerUtils";
 const initialState = {
 
     objectFields: {
+        storeId: "",
         nameStore: "ikea!",
         urlRoute: "k",
         descriptionStore: "Everything you need easily and cheaply",
@@ -22,6 +23,9 @@ const initialState = {
 
 const FuncOpenStore = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+    setStoreId(state, action) {
+        state.objectFields.storeId = action.payload
+    },
     setNameStore(state, action) {
         state.objectFields.nameStore = action.payload
     },

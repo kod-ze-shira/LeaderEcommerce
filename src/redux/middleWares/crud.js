@@ -447,7 +447,11 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             redirect: 'follow'
         };
         fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
-            .then(response => { console.log(response); response.json() })
+            .then(response => {
+                console.log("new store", response);
+                // response.json() 
+                dispatch(actions.setStoreId(response.store._id))
+            })
             //.then(result => {console.log(result); dispatch(actions.setStore(result))})
             .catch(error => console.log('error', error));
     }
@@ -461,7 +465,9 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
         debugger
         const myFile = new FormData();
-        myFile.append("file"/*, action.value*/, action.payload);
+        myFile.append("file"/*, action.value*/, action.payload.file);
+        // console.log("file", myFile.file);
+        console.log("uid", getState().userReducer.user.uid);
         $.ajax({
             "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
             // קריאה לשרת שלכן,
@@ -477,7 +483,18 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             success: function (data1) {
                 console.log("success")
                 console.log("data1", data1);
-                dispatch(actions.setProfilePicture(/*action.payload,*/ data1))
+                dispatch(actions.setFile({
+                    "fileName": action.payload.fileName,
+                    "url": data1
+                }));
+                // switch (action.payload.fileName) {
+                //     case "profilPicture":
+                //         dispatch(actions.setProfilePicture(/*action.payload,*/ data1));
+                //         break;
+                //     case "storeLogo":
+                //         dispatch(actions.setLogoStore(data1))
+                //         break;
+                // }
                 //שמירה בuser שנמצא בreducer))
             },
             error: function (err) {
@@ -489,5 +506,42 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
+export const setFile = ({ dispatch, getState }) => next => action => {
 
+    if (action.type === 'SET_FILE') {
 
+        let url;
+        let body;
+
+        switch (action.payload.fileName) {
+            case "profilPicture": {
+                dispatch(actions.setProfilePicture(action.payload.url));
+            } break;
+            case "storeLogo": {
+                dispatch(actions.setLogoStore(action.payload.url));
+                url = "https://community.leader.codes/api/stores/editStore/" + getState().openStoreReducer.objectFields.storeId;
+                body = { "logo": action.payload.url };
+
+            } break;
+
+            default:
+                break;
+        }
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify(body);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch(url, requestOptions)
+            .then()
+            .catch(error => console.log('error', error));
+    }
+    return next(action);
+};
