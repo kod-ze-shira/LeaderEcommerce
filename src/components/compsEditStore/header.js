@@ -7,6 +7,7 @@ import { Form, Nav, Navbar, NavDropdown, Button, DropdownButton, Dropdown } from
 import { FormControl } from '@material-ui/core';
 class Header extends Component {
     render() {
+        // var categories = this.props.categories[0]
         return (
             <header className="header js-header">
                 <div className="header__center center">
@@ -24,6 +25,15 @@ class Header extends Component {
                     }
                     {/* <h2>כאן יהיה תפריט ניווט</h2> */}
                     {/* navbar!!!!!!!!!!!!!!! */}
+                        {/* //שליפת בלולאה הקטגוריות  */}
+                        {this.props.categories.map((item, index) =>
+                        (
+                            <ul className="mapCategory">
+                                <li key={index}> {item.categoryName}</li>
+                            </ul>
+                        ))
+                        }
+                        < h2 > כאן יהיה תפריט ניווט</h2>
 
                     <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="">React-Bootstrap</Navbar.Brand>
@@ -58,6 +68,7 @@ const mapStateToProps = (state) => {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
         objectFields: state.openStoreReducer.objectFields,
+        categories: state.categoriesReducer.categories,
 
     }
 }

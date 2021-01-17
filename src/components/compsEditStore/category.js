@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 
@@ -13,6 +13,13 @@ import productPic7 from "../../assets/products/product-pic-7.png"
 import productPic8 from "../../assets/products/product-pic-8.png"
 import { Link } from 'react-router-dom';
 function Category(props) {
+    const [products,setProducts]=useState(props.products)
+    // let products=props.products
+   useEffect(()=>{
+       let name=props.match.params.name;
+        let productsF=props.products.filter(p => p.category.categoryName==name);
+        setProducts(productsF)
+    },[]) 
     return (
         <div className="Category">
 
@@ -77,7 +84,7 @@ function Category(props) {
                         {/* //צריך להביא את כל המוצרים בתוך MAP */}
                         {/* ניסיון להביא את המוצרים בMAP */}
                         {/* הצלחתי לשלוף מהשרת את השם של המוצר איך אשלוף את שאר הנתונים */}
-
+ll
                         {/* // המוצר הבסיסי שנמצא בצוך לולאה */}
                         <div className="product">
                             <div className="product__view">
@@ -95,7 +102,7 @@ function Category(props) {
 
 
                         {/*המוצר הבסיסי הקיים ששמתי בהערה  */}
-                        {props.products.map((item, index) => (
+                        {products.map((item, index) => (
 
                             <div className="product" onClick={() => props.changeCurrentComponent('ProductOnPageCategory')}
                                 key={index}>
@@ -119,22 +126,6 @@ function Category(props) {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </div>
-            <div className="newsletter section">
-                <div className="newsletter__center center">
-                    <div className="newsletter__container">
-                        <div className="newsletter__stage stage">- Our Newsletter</div>
-                        <h2 className="newsletter__title title title_mb-md">Sign Up to our Newsletter</h2>
-                        <form className="newsletter__form">
-                            <div className="newsletter__field field">
-                                <div className="field__wrap">
-                                    <input className="field__input" type="text" placeholder="Your Email" /></div>
-                            </div>
-                            <div className="newsletter__btns">
-                                <button className="newsletter__btn btn btn_green btn_wide" type="submit">Sign Up</button></div>
-                        </form>
                     </div>
                 </div>
             </div>

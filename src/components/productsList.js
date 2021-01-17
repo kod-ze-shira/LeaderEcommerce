@@ -39,13 +39,15 @@ function ProductsList(props) {
                 let event = eve.target.files[0]
                 let num = eve.target.name;
                 // const input = fileI.current
-                 
+
                 if (event) {
-                       
+
                         console.log("key", num);
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                props.changeProductImage(reader.result, num)
+                                
+                                props.changeProductImage(num, reader.result)
+                                // props.setProductImage(num, reader.result)
                                 // props.setSearchReasult(props.products)
                         }
                         reader.readAsDataURL(event)
@@ -80,13 +82,12 @@ function ProductsList(props) {
         // }
 
         const sortColumn = (columnName) => {
-                 ;
+                ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                         
                         let x = String(a[columnName]).toLowerCase();
                         let y = String(b[columnName]).toLowerCase()
 
@@ -99,12 +100,10 @@ function ProductsList(props) {
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                 ;
+                ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
-
         }
-
         // const onChangeHandlerImage2 = (e) => {
 
         //         console.log(e)
@@ -125,6 +124,61 @@ function ProductsList(props) {
         //         // }
         // }
 
+        function DataHaed() {
+                return (
+                        <div className="data__head">
+                                <div className="data__row">
+                                        <div className="data__cell data__cell_xl" >
+                                                <div className="data__filter" onClick={() => sortColumn("name")}>{Name}<i className="la la-sort-alpha-down "></i></div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter" onClick={() => sortColumn("description")}>{Description}<i className="la la-sort-alpha-down "></i></div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter" onClick={() => sortColumn("amount")}>{Amount}<i className="la la-sort-alpha-down "></i></div>
+                                        </div>
+
+                                        <div className="data__cell">
+                                                <div className="data__filter" onClick={() => sortColumn("price")}>{Price}<i className="la la-sort-alpha-down "></i></div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter" onClick={() => sortColumn("category")}>{Category}<i className="la la-sort-alpha-down "></i></div>
+                                        </div>
+                                        <div className="data__cell data__cell_action"></div>
+                                </div>
+                        </div>)
+        }
+        function Data_Main({item,index}) {
+                return(
+                <div className="data__main">
+                        <div className="data__effect mobile-hide"><label className="switch">
+                                <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
+                                <span className="switch__content">
+                                </span></label></div>
+                        <div className="data__preview">
+                                <label className="prdct_img" for={"fileInput" + index}>
+                                        <img alt="product image" src={item.images[0] ? item.images[0] : productImg} />
+                                </label>
+                                <input ref={fileI}
+                                        name={index}
+                                        type={"file"}
+                                        id={"fileInput" + index}
+                                        htmlFor="myInput"
+                                        accept="image/*"
+                                        style={{
+                                                display: 'none',
+                                                cursor: 'pointer'
+                                        }}
+                                        onChange={onChangeHandlerImage} />
+                        </div>
+                        <div className="data__wrap">
+                                <div className="data__content">
+                                        <strong>{item.name}</strong></div>
+                                <div className="data__label">SKU {item.SKU}</div>
+                        </div>
+                </div>)
+        }
+
         return (
                 <>
                         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
@@ -140,65 +194,14 @@ function ProductsList(props) {
                                 style={{ display: 'block' }}>
                                 <div className="data data_list">
                                         <div className="data__container">
-                                                <div className="data__head">
-                                                        <div className="data__row">
-                                                                <div className="data__cell data__cell_xl" >
-                                                                        <div className="data__filter" onClick={() => sortColumn("name")}>{Name}<i className="la la-sort-alpha-down "></i></div>
-                                                                </div>
-                                                                <div className="data__cell">
-                                                                        <div className="data__filter" onClick={() => sortColumn("description")}>{Description}<i className="la la-sort-alpha-down "></i></div>
-                                                                </div>
-                                                                <div className="data__cell">
-                                                                        <div className="data__filter" onClick={() => sortColumn("amount")}>{Amount}<i className="la la-sort-alpha-down "></i></div>
-                                                                </div>
-
-                                                                <div className="data__cell">
-                                                                        <div className="data__filter" onClick={() => sortColumn("price")}>{Price}<i className="la la-sort-alpha-down "></i></div>
-                                                                </div>
-                                                                <div className="data__cell">
-                                                                        <div className="data__filter" onClick={() => sortColumn("category")}>{Category}<i className="la la-sort-alpha-down "></i></div>
-                                                                </div>
-                                                                <div className="data__cell data__cell_action"></div>
-                                                        </div>
-                                                </div>
+                                                <DataHaed></DataHaed>
                                                 <div className="data__body">
                                                         {props.filteredProducts.map((item, index) => (
+                                                               index < (props.PageNum - 1) * 6||index>props.PageNum * 6 - 1?"":                                                             
                                                                 <div className="data__item" key={index}>
                                                                         <div className="data__row" >
                                                                                 <div className="data__cell data__cell_xl">
-                                                                                        <div className="data__main">
-                                                                                                <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
-                                                                                                        <span className="switch__content">
-                                                                                                        </span></label></div>
-                                                                                                <div className="data__preview">
-                                                                                                        <label className="prdct_img" for={"fileInput" + index}>
-                                                                                                                <img alt="product image" src={item.images[0] ? item.images[0] : productImg}
-                                                                                                                // src={this.props.urlImage ? this.props.urlImage.image :logoC } 
-                                                                                                                />
-                                                                                                        </label>
-
-                                                                                                        <input
-                                                                                                                ref={fileI}
-                                                                                                                name={index}
-                                                                                                                type={"file"}
-                                                                                                                id={"fileInput" + index}
-                                                                                                                htmlFor="myInput"
-                                                                                                                accept="image/*"
-                                                                                                                style={{
-                                                                                                                        display: 'none',
-                                                                                                                        cursor: 'pointer'
-                                                                                                                }}
-                                                                                                                onChange={onChangeHandlerImage}
-                                                                                                        // .attr("name")
-                                                                                                        />
-                                                                                                </div>
-                                                                                                <div className="data__wrap">
-                                                                                                        <div className="data__content">
-                                                                                                                <strong>{item.name}</strong></div>
-                                                                                                        <div className="data__label">SKU {item.SKU}</div>
-                                                                                                </div>
-                                                                                        </div>
+                                                                                        <Data_Main item={item} index={index}></Data_Main>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
                                                                                         <div className="data__content">{item.description}</div>
@@ -216,12 +219,14 @@ function ProductsList(props) {
                                                                                 </div>}
 
                                                                                 <div className="data__cell data__cell_action">
-                                                                                        <button className="action action_stroke" onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
+                                                                                        <button className="action action_stroke"
+                                                                                                onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
                                                                                                 <i className="la la-ellipsis-h "></i>
                                                                                         </button>
                                                                                 </div>
                                                                                 <div className="data__cell data__cell_action">
-                                                                                        <button className="action action_stroke" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
+                                                                                        <button className="action action_stroke"
+                                                                                                onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
                                                                                                 <i className="far fa-trash-alt ml-auto"></i>
                                                                                         </button>
                                                                                 </div>
@@ -251,7 +256,7 @@ export default connect(
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-                        changeProductImage: (p, i) => dispatch(actions.addImgToProduct({ p, i })),
+                        changeProductImage: (i, p) => dispatch(actions.addImgToProduct({ p, i })),
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
                         setSortYOrN: () => dispatch(actions.setAscendingProductsYOrN()),
                         setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
