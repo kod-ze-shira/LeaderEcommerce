@@ -8,12 +8,15 @@ import store from './redux/store'
 import Login from "./components/login";
 import Home from "./components/home";
 // import Nis from "./components/nis"
+import Test from "./components/nis"
+import Mymy from "./components/mymy"
 import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import StoreSettingsManagement from "./components/storeSettingsManagement"
 import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import PrivateRoute from './PrivateRoute.js';
+import ExpYeudit from './components/exp-yeudit';
 
 function App() {
   // const store1=store.getState();
@@ -29,10 +32,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            {/* <Route path="/openStore" ><OpenStore /></Route> */}
 
             <PrivateRoute path="/openStore" component={OpenStore} />
-            {/* <PrivateRoute path="/nis" component={Nis} /> */}
-            <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
+            <Route path="/0/admin/storeSettingManagment"><StoreSettingsManagement /></Route>
+
+            {/* //קומפוננטות לניסוי שדה חובה */}
+            {/* <Route path="/nis"><Nis /></Route> */}
+            {/* <Route path="/test"><Test /></Route>
+            <Route path="/mymy"><Mymy /></Route> */}
 
             <Route path="/view">
               <h2>תצוגה</h2>
@@ -49,6 +57,9 @@ function App() {
             <Route path="/0">
               <Wrap></Wrap>
             </Route> */}
+            <Route path="/exp-yeudit">
+              <ExpYeudit></ExpYeudit>
+            </Route>
           </Switch>
         </div>
       </Router>

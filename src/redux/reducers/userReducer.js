@@ -11,7 +11,8 @@ const initialState = {
         uid: "",
         username: "",
         email: "",
-        tokenFromCookies: ""
+        tokenFromCookies: "",
+        profilePicture: ""
     },
 }
 
@@ -28,9 +29,14 @@ const user = {
         state.user.username = action.payload.username;
         state.user.email = action.payload.email;
         state.user.uid = action.payload.uid;
+        state.user.tokenFromCookies = action.payload.tokenFromCookies;
     },
     setUsername(state, action) {
         state.user.username = action.payload;
+    },
+
+    setProfilePicture(state, action) {
+        state.user.profilePicture = action.payload;
     }
 
 }
