@@ -5,11 +5,12 @@ import Pager from 'react-pager';
 import { render } from 'react-dom';
 
 
-function CrudCategory(props) {
+function CrudOrder(props) {
 
 
         useEffect(() => {
-        })
+     
+        },[])
 
         return (
                 <>
@@ -27,16 +28,78 @@ function CrudCategory(props) {
                                 </div>
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Category</div>
-                                                <div className="container__search search js-search mySearch">
+                                                <div className="container__title title title_md">Order</div><signOut />
+                                                <div className="container__search search js-search">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search "></i></button>
+                                                        <div className="search__dropdown js-search-dropdown">
+                                                                <div className="search__field"><input className="search__input js-search-input" type="search" placeholder="Start typing…" />
+                                                                        <div className="search__icon"><i className="la la-search "></i></div>
+                                                                </div>
+                                                                <div className="search__results js-search-results"><a className="search__result" href="#">
+                                                                        <div className="search__cell">
+                                                                                <div className="search__preview color-red"><i className="lab la-dribbble "></i></div>
+                                                                        </div>
+                                                                        <div className="search__cell">
+                                                                                <div className="search__title">Dribble Redesign</div>
+                                                                                <div className="search__text">Webdesign</div>
+                                                                        </div>
+                                                                        <div className="search__cell mobile-hide">
+                                                                                <div className="search__tag tag gray">24 Feb 2019</div>
+                                                                        </div>
+                                                                </a><a className="search__result" href="#">
+                                                                                <div className="search__cell">
+                                                                                        <div className="search__preview color-green"><i className="lab la-evernote "></i></div>
+                                                                                </div>
+                                                                                <div className="search__cell">
+                                                                                        <div className="search__title">New HTML Theme</div>
+                                                                                        <div className="search__text">Theme</div>
+                                                                                </div>
+                                                                                <div className="search__cell mobile-hide">
+                                                                                        <div className="search__tag tag gray">20 May 2019</div>
+                                                                                </div>
+                                                                        </a><a className="search__result" href="#">
+                                                                                <div className="search__cell">
+                                                                                        <div className="search__preview"><img className="search__pic" src="../pages/img/user-1.jpg" alt="User" /></div>
+                                                                                </div>
+                                                                                <div className="search__cell">
+                                                                                        <div className="search__title">Bradley Wilkins</div>
+                                                                                        <div className="search__text">b.wilkins@gmail.com</div>
+                                                                                </div>
+                                                                                <div className="search__cell mobile-hide">
+                                                                                        <div className="search__tag tag gray">Designer</div>
+                                                                                </div>
+                                                                        </a>
+                                                                </div>
+                                                        </div>
+                                                        <div className="search__backdrop backdrop js-search-backdrop"></div>
                                                 </div>
                                                 <div className="container__new new js-new">
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addCategory") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
-                                                       </div>
+                                                        <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
+                                                                <div className="new__icon"><i className="la la-toolbox "></i></div>
+                                                                <div className="new__title">New Project</div>
+                                                        </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-clipboard-check "></i></div>
+                                                                        <div className="new__title">New Task</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-user-lock "></i></div>
+                                                                        <div className="new__title">New Contact</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-calendar-week "></i></div>
+                                                                        <div className="new__title">New Event</div>
+
+                                                                </a><a className="new__item" onClick={console.log("NewProduct")} id="NewProduct">
+                                                                        <div className="new__icon"><i className="la la-cube "></i></div>
+                                                                        <div className="new__title">New Product</div>
+                                                                </a><a className="new__item" href="#">
+                                                                        <div className="new__icon"><i className="la la-calculator "></i></div>
+                                                                        <div className="new__title">New Invoice</div>
+                                                                </a></div>
+                                                        <div className="new__backdrop backdrop js-new-backdrop"></div>
+                                                </div>
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
@@ -64,15 +127,16 @@ function CrudCategory(props) {
                                                                         <div className="data data_list">
                                                                                 <div className="data__container">
                                                                                         <div className="data__body">
-                                                                                                {props.categoryList.map((item, index) => (
+                                                                                                {props.orders.map((item, index) => (
+                                                                                                        
                                                                                                         <div className="data__item">
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
                                                                                                                                                 <input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); props.getCategories(); }} />
-                                                                                                                                                {/* <i className="la la-truck-loading "></i>
-                                                </input> */}
+                                                                                                                                      
+                                                
                                                                                                                                                 <button>
 
                                                                                                                                                         <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
@@ -81,21 +145,48 @@ function CrudCategory(props) {
 
                                                                                                                                                 </span></label></div>
 
-                                                                                                                                        <div className="data__preview" style={{ "backgroundColor": item.color }}>
-                                                                                                                                        </div>
+                                                                                                                        
                                                                                                                                         <div className="data__cell mobile-hide">
 
                                                                                                                                         </div>
                                                                                                                                         <div className="data__wrap">
                                                                                                                                                 <div className="data__content">
-                                                                                                                                                        <strong>{item.categoryName}</strong></div>
+                                                                                                                                                        <strong>{item.user.username}</strong></div>
                                                                                                                                         </div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content">{item.image}</div>
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.trackingID}</strong></div>
                                                                                                                         </div>
-
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.userAddress}</strong></div>
+                                                                                                                        </div> <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.status}</strong></div>
+                                                                                                                        </div> <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.totalPrice}</strong></div>
+                                                                                                                        </div><div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.store.storeName}</strong></div>
+                                                                                                                        </div>
+                                                                                                                 
+                        <select className="field__select" required='true'>                   
+                      {item.products.map((i, index) => (
+                     i.product&&<option>{i.product.name}</option>           
+                        ))}
+                      
+                      </select>
+                        <div className="field__icon"><i className="la la-angle-down "></i></div>
+                   
+              
+      
+                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                <div className="data__content">
+                                                                                                                                <strong>{item.date}</strong></div>
+                                                                                                                        </div>
                                                                                                                         <div className="data__cell data__cell_action">
 
                                                                                                                                 <button onClick={() => { props.setcomponnet("editCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
@@ -158,15 +249,7 @@ function CrudCategory(props) {
                                         </div>
                                 </div>
                         </div>
-                        {/* <Pager
-                total={this.state.total}
-                current={this.state.current}
-                visiblePages={this.state.visiblePage}
-                titles={{ first: '<|', last: '>|' }}
-                className="pagination-sm pull-right"
-                onPageChanged={this.handlePageChanged}
-            />  */}
-
+                      
                 </>
         )
 }
@@ -176,7 +259,7 @@ export default connect(
 
                 return {
 
-                        categoryList: state.categoriesReducer.categories
+                        orders: state.ordersReduser.orders
                 }
 
         },
@@ -188,5 +271,5 @@ export default connect(
                         delete: (i) => { dispatch(actions.deleteCategory(i)) }
                 }
         }
-)(CrudCategory);
+)(CrudOrder);
 

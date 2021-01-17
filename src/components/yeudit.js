@@ -4,56 +4,23 @@ import './yeudit.css'
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
 import './crudProducts.css';
-import $ from 'jquery'
-import productImg from '../assets/products/product-pic-7.png'
-import cloneDeep from 'lodash/cloneDeep';
 import ProductsList from './productsList';
 import ProductsGrid from './productsGrid'
-import { getElementError } from '@testing-library/react';
+// import $ from 'jquery'
+// import productImg from '../assets/products/product-pic-7.png'
+// import cloneDeep from 'lodash/cloneDeep';
+// import { getElementError } from '@testing-library/react';
 
-
-//1
-const useStyles = (theme) => ({
-})
-let PageNum;
 
 function Yeudit(props) {
-        const [degelBtn, setDegelBtn] = useState(0)
-        const [file, setFile] = useState()
-
-        let i = 0;
-
-        const onChangeHandlerImage = (event, thiss) => {
-                console.log("this", thiss.index());
+        const [degelBtn, setDegelBtn] = useState(1)
+        // const [file, setFile] = useState()
+        // let [items, setMyItems] = useState(props.products);
+        function changePageNum(num) {
                 ;
-                if (event) {
-                        let reader = new FileReader();
-                        reader.onloadend = () => {
-                                ;
-                                props.changeProductImage(0, reader.result)
-                                console.log("img", props.products[0]);
-
-                        }
-                        reader.readAsDataURL(event)
-                }
-                props.setSearchReasult(props.products);
-
-        }
-
-        // changePageNum(1);
-
-        // useEffect(() => {
-
-
-        //         // changePageNum(1)
-        // }, [])
-        // let [PageNum, SetPageNum] = useState(1);
-
-        let [items, setMyItems] = useState(props.products);
-        function changePageNum(num, e) {
-                ;
-
-                $(".pager__link").removeClass('active')
+                
+                let PageNum;
+                // $(".pager__link").removeClass('active')
 
                 if (num == "+")
                         PageNum++;
@@ -64,18 +31,19 @@ function Yeudit(props) {
                                 PageNum = num;
                 }
                 setDegelBtn(PageNum)
-                let p1 = (PageNum - 1) * 6;
-                let p2 = PageNum * 6 - 1;
-                let list = props.filteredProducts;
-                list = list[0] ? list.slice(p1, p2) : [];
-                console.log("list", list);
-                // setMyItems(list);
-                props.setSearchReasult(list)
-
-
+                // כבר מיותר:
+                // let p1 = (PageNum - 1) * 6;
+                // let p2 = PageNum * 6 - 1;
+                // let list = props.filteredProducts;
+                // list = list[0] ? list.slice(p1, p2) : [];
+                // console.log("list", list);
+                // setMyItems(list);                
         }
-
-
+        // ניסוי שלי:
+        // function setProductImage(num, img) {
+        //         props.changeProductImage(num, img)
+        //         changePageNum(degelBtn);
+        // }
 
         return (
                 <>
@@ -112,39 +80,40 @@ function Yeudit(props) {
                                                         </div>
                                                         <div className="panel__body">
                                                                 {props.viewLOrGrid === "list" ? <ProductsList
-                                                                // data={items} 
+                                                                PageNum={degelBtn}
+                                                                        // data={items} setProductImage={setProductImage}
                                                                 /> : <ProductsGrid />}
 
                                                                 <div className="panel__foot">
                                                                         <div className="pager">
-                                                                                <button className="pager__arrow action action_icon_before" onClick={() => { changePageNum('-', null) }}>
+                                                                                <button className="pager__arrow action action_icon_before" onClick={() => { changePageNum('-') }}>
                                                                                         <i className="la la-angle-left "></i>Prev
                                                                                  </button>
                                                                                 <div className="pager__list">
                                                                                         <button
                                                                                                 className={degelBtn == 1 ? "active pager__link action" : "pager__link action"}
-                                                                                                onClick={() => { changePageNum(1, $(this)) }}
+                                                                                                onClick={() => { changePageNum(1) }}
                                                                                         // className="pager__link action"
                                                                                         >1</button>
                                                                                         <button
                                                                                                 className={degelBtn == 2 ? "active pager__link action" : "pager__link action"}
-                                                                                                onClick={() => { changePageNum(2, $(this)) }}
+                                                                                                onClick={() => { changePageNum(2) }}
                                                                                         >2</button>
                                                                                         <button
                                                                                                 className={degelBtn == 3 ? "active pager__link action" : "pager__link action"}
-                                                                                                onClick={() => { changePageNum(3, $(this)) }}
+                                                                                                onClick={() => { changePageNum(3) }}
                                                                                         >3</button>
                                                                                         <button
-                                                                                                onClick={() => { changePageNum(4, $(this)) }}
+                                                                                                onClick={() => { changePageNum(4) }}
                                                                                                 className={degelBtn == 4 ? "active pager__link action" : "pager__link action"}
                                                                                         >4</button>
                                                                                         <button
-                                                                                                onClick={() => { changePageNum(5, $(this)) }}
+                                                                                                onClick={() => { changePageNum(5) }}
                                                                                                 className={degelBtn == 5 ? "active pager__link action" : "pager__link action"}
                                                                                         >5</button>
 
                                                                                 </div>
-                                                                                <button className="pager__arrow action action_icon_after" onClick={() => { changePageNum('+', null) }}>Next
+                                                                                <button className="pager__arrow action action_icon_after" onClick={() => { changePageNum('+') }}>Next
                                                                                 <i className="la la-angle-right "></i>
                                                                                 </button>
                                                                         </div>
@@ -175,13 +144,14 @@ export default connect(
                         // getAllProducts:()=>dispatch(actions.setProducts()) 
                         getAllProducts: () => dispatch(actions.getAllProducts()),
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
-                        changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-                        changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         delete: (i) => { dispatch(actions.deleteProduct(i)) },
                         setSortYOrN: () => dispatch(actions.setAscendingProductsYOrN()),
-                        setViewLOrG: (x) => dispatch(actions.setLOrG(x))
+                        setViewLOrG: (x) => dispatch(actions.setLOrG(x)),
+                        changeProductImage: (i, p) => dispatch(actions.addImgToProduct({ i, p })),
+                        // changeProductImage: (p, i) => dispatch(actions.setProductImage({ p, i })),
+
                 }
         }
 

@@ -5,6 +5,7 @@ import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
 import {
     checkPermission,
@@ -21,7 +22,9 @@ import {
     addNewImageToProduct,
     createNewStore,
     setUserId,
-    uploadImage
+    uploadImage,
+    getAllOrders,
+
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
@@ -46,7 +49,8 @@ const reducers =
         sortReducer,
         viewModeReducer,
         openStoreReducer,
-        cartReduser
+        cartReduser,
+        ordersReduser
     })
 
 const store = createStore(
@@ -68,12 +72,16 @@ const store = createStore(
             createNewStore,
             setUserId,
             uploadImage,
-            newOrder
+            newOrder,
+            getAllOrders,
+           
         ))
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
 store.dispatch(actions.getAllProducts());
 store.dispatch(actions.getAllCategories());
+store.dispatch(actions.getAllOrders());
+
 
 export default store;
