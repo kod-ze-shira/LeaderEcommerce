@@ -23,13 +23,13 @@ class Header extends Component {
                             </Link>
                         }
                         {/* //שליפת בלולאה הקטגוריות  */}
-                        {this.props.categories.map((item, index) =>
-                        (
-                            <ul className="mapCategory">
+                        <ul className="mapCategory">
+                            {this.props.categories.map((item, index) =>
+                            (
                                 <li key={index}> {item.categoryName}</li>
-                            </ul>
-                        ))
-                        }
+                            ))
+                            }
+                        </ul>
                         < h2 > כאן יהיה תפריט ניווט</h2>
                     </div>
                 </header >
