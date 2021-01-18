@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import $ from 'jquery';
 //ספריה ששומרת את הדברים שמשתנים ומקשרת לדף הבא עם שמירת הנתונים
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function OpenStore(props) {
+
+    const [fileToUpload, setFileToUpload] = useState(null);
+
+    // useEffect(() => {
+    //     if (props.storeId != "")
+    //         props.uploadImage({ "fileName": "storeLogo", "file": fileToUpload })
+    // }, [props.storeId])
 
     //שימוש בספריה 
     const history = useHistory();
@@ -18,6 +25,7 @@ function OpenStore(props) {
                 props.setLogoStore(reader.result)
             }
             reader.readAsDataURL(event)
+            setFileToUpload(event);
         }
     }
 
@@ -42,8 +50,13 @@ function OpenStore(props) {
     const submitToStore = async (event) => {
         //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
-        await props.createNewStore(props.objectFields)
+        await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
         history.push("/0/" + props.objectFields.urlRoute)
+        console.log("store", props.objectFields);
+
+
+
+
     }
 
     return (
@@ -51,19 +64,20 @@ function OpenStore(props) {
             {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
             <form onSubmit={submitToStore}>
+                {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
                 <input placeholder="הכנס שם חנות" type="text" id="fname"
-                    onBlur={funcConvert} onChange={props.setNameStore} required ></input><br></br>
-                <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore} required></input><br></br>
-                <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore} required></input><br></br>
-                <input placeholder="הכנס טלפון" onChange={props.setPhoneStore} required></input><br></br>
-                <input type="email" placeholder="הכנס אימיל" onChange={props.setEmailStore} required></input><br></br>
+                    onBlur={funcConvert} onChange={props.setNameStore}></input><br></br>
+                <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
+                <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
+                <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
+                <input type={"email"} placeholder="הכנס אימיל" onChange={props.setEmailStore}></input><br></br>
                 {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                 {/*לבינתיים עשיתי עם אינפוט*/}
-                <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore} required></input><br></br>
+                <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
                 {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-                <label>בחר מטבע</label>
+                <lable>בחר מטבע</lable>
                 <select>
                     <option>"AED": "United Arab Emirates Dirham"</option>
                     <option>"AFN": "Afghan Afghani",</option>
@@ -169,7 +183,8 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.openStoreReducer.objectFields
+        objectFields: state.openStoreReducer.objectFields,
+        storeId: state.openStoreReducer.storeId
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -183,6 +198,7 @@ const mapDispatchToProps = (dispatch) => ({
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
-    createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields))
+    createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
+    uploadImage: (x) => dispatch(actions.uploadImage(x)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);

@@ -30,7 +30,7 @@ class Header extends Component {
                     {
                         <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                             {this.props.logoDesign.LogoYOrN === true ?
-                                <img className="" src={this.props.objectFields.logoStore ? this.props.objectFields.logoStore : tempLogo} alt=""
+                                <img src={this.props.objectFields.logoStore} alt="Store Logo"
                                     // <img className="" src={this.props.logoDesign.logo} alt=""
                                     style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
                                     width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
@@ -42,14 +42,15 @@ class Header extends Component {
                     {/* <h2>כאן יהיה תפריט ניווט</h2> */}
                     {/* navbar!!!!!!!!!!!!!!! */}
                     {/* //שליפת בלולאה הקטגוריות  */}
-                        <div class="topnav" style={{
-                            backgroundColor: "#333",
-                            overflow: "hidden",
-                            width: "82%"}} 
-                            id="myTopnav">
+                    <div class="topnav" style={{
+                        backgroundColor: "#333",
+                        overflow: "hidden",
+                        width: "82%"
+                    }}
+                        id="myTopnav">
                         {this.props.categories.map((item, index) =>
                         (
-                            <Link key={index} to={"/0/category/"+item.categoryName} style={{
+                            <Link key={index} to={"/0/category/" + item.categoryName} style={{
                                 float: "right",
                                 display: "block",
                                 color: "#f2f2f2",
@@ -58,10 +59,10 @@ class Header extends Component {
                                 textDecoration: "none",
                                 fontSize: "17px"
                             }} class="active">{item.categoryName}</Link>
-                            ))
+                        ))
                         }
-                        </div>
-                        {/* <li key={"index"}> {"item.categoryName"}</li> */}
+                    </div>
+                    {/* <li key={"index"}> {"item.categoryName"}</li> */}
 
                     {/* <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="">React-Bootstrap</Navbar.Brand>

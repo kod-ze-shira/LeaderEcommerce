@@ -20,9 +20,9 @@ function AllCommunities(props) {
         <div>
             {/* <Provider store={store}> */}
             <ul>
-                {props.communities.map(item => {
+                {props.communities.map((item, index) => {
                     return (
-                        <Link to={`/community/${item._id}`}>
+                        <Link to={`/community/${item._id}`} key={index}>
                             <li className="float-left m-3" key={item._id}>
                                 <div className="card" style={{ width: 22 + "rem" }}>
                                     {/* להביא את לוגו הקהילה */}
