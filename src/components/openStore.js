@@ -49,7 +49,7 @@ function OpenStore(props) {
 
     //פונ שיוצרת את החנות ומכניסה לרידקס את הנתונים
     //  ועוברת לחנות דמו עם הפרטים שהזין
-    const submitToStore = async (event) => {
+    const submitToStore = (event) => {
         //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
          props.createNewStore({ "store": props.objectFields, "file": fileToUpload }).then(()=>{
@@ -79,13 +79,13 @@ function OpenStore(props) {
                 <input placeholder="  בחר צבע ראשי לחנות   " onChange={e=>props.setColorStore(e.target.value)}></input><br></br>
                 <Box name="color"
           width={'100%'}
+              margin-left= "115vh"
           alignSelf="center">
           <SwatchesPicker
             color={props.objectFields.colorStore}
             onChangeComplete={e=>props.setColorStore(e.hex)}
             width={400}
             height={100}
-            margin-left= "115vh"
 
           /></Box>
                 {/*  למטבעות drop down  צריך שיהיה  */}
