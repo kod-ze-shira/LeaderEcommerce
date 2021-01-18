@@ -19,6 +19,7 @@ const initialState = {
 const user = {
 
     setUserId(state, action) {
+
         state.user._id = action.payload
         console.log("state", state.user._id);
     },

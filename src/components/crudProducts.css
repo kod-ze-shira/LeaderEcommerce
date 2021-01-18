@@ -10908,7 +10908,7 @@ img {
 
 .field__input, .field__select {
         display: block;
-        width: 100%;
+        width: 20%;
         height: 54px;
         padding-right: 24px;
         background-color: transparent;

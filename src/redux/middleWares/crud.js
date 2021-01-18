@@ -547,7 +547,7 @@ export const setFile = ({ dispatch, getState }) => next => action => {
 export const setStoreId = ({ dispatch, getState }) => next => action => {
 
     return new Promise((resolve, reject) => {
-        if (action.type === 'SET_STORE_ID') {
+        if (action.type === 'SET_STORE_ID_M') {
             try {
                 dispatch(actions.setStoreId(action.payload));
                 resolve(actions.payload)
