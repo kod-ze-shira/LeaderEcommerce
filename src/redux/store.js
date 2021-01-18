@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import communityReducer from './reducers/communityReducer';
 import userReducer from './reducers/userReducer';
-import storeReducer from './reducers/storeReducer';
+// import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
@@ -43,7 +43,7 @@ const reducers =
     combineReducers({
         communityReducer,
         userReducer,
-        storeReducer,
+        // storeReducer,
         editHomeStoreReducer,
         logoReducer,
         productReducer,
