@@ -442,9 +442,9 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 debugger
                 console.log("data store", data)
                 dispatch(actions.setStoreId(data._id))
-                    .then(() => {
+                    // .then(() => {
                         dispatch(actions.uploadImage({ "fileName": "storeLogo", "file": action.payload.file }))
-                    });
+                    // });
             },
             error: function (err/*XMLHttpRequest, textStatus, errorThrown*/) {
                 console.log(err/*XMLHttpRequest, " ", textStatus, " ", errorThrown*/)
@@ -502,7 +502,19 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
+//18
+export const getAllOrders = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_ALL_ORDERS') {
 
+        axios.get('https://community.leader.codes/api/orders')
+            .then(res => {
+                console.log("gjhjet ", res.data);
+                dispatch(actions.setAllOrders(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}
 export const setFile = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'SET_FILE') {
