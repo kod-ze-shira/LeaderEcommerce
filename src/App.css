@@ -5,6 +5,10 @@
 .rec-pagination{
   visibility: hidden;
 }
+.mapCategory{
+  margin-right: 9%;
+  font-size: 20px;
+}
 /* קלאס של דיו העוטף את כיתוב כותרת המוצרים,הקטגוריות */
 .a{
   width: 100%;

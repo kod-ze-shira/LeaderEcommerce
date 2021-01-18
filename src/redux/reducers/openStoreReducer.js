@@ -1,9 +1,13 @@
 import produce from 'immer';
 import createReducer from "./reducerUtils";
+import temp from "../../assets/logoProject.jpg"
+// assets/"
+
 const initialState = {
 
+    storeId: "",
+
     objectFields: {
-        storeId: "",
         nameStore: "ikea!",
         urlRoute: "k",
         descriptionStore: "Everything you need easily and cheaply",
@@ -11,11 +15,12 @@ const initialState = {
         addressStore: "",
         phoneStore: "",
         emailStore: "",
-        colorStore: "blue",
+        colorStore: "",
         policy: "",//מדיניות
         currency: "",
         inventoryManagement: "",//ניהול מלאי
-        OneProductPurchase: ""//קניה חד מוצרית
+        oneProductPurchase: "",//קניה חד מוצרית
+
         //רותי אמרה שצריך להוסיף סוג חנות
         //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     }
@@ -24,7 +29,9 @@ const initialState = {
 const FuncOpenStore = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setStoreId(state, action) {
-        state.objectFields.storeId = action.payload
+        debugger
+        state.storeId = action.payload
+        // return state.storeId;
     },
     setNameStore(state, action) {
         state.objectFields.nameStore = action.payload
@@ -56,6 +63,13 @@ const FuncOpenStore = {
     setCurrencyStore(state, action) {//מטבע
         state.objectFields.currency = action.payload
     },
+    setInventoryManagement(state, action) {//ניהול מלאי
+        state.objectFields.inventoryManagement = action.payload
+    },
+    setOneProductPurchase(state, action) {//קניה חד מוצרית
+        state.objectFields.oneProductPurchase = action.payload
+    },
+
 
 }
 

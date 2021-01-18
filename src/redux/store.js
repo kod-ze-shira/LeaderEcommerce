@@ -22,7 +22,8 @@ import {
     addNewImageToProduct,
     createNewStore,
     setUserId,
-    uploadImage
+    uploadImage,
+    setFile
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
 import searchReducer from './reducers/searchReducer'
@@ -70,7 +71,8 @@ const store = createStore(
             createNewStore,
             setUserId,
             uploadImage,
-            newOrder
+            newOrder,
+            setFile
         ))
 )
 window.store = store;

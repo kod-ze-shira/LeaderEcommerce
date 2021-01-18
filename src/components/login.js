@@ -39,7 +39,6 @@ function Login(props) {
     }
 
     function Ahh() {
-        debugger
 
         setCookie("jwt", props.user.tokenFromCookies, {
             path: "/"
@@ -53,11 +52,11 @@ function Login(props) {
                 <>
 
                     <form className="signUp form" onSubmit={(e) => onSubmitForm(e)}>
-                        <label for="email">email:</label>
+                        <label htmlFor="email">email:</label>
                         <input type="email" name="email" onChange={(e) => onChangeEmail(e)} /><br />
-                        <label for="password">password:</label>
+                        <label htmlFor="password">password:</label>
                         <input type="password" name="password" onChange={(e) => onChangePassword(e)} /><br />
-                        <label for="username">username:</label>
+                        <label htmlFor="username">username:</label>
                         <input type="text" name="username" onChange={(e) => onChangeUsername(e)} /><br />
                         <input type="submit" value="OK" />
                         {/* <h4>{props.user+""}  uuussseeerrr</h4> */}

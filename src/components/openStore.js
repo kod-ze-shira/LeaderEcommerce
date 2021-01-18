@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import $ from 'jquery';
@@ -6,6 +6,17 @@ import $ from 'jquery';
 import { useHistory, Link } from "react-router-dom";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function OpenStore(props) {
+
+    const [fileToUpload, setFileToUpload] = useState(null);
+
+    // useEffect(() => {
+    //     if (props.storeId != "")
+    //         props.uploadImage({ "fileName": "storeLogo", "file": fileToUpload })
+    // }, [props.storeId])
+
+    //שימוש בספריה 
+    const history = useHistory();
+
     //פונקציה שטוענת את הלוגו
     const handlerLogo = (event) => {
         if (event) {
@@ -14,45 +25,48 @@ function OpenStore(props) {
                 props.setLogoStore(reader.result)
             }
             reader.readAsDataURL(event)
+            setFileToUpload(event);
         }
-        var fileToUpload = event
-        props.uploadImage({ "fileName": "storeLogo", "file": fileToUpload })
     }
 
-    function myFunction(event) {
+    //פונקציה תקינות קלט לכתובת הניתוב 
+    function funcConvert(event) {
         var str = event.target.value
         //תנאי שרק כאשר יש רווח יכנס להמרה
         var hasSpace = str.indexOf(' ');
         if (hasSpace >= 0) {
             str = str.replace(/\s/g, '_')
-            // console.log(str);
-            // alert(str)
             //הצבת המחרוזת במשתנה ברידקס
             props.setUrlRoute(str)
             console.log(props.objectFields.urlRoute);
         }
-        else {
-            alert('has not spaces!!!!!')
-        }
+        else
+            props.setUrlRoute(str)
     }
 
 
-    //שימוש בספריה 
-    const history = useHistory();
+    //פונ שיוצרת את החנות ומכניסה לרידקס את הנתונים
+    //  ועוברת לחנות דמו עם הפרטים שהזין
     const submitToStore = async (event) => {
-        //בעצם לשרשר את שם החנות וכן צריך להפעיל פונקצית תקינות מונעת רוחים
-        //להוסיף לניתוב את URL החנות
-        await props.createNewStore(props.objectFields)
+        //פונקציה שתמנע את השרשור לכתובת האתר
+        event.preventDefault()
+        await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
         history.push("/0/" + props.objectFields.urlRoute)
+        console.log("store", props.objectFields);
+
+
+
+
     }
+
     return (
         <div>
-            <form>
-                {/* בדיקות תקינות ושדות חובה */}
-                <h1>welcome to open shop!!!!!</h1><br></br>
+            {/* בדיקות תקינות ושדות חובה */}
+            <h1>welcome to open shop!!!!!</h1><br></br>
+            <form onSubmit={submitToStore}>
                 {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
                 <input placeholder="הכנס שם חנות" type="text" id="fname"
-                    onBlur={myFunction} onChange={props.setNameStore}></input><br></br>
+                    onBlur={funcConvert} onChange={props.setNameStore}></input><br></br>
                 <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
                 <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
@@ -143,10 +157,11 @@ function OpenStore(props) {
                 </select>
 
                 <div>
-                    <lable for="logoS">הכנס לוגו של החנות
+                    <label for="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
-                    </lable>
+                    </label>
                     <input
+                        required
                         type={"file"}
                         id="logoS"
                         // htmlFor="myInput"
@@ -159,9 +174,8 @@ function OpenStore(props) {
                 </div><br></br>
                 {console.log(props.objectFields)}
                 {/* <Link to="/nameStore" > */}
-                <button onClick={submitToStore}>עבור לחנות שלך לדוגמא</button>
+                <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
                 {/* </Link> */}
-                {/* <Link to="/exp-yeudit">to exp-yeudit</Link> */}
             </form>
         </div>
     )
@@ -169,7 +183,8 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.openStoreReducer.objectFields
+        objectFields: state.openStoreReducer.objectFields,
+        storeId: state.openStoreReducer.storeId
     }
 }
 const mapDispatchToProps = (dispatch) => ({

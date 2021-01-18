@@ -8,6 +8,8 @@ import store from './redux/store'
 import Login from "./components/login";
 import Home from "./components/home";
 // import Nis from "./components/nis"
+import Test from "./components/nis"
+import Mymy from "./components/mymy"
 import A from "./components/compsEditStore/editHome";
 import OpenStore from "./components/openStore"
 import StoreSettingsManagement from "./components/storeSettingsManagement"
@@ -30,10 +32,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            {/* <Route path="/openStore" ><OpenStore /></Route> */}
 
             <PrivateRoute path="/openStore" component={OpenStore} />
-            {/* <PrivateRoute path="/nis" component={Nis} /> */}
-            <PrivateRoute path="/storeSettingManagment" component={StoreSettingsManagement} />
+            <Route path="/0/admin/storeSettingManagment"><StoreSettingsManagement /></Route>
+
+            {/* //קומפוננטות לניסוי שדה חובה */}
+            {/* <Route path="/nis"><Nis /></Route> */}
+            {/* <Route path="/test"><Test /></Route>
+            <Route path="/mymy"><Mymy /></Route> */}
 
             <Route path="/view">
               <h2>תצוגה</h2>

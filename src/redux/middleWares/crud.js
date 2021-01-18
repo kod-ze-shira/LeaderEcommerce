@@ -8,7 +8,6 @@ let username = "";
 //1
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
-        debugger;
         $.ajax({
             url: `https://community.leader.codes/api/userByUid/${action.payload}`,
             method: "get",
@@ -55,7 +54,6 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let noQuotesJwtData = jsonWebToken.split('"').join("");
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
-                debugger;
                 // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
                 const queryString = window.location.search;
 
@@ -63,7 +61,6 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 const des = urlParams.get('des')
                 const routes = urlParams.get('routes')
                 const username = data.username
-                debugger;
                 dispatch(actions.setId(data.uid));
                 dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email, "tokenFromCookies": noQuotesJwtData }))
                 console.log("uuu", getState().userReducer.uid)
@@ -108,8 +105,7 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
                 username = user.displayName ? user.displayName : getState().userReducer.user.username;
                 console.log("user: ", username);
                 console.log("auth.currentUser", auth.currentUser);
-                auth
-                    .currentUser.getIdToken(true)
+                auth.currentUser.getIdToken(true)
                     .then((firebaseToken) => {
                         console.log("ft", firebaseToken);
                         $.ajax({
@@ -422,40 +418,40 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        debugger;
-        // var storeManager = getState().userReducer.user._id;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        console.log("user from redux", getState().userReducer.user);
         //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
         var raw = JSON.stringify({
-            "storeName": action.payload.nameStore,
-            "storeDescription": action.payload.descriptionStore,
-            "logo": action.payload.logoStore,
-            "address": action.payload.addressStore,
-            "tel": action.payload.phoneStore,
-            "email": action.payload.emailStore,
-            "colorDominates": action.payload.colorStore,
+            "storeName": action.payload.store.nameStore,
+            "storeDescription": action.payload.store.descriptionStore,
+            "logo": "logo",
+            "address": action.payload.store.addressStore,
+            "tel": action.payload.store.phoneStore,
+            "email": action.payload.store.emailStore,
+            "colorDominates": action.payload.store.colorStore,
             "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.currency,
-            "policy": action.payload.policy
+            "currency": action.payload.store.currency,
+            "policy": action.payload.store.policy
         });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
-            .then(response => {
-                console.log("new store", response);
-                // response.json() 
-                dispatch(actions.setStoreId(response.store._id))
-            })
-            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
-            .catch(error => console.log('error', error));
-    }
+        console.log("raww", raw)
+        $.ajax({
+            url: "https://community.leader.codes/api/stores/newStore",
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                debugger
+                console.log("data store", data)
+                dispatch(actions.setStoreId(data._id))
+                    .then(() => {
+                        dispatch(actions.uploadImage({ "fileName": "storeLogo", "file": action.payload.file }))
+                    });
+            },
+            error: function (err/*XMLHttpRequest, textStatus, errorThrown*/) {
+                console.log(err/*XMLHttpRequest, " ", textStatus, " ", errorThrown*/)
 
+            }
+        });
+    }
     return next(action);
 };
 
@@ -486,7 +482,8 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
                 dispatch(actions.setFile({
                     "fileName": action.payload.fileName,
                     "url": data1
-                }));
+                })
+                );
                 // switch (action.payload.fileName) {
                 //     case "profilPicture":
                 //         dispatch(actions.setProfilePicture(/*action.payload,*/ data1));
@@ -509,7 +506,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
 export const setFile = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'SET_FILE') {
-
+        debugger
         let url;
         let body;
 
@@ -518,8 +515,9 @@ export const setFile = ({ dispatch, getState }) => next => action => {
                 dispatch(actions.setProfilePicture(action.payload.url));
             } break;
             case "storeLogo": {
+                debugger
                 dispatch(actions.setLogoStore(action.payload.url));
-                url = "https://community.leader.codes/api/stores/editStore/" + getState().openStoreReducer.objectFields.storeId;
+                url = "https://community.leader.codes/api/stores/editStore/" + getState().openStoreReducer.storeId;
                 body = { "logo": action.payload.url };
 
             } break;
@@ -540,8 +538,24 @@ export const setFile = ({ dispatch, getState }) => next => action => {
         };
 
         fetch(url, requestOptions)
-            .then()
+            .then("image from the DB")
             .catch(error => console.log('error', error));
     }
     return next(action);
+};
+
+export const setStoreId = ({ dispatch, getState }) => next => action => {
+
+    return new Promise((resolve, reject) => {
+        if (action.type === 'SET_STORE_ID') {
+            try {
+                dispatch(actions.setStoreId(action.payload));
+                resolve(actions.payload)
+            }
+            catch (err) {
+                reject(err);
+            }
+        }
+        return next(action)
+    })
 };
