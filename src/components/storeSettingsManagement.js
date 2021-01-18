@@ -1,4 +1,6 @@
+import { Box } from '@material-ui/core';
 import React from 'react'
+import { CirclePicker, GithubPicker, HuePicker, SwatchesPicker } from 'react-color';
 import { connect } from "react-redux";
 import { actions } from '../redux/action'
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
@@ -107,7 +109,39 @@ function StoreSettingsManagement(props) {
                     {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                     {/*לבינתיים עשיתי עם אינפוט*/}
                     <label for="g">עדכן צבע ראשי לחנות</label><br></br>
-                    <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={props.setColorStore}></input><br></br>
+                    <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={e=>props.setColorStore(e.target.value)}></input><br></br>
+                    <Box flexDirection="row"
+        display="flex"
+        justifyContent="space-between">
+
+        <Box name="color"
+          width={'100%'}
+          alignSelf="center">
+          <CirclePicker
+            color={props.objectFields.colorStore}
+            onChangeComplete={e=>props.setColorStore(e.hex)}
+            width={200}
+            height={6}
+          />
+        </Box>
+        <Box name="color"
+          width={'100%'}
+          alignSelf="center">
+          <SwatchesPicker
+            color={props.objectFields.colorStore}
+            onChangeComplete={e=>props.setColorStore(e.hex)}
+            width={400}
+            height={100}
+            margin-left=" -73vh"
+
+          />
+        </Box>
+
+        <Box justifyContent="flex-end">
+        <div className="data__preview" style={{"backgroundColor":props.objectFields.colorStore}}>
+                </div>
+        </Box>
+      </Box>
 
                     <label for="h">עדכן מדיניות לחנות</label><br></br>
                     <input id="h" value={props.objectFields.policy ? props.objectFields.policy : ""} onChange={props.setPolicyStore}></input><br></br>
@@ -241,7 +275,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
-    setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
+    setColorStore: (e) => dispatch(actions.setColorStore(e)),
     setInventoryManagement: (e) => dispatch(actions.setInventoryManagement(e)),//ניהול מלאי
     setOneProductPurchase: (e) => dispatch(actions.setOneProductPurchase(e)),//קניה חד מוצרית
 })

@@ -43,7 +43,7 @@ class Header extends Component {
                     {/* navbar!!!!!!!!!!!!!!! */}
                     {/* //שליפת בלולאה הקטגוריות  */}
                     <div class="topnav" style={{
-                        backgroundColor: "#333",
+                        backgroundColor:this.props.objectFields.colorStore,
                         overflow: "hidden",
                         width: "82%"
                     }}
