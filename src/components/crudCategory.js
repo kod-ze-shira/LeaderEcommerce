@@ -36,7 +36,7 @@ function CrudCategory(props) {
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addCategory") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
-                                                       </div>
+                                                </div>
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
@@ -65,7 +65,7 @@ function CrudCategory(props) {
                                                                                 <div className="data__container">
                                                                                         <div className="data__body">
                                                                                                 {props.categoryList.map((item, index) => (
-                                                                                                        <div className="data__item">
+                                                                                                        <div className="data__item" key={index}>
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">

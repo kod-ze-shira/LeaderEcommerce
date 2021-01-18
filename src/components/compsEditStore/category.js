@@ -19,7 +19,7 @@ function Category(props) {
        let name=props.match.params.name;
         let productsF=props.products.filter(p => p.category.categoryName==name);
         setProducts(productsF)
-    },[]) 
+    },[props.match.params.name]) 
     return (
         <div className="Category">
 
@@ -34,8 +34,8 @@ function Category(props) {
             </div>
             <div className="products products_full section">
                 <div className="products__center center">
-                    <div className="products__stage stage">- Eye Care Products</div>
-                    <h2 className="products__title title title_mb-lg">Explore the Eye Care <br />Products</h2>
+                    {/* <div className="products__stage stage">- Eye Care Products</div>
+                    <h2 className="products__title title title_mb-lg">Explore the Eye Care <br />Products</h2> */}
                     <div className="filters js-filters">
                         <div className="filters__sorting">
                             <div className="filters__open js-filters-open">Filter By</div>
@@ -66,13 +66,14 @@ function Category(props) {
                                     </div>
                                 </div>
                             </div>
+                            {/* מה זה הסלקט הזה? שמתי כרגע בהערה
                             <div className="filters__field field">
                                 <div className="field__wrap"><select className="field__select">
                                     <option>Sort By</option>
                                     <option>Sort By</option>
                                     <option>Sort By</option>
                                 </select></div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="filters__tags">
                             <div className="filters__tag">$0 - $10<button className="filters__remove"></button></div>
@@ -84,21 +85,21 @@ function Category(props) {
                         {/* //צריך להביא את כל המוצרים בתוך MAP */}
                         {/* ניסיון להביא את המוצרים בMAP */}
                         {/* הצלחתי לשלוף מהשרת את השם של המוצר איך אשלוף את שאר הנתונים */}
-ll
+
                         {/* // המוצר הבסיסי שנמצא בצוך לולאה */}
-                        <div className="product">
+                        {/* <div className="product">
                             <div className="product__view">
                                 <Link className="product__preview" to="/0/product">
                                     <img className="product__pic" src={productPic3} alt=""></img></Link>
                                 <Link className="product__btn btn btn_green" to="/0/cart">Add to Cart</Link>
                             </div>
-                            <Link className="product__name" to="/0/product">Acne Skin Gel</Link>
+                            <Link className="product__name" to="/0/product">Skin Gel</Link>
                             <div className="product__details">
-                                <div className="product__category pink">Treatments</div>
+                                <div className="product__category pink">Trments</div>
                                 <div className="product__price">
                                     <span className="product__actual">$20</span></div>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {/*המוצר הבסיסי הקיים ששמתי בהערה  */}

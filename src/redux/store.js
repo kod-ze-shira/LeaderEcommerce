@@ -5,6 +5,7 @@ import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import uploadFileReducer from './reducers/uploadFileReducer'
 import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
 import {
@@ -23,7 +24,8 @@ import {
     createNewStore,
     setUserId,
     uploadImage,
-    getAllOrders,
+    setFile,
+    getAllOrders
 
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
@@ -50,6 +52,7 @@ const reducers =
         viewModeReducer,
         openStoreReducer,
         cartReduser,
+        uploadFileReducer,
         ordersReduser
     })
 
@@ -73,8 +76,9 @@ const store = createStore(
             setUserId,
             uploadImage,
             newOrder,
+            setFile,
             getAllOrders,
-           
+
         ))
 )
 window.store = store;

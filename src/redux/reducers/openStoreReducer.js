@@ -5,10 +5,13 @@ import temp from "../../assets/logoProject.jpg"
 
 const initialState = {
 
+    storeId: "",
+
     objectFields: {
-        nameStore: "",
-        urlRoute: "",
-        descriptionStore: "",
+        nameStore: "ikea!",
+        urlRoute: "k",
+        descriptionStore: "Everything you need easily and cheaply",
+        logoStore: "",
         addressStore: "",
         phoneStore: "",
         emailStore: "",
@@ -17,7 +20,6 @@ const initialState = {
         currency: "",
         inventoryManagement: "",//ניהול מלאי
         oneProductPurchase: "",//קניה חד מוצרית
-        logoStore: "",
 
         //רותי אמרה שצריך להוסיף סוג חנות
         //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
@@ -26,6 +28,11 @@ const initialState = {
 
 const FuncOpenStore = {
     //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
+    setStoreId(state, action) {
+        debugger
+        state.storeId = action.payload
+        // return state.storeId;
+    },
     setNameStore(state, action) {
         state.objectFields.nameStore = action.payload
     },
