@@ -1,10 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import communityReducer from './reducers/communityReducer';
 import userReducer from './reducers/userReducer';
-import storeReducer from './reducers/storeReducer';
+// import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import uploadFileReducer from './reducers/uploadFileReducer'
 import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
 import storeByUser from './reducers/storeByUser';
@@ -24,8 +25,10 @@ import {
     createNewStore,
     setUserId,
     uploadImage,
+    setFile,
     getAllOrders,
-    getStoreByUser
+    getStoreByUser,
+    setStoreId
 
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
@@ -42,7 +45,7 @@ const reducers =
     combineReducers({
         communityReducer,
         userReducer,
-        storeReducer,
+        // storeReducer,
         editHomeStoreReducer,
         logoReducer,
         productReducer,
@@ -52,6 +55,7 @@ const reducers =
         viewModeReducer,
         openStoreReducer,
         cartReduser,
+        uploadFileReducer,
         ordersReduser,
         storeByUser
     })
@@ -76,9 +80,10 @@ const store = createStore(
             setUserId,
             uploadImage,
             newOrder,
+            setFile,
             getAllOrders,
-            getStoreByUser
-           
+            getStoreByUser,
+            setStoreId
         ))
 )
 window.store = store;

@@ -255,7 +255,7 @@ class Wrap extends React.Component {
         const view = () => {
             // const history = useHistory();
             // history.push("/login")
-             ;
+            ;
             this.props.changeViewMode(true);
             this.props.history.push("/view/" + this.props.viewModel.currentPage);
         }
@@ -326,7 +326,7 @@ class Wrap extends React.Component {
                         [classes.configuratorOpen]: this.state.right,
                         [classes.configuratorClose]: !this.state.right,
                     })}
-                    open={this.state['right']} fullWidth="true" variant="persistent" onClose={this.toggleDrawer}>
+                    open={this.state['right']} fullWidth={"true"} variant="persistent" onClose={this.toggleDrawer}>
 
                     <div className={classes.row}
                         style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>

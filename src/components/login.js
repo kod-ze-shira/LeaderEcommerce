@@ -39,7 +39,6 @@ function Login(props) {
     }
 
     function Ahh() {
-    
 
         setCookie("jwt", props.user.tokenFromCookies, {
             path: "/"

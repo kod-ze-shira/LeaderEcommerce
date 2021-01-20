@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import Carousel from 'react-elastic-carousel'
 import img from '../assets/50344.jpg'
 // import './carousel.css'
-import EditHome from './compsEditStore/aH'
+// import EditHome from './compsEditStore/aH'
 import Cart from './compsEditStore/cart'
 import Category from './compsEditStore/category'
 import Product from './compsEditStore/product'
@@ -17,7 +17,7 @@ export class ElasticCarousel extends Component {
 
                 return (
                         <Carousel itemsToShow={1} >
-                                <EditHome></EditHome>
+                                {/* <EditHome></EditHome> */}
                                 <Category></Category>
                                 <Product></Product>
                                 <Cart></Cart>
