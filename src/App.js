@@ -6,6 +6,7 @@ import Wrap from './components/wrap.component';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Login from "./components/login";
+import StorePerUser from "./components/storePerUser";
 import Home from "./components/home";
 // import Nis from "./components/nis"
 import Test from "./components/nis"
@@ -17,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import PrivateRoute from './PrivateRoute.js';
 import ExpYeudit from './components/exp-yeudit';
+import Index from './components/index';
 
 function App() {
   // const store1=store.getState();
@@ -27,14 +29,23 @@ function App() {
         <div className="App">
           <Switch>
             <Route exact path="/">
-              <Home />
+            <Home />
             </Route>
-            <Route path="/login">
-              <Login />
+           <Route path="/login">
+           <Login />
             </Route>
+             { /*<Route path="/storePerUser">
+              <StorePerUser/>
+            </Route>
+            <Route path="/Home">
+              <Home/>
+            </Route> */}
             {/* <Route path="/openStore" ><OpenStore /></Route> */}
 
             <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/home" component={Index} /> 
+              <PrivateRoute path="/storePerUser" component={StorePerUser} />
+
             <Route path="/0/admin/storeSettingManagment"><StoreSettingsManagement /></Route>
 
             {/* //קומפוננטות לניסוי שדה חובה */}
@@ -53,8 +64,8 @@ function App() {
             <PrivateRoute path="/0" component={Wrap} />
             {/* <Redirect to={"/login"} /> */}
 
-            {/* 
-            <Route path="/0">
+            
+            {/* <Route path="/0">
               <Wrap></Wrap>
             </Route> */}
             <Route path="/exp-yeudit">

@@ -199,7 +199,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({ "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+        var raw = JSON.stringify({"store":action.payload.store, "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
 
         var requestOptions = {
             method: 'POST',
@@ -209,7 +209,11 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
         };
 
         fetch("https://community.leader.codes/api/products/newProduct", requestOptions)
-            .then()
+            .then((response) => { 
+                // dispatch(actions.addNewProduct(response.data))
+                console.log("gjhjet ", response.data);
+        //       dispatch({ type: "ADD_NEW_PRODUCT", payload: response.data })
+            })
             .catch(error => console.log('error', error));
     }
 
@@ -224,7 +228,7 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({ "categoryName": action.payload.categoryName, "color": action.payload.color });
+        var raw = JSON.stringify({"store":action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color });
 
         var requestOptions = {
             method: 'POST',
@@ -234,8 +238,14 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
         };
 
         fetch("https://community.leader.codes/api/categories/newCategoty", requestOptions)
-            .then(response => response.json())
-            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+        .then(res => 
+        {
+            console.log("hhhhhh"+res.data);
+            
+            // dispatch({ type: "ADD_NEW_CATEGORY", payload: res.data })
+              dispatch(actions.addNewCategory(res.data))
+            })
+       
             .catch(error => console.log('error', error));
     }
 
@@ -394,7 +404,8 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({ "trackingID":1,"user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": action.payload.status, "products": action.payload.product,"totalPrice":action.payload.totalPrice});
+        var raw = JSON.stringify({ "trackingID":1,
+        "user":action.payload.user ,"store":action.payload.store, "userAddress": action.payload.address, "date": action.payload.date, "status": action.payload.status, "products": action.payload.product,"totalPrice":action.payload.totalPrice});
 
         var requestOptions = {
             method: 'POST',
@@ -458,7 +469,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
-        debugger
+
         const myFile = new FormData();
         myFile.append("file"/*, action.value*/, action.payload);
         $.ajax({
@@ -500,3 +511,19 @@ export const getAllOrders = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
+
+//19
+export const getStoreByUser = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_STORE_BY_USER') {
+ 
+        axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
+            .then(res => {
+                console.log("gjhjet ", res.data);
+                dispatch(actions.setStorePerUser(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}
+
+

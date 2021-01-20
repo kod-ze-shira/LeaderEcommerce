@@ -21,7 +21,7 @@ import { actions } from '../../redux/action'
         //  images:'',
          featuredProducts:'',
          //צריך להיות סטטי שם החנות
-        //  store:''
+        store:props.storeCurrent._id
         });
      
         // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
@@ -53,7 +53,7 @@ import { actions } from '../../redux/action'
        if(myValues.category!="")
        {
         props.createNewProduct(myValues); 
-       props.getProducts();
+      //  props.getProducts();
       } 
         else
         {
@@ -150,14 +150,15 @@ export default connect(
           
           return { 
                  
-                  categoryList:state.categoriesReducer.categories
+                  categoryList:state.categoriesReducer.categories,
+                  storeCurrent:state.storeByUser.currentStore,
           }
          
   },
   (dispatch)=>{
           return {
-                  getCategories:()=>dispatch(actions.getAllCategories()),
-                  getProducts:()=>dispatch(actions.getAllProducts()),
+                  // getCategories:()=>dispatch(actions.getAllCategories()),
+                  // getProducts:()=>dispatch(actions.getAllProducts()),
                   createNewProduct:(n)=>dispatch(actions.addNewProducts(n)),
                   setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
           }

@@ -286,6 +286,7 @@ class Wrap extends React.Component {
                             //edge="start"
                             onClick={this.handleDrawerOpen}>
                             <MenuIcon />
+                         <h1>{this.props.user.username}</h1>    
                         </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />
@@ -501,7 +502,8 @@ const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
-        viewModel: state.viewModeReducer.viewModel
+        viewModel: state.viewModeReducer.viewModel,
+        user:state.userReducer.user,
     }
 }
 

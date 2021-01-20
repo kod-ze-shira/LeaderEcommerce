@@ -7,6 +7,7 @@ import StoreSettingsManagement from './storeSettingsManagement'
 import CrudProducts from './crudProducts'
 import { Provider } from 'react-redux';
 import store from '../redux/store';
+import StorePerUser from './storePerUser'
 import Yeudit from './yeudit'
 import { Tabs, Tab } from 'react-bootstrap';
 import { AddAlarm } from '@material-ui/icons'
@@ -34,6 +35,9 @@ function Admin(props) {
                 //         $('#profile').addClass('show active')
                 // })
                 $('.show').removeClass('fade');
+
+
+
         }, [])
 
         const aaa = (key) => {
@@ -97,10 +101,15 @@ function Admin(props) {
                                         title="Store management">
                                         <StoreSettingsManagement />
                                 </Tab>
+                                <Tab
+                                        eventKey="StorePerUser"
+                                        title="store Per User">
+                                        <StorePerUser/>
+                                </Tab>
                         </Tabs>
                 </Provider>
         )
-
 }
-
 export default Admin;
+      
+

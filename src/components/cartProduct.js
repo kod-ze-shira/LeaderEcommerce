@@ -11,8 +11,9 @@ function Cart(props) {
 
         useEffect(()=>{
                 props.setUser(props.user._id);
+              props.setStore(props.storeCurrent._id)
              var t=cookies.order;
-               if(y==1){
+               if((y==1)&&(t!=null)){
              props.setCart(t)
             y=2
         }  
@@ -106,7 +107,7 @@ export default connect(
             return { 
                      cart:state.cartReduser.cart,
                      user:state.userReducer.user,
-                     // store:state.???.store
+                     storeCurrent:state.storeByUser.currentStore,
             }
     },
     (dispatch)=>{
@@ -120,6 +121,7 @@ export default connect(
                     updateSetOrder: (e) =>{ dispatch(actions.updateSetOrder(e))},
                     setTotalPrice:(e) =>{ dispatch(actions.setTotalPrice(e))},
                     setUser:(e) =>{ dispatch(actions.setUserOrder(e))},
+                    setStore:(e) =>{ dispatch(actions.setStore(e))},
                 }
     }             
     )(Cart);

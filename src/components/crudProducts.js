@@ -149,9 +149,8 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        // getAllProducts:()=>dispatch(actions.getAllProducts()) 
-                        // getAllProducts:()=>dispatch(actions.setProducts()) 
-                        getAllProducts: () => dispatch(actions.getAllProducts()),
+ 
+                        // getAllProducts: () => dispatch(actions.getAllProducts()),
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
                         changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),

@@ -42,7 +42,7 @@ import { actions } from '../../redux/action'
     const Submit = ()=>{
  ;
         props.editproduct(props.currentProduct); 
-       props.getProducts();  
+      //  props.getProducts();  
     }
 
     return(
@@ -141,8 +141,8 @@ export default connect(
   },
   (dispatch)=>{
           return {
-                    getCategories:()=>dispatch(actions.getAllCategories()),
-                    getProducts:()=>dispatch(actions.getAllProducts()),
+                    // getCategories:()=>dispatch(actions.getAllCategories()),
+                    // getProducts:()=>dispatch(actions.getAllProducts()),
                      editproduct:(v)=>dispatch(actions.editProduct(v)),
                      setCurrentProduct:(e)=>dispatch(actions.setCurrentProduct(e))
           }

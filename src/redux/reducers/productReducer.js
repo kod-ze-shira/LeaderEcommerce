@@ -13,7 +13,7 @@ const initialState = {
 const product = {
 
     setProducts(state, action) {
-         ;
+        debugger;
         state.products = action.payload;
         console.log('pro', state.products);
     },
@@ -33,8 +33,12 @@ const product = {
     setCurrentProduct(state,action){
                
   state.currentProduct=action.payload
-    }
+    },
 
+    addNewProduct(state,action){
+
+        state.products.push(action.payload);
+    }
 };
 
 export default produce((state, action) => createReducer(state, action, product), initialState);

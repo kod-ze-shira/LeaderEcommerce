@@ -18,13 +18,18 @@ const category = {
     //     state.store.storeDescription=action.payload;
     // },
     setCategories(state,action){
-        state.categories=action.payload.categories;
+        // state.categories=action.payload.categories;
+            state.categories=action.payload;
   
     },
     setCurrentCategory(state,action){
          ;
         state.currentCategory=action.payload;
-    }
+    },
+    addNewCategory(state,action){
+
+       state.categories.push(action.payload);
+   }
 
 }
 

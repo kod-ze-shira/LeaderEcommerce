@@ -47,7 +47,7 @@ function ExpYeudit(props) {
 
         // }
         const onChangeHandlerLogo = (event) => {
-                debugger
+           
                 //שימוש בFileReader לצורך הצגה מקומית של התמונה, היות ולוקח כמה שניות עד שחוזר url מהשרת.
                 const reader1 = new FileReader();
                 const file = event;
