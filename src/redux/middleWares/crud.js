@@ -191,62 +191,62 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 
 //7
 export const newProduct = ({ dispatch, getState }) => next => action => {
-
+    return new Promise((resolve, reject) => {
     if (action.type === 'ADD_NEW_PRODUCTS') {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
         var raw = JSON.stringify({"store":action.payload.store, "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://community.leader.codes/api/products/newProduct", requestOptions)
-            .then((response) => { 
-                // dispatch(actions.addNewProduct(response.data))
-                console.log("gjhjet ", response.data);
-        //       dispatch({ type: "ADD_NEW_PRODUCT", payload: response.data })
-            })
-            .catch(error => console.log('error', error));
+        $.ajax({
+            url: "https://community.leader.codes/api/products/newProduct",
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log("data Category", data)
+                debugger;
+                dispatch(actions.addNewProduct(data));
+                // dispatch({ type: "ADD_NEW_CATEGORY", payload: data })
+                dispatch(actions.setFilteredItems(getState().productReducer.products));
+                resolve(data)
+            },
+            error: function (err) {
+                console.log(err)
+                reject(err)
+            }
+        });
     }
-
+    
     return next(action);
-};
+})};
 
 //8
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
-
+    return new Promise((resolve, reject) => {
     if (action.type === 'CREATE_NEW_CATEGORY') {
-        ;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
         var raw = JSON.stringify({"store":action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color });
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+        $.ajax({
+            url: "https://community.leader.codes/api/categories/newCategoty",
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                console.log("data Category", data)
+                debugger;
+                dispatch(actions.addNewCategory(data));
+                // dispatch({ type: "ADD_NEW_CATEGORY", payload: data })
 
-        fetch("https://community.leader.codes/api/categories/newCategoty", requestOptions)
-        .then(res => 
-        {
-            console.log("hhhhhh"+res.data);
-            
-            // dispatch({ type: "ADD_NEW_CATEGORY", payload: res.data })
-              dispatch(actions.addNewCategory(res.data))
-            })
-       
-            .catch(error => console.log('error', error));
+                resolve(data)
+            },
+            error: function (err) {
+                console.log(err)
+                reject(err)
+            }
+        });
     }
-
     return next(action);
+})
 };
 
 //9
@@ -307,7 +307,9 @@ export const addNewImageToProduct = ({ dispatch, getState }) => next => action =
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_PRODUCT') {
         axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
-            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
+            .then(res => { console.log("get ", res.data); dispatch(actions.deleteOldProduct(action.payload)) 
+            dispatch(actions.setFilteredItems(getState().productReducer.products));
+        });
     }
 
     return next(action);
@@ -319,8 +321,7 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
             .then(res => {
                 console.log("get ", res.data);
-                alert(`The product ${res.data.name} deleted!!`)
-                dispatch(actions.getCommunity({ community: res.data }))
+                dispatch(actions.deleteOldCategory(action.payload))
             });
     }
 
@@ -332,10 +333,8 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
 export const editproduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_PRODUCT') {
-        ;
+   
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
-
-
 
         $.ajax({
             url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
@@ -344,7 +343,9 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
             contentType: "application/json",
             data: raw,
             success: function (data) {
-                console.log(data)
+                console.log(data);
+                dispatch(actions.editOldProduct(data))
+                dispatch(actions.setFilteredItems(getState().productReducer.products));
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -382,8 +383,10 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
             contentType: "application/json",
             data: raw,
             success: function (data) {
-                console.log(data)
-
+              
+              console.log(data)
+              dispatch(actions.editOldCategory(data))
+            
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)

@@ -36,8 +36,14 @@ const product = {
     },
 
     addNewProduct(state,action){
-
-        state.products.push(action.payload);
+        state.products.push(action.payload);       
+    },
+    deleteOldProduct(state,action){
+        state.products = state.products.filter(x => x._id != action.payload);      
+    },
+    editOldProduct(state,action){
+        state.products = state.products.filter(x => x._id != action.payload._id);    
+        state.products.push(action.payload);    
     }
 };
 
