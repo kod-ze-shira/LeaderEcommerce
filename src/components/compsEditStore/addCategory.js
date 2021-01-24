@@ -26,7 +26,7 @@ function AddProduct(props) {
     //לא עובד -צריך להביא תמונות מהשרת 
     //  image:'',
     //צריך להיות סטטי שם החנות
-    //  store:''
+      store:props.storeCurrent._id
   });
 
 
@@ -53,7 +53,7 @@ function AddProduct(props) {
     // event.preventDefault();
     console.log(myValues)
     props.createNewCategory(myValues);
-    props.getAllCategory();
+    // props.getAllCategory();
   }
 
   return (
@@ -125,14 +125,15 @@ export default connect(
 
     return {
 
-      categoryList: state.categoriesReducer.categories
+      categoryList: state.categoriesReducer.categories,
+      storeCurrent:state.storeByUser.currentStore,
     }
 
   },
   (dispatch) => {
     return {
-      createNewCategory: (n) => dispatch(actions.createNewCategory(n)),
-      getAllCategory: () => dispatch(actions.getAllCategories()),
+      createNewCategory: (n) =>{ dispatch(actions.createNewCategory(n));},
+      // getAllCategory: () => dispatch(actions.getAllCategories()),
 
     }
   }

@@ -2,48 +2,48 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
 
-function AddProduct(props) {
+ function AddProduct (props)  {
 
-  console.log(props);
-  // const [myValues ,setMyValues]= useState({
-  //   id:props.currentProduct._id,
-  //     name:props.currentProduct.name,
-  //     description:props.currentProduct.description,
-  //     sku:props.currentProduct.sku,
-  //     amount:props.currentProduct.amount, 
-  //     category:props.currentProduct.category,
-  //      price:props.currentProduct.price, 
-  //      //לא עובד -צריך להביא תמונות מהשרת 
-  //     //  images:'',
-  //      featuredProducts:props.currentProduct.featuredProducts,
-  //      //צריך להיות סטטי שם החנות
-  //     //  store:''
-  //     });
-
-  // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
-
-
-
-  const update = (event) => {
-
-    //  var u;
-    //  if(event.target.name=="category")          
-    //    u=item._id;
-    //      else
-    // u=event.target.value
-    props.setCurrentProduct({
-      ...props.currentProduct,
-      [event.target.name]: event.target.value
+    console.log(props);
+    // const [myValues ,setMyValues]= useState({
+    //   id:props.currentProduct._id,
+    //     name:props.currentProduct.name,
+    //     description:props.currentProduct.description,
+    //     sku:props.currentProduct.sku,
+    //     amount:props.currentProduct.amount, 
+    //     category:props.currentProduct.category,
+    //      price:props.currentProduct.price, 
+    //      //לא עובד -צריך להביא תמונות מהשרת 
+    //     //  images:'',
+    //      featuredProducts:props.currentProduct.featuredProducts,
+    //      //צריך להיות סטטי שם החנות
+    //     //  store:''
+    //     });
+     
+        // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
 
 
-    });
-  }
 
-  const Submit = () => {
-    ;
-    props.editproduct(props.currentProduct);
-    props.getProducts();
-  }
+    const update = (event) => {
+           
+        //  var u;
+        //  if(event.target.name=="category")          
+        //    u=item._id;
+        //      else
+            // u=event.target.value
+            props.setCurrentProduct({
+            ...props.currentProduct,
+            [event.target.name]:event.target.value
+           
+       
+        });
+    }
+    
+    const Submit = ()=>{
+ ;
+        props.editproduct(props.currentProduct); 
+      //  props.getProducts();  
+    }
 
   return (
 
@@ -139,13 +139,13 @@ export default connect(
     }
 
   },
-  (dispatch) => {
-    return {
-      getCategories: () => dispatch(actions.getAllCategories()),
-      getProducts: () => dispatch(actions.getAllProducts()),
-      editproduct: (v) => dispatch(actions.editProduct(v)),
-      setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e))
-    }
-  }
-)(AddProduct);
+  (dispatch)=>{
+          return {
+                    // getCategories:()=>dispatch(actions.getAllCategories()),
+                    // getProducts:()=>dispatch(actions.getAllProducts()),
+                     editproduct:(v)=>dispatch(actions.editProduct(v)),
+                     setCurrentProduct:(e)=>dispatch(actions.setCurrentProduct(e))
+          }
+  }             
+  )(AddProduct);
 

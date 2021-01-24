@@ -43,7 +43,7 @@ function Login(props) {
         setCookie("jwt", props.user.tokenFromCookies, {
             path: "/"
         })
-        return <Redirect to={"/openStore"} />
+        return <Redirect to={"/home"} />
     }
 
     return (

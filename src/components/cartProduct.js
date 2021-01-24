@@ -11,17 +11,19 @@ function Cart(props) {
 
         useEffect(() => {
                 props.setUser(props.user._id);
-                var t = cookies.order;
-                if (y == 1) {
-                        props.setCart(t)
-                        y = 2
-                }
-        }, [])
-        window.addEventListener("beforeunload", (ev) => {
-                ev.preventDefault();
-                setCookie("order", props.cart, {
-                        path: "/"
-                });
+              props.setStore(props.storeCurrent._id)
+             var t=cookies.order;
+               if((y==1)&&(t!=null)){
+             props.setCart(t)
+            y=2
+        }  
+        },[]) 
+               window.addEventListener("beforeunload", (ev) => 
+        {
+               ev.preventDefault();
+            setCookie("order", props.cart, {
+                path: "/"
+              });
         });
 
         const funcSubmit = () => {
@@ -98,13 +100,27 @@ function Cart(props) {
                 </>
         )
 }
-
-export default connect(
-        (state) => {
-                return {
-                        cart: state.cartReduser.cart,
-                        user: state.userReducer.user,
-                        // store:state.???.store
+ 
+export default connect(              
+    (state)=>{      
+            return { 
+                     cart:state.cartReduser.cart,
+                     user:state.userReducer.user,
+                     storeCurrent:state.storeByUser.currentStore,
+            }
+    },
+    (dispatch)=>{
+            return {
+                    pluseAmount:(i)=>{ dispatch(actions.pluseAmount(i))},
+                    clear:()=>{ dispatch(actions.clear())},
+                    minuseAmount:(i)=>{ ; dispatch(actions.minuseAmount(i))},
+                    remove:(i)=>{ ; dispatch(actions.remove(i))},
+                    setCart:(e) =>{ dispatch(actions.setOrder(e))},
+                    newOrder: (e) =>{ dispatch(actions.newOrder(e))},
+                    updateSetOrder: (e) =>{ dispatch(actions.updateSetOrder(e))},
+                    setTotalPrice:(e) =>{ dispatch(actions.setTotalPrice(e))},
+                    setUser:(e) =>{ dispatch(actions.setUserOrder(e))},
+                    setStore:(e) =>{ dispatch(actions.setStore(e))},
                 }
         },
         (dispatch) => {

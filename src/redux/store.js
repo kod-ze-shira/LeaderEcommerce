@@ -8,6 +8,7 @@ import cartReduser from './reducers/cartReduser';
 import uploadFileReducer from './reducers/uploadFileReducer'
 import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
+import storeByUser from './reducers/storeByUser';
 import {
     checkPermission,
     onAuthStateChanged,
@@ -26,6 +27,7 @@ import {
     uploadImage,
     setFile,
     getAllOrders,
+    getStoreByUser,
     setStoreId
 
 } from './middleWares/crud'
@@ -53,7 +55,8 @@ const reducers =
         openStoreReducer,
         cartReduser,
         uploadFileReducer,
-        ordersReduser
+        ordersReduser,
+        storeByUser
     })
 
 const store = createStore(
@@ -78,14 +81,15 @@ const store = createStore(
             newOrder,
             setFile,
             getAllOrders,
+            getStoreByUser,
             setStoreId
         ))
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
-store.dispatch(actions.getAllProducts());
-store.dispatch(actions.getAllCategories());
-store.dispatch(actions.getAllOrders());
+// store.dispatch(actions.getAllProducts());
+// store.dispatch(actions.getAllCategories());
+// store.dispatch(actions.getAllOrders());
 
 
 export default store;

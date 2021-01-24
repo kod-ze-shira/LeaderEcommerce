@@ -159,7 +159,9 @@ function ProductsList(props) {
                                                                                 <div className="data__cell data__cell_xl">
                                                                                         <div className="data__main">
                                                                                                 <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.getAllProducts(); }} />
+                                                                                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); 
+                                                                                                                // props.getAllProducts();
+                                                                                                                 }} />
                                                                                                         <span className="switch__content">
                                                                                                         </span></label></div>
                                                                                                 <div className="data__preview">
@@ -233,7 +235,7 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        getAllProducts: () => dispatch(actions.getAllProducts()),
+                        // getAllProducts: () => dispatch(actions.getAllProducts()),
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
                         changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),

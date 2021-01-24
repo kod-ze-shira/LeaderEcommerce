@@ -2,64 +2,67 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
 // import aService from '../services/product.service'
-function AddProduct(props) {
+ function AddProduct (props)  {
 
-  useEffect(() => {
-
-
-  })
-
-  console.log(props);
-  const [myValues, setMyValues] = useState({
-    name: '',
-    description: '',
-    sku: '',
-    amount: '',
-    category: '',
-    price: '',
-    //לא עובד -צריך להביא תמונות מהשרת 
-    //  images:'',
-    featuredProducts: '',
-    //צריך להיות סטטי שם החנות
-    //  store:''
-  });
-
-  // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
+  useEffect(()=>{
 
 
+})
 
-  const update = (event) => {
+        console.log(props);
+    const [myValues ,setMyValues]= useState({
+        name:'',
+        description:'',
+        sku:'',
+        amount:'', 
+        category:'',
+         price:'', 
+         //לא עובד -צריך להביא תמונות מהשרת 
+        //  images:'',
+         featuredProducts:'',
+         //צריך להיות סטטי שם החנות
+        store:props.storeCurrent._id
+        });
+     
+        // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
 
-    var u;
-    //  if(event.target.name=="category")          
-    //    u=item._id;
-    //      else
-    u =
-      setMyValues({
-        ...myValues,
-
-        // if(event.target.name==="category")          
-        // [event.target.name]:event.target.value.id;
-        // else
-        [event.target.name]: event.target.value
 
 
-      });
-  }
-
-  const Submit = () => {
-
-    // event.preventDefault();
-    if (myValues.category != "") {
-      props.createNewProduct(myValues);
-      props.getProducts();
+    const update = (event) => {
+           
+         var u;
+        //  if(event.target.name=="category")          
+        //    u=item._id;
+        //      else
+            u=
+        setMyValues({
+            ...myValues,
+        
+                   // if(event.target.name==="category")          
+            // [event.target.name]:event.target.value.id;
+            // else
+            [event.target.name]:event.target.value
+           
+       
+        });
     }
-    else {
-      alert("לא בחרת קטגוריה הוסף קטוגריה");
-      // props.setcomponnet("addCategory")
+    
+    const Submit = ()=>{
+         
+        // event.preventDefault();
+       if(myValues.category!="")
+       {
+        props.createNewProduct(myValues); 
+      //  props.getProducts();
+      } 
+        else
+        {
+          alert("לא בחרת קטגוריה הוסף קטוגריה");
+        // props.setcomponnet("addCategory")
+        }
+     
     }
 
-  }
 
   return (
     <div className="form form_create">
@@ -143,22 +146,23 @@ function AddProduct(props) {
   )
 }
 export default connect(
-
-  (state) => {
-
-    return {
-
-      categoryList: state.categoriesReducer.categories
-    }
-
+                
+  (state)=>{
+          
+          return { 
+                 
+                  categoryList:state.categoriesReducer.categories,
+                  storeCurrent:state.storeByUser.currentStore,
+          }
+         
   },
-  (dispatch) => {
-    return {
-      getCategories: () => dispatch(actions.getAllCategories()),
-      getProducts: () => dispatch(actions.getAllProducts()),
-      createNewProduct: (n) => dispatch(actions.addNewProducts(n)),
-      setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-    }
-  }
-)(AddProduct);
+  (dispatch)=>{
+          return {
+                  // getCategories:()=>dispatch(actions.getAllCategories()),
+                  // getProducts:()=>dispatch(actions.getAllProducts()),
+                  createNewProduct:(n)=>dispatch(actions.addNewProducts(n)),
+                  setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
+          }
+  }             
+  )(AddProduct);
 
