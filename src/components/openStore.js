@@ -4,6 +4,8 @@ import { actions } from "../redux/action";
 import $ from 'jquery';
 //ספריה ששומרת את הדברים שמשתנים ומקשרת לדף הבא עם שמירת הנתונים
 import { useHistory, Link } from "react-router-dom";
+import { SwatchesPicker } from 'react-color';
+import { Box } from '@material-ui/core';
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function OpenStore(props) {
 
@@ -47,12 +49,13 @@ function OpenStore(props) {
 
     //פונ שיוצרת את החנות ומכניסה לרידקס את הנתונים
     //  ועוברת לחנות דמו עם הפרטים שהזין
-    const submitToStore = async (event) => {
+    const submitToStore = (event) => {
         //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
-        await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
-        history.push("/0/" + props.objectFields.urlRoute)
-        console.log("store", props.objectFields);
+         props.createNewStore({ "store": props.objectFields, "file": fileToUpload }).then(()=>{
+             history.push("/0/" + props.objectFields.urlRoute)
+             console.log("store", props.objectFields);
+         })
 
 
 
@@ -75,8 +78,20 @@ function OpenStore(props) {
                 <input type={"email"} placeholder="הכנס אימיל" onChange={props.setEmailStore}></input><br></br>
                 {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
                 {/*לבינתיים עשיתי עם אינפוט*/}
-                <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
+                <input placeholder="  בחר צבע ראשי לחנות   " onChange={e=>props.setColorStore(e.target.value)}></input><br></br>
+                <Box name="color"
+          width={'100%'}
+              margin-left= "115vh"
+          alignSelf="center">
+          <SwatchesPicker
+            color={props.objectFields.colorStore}
+            onChangeComplete={e=>props.setColorStore(e.hex)}
+            width={400}
+            height={100}
+
+          /></Box>
                 {/*  למטבעות drop down  צריך שיהיה  */}
+
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
                 {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
                 <lable>בחר מטבע</lable>
@@ -199,7 +214,7 @@ const mapDispatchToProps = (dispatch) => ({
     setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
     setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
     setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
-    setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
+    setColorStore: (e) => dispatch(actions.setColorStore(e)),
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
     uploadImage: (x) => dispatch(actions.uploadImage(x)),
 })

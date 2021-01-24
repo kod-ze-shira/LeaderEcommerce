@@ -416,43 +416,46 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 //16
 ////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
-    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
-    if (action.type === 'CREATE_NEW_STORE') {
-        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
-        var raw = JSON.stringify({
-            "storeName": action.payload.store.nameStore,
-            "storeDescription": action.payload.store.descriptionStore,
-            "logo": "logo",
-            "address": action.payload.store.addressStore,
-            "tel": action.payload.store.phoneStore,
-            "email": action.payload.store.emailStore,
-            "colorDominates": action.payload.store.colorStore,
-            "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.store.currency,
-            "policy": action.payload.store.policy
-        });
-        console.log("raww", raw)
-        $.ajax({
-            url: "https://community.leader.codes/api/stores/newStore",
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: raw,
-            success: function (data) {
-                debugger
-                console.log("data store", data)
-                dispatch(actions.setStoreId(data._id))
-                    // .then(() => {
-                        dispatch(actions.uploadImage({ "fileName": "storeLogo", "file": action.payload.file }))
-                    // });
-            },
-            error: function (err/*XMLHttpRequest, textStatus, errorThrown*/) {
-                console.log(err/*XMLHttpRequest, " ", textStatus, " ", errorThrown*/)
-
-            }
-        });
-    }
-    return next(action);
+    return new Promise((resolve, reject) => {
+        //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
+        if (action.type === 'CREATE_NEW_STORE') {
+            //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
+            var raw = JSON.stringify({
+                "storeName": action.payload.store.nameStore,
+                "storeDescription": action.payload.store.descriptionStore,
+                "logo": "logo",
+                "address": action.payload.store.addressStore,
+                "tel": action.payload.store.phoneStore,
+                "email": action.payload.store.emailStore,
+                "colorDominates": action.payload.store.colorStore,
+                "storeManager": getState().userReducer.user._id,
+                "currency": action.payload.store.currency,
+                "policy": action.payload.store.policy
+            });
+            console.log("raww", raw)
+            $.ajax({
+                url: "https://community.leader.codes/api/stores/newStore",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    debugger
+                    console.log("data store", data)
+                    dispatch(actions.setStoreIdM(data._id))
+                        .then(() => {
+                            dispatch(actions.uploadImage({ "fileName": "storeLogo", "file": action.payload.file }))
+                        });
+                    resolve(data)
+                },
+                error: function (err/*XMLHttpRequest, textStatus, errorThrown*/) {
+                    console.log(err/*XMLHttpRequest, " ", textStatus, " ", errorThrown*/)
+                    reject(err)
+                }
+            });
+        }
+        return next(action);
+    })
 };
 
 //17
@@ -510,8 +513,8 @@ export const getAllOrders = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 console.log("gjhjet ", res.data);
                 dispatch(actions.setAllOrders(res.data))
-            })      
-        .catch(err => console.log("errrrrrrr", err));
+            })
+            .catch(err => console.log("errrrrrrr", err));
     }
     return next(action);
 }
@@ -571,3 +574,32 @@ export const setStoreId = ({ dispatch, getState }) => next => action => {
         return next(action)
     })
 };
+
+// export const uploadFile = ({ dispatch, getState }) => next => action => {
+//     return new Promise((resolve, reject) => {
+//         if (action.type === '[funnel] UPLOAD_FILE') {
+//             const fil = action.payload
+//             console.log(fil); 
+//             const myFile = new FormData()
+//             myFile.append("file", action.payload)
+//             $.ajax({
+//                 url: `https://funnel.dev.leader.codes/api/uploadFile/${getState().user.userId}/${getState().user.userName}`,
+//                 type: 'POST',
+//                 data: myFile,
+//                 contentType: false,
+//                 processData: false,
+//                 headers: { Authorization: 'view' },
+//                 success: function (data) {
+//                     console.log(data);
+//                     dispatch({ type: '[funnel] SET_IMAGE_FILE', payload: data })
+//                     resolve(data)
+//                 },
+//                 error: function (err) {
+//                     console.log(err);
+//                     reject(err)
+//                 }
+//             })
+//         }
+//         return next(action)
+//     })
+// }
