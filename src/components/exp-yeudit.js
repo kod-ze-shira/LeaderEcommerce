@@ -47,7 +47,7 @@ function ExpYeudit(props) {
 
         // }
         const onChangeHandlerLogo = (event) => {
-                debugger
+           
                 //שימוש בFileReader לצורך הצגה מקומית של התמונה, היות ולוקח כמה שניות עד שחוזר url מהשרת.
                 const reader1 = new FileReader();
                 const file = event;
@@ -57,7 +57,7 @@ function ExpYeudit(props) {
                 reader1.readAsDataURL(file);
                 console.log("event", event)
                 var fileToUpload = event
-                props.uploadImage(/*"imgLogo",*/ fileToUpload)
+                props.uploadImage({ "fileName": "profilPicture", "file": fileToUpload })
         }
 
 
@@ -65,7 +65,10 @@ function ExpYeudit(props) {
                 <>
 
                         <label for="logouug" className="lbl_img">
-                                <img className="img_logo" referrerpolicy="no-referrer" src={props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture} />
+                                <img className="img_logo" referrerpolicy="no-referrer" src={
+                                        props.url == "" ? profilePicture : props.url
+                                        // props.user && props.user.profilePicture == "" ? profilePicture : props.user.profilePicture
+                                } />
                         </label>
                         <input
 
@@ -87,7 +90,8 @@ function ExpYeudit(props) {
 export default connect(
         (state) => {
                 return {
-                        user: state.userReducer.user
+                        user: state.userReducer.user,
+                        url: state.uploadFileReducer.url
                         // uId: state.userReducer.user.uid
                 }
         },
@@ -100,3 +104,50 @@ export default connect(
         }
 
 )(ExpYeudit);
+
+// export const uploadFile = ({ dispatch, getState }) => next => action => {
+//         return new Promise((resolve, reject) => {
+//             if (action.type === '[funnel] UPLOAD_FILE') {
+//                 const fil = action.payload
+//                 console.log(fil);
+//                 const myFile = new FormData()
+//                 myFile.append("file", action.payload)
+
+
+//                 $.ajax({
+//                     url: `https://funnel.dev.leader.codes/api/uploadFile/${getState().user.userId}/${getState().user.userName}`,
+//                     type: 'POST',
+//                     data: myFile,
+//                     contentType: false,
+//                     processData: false,
+//                     headers: {
+//                         Authorization: 'view'
+//                     },
+//                     success: function (data) {
+//                         console.log(data);
+//                         dispatch({ type: '[funnel] SET_IMAGE_FILE', payload: data })
+//                         resolve(data)
+//                     },
+//                     error: function (err) {
+//                         console.log(err);
+//                         reject(err)
+//                     }
+//                 })
+//             }
+//             return next(action)
+//         })
+//     }
+
+
+// export const saveOrUpdate = ({ dispatch, getState }) => next => action => {
+//     if (action.type === '[funnel] SAVE_OR_UPDATE') {
+//         dispatch({ type: '[funnel] CHANGE_LOADING'})
+//         dispatch({ type: '[funnel] UPLOAD_FILE', payload: action.payload }).then((res) => {
+//             if (getState().funnel.idFunnel)
+//                 dispatch({ type: '[funnel] UPDATE_FUNNEL' })
+//             else
+//                 dispatch({ type: '[funnel] CREAT_FUNNEL' })
+//         })
+//     }
+//     return next(action)
+// }

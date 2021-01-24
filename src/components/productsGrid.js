@@ -31,7 +31,7 @@ function ProductsGrid(props) {
                                 btn.removeClass('active');
                                 btn.eq(index).addClass('active');
 
-                                 ;
+                                ;
                                 tab.hide();
                                 tab.eq(index).show();
                         });
@@ -43,11 +43,11 @@ function ProductsGrid(props) {
 
         const onChangeHandlerImage = (event, thiss) => {
                 console.log("this", thiss.index());
-                 ;
+                ;
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                 ;
+                                ;
                                 props.changeProductImage(0, reader.result)
                                 console.log("img", props.products[0]);
 
@@ -59,13 +59,13 @@ function ProductsGrid(props) {
         }
 
         const sortColumn = (columnName) => {
-                 ;
+                ;
                 props.setSortYOrN();
 
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-                         
+
                         let x = a[columnName].toString().toLowerCase();
                         let y = b[columnName].toString().toLowerCase()
 
@@ -78,7 +78,7 @@ function ProductsGrid(props) {
                 if (!props.sortYOrNo)
                         bb.reverse();
 
-                 ;
+                ;
                 console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
 
@@ -139,7 +139,7 @@ function ProductsGrid(props) {
                                                         {props.filteredProducts.map((item, index) => (
                                                                 // <h1>hello</h1>
                                                                 // if(index<7){}
-                                                                <div class="data__item">
+                                                                <div class="data__item" key={index}>
                                                                         <div class="data__corner">
                                                                                 <button class="action action_stroke"><i class="la la-ellipsis-h "></i></button></div>
                                                                         <div class="data__corner data__corner_left"><label class="switch"><input class="switch__input" type="checkbox" /><span class="switch__content"></span></label></div>
@@ -186,7 +186,7 @@ export default connect(
                 return {
                         // getAllProducts:()=>dispatch(actions.getAllProducts()) 
                         // getAllProducts:()=>dispatch(actions.setProducts()) 
-                        getAllProducts: () => dispatch(actions.getAllProducts()),
+                        // getAllProducts: () => dispatch(actions.getAllProducts()),
                         addNewImageFromDbP: (f, t) => dispatch(actions.addNewImageFromDb(f, t)),
                         changeProductImage: (i, p) => dispatch(actions.setProductImage({ i, p })),
                         setSearchReasult: (filteredItems) => dispatch(actions.setFilteredItems(filteredItems)),

@@ -7,6 +7,22 @@ import { Form, Nav, Navbar, NavDropdown, Button, DropdownButton, Dropdown } from
 import { FormControl } from '@material-ui/core';
 class Header extends Component {
     render() {
+
+        // .topnav {
+        //     background - color: #333;
+        //     overflow: hidden;
+        // }
+
+        //   /* Style the links inside the navigation bar */
+        //   .topnav a {
+        //     float: left;
+        //     display: block;
+        //     color: #f2f2f2;
+        //     text - align: center;
+        //     padding: 14px 16px;
+        //     text - decoration: none;
+        //     font - size: 17px;
+        // }
         // var categories = this.props.categories[0]
         return (
             <header className="header js-header">
@@ -15,6 +31,7 @@ class Header extends Component {
                         <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                             {this.props.logoDesign.LogoYOrN === true ?
                                 <img className="" src={this.props.objectFields.logoStore ? this.props.objectFields.logoStore : tempLogo} alt=""
+
                                     // <img className="" src={this.props.logoDesign.logo} alt=""
                                     style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
                                     width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
@@ -36,6 +53,7 @@ class Header extends Component {
                         < h2 > כאן יהיה תפריט ניווט</h2>
 
                     <Navbar bg="light" expand="lg">
+
                         <Navbar.Brand href="">React-Bootstrap</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -57,6 +75,7 @@ class Header extends Component {
                             </Form> */}
                         </Navbar.Collapse>
                     </Navbar>
+
                 </div>
             </header >
         )

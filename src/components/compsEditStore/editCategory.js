@@ -21,12 +21,12 @@ import Slider from '@material-ui/core/Slider';
     const [myValues ,setMyValues]= useState({
         id:props.currentCategory._id,
         categoryName:props.currentCategory.categoryName,
-        color:props.currentCategory.color
+        color:props.currentCategory.color,
 
          //לא עובד -צריך להביא תמונות מהשרת 
         //  image:'',
          //צריך להיות סטטי שם החנות
-        //  store:''
+        store:props.currentCategory.store
         });
      
   
@@ -44,7 +44,7 @@ import Slider from '@material-ui/core/Slider';
          
         console.log(myValues)
         props.editCategory(myValues);
-        props.getAllCategory();
+        // props.getAllCategory();
     }
 
     return(
@@ -94,7 +94,7 @@ export default connect(
   (dispatch)=>{
           return {
                   editCategory:(n)=>{ ;dispatch(actions.editCategory(n))},
-                  getAllCategory:()=>dispatch(actions.getAllCategories()),
+                  // getAllCategory:()=>dispatch(actions.getAllCategories()),
  
           }
   }             

@@ -247,7 +247,6 @@ class Wrap extends React.Component {
         // const { theme } = this.props;
         //const history = createBrowserHistory();
         const open = Boolean(this.state.anchorEl)
-        
         const logOutHandler = () => {
             logOut.then(() => {
                 console.log('logged out')
@@ -274,7 +273,9 @@ class Wrap extends React.Component {
                             //edge="start"
                             onClick={this.handleDrawerOpen}>
                             <MenuIcon />
-                        </IconButton> */}
+
+                         <h1>{this.props.user.username}</h1>    
+                        </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />
                         <button className="btn btn-success" onClick={logOutHandler}>Log Out</button>
@@ -381,7 +382,8 @@ const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
-        viewModel: state.viewModeReducer.viewModel
+        viewModel: state.viewModeReducer.viewModel,
+        user:state.userReducer.user,
     }
 }
 

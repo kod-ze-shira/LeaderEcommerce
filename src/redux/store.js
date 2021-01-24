@@ -1,12 +1,14 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import communityReducer from './reducers/communityReducer';
 import userReducer from './reducers/userReducer';
-import storeReducer from './reducers/storeReducer';
+// import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import uploadFileReducer from './reducers/uploadFileReducer'
 import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
+import storeByUser from './reducers/storeByUser';
 import {
     checkPermission,
     onAuthStateChanged,
@@ -23,7 +25,10 @@ import {
     createNewStore,
     setUserId,
     uploadImage,
+    setFile,
     getAllOrders,
+    getStoreByUser,
+    setStoreId
 
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
@@ -40,7 +45,7 @@ const reducers =
     combineReducers({
         communityReducer,
         userReducer,
-        storeReducer,
+        // storeReducer,
         editHomeStoreReducer,
         logoReducer,
         productReducer,
@@ -50,7 +55,9 @@ const reducers =
         viewModeReducer,
         openStoreReducer,
         cartReduser,
-        ordersReduser
+        uploadFileReducer,
+        ordersReduser,
+        storeByUser
     })
 
 const store = createStore(
@@ -73,15 +80,17 @@ const store = createStore(
             setUserId,
             uploadImage,
             newOrder,
+            setFile,
             getAllOrders,
-           
+            getStoreByUser,
+            setStoreId
         ))
 )
 window.store = store;
 store.dispatch(actions.onAuthStateChanged());
-store.dispatch(actions.getAllProducts());
-store.dispatch(actions.getAllCategories());
-store.dispatch(actions.getAllOrders());
+// store.dispatch(actions.getAllProducts());
+// store.dispatch(actions.getAllCategories());
+// store.dispatch(actions.getAllOrders());
 
 
 export default store;

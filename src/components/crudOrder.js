@@ -74,33 +74,7 @@ function CrudOrder(props) {
                                                         </div>
                                                         <div className="search__backdrop backdrop js-search-backdrop"></div>
                                                 </div>
-                                                <div className="container__new new js-new">
-                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addCategory") }}>
-                                                                <i className="la la-plus-circle "></i>
-                                                        </button>
-                                                        <div className="new__dropdown js-new-dropdown"><a className="new__item" href="#">
-                                                                <div className="new__icon"><i className="la la-toolbox "></i></div>
-                                                                <div className="new__title">New Project</div>
-                                                        </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-clipboard-check "></i></div>
-                                                                        <div className="new__title">New Task</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-user-lock "></i></div>
-                                                                        <div className="new__title">New Contact</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-calendar-week "></i></div>
-                                                                        <div className="new__title">New Event</div>
-
-                                                                </a><a className="new__item" onClick={console.log("NewProduct")} id="NewProduct">
-                                                                        <div className="new__icon"><i className="la la-cube "></i></div>
-                                                                        <div className="new__title">New Product</div>
-                                                                </a><a className="new__item" href="#">
-                                                                        <div className="new__icon"><i className="la la-calculator "></i></div>
-                                                                        <div className="new__title">New Invoice</div>
-                                                                </a></div>
-                                                        <div className="new__backdrop backdrop js-new-backdrop"></div>
-                                                </div>
-                                        </div>
+                                     </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
                                                         <div className="panel__head panel__head_line">
@@ -133,17 +107,18 @@ function CrudOrder(props) {
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
-                                                                                                                                        <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); props.getCategories(); }} />
+                                                                                                                                        {/* <div className="data__effect mobile-hide">
+                                                                                                                                                <label className="switch"> */}
+                                                                                                                                                {/* <input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); props.getCategories(); }} />
                                                                                                                                       
                                                 
                                                                                                                                                 <button>
 
                                                                                                                                                         <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
-                                                                                                                                                        </i></button>
-                                                                                                                                                <span className="switch__content">
+                                                                                                                                                        </i></button> */}
+                                                                                                                                                {/* <span className="switch__content">
 
-                                                                                                                                                </span></label></div>
+                                                                                                                                                </span></label></div> */}
 
                                                                                                                         
                                                                                                                                         <div className="data__cell mobile-hide">
@@ -187,13 +162,13 @@ function CrudOrder(props) {
                                                                                                                                 <div className="data__content">
                                                                                                                                 <strong>{item.date}</strong></div>
                                                                                                                         </div>
-                                                                                                                        <div className="data__cell data__cell_action">
+                                                                                                                        {/* <div className="data__cell data__cell_action">
 
                                                                                                                                 <button onClick={() => { props.setcomponnet("editCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
                                                                                                                                         <i className="la la-ellipsis-h "></i>
                                                                                                                                 </button>
 
-                                                                                                                        </div>
+                                                                                                                        </div> */}
                                                                                                                 </div>
                                                                                                         </div>
                                                                                                 ))}
@@ -265,10 +240,6 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        getCategories: () => dispatch(actions.getAllCategories()),
-                        setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-                        setCurrentCategory: (n) => dispatch(actions.setCurrentCategory(n)),
-                        delete: (i) => { dispatch(actions.deleteCategory(i)) }
                 }
         }
 )(CrudOrder);

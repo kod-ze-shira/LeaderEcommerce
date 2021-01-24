@@ -36,7 +36,7 @@ function CrudCategory(props) {
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addCategory") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
-                                                       </div>
+                                                </div>
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
@@ -65,12 +65,14 @@ function CrudCategory(props) {
                                                                                 <div className="data__container">
                                                                                         <div className="data__body">
                                                                                                 {props.categoryList.map((item, index) => (
-                                                                                                        <div className="data__item">
+                                                                                                        <div className="data__item" key={index}>
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); props.getCategories(); }} />
+                                                                                                                                                <input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); 
+                                                                                                                                                        // props.getCategories();
+                                                                                                                                                         }} />
                                                                                                                                                 {/* <i className="la la-truck-loading "></i>
                                                 </input> */}
                                                                                                                                                 <button>
@@ -182,7 +184,7 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        getCategories: () => dispatch(actions.getAllCategories()),
+                        // getCategories: () => dispatch(actions.getAllCategories()),
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
                         setCurrentCategory: (n) => dispatch(actions.setCurrentCategory(n)),
                         delete: (i) => { dispatch(actions.deleteCategory(i)) }
