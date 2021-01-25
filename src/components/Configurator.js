@@ -281,7 +281,7 @@ function Configurator(props) {
 
                 {/* כאן אני ממקמת את הקונפיגורטור הנוכחי */}
 
-                <div id="accordion" className=''>
+                {/* <div id="accordion" className=''> */}
                     {/* <EditPage></EditPage> */}
                     {props.logoDesign.currentComponent ? (() => {
                         switch (props.logoDesign.currentComponent) {
@@ -303,7 +303,7 @@ function Configurator(props) {
                         }
                     })() :
                         <h3>didnt check</h3>}
-                </div>
+                {/* </div> */}
 
 
 
