@@ -26,16 +26,37 @@ function funcReset(item)
 
  <div className="data__body">
 { props.stores.map((itemy, index) => (
-    <Link to="/0" onClick={()=>{funcReset(itemy)}}>
+    //<input className="switch__input" type="button" onClick={async () => { await props.delete(item._id); 
+       
+    // <input className="switch__input" type="button" onClick={()=>props.deleteStore(itemy._id)} />
+    
+   
             <div className="data__item">
                  <div className="data__row" >
                         <div className="data__cell data__cell_xl">
-                    <div className="data__main">
+                               <div className="data__main">
+                               <div className="data__effect mobile-hide"><label className="switch">
+                                                                                                                                                <input className="switch__input" type="button" onClick={ () => { alert("האם ברצונך למחוק חנות זו?"); props.deleteStore(itemy._id); 
+                                                                                                                                                        // props.getCategories();
+                                                                                                                                                         }} />
+                                                                                                                                                {/* <i className="la la-truck-loading "></i>
+                                                </input> */}
+                                                                                                                                                <button>
+
+                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                                                                                                                        </i></button>
+                                                                                                                                                <span className="switch__content">
+
+                                                                                                                                                </span></label></div>
+  {/* <Link to="/0" > */}
        <div className="data__effect mobile-hide">
            <label className="switch"></label></div>
+         
  <div className="data__cell mobile-hide">
+     <Link onClick={()=>{funcReset(itemy)}} to="/0">
                       <div className="data__content">
-                        <strong>{itemy.storeName}</strong></div>
+                        <strong>{itemy.storeName}</strong>
+                        </div></Link>
                          </div>
 
                        <div className="data__cell mobile-hide">
@@ -51,7 +72,7 @@ function funcReset(item)
    
                           </div>
              </div>
-             </Link>
+         
        ))}
         
         </div> 
@@ -69,12 +90,12 @@ export default connect(
     (dispatch)=>{
         return {
              getStoreByUser:(id)=>{ dispatch(actions.getStoreByUser(id))},
-            
              setFilteredItems:(i)=>{ dispatch(actions.setFilteredItems(i))},
              setProducts:(i)=>{ dispatch(actions.setProducts(i))},
               setCategories:(i)=>{ dispatch(actions.setCategories(i))},
               setAllOrders:(i)=>{ dispatch(actions.setAllOrders(i))},
              setSoreCurrent:(i)=>{ dispatch(actions.setSoreCurrent(i))},
+             deleteStore:(i)=>{ dispatch(actions.deleteStore(i))},
         }
     }
 

@@ -13,9 +13,12 @@ const storeByUser = {
     setStorePerUser(state, action) {
                 state.stores = action.payload;    
         },
-        setSoreCurrent(state, action) {
+     setSoreCurrent(state, action) {
             state.currentStore = action.payload;    
     },
+    deleteOldStore(state, action) {
+        state.stores = state.stores.filter(x => x._id != action.payload);    
+},
 }
 
 export default produce((state, action) => createReducer(state, action, storeByUser), initialState);

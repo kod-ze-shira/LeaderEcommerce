@@ -92,6 +92,10 @@ function CrudCategory(props) {
                                                                                                                                                 <div className="data__content">
                                                                                                                                                         <strong>{item.categoryName}</strong></div>
                                                                                                                                         </div>
+                                                                                                                                        <div className="data__wrap">
+                                                                                                                                                <div className="data__content">
+                                                                                                                                                        <strong>{item.masterCategory}</strong></div>
+                                                                                                                                        </div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">

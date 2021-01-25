@@ -28,7 +28,8 @@ import {
     setFile,
     getAllOrders,
     getStoreByUser,
-    setStoreId
+    setStoreId,
+    deleteStore
 
 } from './middleWares/crud'
 import editHomeStoreReducer from './reducers/editHomeStore.reducer';
@@ -82,7 +83,8 @@ const store = createStore(
             setFile,
             getAllOrders,
             getStoreByUser,
-            setStoreId
+            setStoreId,
+            deleteStore
         ))
 )
 window.store = store;

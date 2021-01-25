@@ -4,6 +4,7 @@ import createReducer from "./reducerUtils";
 
 const initialState = {
     products: [],
+    featuredProducts:[],
     pic: "",
     viewListOrGrid: "list",
     currentProduct: {}
@@ -16,7 +17,11 @@ const product = {
         debugger;
         state.products = action.payload;
         console.log('pro', state.products);
+        state.featuredProducts=state.products.filter(x => x.featured == true) 
     },
+    // setFeaturedProducts(state, action) {
+    //     featuredProducts=state.products.filter(x => x.featured == true) 
+    // },
     setProductImage(state, action) {
         console.log("product index", state.products);
          

@@ -193,8 +193,8 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 export const newProduct = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
     if (action.type === 'ADD_NEW_PRODUCTS') {
-        var raw = JSON.stringify({"store":action.payload.store, "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
-
+        var raw = JSON.stringify({"featured":action.payload.featured,"store":action.payload.store, "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+// 
         $.ajax({
             url: "https://community.leader.codes/api/products/newProduct",
             method: "post",
@@ -223,7 +223,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
     if (action.type === 'CREATE_NEW_CATEGORY') {
-        var raw = JSON.stringify({"store":action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color });
+        var raw = JSON.stringify({"store":action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color ,"masterCategory":action.payload.masterCategory});
 
         $.ajax({
             url: "https://community.leader.codes/api/categories/newCategoty",
@@ -633,3 +633,15 @@ export const setStoreId = ({ dispatch, getState }) => next => action => {
 //         return next(action)
 //     })
 // }
+//
+export const deleteStore = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'DELETE_STORE') {
+        axios.post('https://community.leader.codes/api/stores/deleteStore/' + action.payload)
+            .then(res => {
+                console.log("get ", res.data);
+                dispatch(actions.deleteOldStore(action.payload))
+            });
+    }
+
+    return next(action);
+};

@@ -175,6 +175,8 @@ function ProductsList(props) {
                                 <div className="data__content">
                                         <strong>{item.name}</strong></div>
                                 <div className="data__label">SKU {item.SKU}</div>
+
+                                
                         </div>
                 </div>)
         }
@@ -211,12 +213,24 @@ function ProductsList(props) {
                                                                                         <div className="data__content"><strong>{item.amount}</strong> </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
+                                                                                <div className="data__content">
+                                                                              <input type="checkbox"
+                                                                              checked={item.featured}
+                                                                              ></input></div>
+                                                                        </div>
+                                                                                <div className="data__cell mobile-hide">
                                                                                         <div className="data__content"><strong>${item.price}</strong></div>
                                                                                 </div>
                                                                                 {item.category && <div className="data__cell mobile-hide">
                                                                                         <div style={{ "backgroundColor": item.category.color }}
                                                                                                 className="tag gray">{item.category.categoryName}</div>
-                                                                                </div>}
+                                                                                </div>
+                                                                                
+
+
+                                                                  
+
+                                                                                }
 
                                                                                 <div className="data__cell data__cell_action">
                                                                                         <button className="action action_stroke"
