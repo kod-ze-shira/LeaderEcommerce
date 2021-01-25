@@ -12,18 +12,21 @@ import { yellow } from '@material-ui/core/colors';
 
 
 function AddProduct(props) {
-
+  const [list ,setList]= useState(props.categoryList)
   useEffect(() => {
+   let list1=list.filter(c=>c.masterCategory==null)
+setList(list1)
 
-  })
 
+console.log(list1)
+  },[])
 
   console.log(props);
   const [myValues, setMyValues] = useState({
     categoryName: '',
     color: '',
-
-    //לא עובד -צריך להביא תמונות מהשרת 
+    // masterCategory,
+        //לא עובד -צריך להביא תמונות מהשרת 
     //  image:'',
     //צריך להיות סטטי שם החנות
       store:props.storeCurrent._id
@@ -37,8 +40,13 @@ function AddProduct(props) {
     color:event.hex
     });
   }
-
-
+  const updateCategory = (event) => {
+   let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+    setMyValues({
+      ...myValues,
+      masterCategory:k[0]._id
+    });
+  }
 
   const update = (event) => {
      
@@ -79,6 +87,23 @@ function AddProduct(props) {
             </div>
           </div>
         </div>
+     <br></br>
+        <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">קטגוריה אב</div>
+                      <div className="field__wrap">
+                        <select onChange={updateCategory} name="categoryName"  className="field__select" required='true' >
+                          
+                      {list.map((item, index) => (
+                        <option>{item.categoryName}</option>           
+                        ))}
+                      
+                      </select>
+                        <div className="field__icon"><i className="la la-angle-down "></i></div>
+                      </div>
+                    </div>
+                  </div>
+              
       </div>
       <FormLabel>Color text</FormLabel>
 

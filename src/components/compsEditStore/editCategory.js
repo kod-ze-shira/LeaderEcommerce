@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
 import FormLabel from '@material-ui/core/FormLabel';
 import Box from '@material-ui/core/Box';
-// import HuePicker from '@material-ui/core/HuePicker';
 
+ import { HuePicker } from 'react-color';
+ 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import Slider from '@material-ui/core/Slider';
@@ -31,6 +32,13 @@ import Slider from '@material-ui/core/Slider';
      
   
   
+        const updateColor = (event) => {
+     
+          setMyValues({
+            ...myValues,
+          color:event.hex
+          });
+        }
         
     const update = (event) => {
          
@@ -71,6 +79,37 @@ import Slider from '@material-ui/core/Slider';
                     </div>
                   </div>
                 </div>
+                <FormLabel>Color text</FormLabel>
+
+<Box flexDirection="row"
+  display="flex"
+  justifyContent="space-between">
+
+  <Box name="color"
+    width={'100%'}
+    alignSelf="center">
+    <HuePicker
+      color={myValues.color}
+      onChangeComplete={updateColor}
+      width={200}
+      height={6}
+    />
+  </Box>
+  <Box justifyContent="flex-end">
+  <div className="data__preview" style={{"backgroundColor":myValues.color}}>
+          </div>
+    {/* <input
+      textAlign="center"
+      id="standard-number"
+      type="snumber"
+      value={myValues.color}
+      defaultValue={myValues.color}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      className="jij"/> */}
+  </Box>
+</Box>
 
           <div className="form__foot"> 
                 

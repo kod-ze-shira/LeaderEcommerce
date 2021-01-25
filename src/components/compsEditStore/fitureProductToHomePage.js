@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import productPic1 from "../../assets/products/product-pic-1.png"
@@ -8,13 +8,26 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function FitureProduct(props) {
 
+    const [featuredProducts,setfeaturedProducts]=useState(props.products)
 
+    useEffect(()=>{
+    let list=props.products.filter(x => x.featured == true);    
+        setfeaturedProducts(list)
+
+ 
+     },[]) 
+
+// function filtered()
+// {
+   
+
+// }
 
 
     return (
         <>
             {
-                props.products.map((item, index) => (
+            featuredProducts.map((item, index) => (
 
                     <div className="product" key={index}>
                         <div className="product__sale">20% OFF</div>
@@ -56,7 +69,8 @@ const mapStateToProps = (state) => {
         products: state.productReducer.products,
         //האם בשביל לקבל את צבע הקטגוריה אני מביאה את המערך של הקטגוריות?
         // categories: state.categoriesReducer.categories
-
+        featuredProducts: state.productReducer.featuredProducts,
+        
     }
 }
 const mapDispatchToProps = (dispatch) => ({
