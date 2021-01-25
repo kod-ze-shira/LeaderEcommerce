@@ -19,7 +19,7 @@ import { actions } from '../../redux/action'
          price:'', 
          //לא עובד -צריך להביא תמונות מהשרת 
         //  images:'',
-         featured:'',
+         featured:false,
          store:props.storeCurrent._id
         });
      
