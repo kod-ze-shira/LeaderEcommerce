@@ -57,7 +57,7 @@ function App() {
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
-            <PrivateRoute path="/0" component={Wrap} />
+            <PrivateRoute path="/:comp" component={Wrap} />
             {/* <Redirect to={"/login"} /> */}
 
 

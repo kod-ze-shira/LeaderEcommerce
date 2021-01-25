@@ -283,29 +283,27 @@ function Configurator(props) {
 
             {/* כאן אני ממקמת את הקונפיגורטור הנוכחי */}
 
-            <div id="accordion" className=''>
-                {/* <EditPage></EditPage> */}
-                {props.logoDesign.currentComponent ? (() => {
-                    switch (props.logoDesign.currentComponent) {
-                        case "LOGO": return <Logo />;
-                        case "Image": return <Image />;
-                        case "addProduct": return <AddProduct />;
-                        case "addCategory": return <AddCategory />;
-                        case "search": return <Search />;
-                        case "textOnThePicture": return <TextOnThePicture />;
-                        case "TextTitleOfCategory": return <TextTitleOfCategory />;
-                        case "TextTitleOfProduct": return <TextTitleOfProduct />;
-                        case "TextIntoCategory": return <TextIntoCategory />;
-                        case "ProductOnPageCategory": return <ProductOnPageCategory />;
-                        case "editProduct": return <EditProduct />
-                        case "editCategory": return <EditCategory />
-                        // case "IconEdit": return <IconEdit />;
-                        case "": return <h1>e</h1>;
-                        default: return <h3>didnt check</h3>;
-                    }
-                })() :
-                    <h3>didnt check</h3>}
-            </div>
+            {/* <EditPage></EditPage> */}
+            {props.logoDesign.currentComponent ? (() => {
+                switch (props.logoDesign.currentComponent) {
+                    case "LOGO": return <Logo />;
+                    case "Image": return <Image />;
+                    case "addProduct": return <AddProduct />;
+                    case "addCategory": return <AddCategory />;
+                    case "search": return <Search />;
+                    case "textOnThePicture": return <TextOnThePicture />;
+                    case "TextTitleOfCategory": return <TextTitleOfCategory />;
+                    case "TextTitleOfProduct": return <TextTitleOfProduct />;
+                    case "TextIntoCategory": return <TextIntoCategory />;
+                    case "ProductOnPageCategory": return <ProductOnPageCategory />;
+                    case "editProduct": return <EditProduct />
+                    case "editCategory": return <EditCategory />
+                    // case "IconEdit": return <IconEdit />;
+                    case "": return <h1>e</h1>;
+                    default: return <h3>didnt check</h3>;
+                }
+            })() :
+                <h3>didnt check</h3>}
 
 
 
