@@ -88,7 +88,6 @@ function ProductsList(props) {
                 let sortProducts = props.filteredProducts;
 
                 let bb = sortProducts.slice().sort((a, b) => {
-
                         let x = String(a[columnName]).toLowerCase();
                         let y = String(b[columnName]).toLowerCase()
 

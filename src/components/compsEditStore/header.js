@@ -30,7 +30,7 @@ class Header extends Component {
                     {
                         <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                             {this.props.logoDesign.LogoYOrN === true ?
-                                <img src={this.props.objectFields.logoStore} alt="Store Logo"
+                                <img className="" src={this.props.objectFields.logoStore ? this.props.objectFields.logoStore : tempLogo} alt=""
                                     // <img className="" src={this.props.logoDesign.logo} alt=""
                                     style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
                                     width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
@@ -77,7 +77,6 @@ class Header extends Component {
                                 </Nav.Item>
                                  <Link to="/">Home</Link>
                                 <Nav.Link>Link</Nav.Link> 
-
                             </Nav>
                              <Form inline>
                                 <FormControl type="text" placeholder="Search" />

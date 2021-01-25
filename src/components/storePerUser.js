@@ -16,8 +16,8 @@ function funcReset(item)
 }
 
 
-    useEffect(() => {
-      props.getStoreByUser(props.user._id);
+    useEffect(async() => {
+      await props.getStoreByUser(props.user._id);
     },[])
 
     return (

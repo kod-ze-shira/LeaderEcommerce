@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Content from "./components/content";
 import PrivateRoute from './PrivateRoute.js';
 import ExpYeudit from './components/exp-yeudit';
+import Admin from './components/admin'
 import Index from './components/index';
 
 function App() {
@@ -29,12 +30,12 @@ function App() {
         <div className="App">
           <Switch>
             <Route exact path="/">
-            <Home />
+              <Home />
             </Route>
-           <Route path="/login">
-           <Login />
+            <Route path="/login">
+              <Login />
             </Route>
-             { /*<Route path="/storePerUser">
+            { /*<Route path="/storePerUser">
               <StorePerUser/>
             </Route>
             <Route path="/Home">
@@ -43,15 +44,10 @@ function App() {
             {/* <Route path="/openStore" ><OpenStore /></Route> */}
 
             <PrivateRoute path="/openStore" component={OpenStore} />
-            <PrivateRoute path="/home" component={Index} /> 
-              <PrivateRoute path="/storePerUser" component={StorePerUser} />
+            <PrivateRoute path="/home" component={Index} />
+            <PrivateRoute path="/storePerUser" component={StorePerUser} />
 
             <Route path="/0/admin/storeSettingManagment"><StoreSettingsManagement /></Route>
-
-            {/* //קומפוננטות לניסוי שדה חובה */}
-            {/* <Route path="/nis"><Nis /></Route> */}
-            {/* <Route path="/test"><Test /></Route>
-            <Route path="/mymy"><Mymy /></Route> */}
 
             <Route path="/view">
               <h2>תצוגה</h2>
@@ -61,10 +57,10 @@ function App() {
               {/* <h2>{store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage}</h2> */}
               {/* {console.log("store Border Radius Images",store1.editHomeStoreReducer.homeStoreDesign.ImageBorderRadiusImage)} */}
             </Route>
-            <PrivateRoute path="/0" component={Wrap} />
+            <PrivateRoute path="/:comp" component={Wrap} />
             {/* <Redirect to={"/login"} /> */}
 
-            
+
             {/* <Route path="/0">
               <Wrap></Wrap>
             </Route> */}

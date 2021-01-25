@@ -46,7 +46,6 @@ const reducers =
     combineReducers({
         communityReducer,
         userReducer,
-        // storeReducer,
         editHomeStoreReducer,
         logoReducer,
         productReducer,

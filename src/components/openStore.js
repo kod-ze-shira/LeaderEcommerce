@@ -69,7 +69,9 @@ function OpenStore(props) {
             <form onSubmit={submitToStore}>
                 {/* <lable>fff</lable><input type="text" id="fname" onblur={myFunction}></input><br></br> */}
                 <input placeholder="הכנס שם חנות" type="text" id="fname"
-                    onBlur={funcConvert} onChange={props.setNameStore}></input><br></br>
+                    onBlur={funcConvert} onChange={props.setNameStore}
+                // required
+                ></input><br></br>
                 <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
                 <input placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>

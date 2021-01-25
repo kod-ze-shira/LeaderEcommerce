@@ -1,13 +1,24 @@
-import React from 'react';
 //קומפוננטה לעיצוב הלוגו
-import Logo from "./compsEditStore/logo"
-import Image from './compsEditStore/image';
-import TextOnThePicture from './compsEditStore/textOnThePicture';
-import TextTitleOfCategory from './compsEditStore/textTitleOfCategory'
-import TextTitleOfProduct from './compsEditStore/textTitleOfProduct'
-import TextIntoCategory from './compsEditStore/textIntoCategory'
-import ProductOnPageCategory from './compsEditStore/productOnPageCategory';
 // import IconEdit from './compsEditStore/iconEdit'
+// import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import Fab from '@material-ui/core/Fab';
+// import SettingsIcon from '@material-ui/icons/Settings';
+// import InvertColorsIcon from '@material-ui/icons/InvertColors';
+// import InvertDesktopWindows from '@material-ui/icons/DesktopWindows';
+// import TabletMacIcon from '@material-ui/icons/TabletMac';
+// import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
+// import Drawer from '@material-ui/core/Drawer';
+// import AddProduct from './compsEditStore/addProduct2';
+// import Search from './compsEditStore/search';
+// import AddCategory from './compsEditStore/addCategory';
+// // import {browserHistory} from "react-router";
+// // import { useHistory } from "react-router-dom";
+// // import { logOut } from '../services/firebase'
+// import EditProduct from './compsEditStore/editProduct';
+// import EditCategory from './compsEditStore/editCategory';
+
+import React from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import clsx from 'clsx';
@@ -15,37 +26,21 @@ import { withStyles } from '@material-ui/core/styles';
 //import lastFiles from './lastFiles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
-import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
-import InvertColorsIcon from '@material-ui/icons/InvertColors';
-import InvertDesktopWindows from '@material-ui/icons/DesktopWindows';
-import TabletMacIcon from '@material-ui/icons/TabletMac';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import './wrap-component.css'
 import profil from '../assets/profil.png';
 import logo from '../assets/logo.png';
 import Content from './content';
 import { logOut } from '../services/firebase'
-import AddProduct from './compsEditStore/addProduct2';
-import Search from './compsEditStore/search';
-import AddCategory from './compsEditStore/addCategory';
-// import {browserHistory} from "react-router";
-// import { useHistory } from "react-router-dom";
 import { Link, withRouter } from "react-router-dom";
-// import { logOut } from '../services/firebase'
+import Configurator from './Configurator';
 
 
-import EditProduct from './compsEditStore/editProduct';
-import EditCategory from './compsEditStore/editCategory';
 
 const drawerWidth = '15%';
 const useStyles = theme => ({
@@ -252,13 +247,6 @@ class Wrap extends React.Component {
         // const { theme } = this.props;
         //const history = createBrowserHistory();
         const open = Boolean(this.state.anchorEl)
-        const view = () => {
-            // const history = useHistory();
-            // history.push("/login")
-            ;
-            this.props.changeViewMode(true);
-            this.props.history.push("/view/" + this.props.viewModel.currentPage);
-        }
         const logOutHandler = () => {
             logOut.then(() => {
                 console.log('logged out')
@@ -268,7 +256,6 @@ class Wrap extends React.Component {
             })
         }
 
-        const CreateNewPage = "Create New Page"
         return (
             <div className={classes.root}>
                 {/* <Router> */}
@@ -280,18 +267,23 @@ class Wrap extends React.Component {
                     style={{ backgroundColor: '#fff', color: 'black' }}>
 
                     <div className={classes.row}>
-                        <IconButton
+                        {/* <IconButton
                             color="inherit"
                             aria-label="open drawer"
                             //edge="start"
                             onClick={this.handleDrawerOpen}>
                             <MenuIcon />
+<<<<<<< HEAD
+                            <h1>{this.props.user.username}</h1>
+=======
+
                          <h1>{this.props.user.username}</h1>    
+>>>>>>> 4b76d321c74c5dd99d31a15ae74889f08f299377
                         </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />
                         <button className="btn btn-success" onClick={logOutHandler}>Log Out</button>
-                        <img src={profil} alt={"profil"} width="45px" />
+                        {/* <img src={profil} alt={"profil"} width="45px" /> */}
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -306,117 +298,8 @@ class Wrap extends React.Component {
 
                 <main className={classes.content} style={{ height: '85vh' }}>
                     <Content />
-                    {/* <Route path="/lastFiles" component={lastFiles} /> */}
-                    {/* <div className={classes.toolbar} /> */}
-                    {/* {this.showTips()} */}
-
-                    {/* <div style={{ direction: 'rtl' }}
-                    // onMouseLeave={this.closeFastAccses}
-                    > */}
-                    {/* {this.state.hidden===false ?( */}
-                    {/* {this.fastAccses()} */}
-                    {/* : null } */}
-
-                    {/* </div> */}
                 </main>
-
-                <Drawer anchor={'right'}
-                    classes={{ paper: clsx(classes.drawerPaper, { [classes.drawerPaperLight]: this.state.color === 'black', }) }}
-                    className={clsx(classes.configurator, {
-                        [classes.configuratorOpen]: this.state.right,
-                        [classes.configuratorClose]: !this.state.right,
-                    })}
-                    open={this.state['right']} fullWidth={"true"} variant="persistent" onClose={this.toggleDrawer}>
-
-                    <div className={classes.row}
-                        style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
-
-                        <Link to='/0/admin'>
-                            {/* this.props.history.push("/0/admin"); */}
-                            <IconButton onClick={() => { console.log(this.props.history); this.props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
-                                <SettingsIcon style={{ color: this.state.color }} />
-                            </IconButton>
-                        </Link>
-                        <Typography variant="h6" style={{ flexGrow: 5, color: this.state.fontColor, textAlign: 'center' }}>
-                            {CreateNewPage}
-                        </Typography>
-
-                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.changeColor}>
-                            <InvertColorsIcon style={{ color: this.state.color }} />
-                        </IconButton>
-                    </div>
-
-                    {/* כאן אני ממקמת את הקונפיגורטור הנוכחי */}
-
-
-                    {this.props.logoDesign.currentComponent ? (() => {
-                        switch (this.props.logoDesign.currentComponent) {
-                            case "LOGO": return <Logo />;
-                            case "Image": return <Image />;
-                            case "addProduct": return <AddProduct />;
-                            case "addCategory": return <AddCategory />;
-                            case "search": return <Search />;
-                            case "textOnThePicture": return <TextOnThePicture />;
-                            case "TextTitleOfCategory": return <TextTitleOfCategory />;
-                            case "TextTitleOfProduct": return <TextTitleOfProduct />;
-                            case "TextIntoCategory": return <TextIntoCategory />;
-                            case "ProductOnPageCategory": return <ProductOnPageCategory />;
-                            case "editProduct": return <EditProduct />
-                            case "editCategory": return <EditCategory />
-                            // case "IconEdit": return <IconEdit />;
-                            case "": return <h1>e</h1>;
-                            default: return <h3>didnt check</h3>;
-                        }
-                    })() :
-                        <h3>didnt check</h3>}
-
-
-
-
-
-
-                    {/* <Button variant="outlined" size="large" className={classes.configuratorContent} endIcon={<svg style={{ fill: this.state.color }} xmlns="http://www.w3.org/2000/svg" width="8.211" height="11.124" viewBox="0 0 8.211 11.124"><path d="M13.6,5.344,5.915.047A.265.265,0,0,0,5.5.265V10.859a.265.265,0,0,0,.415.218L13.6,5.78a.265.265,0,0,0,0-.436Z" transform="translate(-5.5 0)" /></svg>} style={{ color: this.state.color }} onClick={this.f}>Post Setting</Button>
-                    <Button variant="outlined" size="large" className={classes.configuratorContent} endIcon={<svg style={{ fill: this.state.color }} xmlns="http://www.w3.org/2000/svg" width="8.211" height="11.124" viewBox="0 0 8.211 11.124"><path d="M13.6,5.344,5.915.047A.265.265,0,0,0,5.5.265V10.859a.265.265,0,0,0,.415.218L13.6,5.78a.265.265,0,0,0,0-.436Z" transform="translate(-5.5 0)" /></svg>} style={{ color: this.state.color }}>Managment Setting</Button> */}
-
-                    <AppBar position="absolute" color="primary" className={classes.appBarBottom}>
-                        <Toolbar style={{ minHeight: '40px', paddingLeft: "10px", paddingRight: "0px" }}>
-
-                            {/* <IconButton edge="start" color="inherit" aria-label="open drawer">
-                              <MenuIcon />
-                              </IconButton>
-                              <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                              <AddIcon />
-                              </Fab> */}
-
-                            <div className={classes.grow} />
-                            <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }} onClick={view}>
-                                <InvertDesktopWindows />
-                            </IconButton>
-                            <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }}>
-                                <TabletMacIcon />
-                            </IconButton>
-                            <IconButton color="inherit" style={{ paddingLeft: '0px', paddingRight: '12px' }}>
-                                <PhoneIphoneIcon />
-                                {/* <svg style={{fill:this.state.arrowColor}} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><defs></defs><path class="a" d="M8,23A15,15,0,1,1,23,38,15,15,0,0,1,8,23Zm27.1,0A12.1,12.1,0,1,0,23,35.1,12.093,12.093,0,0,0,35.1,23Zm-4.355,1.21V21.79a.728.728,0,0,0-.726-.726H23V17.012a.727.727,0,0,0-1.24-.514l-5.988,5.988a.726.726,0,0,0,0,1.028L21.76,29.5A.726.726,0,0,0,23,28.988V24.935h7.016A.728.728,0,0,0,30.742,24.21Z" transform="translate(-8 -8)"/></svg> */}
-                            </IconButton>
-                            {/* <IconButton edge="end" color="inherit" style={{paddingLeft:'0px', paddingRight:'12px'}}>
-          <svg style={{fill:this.state.arrowColor}} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><defs></defs><path class="a" d="M38,23A15,15,0,1,0,23,38,15,15,0,0,0,38,23ZM10.9,23A12.1,12.1,0,1,1,23,35.1,12.093,12.093,0,0,1,10.9,23Zm4.355,1.21V21.79a.728.728,0,0,1,.726-.726H23V17.012a.727.727,0,0,1,1.24-.514l5.988,5.988a.726.726,0,0,1,0,1.028L24.24,29.5A.726.726,0,0,1,23,28.988V24.935H15.984A.728.728,0,0,1,15.258,24.21Z" transform="translate(-8 -8)"/></svg>        
-            </IconButton> */}
-                            <Fab
-                                style={{ width: "150px" }}
-                                variant="extended"
-                                size="small"
-                                color="primary"
-                                aria-label="add"
-                                className={classes.margin}
-                            >
-                                <svg style={{ fill: "white", flexShrink: 0, margin: '5px' }} xmlns="http://www.w3.org/2000/svg" width="8.211" height="11.124" viewBox="0 0 8.211 11.124"><path d="M13.6,5.344,5.915.047A.265.265,0,0,0,5.5.265V10.859a.265.265,0,0,0,.415.218L13.6,5.78a.265.265,0,0,0,0-.436Z" transform="translate(-5.5 0)" /></svg>
-          Publish
-        </Fab>
-                        </Toolbar>
-                    </AppBar>
-                </Drawer>
-                {/* </Router> */}
+                <Configurator state={this.state} />
             </div >
         )
     };
@@ -443,6 +326,7 @@ class Wrap extends React.Component {
     }
 
     toggleDrawer = () => {
+        debugger
         const show = this.state.right
         this.setState({ right: !show });
     };
@@ -477,12 +361,12 @@ class Wrap extends React.Component {
         this.setState({ anchorEl: null });
     };
 
-    changeColor = () => {
-        if (this.state.color === 'gray')
-            this.setState({ color: 'black', fontColor: 'black', arrowColor: 'white' })
-        else
-            this.setState({ color: 'gray', fontColor: 'white', arrowColor: 'gray' });
-    };
+    // changeColor = () => {
+    //     if (this.state.color === 'gray')
+    //         this.setState({ color: 'black', fontColor: 'black', arrowColor: 'white' })
+    //     else
+    //         this.setState({ color: 'gray', fontColor: 'white', arrowColor: 'gray' });
+    // };
 
     handleClose = () => {
         this.setState({ openSpeedDial: false });
@@ -503,13 +387,12 @@ const mapStateToProps = (state) => {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
         viewModel: state.viewModeReducer.viewModel,
-        user:state.userReducer.user,
+        user: state.userReducer.user,
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
     setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-    changeViewMode: (e) => dispatch(actions.setMode(e))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(withRouter(Wrap)));
