@@ -241,6 +241,16 @@ function Configurator(props) {
         arrowColor: 'gray',
         openSpeedDial: false,
     })
+    //פונקציה של הגלגל שיניים
+    const [flag, setFlag] = useState(true)
+    function funcLinks() {
+        setFlag(!flag)
+        if (flag)
+            history.push("/0/admin")
+        else
+            history.push("/0")
+    }
+    ///////////////////////////////////////
     function changeColor() {
         if (state.color === 'gray')
             setState({ color: 'black', fontColor: 'black', arrowColor: 'white' })
@@ -265,13 +275,13 @@ function Configurator(props) {
 
             <div className={classes.row}
                 style={{ position: 'static', marginTop: '50px', marginBottom: '50px', overflowY: 'hidden' }}>
-
-                <Link to='/0/admin'>
-                    {/* props.history.push("/0/admin");console.log(props.history); */}
-                    <IconButton onClick={() => { props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
-                        <SettingsIcon style={{ color: state.color }} />
-                    </IconButton>
-                </Link>
+                {/* props.history.push("/0/admin");console.log(props.history); */}
+                <IconButton onClick={() => {
+                    props.setcomponnet("");
+                    funcLinks()
+                }} edge="end" color="inherit" aria-label="setting" >
+                    <SettingsIcon style={{ color: state.color }} />
+                </IconButton>
                 <Typography variant="h6" style={{ flexGrow: 5, color: state.fontColor, textAlign: 'center' }}>
                     {CreateNewPage}
                 </Typography>
@@ -279,31 +289,33 @@ function Configurator(props) {
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={changeColor}>
                     <InvertColorsIcon style={{ color: state.color }} />
                 </IconButton>
-            </div>
+            </div >
 
             {/* כאן אני ממקמת את הקונפיגורטור הנוכחי */}
 
             {/* <EditPage></EditPage> */}
-            {props.logoDesign.currentComponent ? (() => {
-                switch (props.logoDesign.currentComponent) {
-                    case "LOGO": return <Logo />;
-                    case "Image": return <Image />;
-                    case "addProduct": return <AddProduct />;
-                    case "addCategory": return <AddCategory />;
-                    case "search": return <Search />;
-                    case "textOnThePicture": return <TextOnThePicture />;
-                    case "TextTitleOfCategory": return <TextTitleOfCategory />;
-                    case "TextTitleOfProduct": return <TextTitleOfProduct />;
-                    case "TextIntoCategory": return <TextIntoCategory />;
-                    case "ProductOnPageCategory": return <ProductOnPageCategory />;
-                    case "editProduct": return <EditProduct />
-                    case "editCategory": return <EditCategory />
-                    // case "IconEdit": return <IconEdit />;
-                    case "": return <h1>e</h1>;
-                    default: return <h3>didnt check</h3>;
-                }
-            })() :
-                <h3>didnt check</h3>}
+            {
+                props.logoDesign.currentComponent ? (() => {
+                    switch (props.logoDesign.currentComponent) {
+                        case "LOGO": return <Logo />;
+                        case "Image": return <Image />;
+                        case "addProduct": return <AddProduct />;
+                        case "addCategory": return <AddCategory />;
+                        case "search": return <Search />;
+                        case "textOnThePicture": return <TextOnThePicture />;
+                        case "TextTitleOfCategory": return <TextTitleOfCategory />;
+                        case "TextTitleOfProduct": return <TextTitleOfProduct />;
+                        case "TextIntoCategory": return <TextIntoCategory />;
+                        case "ProductOnPageCategory": return <ProductOnPageCategory />;
+                        case "editProduct": return <EditProduct />
+                        case "editCategory": return <EditCategory />
+                        // case "IconEdit": return <IconEdit />;
+                        case "": return <h1>e</h1>;
+                        default: return <h3>didnt check</h3>;
+                    }
+                })() :
+                    <h3>didnt check</h3>
+            }
 
 
 
@@ -352,7 +364,7 @@ Publish
                 </Toolbar>
             </AppBar>
             {/* </Router> */}
-        </Drawer>
+        </Drawer >
 
 
     )

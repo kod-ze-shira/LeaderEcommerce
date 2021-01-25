@@ -28,7 +28,7 @@ class Header extends Component {
             <header className="header js-header">
                 <div className="header__center center">
                     {
-                        <Link to="/0/" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
+                        <Link to="/0" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                             {this.props.logoDesign.LogoYOrN === true ?
                                 <img className="" src={this.props.objectFields.logoStore ? this.props.objectFields.logoStore : tempLogo} alt=""
                                     // <img className="" src={this.props.logoDesign.logo} alt=""

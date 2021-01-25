@@ -96,7 +96,7 @@ function Cart(props) {
                         <input name="address" value={props.cart.address} onChange={props.updateSetOrder}></input>
                         <br></br><br></br>
                         <button onClick={funcSubmit}>שלח</button>
-                        <Link to="/0/">חזרה לחנות</Link>
+                        <Link to="/0">חזרה לחנות</Link>
                 </>
         )
 }
