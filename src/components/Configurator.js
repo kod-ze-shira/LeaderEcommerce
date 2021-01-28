@@ -248,7 +248,7 @@ function Configurator(props) {
         if (flag)
             history.push("/0/admin")
         else
-            history.push("/0")
+            history.push("/0/" + props.objectFields.urlRoute)
     }
     ///////////////////////////////////////
     function changeColor() {
@@ -373,6 +373,8 @@ const mapStateToProps = (state) => {
     return {
         //אפשר לקרוא שם אחר לאוביקט
         logoDesign: state.logoReducer.logoDesign,
+        objectFields: state.openStoreReducer.objectFields,
+
     }
 }
 

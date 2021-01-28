@@ -27,13 +27,6 @@ function StoreSettingsManagement(props) {
 
     });
 
-    // const updateSetDetailsStore = (event) => {
-    //     setDetailsStore({
-    //         ...detailsStore,
-    //         [event.target.name]: event.target.value
-    //     }
-    //     )
-    // }
 
     //בכל שינוי אינפוט ניגש לפונקציה הזו
     const changeStoreDetails = (event) => {
@@ -48,47 +41,12 @@ function StoreSettingsManagement(props) {
         )
     }
 
-
-    // const updateLogo = (value) => {
-    //     setDetailsStore({
-    //         ...detailsStore,
-    //         logo: value
-    //     }
-    //     )
-    // }
-    // const updateUrlRoute = (value) => {
-    //     setDetailsStore({
-    //         ...detailsStore,
-    //         urlRoute: value
-    //     }
-    //     )
-    // }
-    // const updateCurency = (value) => {
-    //     setDetailsStore({
-    //         ...detailsStore,
-    //         currency: value
-    //     }
-    //     )
-    // }
-    // const updateColor = (value) => {
-    //     setDetailsStore({
-    //         ...detailsStore,
-    //         colorDominates: value
-    //     }
-    //     )
-    // }
-
-
-
-
-
     //פונקציה שטוענת את הלוגו
     function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
                 setAllDetailsStore("logo", reader.result)
-                // updateLogo(reader.result)
             }
             reader.readAsDataURL(event)
         }
@@ -130,7 +88,6 @@ function StoreSettingsManagement(props) {
 
     // setUrlRoute פונ ששולחת את הערך של האינפוט ל
     function funcSendValue(event) {
-        // updateUrlRoute(event.target.value)
         setAllDetailsStore("urlRoute", event.target.value)
 
     }
@@ -142,7 +99,6 @@ function StoreSettingsManagement(props) {
         let hasSpace = str.indexOf(' ');
         if (hasSpace >= 0)
             str = str.replace(/\s/g, '_')
-        // updateUrlRoute(str)
         setAllDetailsStore("urlRoute", str)
     }
     //שמירת הטופס צריך לעשות פה ניתוב לאיפה שרותי תגיד
@@ -209,7 +165,6 @@ function StoreSettingsManagement(props) {
                     <input id="g"
                         value={detailsStore.colorDominates ? detailsStore.colorDominates : ""}
                         onChange={e => setAllDetailsStore("colorDominates", e.target.value)}
-                    // onChange={e => updateColor(e.target.value)}
                     ></input><br></br>
                     <Box flexDirection="row"
                         display="flex"
@@ -220,7 +175,6 @@ function StoreSettingsManagement(props) {
                             <CirclePicker
                                 color={detailsStore.colorDominates}
                                 onChangeComplete={e => setAllDetailsStore("colorDominates", e.hex)}
-                                // onChangeComplete={e => updateColor(e.hex)}
                                 width={200}
                                 height={6}
                             />
@@ -230,7 +184,6 @@ function StoreSettingsManagement(props) {
                             alignSelf="center">
                             <SwatchesPicker
                                 color={detailsStore.colorDominates}
-                                // onChangeComplete={e => updateColor(e.hex)}
                                 onChangeComplete={e => setAllDetailsStore("colorDominates", e.hex)}
 
                                 width={400}
@@ -240,7 +193,6 @@ function StoreSettingsManagement(props) {
                         </Box>
                         <Box justifyContent="flex-end">
                             <div className="data__preview"
-                                //  style={{ "backgroundColor": props.objectFields.colorDominates }}>
                                 style={{ "backgroundColor": detailsStore.colorDominates }}>
                             </div>
                         </Box>
@@ -270,7 +222,6 @@ function StoreSettingsManagement(props) {
                     <lable>בחר מטבע</lable>
                     <select
                         onChange={e => setAllDetailsStore("currency", e.target.value)}
-                    // onChange={(e) => updateCurency(e.target.value)}
                     >
                         {props.coins.map((item, index) => (
                             <option key={index} value={item.name}>{item.name}:{item.country}</option>
@@ -305,7 +256,6 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setColorStore: (e) => dispatch(actions.setColorStore(e)),
     setInventoryManagement: (e) => dispatch(actions.setInventoryManagement(e)),//ניהול מלאי
     setOneProductPurchase: (e) => dispatch(actions.setOneProductPurchase(e)),//קניה חד מוצרית
     setSaveAllDetailsStore: (e) => dispatch(actions.setSaveAllDetailsStore(e))

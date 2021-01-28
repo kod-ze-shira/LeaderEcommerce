@@ -12,7 +12,6 @@ function StorePerUser(props) {
         props.setSoreCurrent(item);
         props.setProducts(item.storeProducts)
         props.setFilteredItems(item.storeProducts)
-        ///פה צריך להוסיף את הפונקציה שתכניס את נתוני החנות לרידקס
         props.setSaveAllDetailsStore(item)
     }
 
@@ -38,7 +37,6 @@ function StorePerUser(props) {
     useEffect(async () => {
         await props.getStoreByUser(props.user._id);
     }, [])
-
     return (
         <>
             <h1>:בחר אחת מהחנויות שברשותך</h1>
@@ -74,10 +72,11 @@ function StorePerUser(props) {
                                         <label className="switch"></label></div>
 
                                     <div className="data__cell mobile-hide">
-                                        <Link onClick={() => { funcReset(itemy) }} to="/0">
+                                        <Link onClick={() => { funcReset(itemy) }} to={"/0/" + props.objectFields.urlRoute} >
                                             <div className="data__content">
                                                 <strong>{itemy.storeName}</strong>
-                                            </div></Link>
+                                            </div>
+                                        </Link>
                                     </div>
 
                                     <div className="data__cell mobile-hide">
@@ -106,6 +105,8 @@ export default connect(
         return {
             stores: state.storeByUser.stores,
             user: state.userReducer.user,
+            objectFields: state.openStoreReducer.objectFields,
+
         }
     },
     (dispatch) => {

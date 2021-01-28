@@ -68,11 +68,7 @@ function OpenStore(props) {
         event.preventDefault()
         props.setSaveAllDetailsStore(detailsStore)
         props.createNewStore({ "store": detailsStore, "file": fileToUpload }).then(() => {
-            // props.createNewStore({ "store": props.objectFields, "file": fileToUpload }).then(() => {
-            // history.push("/0/" + props.objectFields.urlRoute)
-            // console.log("store", props.objectFields);
-            history.push("/0/" + detailsStore.urlRoute)
-            console.log("store", detailsStore);
+            history.push("/0/" + detailsStore.urlRoute);
         })
     }
 
@@ -99,7 +95,6 @@ function OpenStore(props) {
                 ></input><br></br>
                 <input placeholder="  בחר צבע ראשי לחנות   " name="colorDominates"
                     onChange={e => setAllDetailsStore("colorDominates", e.target.value)}
-                //    onChange={e => updateColor(e.target.value)}
                 ></input><br></br>
                 <Box name="color"
                     width={'100%'}
@@ -117,7 +112,7 @@ function OpenStore(props) {
                 <input placeholder="הכנס מדיניות" name="policy"
                     onChange={changeStoreDetails}
                 ></input><br></br>
-                <lable>בחר מטבע</lable>
+                <lable>בחר מטבע</lable><br></br>
                 <select
                     onChange={e => setAllDetailsStore("currency", e.target.value)}
                 >
@@ -152,19 +147,12 @@ const mapStateToProps = (state) => {
     return {
 
         objectFields: state.openStoreReducer.objectFields,
-        // storeId: state.openStoreReducer.storeId,
         coins: state.coinsReducer.coins
 
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    // setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
-    // setUrlRoute: (e) => dispatch(actions.setUrlRoute(e)),
-    // setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e)),
-    // setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
-    // setColorStore: (e) => dispatch(actions.setColorStore(e)),
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
-    // uploadImage: (x) => dispatch(actions.uploadImage(x)),
     setSaveAllDetailsStore: (e) => dispatch(actions.setSaveAllDetailsStore(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);
