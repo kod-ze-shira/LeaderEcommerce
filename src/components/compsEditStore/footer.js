@@ -61,15 +61,15 @@ class Footer extends Component {
                             <div><h1>Contact Us</h1><br />
                                 <div>
                                     <label>Phone Store</label>
-                                    <p>{this.props.objectFields.phoneStore}</p>
+                                    <p>{this.props.objectFields.tel}</p>
                                 </div><br></br>
                                 <div>
                                     <label>Address Store</label>
-                                    <p>{this.props.objectFields.addressStore}</p>
+                                    <p>{this.props.objectFields.address}</p>
                                 </div><br></br>
                                 <div>
                                     <label>Email Store</label>
-                                    <p>{this.props.objectFields.emailStore}</p>
+                                    <p>{this.props.objectFields.email}</p>
                                 </div><br></br>
                                 {/* <button className="btn btn-default">Send</button> */}
                             </div>

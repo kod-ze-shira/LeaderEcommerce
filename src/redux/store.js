@@ -5,6 +5,7 @@ import userReducer from './reducers/userReducer';
 import productReducer from './reducers/productReducer';
 import categoriesReducer from './reducers/categoryReducer';
 import cartReduser from './reducers/cartReduser';
+import coinsReducer from './reducers/coinsReducer'
 import uploadFileReducer from './reducers/uploadFileReducer'
 import ordersReduser from './reducers/ordersReduser';
 import addProductReducer from './reducers/addProductReduser';
@@ -57,7 +58,8 @@ const reducers =
         cartReduser,
         uploadFileReducer,
         ordersReduser,
-        storeByUser
+        storeByUser,
+        coinsReducer
     })
 
 const store = createStore(

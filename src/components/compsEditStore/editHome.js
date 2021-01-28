@@ -15,8 +15,8 @@ import { LensOutlined } from '@material-ui/icons';
 
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function EditHome(props) {
-// צריך לעשות פונ של useEffect 
-//יקבל את ה-url של שם החנות וישלוף לפי זה מהשרת את פרטי החנות 
+    // צריך לעשות פונ של useEffect 
+    //יקבל את ה-url של שם החנות וישלוף לפי זה מהשרת את פרטי החנות 
     const onChangeHandlerImage = (event) => {
         if (event) {
             let reader = new FileReader();
@@ -46,8 +46,8 @@ function EditHome(props) {
                         >
                             <TextareaAutosize className="SPtitle col-md-12" value=
                                 // {this.props.homeStoreDesign.titleText.onThePicture ? this.props.homeStoreDesign.titleText.onThePicture : "We Offer the Best Products for your Skin"}
-                                {"NAME STORE:" + props.objectFields.nameStore + "        " +
-                                    "  DESCRIPTION:  " + props.objectFields.descriptionStore}
+                                {"NAME STORE:" + props.objectFields.storeName + "        " +
+                                    "  DESCRIPTION:  " + props.objectFields.storeDescription}
                                 style={{
                                     fontFamily: props.homeStoreDesign.titleFont.onThePicture,
                                     fontWeight: props.homeStoreDesign.titleTextWeight.onThePicture,
@@ -61,7 +61,7 @@ function EditHome(props) {
                         </div>
                         <div className="main__preview"
                             // onClick={() => this.props.changeCurrentComponent("textOnThePicture")}
-                            style={{ border: a + props.objectFields.colorStore, borderRadius: props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
+                            style={{ border: a + props.objectFields.colorDominates, borderRadius: props.homeStoreDesign.BorderRadius.pictureFrame + "px" }}
                         >
                             <label for='fileInput' onClick={() => props.changeCurrentComponent("Image")}>
                                 {props.homeStoreDesign.imageYOrN ?
@@ -123,7 +123,7 @@ function EditHome(props) {
                                         </Link> */}
                                             {/*  לסדר בצורה הגיונית! למה לכתוב הכל פעמיים ? י */}
                                             {props.viewModel.viewMode ?
-                                                <Link className="categories__item" to={"/0/category/"+item.categoryName}
+                                                <Link className="categories__item" to={"/0/category/" + item.categoryName}
                                                     style={{ borderRadius: props.homeStoreDesign.BorderRadius.category + "px" }}
                                                 >
                                                     <div className="categories__icon"

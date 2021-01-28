@@ -1,27 +1,104 @@
 import { Box } from '@material-ui/core';
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { CirclePicker, GithubPicker, HuePicker, SwatchesPicker } from 'react-color';
 import { connect } from "react-redux";
 import { actions } from '../redux/action'
-//בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function StoreSettingsManagement(props) {
+
+    useEffect(() => {
+        setDetailsStore(props.objectFields)
+    }, [])
+
+
+    //useState אובייקט
+    const [detailsStore, setDetailsStore] = useState({
+        storeName: "",
+        urlRoute: "",
+        storeDescription: "",
+        logo: "",
+        address: "",
+        tel: "",
+        email: "",
+        colorDominates: "",
+        policy: "",
+        currency: "",
+        inventoryManagement: "",//ניהול מלאי
+        oneProductPurchase: "",//קניה חד מוצרית
+
+    });
+
+    // const updateSetDetailsStore = (event) => {
+    //     setDetailsStore({
+    //         ...detailsStore,
+    //         [event.target.name]: event.target.value
+    //     }
+    //     )
+    // }
+
+    //בכל שינוי אינפוט ניגש לפונקציה הזו
+    const changeStoreDetails = (event) => {
+        setAllDetailsStore(event.target.name, event.target.value)
+    }
+    // פונקציה שמכניסה ערכים לסטייט המקומי לפי שדה
+    const setAllDetailsStore = (name, value) => {
+        setDetailsStore({
+            ...detailsStore,
+            [name]: value
+        }
+        )
+    }
+
+
+    // const updateLogo = (value) => {
+    //     setDetailsStore({
+    //         ...detailsStore,
+    //         logo: value
+    //     }
+    //     )
+    // }
+    // const updateUrlRoute = (value) => {
+    //     setDetailsStore({
+    //         ...detailsStore,
+    //         urlRoute: value
+    //     }
+    //     )
+    // }
+    // const updateCurency = (value) => {
+    //     setDetailsStore({
+    //         ...detailsStore,
+    //         currency: value
+    //     }
+    //     )
+    // }
+    // const updateColor = (value) => {
+    //     setDetailsStore({
+    //         ...detailsStore,
+    //         colorDominates: value
+    //     }
+    //     )
+    // }
+
+
+
+
+
     //פונקציה שטוענת את הלוגו
     function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.setLogoStore(reader.result)
+                setAllDetailsStore("logo", reader.result)
+                // updateLogo(reader.result)
             }
             reader.readAsDataURL(event)
         }
     }
     // checkbox -  פונקציה ל
     function checkBoxFunc() {
-        
+
         var checkBox = document.getElementById("myCheck");
         var text = document.getElementById("text");
         if (checkBox.checked == true) {
-            // console.log("choose!!!!!")
             // ? true האם אני יוכלה להציב במשתנה בריקס את 
             //במקום כל האוביקט המוזר שהוא מציב
             props.setInventoryManagement("true")
@@ -41,7 +118,6 @@ function StoreSettingsManagement(props) {
         var checkBox = document.getElementById("myCheckBuy");
         var text = document.getElementById("text");
         if (checkBox.checked == true) {
-            // console.log("choose!!!!!")
             props.setOneProductPurchase("true")
             console.log(props.objectFields.oneProductPurchase)
         }
@@ -54,195 +130,158 @@ function StoreSettingsManagement(props) {
 
     // setUrlRoute פונ ששולחת את הערך של האינפוט ל
     function funcSendValue(event) {
-        props.setUrlRoute(event.target.value)
+        // updateUrlRoute(event.target.value)
+        setAllDetailsStore("urlRoute", event.target.value)
+
     }
 
     //פונקציה תקינות קלט לכתובת הניתוב 
     function funcConvert2(event) {
-        var str = event.target.value
+        let str = event.target.value
         //תנאי שרק כאשר יש רווח יכנס להמרה
-        var hasSpace = str.indexOf(' ');
-        if (hasSpace >= 0) {
+        let hasSpace = str.indexOf(' ');
+        if (hasSpace >= 0)
             str = str.replace(/\s/g, '_')
-            //הצבת המחרוזת במשתנה ברידקס
-            props.setUrlRoute(str)
-        }
-        else {
-            console.log("has not space!!!")
-        }
+        // updateUrlRoute(str)
+        setAllDetailsStore("urlRoute", str)
     }
     //שמירת הטופס צריך לעשות פה ניתוב לאיפה שרותי תגיד
     function saveForm(event) {
         alert("save changes!")
         //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
+        props.setSaveAllDetailsStore(detailsStore)
+
     }
 
     return (
         <div>
             <h1>welcome to setting!!!!!</h1>
             <div>
-                {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
-                {/*ניהול מלאי וקניה חד מוצרית - checkbox */}
                 <form onSubmit={saveForm}>
                     <label for="a">עדכן שם חנות</label><br></br>
-                    <input required id="a" value={props.objectFields.nameStore ? props.objectFields.nameStore : ""} onChange={props.setNameStore}></input><br></br>
+                    <input id="a"
+                        name="storeName"
+                        required
+                        value={detailsStore.storeName ? detailsStore.storeName : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
                     <label for="b">עדכן תאור לחנות</label><br></br>
-                    <input id="b" value={props.objectFields.descriptionStore ? props.objectFields.descriptionStore : ""} onChange={props.setDescriptionStore}></input><br></br>
+                    <input id="b"
+                        name="storeDescription"
+                        value={detailsStore.storeDescription ? detailsStore.storeDescription : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
                     <label for="c">עדכן כתובת החנות</label><br></br>
-                    <input required id="c" value={props.objectFields.addressStore ? props.objectFields.addressStore : ""} onChange={props.setAddressStore}></input><br></br>
+                    <input id="c"
+                        name="address"
+                        required
+                        value={detailsStore.address ? detailsStore.address : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
                     <label for="d">עדכן טלפון החנות</label><br></br>
-                    <input required id="d" value={props.objectFields.phoneStore ? props.objectFields.phoneStore : ""} onChange={props.setPhoneStore}></input><br></br>
+                    <input id="d"
+                        name="tel"
+                        required
+                        value={detailsStore.tel ? detailsStore.tel : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
                     <label for="e">עדכן אימיל החנות</label><br></br>
-                    <input required id="e" value={props.objectFields.emailStore ? props.objectFields.emailStore : ""} onChange={props.setEmailStore} type="email"></input><br></br>
+                    <input id="e"
+                        name="email"
+                        required
+                        value={detailsStore.email ? detailsStore.email : ""}
+                        onChange={changeStoreDetails}
+                        type="email"></input><br></br>
 
                     <label for="f">עדכן כתובת ניתוב החנות</label><br></br>
-                    <input required type="text" id="f"
+                    <input id="f"
+                        type="text"
+                        value={detailsStore.urlRoute ? detailsStore.urlRoute : ""}
                         onBlur={funcConvert2}
-                        value={props.objectFields.urlRoute ? props.objectFields.urlRoute : ""}
                         onChange={funcSendValue}></input><br></br>
 
-                    {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
-                    {/*לבינתיים עשיתי עם אינפוט*/}
                     <label for="g">עדכן צבע ראשי לחנות</label><br></br>
-                    <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={e=>props.setColorStore(e.target.value)}></input><br></br>
+                    <input id="g"
+                        value={detailsStore.colorDominates ? detailsStore.colorDominates : ""}
+                        onChange={e => setAllDetailsStore("colorDominates", e.target.value)}
+                    // onChange={e => updateColor(e.target.value)}
+                    ></input><br></br>
                     <Box flexDirection="row"
-        display="flex"
-        justifyContent="space-between">
+                        display="flex"
+                        justifyContent="space-between">
+                        <Box name="color"
+                            width={'100%'}
+                            alignSelf="center">
+                            <CirclePicker
+                                color={detailsStore.colorDominates}
+                                onChangeComplete={e => setAllDetailsStore("colorDominates", e.hex)}
+                                // onChangeComplete={e => updateColor(e.hex)}
+                                width={200}
+                                height={6}
+                            />
+                        </Box>
+                        <Box name="color"
+                            width={'100%'}
+                            alignSelf="center">
+                            <SwatchesPicker
+                                color={detailsStore.colorDominates}
+                                // onChangeComplete={e => updateColor(e.hex)}
+                                onChangeComplete={e => setAllDetailsStore("colorDominates", e.hex)}
 
-        <Box name="color"
-          width={'100%'}
-          alignSelf="center">
-          <CirclePicker
-            color={props.objectFields.colorStore}
-            onChangeComplete={e=>props.setColorStore(e.hex)}
-            width={200}
-            height={6}
-          />
-        </Box>
-        <Box name="color"
-          width={'100%'}
-          alignSelf="center">
-          <SwatchesPicker
-            color={props.objectFields.colorStore}
-            onChangeComplete={e=>props.setColorStore(e.hex)}
-            width={400}
-            height={100}
-            margin-left=" -73vh"
-
-          />
-        </Box>
-
-        <Box justifyContent="flex-end">
-        <div className="data__preview" style={{"backgroundColor":props.objectFields.colorStore}}>
-                </div>
-        </Box>
-      </Box>
-
+                                width={400}
+                                height={100}
+                                margin-left=" -73vh"
+                            />
+                        </Box>
+                        <Box justifyContent="flex-end">
+                            <div className="data__preview"
+                                //  style={{ "backgroundColor": props.objectFields.colorDominates }}>
+                                style={{ "backgroundColor": detailsStore.colorDominates }}>
+                            </div>
+                        </Box>
+                    </Box>
                     <label for="h">עדכן מדיניות לחנות</label><br></br>
-                    <input id="h" value={props.objectFields.policy ? props.objectFields.policy : ""} onChange={props.setPolicyStore}></input><br></br>
+                    <input id="h"
+                        name="policy"
+                        value={detailsStore.policy ? detailsStore.policy : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
                     <label for="myCheck">ניהול מלאי</label><br></br>
-                    <input type="checkbox" id="myCheck"
+                    <input id="myCheck"
+                        name="inventoryManagement"
+                        type="checkbox"
                         onClick={checkBoxFunc}
-                        onChange={props.setInventoryManagement}
+                        onChange={changeStoreDetails}
                     /><br></br>
 
                     <label for="myCheckBuy">קניה חד מוצרית</label><br></br>
-                    <input type="checkbox" id="myCheckBuy"
+                    <input id="myCheckBuy"
+                        name="oneProductPurchase"
+                        type="checkbox"
                         onClick={checkBoxFunc2}
-                        onChange={props.setOneProductPurchase}
+                        onChange={changeStoreDetails}
                     /><br></br>
-
-
-                    {/*  למטבעות drop down  צריך שיהיה  */}
-                    {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
-                    <label>בחר מטבע</label><br></br>
-                    <select>
-                        <option>"AED": "United Arab Emirates Dirham"</option>
-                        <option>"AFN": "Afghan Afghani",</option>
-                        <option>"ALL": "Albanian Lek"</option>
-                        <option>"AMD": "Armenian Dram"</option>
-                        <option> "ANG": "Netherlands Antillean Guilder"</option>
-                        <option>"AOA": "Angolan Kwanza"</option>
-                        <option>"ARS": "Argentine Peso"</option>
-                        <option>"AUD": "Australian Dollar"</option>
-                        <option>"AWG": "Aruban Florin",</option>
-                        <option>"AZN": "Azerbaijani Manat",</option>
-                        <option>"BAM": "Bosnia-Herzegovina Convertible Mark",</option>
-                        <option>"BBD": "Barbadian Dollar",</option>
-                        <option>"BDT": "Bangladeshi Taka",</option>
-                        <option>"BGN": "Bulgarian Lev",</option>
-                        <option>"BHD": "Bahraini Dinar",</option>
-                        <option>"BIF": "Burundian Franc",</option>
-                        <option>"BMD": "Bermudan Dollar",</option>
-                        <option>"BND": "Brunei Dollar",</option>
-                        <option>"BOB": "Bolivian Boliviano",</option>
-                        <option>"BRL": "Brazilian Real",</option>
-                        <option>"BSD": "Bahamian Dollar"</option>
-                        <option>"BTC": "Bitcoin",</option>
-                        <option>"BTN": "Bhutanese Ngultrum",</option>
-                        <option>"BWP": "Botswanan Pula",</option>
-                        <option>"BYN": "Belarusian Ruble",</option>
-                        <option>"BZD": "Belize Dollar",</option>
-                        <option>"CAD": "Canadian Dollar",</option>
-                        <option>"CDF": "Congolese Franc",</option>
-                        <option>"CHF": "Swiss Franc",</option>
-                        <option>"CLF": "Chilean Unit of Account (UF)"</option>
-                        <option>"CLP": "Chilean Peso",</option>
-                        <option>"CNH": "Chinese Yuan (Offshore)"</option>
-                        <option>"CNY": "Chinese Yuan",</option>
-                        <option>"COP": "Colombian Peso",</option>
-                        <option>"CRC": "Costa Rican Colón",</option>
-                        <option>"CUC": "Cuban Convertible Peso",</option>
-                        <option>"CUP": "Cuban Peso",</option>
-                        <option>"CVE": "Cape Verdean Escudo",</option>
-                        <option>"CZK": "Czech Republic Koruna",</option>
-                        <option>"DJF": "Djiboutian Franc",</option>
-                        <option>"DKK": "Danish Krone",</option>
-                        <option>"DOP": "Dominican Peso",</option>
-                        <option>"DZD": "Algerian Dinar",</option>
-                        <option>"EGP": "Egyptian Pound",</option>
-                        <option>"ERN": "Eritrean Nakfa",</option>
-                        <option>"ETB": "Ethiopian Birr",</option>
-                        <option>"EUR": "Euro",</option>
-                        <option>"FJD": "Fijian Dollar",</option>
-                        <option>"FKP": "Falkland Islands Pound",</option>
-                        <option>"GBP": "British Pound Sterling",</option>
-                        <option>"GEL": "Georgian Lari",</option>
-                        <option>"GGP": "Guernsey Pound",</option>
-                        <option>"GHS": "Ghanaian Cedi",</option>
-                        <option>"GIP": "Gibraltar Pound",</option>
-                        <option>"GMD": "Gambian Dalasi",</option>
-                        <option>"GNF": "Guinean Franc",</option>
-                        <option>"GTQ": "Guatemalan Quetzal",</option>
-                        <option>"GYD": "Guyanaese Dollar",</option>
-                        <option>"HKD": "Hong Kong Dollar",</option>
-                        <option>"HNL": "Honduran Lempira",</option>
-                        <option>"HRK": "Croatian Kuna",</option>
-                        <option>"HTG": "Haitian Gourde",</option>
-                        <option>"HUF": "Hungarian Forint",</option>
-                        <option>"IDR": "Indonesian Rupiah",</option>
-                        <option>"ILS": "Israeli New Sheqel",</option>
-                        <option>"IMP": "Manx pound",</option>
-                        <option>"INR": "Indian Rupee",</option>
-                        <option>"IQD": "Iraqi Dinar",</option>
-                        <option>"IRR": "Iranian Rial",</option>
-                        <option>"ISK": "Icelandic Króna",</option>
-                        <option>"JEP": "Jersey Pound",</option>
-                        <option>"JMD": "Jamaican Dollar",</option>
-                        <option>"JOD": "Jordanian Dinar",</option>
-                        <option>"JPY": "Japanese Yen",</option>
-                        <option>"KES": "Kenyan Shilling",</option>
+                    <lable>בחר מטבע</lable>
+                    <select
+                        onChange={e => setAllDetailsStore("currency", e.target.value)}
+                    // onChange={(e) => updateCurency(e.target.value)}
+                    >
+                        {props.coins.map((item, index) => (
+                            <option key={index} value={item.name}>{item.name}:{item.country}</option>
+                        ))}
                     </select>
 
                     <div>
                         <label for="j">עדכן לוגו של החנות
-                <img className="logoC" alt="" src={props.objectFields.logoStore ? props.objectFields.logoStore : ""}></img>
+                <img className="logoC" alt=""
+                                src={detailsStore.logo ? detailsStore.logo : ""}
+                            ></img>
                         </label>
                         <input
                             type={"file"}
@@ -260,24 +299,17 @@ function StoreSettingsManagement(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.openStoreReducer.objectFields
+        objectFields: state.openStoreReducer.objectFields,
+        coins: state.coinsReducer.coins
+
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
-    setDescriptionStore: (e) => dispatch(actions.setDescriptionStore(e.target.value)),
-    setAddressStore: (e) => dispatch(actions.setAddressStore(e.target.value)),
-    setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),
-    setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
-    setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
-    setUrlRoute: (e) => dispatch(actions.setUrlRoute(e)),
-    // setUrlRoute: (e) => { debugger; dispatch(actions.setUrlRoute(e)) },
-
-    setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e.target.value)),
-    setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
     setColorStore: (e) => dispatch(actions.setColorStore(e)),
     setInventoryManagement: (e) => dispatch(actions.setInventoryManagement(e)),//ניהול מלאי
     setOneProductPurchase: (e) => dispatch(actions.setOneProductPurchase(e)),//קניה חד מוצרית
+    setSaveAllDetailsStore: (e) => dispatch(actions.setSaveAllDetailsStore(e))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(StoreSettingsManagement);
 /////////////////////////////

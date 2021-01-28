@@ -30,7 +30,7 @@ class Header extends Component {
                     {
                         <Link to="/0" className="header__logo" onClick={() => this.props.changeCurrentComponent("LOGO")}>
                             {this.props.logoDesign.LogoYOrN === true ?
-                                <img className="" src={this.props.objectFields.logoStore ? this.props.objectFields.logoStore : tempLogo} alt=""
+                                <img className="" src={this.props.objectFields.logo ? this.props.objectFields.logo : tempLogo} alt=""
                                     // <img className="" src={this.props.logoDesign.logo} alt=""
                                     style={{ borderRadius: this.props.logoDesign.logoBorderRadiusLogo }}
                                     width={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth + 'vw' : '100vw'}
@@ -43,7 +43,7 @@ class Header extends Component {
                     {/* navbar!!!!!!!!!!!!!!! */}
                     {/* //שליפת בלולאה הקטגוריות  */}
                     <div class="topnav" style={{
-                        backgroundColor:this.props.objectFields.colorStore,
+                        backgroundColor: this.props.objectFields.colorDominates,
                         overflow: "hidden",
                         width: "82%"
                     }}
