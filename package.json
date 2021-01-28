@@ -29,6 +29,7 @@
     "react-bootstrap-table-next": "^4.0.3",
     "react-color": "^2.19.3",
     "react-color-sliders": "^1.0.1",
+    "react-confirm-alert": "^2.7.0",
     "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-elastic-carousel": "^0.9.5",

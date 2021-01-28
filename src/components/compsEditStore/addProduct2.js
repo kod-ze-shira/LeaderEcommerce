@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
 // import aService from '../services/product.service'
+<<<<<<< HEAD
 function AddProduct(props) {
 
   useEffect(() => {
@@ -62,6 +63,70 @@ function AddProduct(props) {
     // event.preventDefault();
     if (myValues.category != "") {
       props.createNewProduct(myValues);
+=======
+ function AddProduct (props)  {
+
+  useEffect(()=>{
+
+
+})
+
+        console.log(props);
+    const [myValues ,setMyValues]= useState({
+        name:'',
+        description:'',
+        sku:'',
+        amount:'', 
+        category:'',
+         price:'', 
+         //לא עובד -צריך להביא תמונות מהשרת 
+        //  images:'',
+         featured:false,
+         store:props.storeCurrent._id
+        });
+     
+        // : { type: mongoose.Schema.Types.ObjectId, ref: "Store" },
+
+        const updateCategory = (event) => {
+          let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+           setMyValues({
+             ...myValues,
+             category:k[0]._id
+           });
+         }
+
+        const update = (event) => {
+               
+          var u;
+         //  if(event.target.name=="category")          
+         //    u=item._id;
+         //      else
+             // u=
+ 
+             if(event.target.name==="featured")          
+            u=event.target.checked;
+             else
+             u=event.target.value
+         setMyValues({
+             ...myValues,
+         
+                    // if(event.target.name==="category")          
+             // [event.target.name]:event.target.value.id;
+             // else
+     
+             [event.target.name]:u
+            
+        
+         });
+     }
+     
+    const Submit = ()=>{
+         
+        // event.preventDefault();
+       if(myValues.category!="")
+       {
+        props.createNewProduct(myValues); 
+>>>>>>> cf7683a6ac26ded5c06d807f393695791c1b8766
       //  props.getProducts();
     }
     else {

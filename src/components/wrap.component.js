@@ -273,8 +273,7 @@ class Wrap extends React.Component {
                             //edge="start"
                             onClick={this.handleDrawerOpen}>
                             <MenuIcon />
-
-                         <h1>{this.props.user.username}</h1>    
+                            <h1>{this.props.user.username}</h1>
                         </IconButton>
 
                         <img src={logo} alt={"logo"} width="35px" />

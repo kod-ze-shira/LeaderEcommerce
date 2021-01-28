@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actions } from './../redux/action'
-
+import { confirmAlert } from 'react-confirm-alert';
 
 function StorePerUser(props) {
 
@@ -16,6 +16,24 @@ function StorePerUser(props) {
         props.setSaveAllDetailsStore(item)
     }
 
+    function deleteSto(i) {
+
+        confirmAlert({
+            title: 'מחיקת חנות',
+            message: '?האם אתה בטוח שברצונך למחוק את החנות',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => props.deleteStore(i)
+                },
+                {
+                    label: 'No',
+                    onClick: () => alert('מזל שהתחרטת...')
+                }
+            ]
+        });
+
+    }
 
     useEffect(async () => {
         await props.getStoreByUser(props.user._id);
@@ -37,16 +55,17 @@ function StorePerUser(props) {
                             <div className="data__cell data__cell_xl">
                                 <div className="data__main">
                                     <div className="data__effect mobile-hide"><label className="switch">
-                                        <input className="switch__input" type="button" onClick={() => {
-                                            alert("האם ברצונך למחוק חנות זו?"); props.deleteStore(itemy._id);
-                                            // props.getCategories();
-                                        }} />
-                                        {/* <i className="la la-truck-loading "></i>
-                                                </input> */}
-                                        <button>
+                                        <input className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
+                                        <br></br>
+                                        <strong>מחק</strong>
 
-                                            <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
-                                            </i></button>
+
+
+
+                                        {/* <button>
+
+                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                                                                                                                        </i></button> */}
                                         <span className="switch__content">
 
                                         </span></label></div>
