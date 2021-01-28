@@ -432,7 +432,6 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 };
 
 //16
-////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
         //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
@@ -440,6 +439,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
             var raw = JSON.stringify({
                 "storeName": action.payload.store.storeName,
+                "urlRoute": action.payload.store.urlRoute,
                 "storeDescription": action.payload.store.storeDescription,
                 "logo": "logo",
                 "address": action.payload.store.address,
