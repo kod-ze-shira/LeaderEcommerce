@@ -339,10 +339,6 @@ function CategoryBullcommerce(props) {
 
       <div className="wrapper">
         <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
           <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
             Home Page
 </Link>
@@ -351,7 +347,7 @@ function CategoryBullcommerce(props) {
             {category.categoryName}
           </label>
         </div>
-        <EcommerceHeader />
+        {/* <EcommerceHeader /> */}
         <div className="main">
 
           <div className="section">
@@ -411,10 +407,8 @@ function CategoryBullcommerce(props) {
 
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView"
-                            onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push("/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU) }}
                           >
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                              {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }} onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }}>
 
                               <img className="imageProduct"
                                 alt="..."
@@ -436,13 +430,14 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": item,
-                                    "amount": 1
-                                  }
-                                )}
-
+                                onClick={() => {
+                                  props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    }
+                                  ); props.cartPanal_open()
+                                }}
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                 {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
