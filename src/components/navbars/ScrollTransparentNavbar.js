@@ -211,8 +211,11 @@ function ScrollTransparentNavbar(props) {
                 >
 
                 </FontAwesomeIcon>
+
+                {props.cartProducts&&
                 <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
-              </Link>
+                }
+                </Link>
             </div>
           </Collapse>
           {/* </div> */}
@@ -248,7 +251,6 @@ const mapStateToProps = (state) => {
       state.storeReducer.objectFields.storeName,
 
     // isAdmin: state.viewOrEditReducer.isAdmin
-
 
   }
 }
